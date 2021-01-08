@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Juan Andrés Cabral</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Juan Andrés Cabral</h1>
+        <p>Personal website</p>
+                        <p class="view"><a href="https://jnccabral.github.io/Website"> <h2>Home</h2> </a></p>
+
+        <p class="view"><a href="https://jnccabral.github.io/Website/CV en.pdf"> <h2>CV</h2> </a></p>
+        <p class="view"><a href="https://jnccabral.github.io/Website/research.html"> <h2>Research</h2> </a></p>
+        <p class="view"><a href="https://jnccabral.github.io/Website/Media Coverage.html"> <h2>Media Coverage</h2> </a></p>
+
+ <br>
+    <p><b>Contact Information:</b><br>juan.drs.c@gmail.com</p>
+
+
+      </header>
+      <section>
+                       <h1>Research featured in newspaper articles</h1>
+        <p style="margin:0"> 
+ Infobae: <a href="https://www.infobae.com/economia/2021/01/08/mercado-inmobiliario-cayo-el-valor-en-dolares-de-las-propiedades-y-perdieron-atractivo-los-amenities/">Mercado inmobiliario: cayó el valor en dólares de las propiedades y perdieron atractivo los amenities</a>
+         </p>
+
+
+        
+
+
+
+
+
+      </section>
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
