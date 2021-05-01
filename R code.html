@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Juan Andrés Cabral</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="academicons-1.9.1\css\academicons.css"/>
+    <link rel="stylesheet" href="academicons-1.9.1\css\academicons.min.css">
+    <script src="https://kit.fontawesome.com/ca2aeaecbf.js" crossorigin="anonymous"></script>
+    <style>
+      code {
+        font-family: Consolas,"courier new";
+        color: crimson;
+        background-color: #f1f1f1;
+        padding: 2px;
+        font-size: 105%;
+      }
+      </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Juan Andrés Cabral</h1>
+        <p>Personal website</p>
+                        <p class="view"><a href="https://jnccabral.github.io/Website"> <h2>Home</h2> </a></p>
+
+        <p class="view"><a href="https://jnccabral.github.io/Website/CV en.pdf"> <h2>CV</h2> </a></p>
+        <p class="view"><a href="https://jnccabral.github.io/Website/research.html"> <h2>Research</h2> </a></p>
+        <p class="view"><a href="https://jnccabral.github.io/Website/Code.html"> <h2>Code</h2> </a></p>
+
+        <p class="view"><a href="https://jnccabral.github.io/Website/Media Coverage.html"> <h2>Media Coverage</h2> </a></p>
+
+ <br>
+    <div class="social-row">
+      <a href="mailto:juan.drs.c@gmail.com" class="author-social" target="_blank"><i class="fas fa-envelope-square"></i> juan.drs.c@gmail.com</a><br>
+      <a href="https://github.com/jnccabral"><i class="fab fa-github"></i>   GitHub</a><br>
+      <br>
+    </div>
+    <br>
+
+      </header>
+      <section>
+        <h1>R</h1>
+            <code># Check if a column contains a specific string
+              <br>
+            grepl("word",data$column)</code>
+            <br>
+            <br>
+            <code># Delete specific rows
+              <br>
+              myData <- myData[-c(2, 4, 6), ]
+              </code>
+              <br>
+              <br>
+    
+              <code> # Remove duplicated rows
+              <br>
+              library(dplyr)
+              <br>
+              distances_without_na<-distinct(distances_without_na)
+            </code>
+            <br>
+            <br>
+            <code>
+            # Sample random rows from a dataset
+            <br>
+            df[sample(nrow(df), 3), ] # 3 rows from df dataset
+          </code>
+    
+          <br>
+          <br>
+              <code># Basic function
+                <br>
+                function_name <- function(arg_1, arg_2, ...) {
+                  <br>
+                  #Function body 
+                }</code>
+    
+              <br>
+              <br>
+              <code># Default value in function
+              <br>
+                fooBar <- function(x,y){
+                <br>
+                  if(missing(y)) {
+                    <br>
+                    x
+                    <br>
+                } else {
+                  <br>
+                  x + y
+                  <br>
+                  }
+                  <br>
+    
+              }
+            </code>
+            <br>
+            <br>
+            <code>
+              # Remove duplicated rows
+              <br>
+              library(dplyr)
+              <br>
+              distances_without_na<-distinct(distances_without_na)
+            </code>
+            <br>
+            <br>
+            <code>
+              # New dataframe to store results
+              <br>
+    newdf <- matrix(0, ncol = 2, nrow = 0)
+    <br>
+    newdf<-data.frame(newdf)
+    <br>
+    colnames(newdf)<-
+    <br>
+    c("col1","col2")
+            </code>
+            <br>
+            <br>
+    <code>
+      # Select the row with mini or max value
+      <br>
+      df[which.max(df$col),]
+      <br>
+      df[which.min(df$col),]
+    </code>
+<br>
+<br>
+<h3>ggplot2</h3>
+<code>
+# Vertical line on specific date in ggplot
+<br>
+geom_vline(xintercept = as.Date("2017-01-01"),linetype=2,color="red",size=1)
+</code>
+
+      </section>
+      <footer>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
