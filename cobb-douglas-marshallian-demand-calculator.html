@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marshallian Demands Calculator</title>
+    <title>Cobb-Douglas Marshallian Demands Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,7 +22,7 @@
         .form-container {
             width: 100%;
         }
-        input[type="number"] {
+        input[type="text"], input[type="number"] {
             width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
@@ -55,10 +55,10 @@
         <div class="form-container">
             <form id="demandsForm">
                 <label for="alpha">Alpha \( (\alpha) \):</label>
-                <input type="number" id="alpha" name="alpha" step="0.01" required>
+                <input type="text" id="alpha" name="alpha" required>
                 
                 <label for="beta">Beta \( (\beta) \):</label>
-                <input type="number" id="beta" name="beta" step="0.01" required>
+                <input type="text" id="beta" name="beta" required>
                 
                 <label for="priceX">Price of X \( (P_x) \):</label>
                 <input type="number" id="priceX" name="priceX" required>
@@ -73,36 +73,38 @@
             </form>
         </div>
         <div class="utility-function">
-          Max   \( U = X^{\alpha} \cdot Y^{\beta} \) Subject to  \( M = XP_x+YP_y \)
+          Max \( U = X^{\alpha} \cdot Y^{\beta} \) Subject to \( M = XP_x + YP_y \)
           <br><br>
         </div>
 
         <div class="Results-expressions">
-            \( X^* = \frac{\alpha M}{(\beta + \alpha )P_X} \) <br>
-            \( Y^* = \frac{\beta M}{(\beta + \alpha )P_Y} \)
+            \( X^* = \frac{\alpha M}{(\alpha + \beta)P_X} \) <br>
+            \( Y^* = \frac{\beta M}{(\alpha + \beta)P_Y} \)
         </div>
         <div class="result" id="result"></div>
     </div>
 
     <script>
         function calculateDemands() {
-            const alpha = parseFloat(document.getElementById('alpha').value);
-            const beta = parseFloat(document.getElementById('beta').value);
+            const alphaStr = document.getElementById('alpha').value;
+            const betaStr = document.getElementById('beta').value;
             const priceX = parseFloat(document.getElementById('priceX').value);
             const priceY = parseFloat(document.getElementById('priceY').value);
             const income = parseFloat(document.getElementById('income').value);
 
+            const alpha = eval(alphaStr);  // Evaluate string input as a mathematical expression
+            const beta = eval(betaStr);    // Evaluate string input as a mathematical expression
+
             // Marshallian demands for Cobb-Douglas utility function
-            const demandX = (alpha * income) /( (beta + alpha) * priceX);
-            const demandY = (beta * income) /((beta + alpha) *  priceY);
-            const U = demandX^(alpha)*demandY^(beta);
+            const demandX = (alpha * income) / ((alpha + beta) * priceX);
+            const demandY = (beta * income) / ((alpha + beta) * priceY);
+            const U = Math.pow(demandX, alpha) * Math.pow(demandY, beta);
 
             document.getElementById('result').innerHTML = `
                 <h2>Results</h2>
                 <p>Optimal Demand for X: ${demandX.toFixed(4)}</p>
                 <p>Optimal Demand for Y: ${demandY.toFixed(4)}</p>
                 <p>Utility: ${U.toFixed(4)}</p>
-
             `;
 
             // Update MathJax
