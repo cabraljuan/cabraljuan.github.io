@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect complements Marshallian Demands Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-container {
+            width: 100%;
+        }
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #308b8b;
+            color: rgb(0, 0, 0);
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #308b8b;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .utility-function {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Perfect Complementary Utility Demands Calculator</h1>
+        <div class="form-container">
+            <form id="demandsForm">
+                <label for="alpha">Alpha \( (\alpha) \):</label>
+                <input type="text" id="alpha" name="alpha" required>
+                
+                <label for="beta">Beta \( (\beta) \):</label>
+                <input type="text" id="beta" name="beta" required>
+                
+                <label for="priceX">Price of X \( (P_x) \):</label>
+                <input type="number" id="priceX" name="priceX" required>
+                
+                <label for="priceY">Price of Y \( (P_y) \):</label>
+                <input type="number" id="priceY" name="priceY" required>
+                
+                <label for="income">Income \( (M) \):</label>
+                <input type="number" id="income" name="income" required>
+                
+                <button type="button" onclick="calculateDemands()">Calculate Optimal Demands</button>
+            </form>
+        </div>
+        <div class="utility-function">
+          Max \( U = \min\left(\alpha X, \beta Y \right) \) Subject to \( M = XP_x + YP_y \)
+          <br><br>
+        </div>
+
+        
+        <div class="Results-expressions">
+            \( X^* = \frac{\beta M}{P_x \beta + P_y \alpha} \) <br>
+            <br>
+            \( Y^* = \frac{\alpha M}{P_x \beta + P_y \alpha} \)
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateDemands() {
+            const alphaStr = document.getElementById('alpha').value;
+            const betaStr = document.getElementById('beta').value;
+            const priceX = parseFloat(document.getElementById('priceX').value);
+            const priceY = parseFloat(document.getElementById('priceY').value);
+            const income = parseFloat(document.getElementById('income').value);
+
+            const alpha = eval(alphaStr);  // Evaluate string input as a mathematical expression
+            const beta = eval(betaStr);    // Evaluate string input as a mathematical expression
+
+            // Optimal demands for perfect complementary utility function
+            const demandX = (beta * income) / (priceX *beta + priceY*alpha);
+            const demandY = (alpha * income) / (priceX *beta + priceY*alpha);
+            const U = (alpha * income * beta) / (priceX *beta + priceY*alpha);
+
+            document.getElementById('result').innerHTML = `
+                <h2>Results</h2>
+                <p>Optimal Demand for X: ${demandX.toFixed(4)}</p>
+                <p>Optimal Demand for Y: ${demandY.toFixed(4)}</p>
+                <p>Utility: ${U.toFixed(4)}</p>
+            `;
+            
+            // Update MathJax
+            MathJax.typeset();
+        }
+    </script>
+</body>
+</html>
