@@ -268,3 +268,18 @@ footer {
     color:#444;
   }
 }
+.styled-link {
+  margin: 0;
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.calculator-link {
+  margin: 0;
+  font-size: 100%;
+  font-weight: bold;
+  text-decoration: none;
+}
+.calculator-link:hover {
+  text-decoration: underline;
+}
