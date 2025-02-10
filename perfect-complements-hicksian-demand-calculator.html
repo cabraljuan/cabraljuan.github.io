@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfect Complements Hicksian Demand Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-container {
+      width: 100%;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #308b8b;
+    }
+    .result {
+      margin-top: 20px;
+    }
+    .utility-function {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Perfect Complements Hicksian Demand Calculator</h1>
+    <div class="form-container">
+      <form id="hicksianForm">
+        <label for="a">Coefficient for X \( (a) \):</label>
+        <input type="text" id="a" name="a" required>
+        
+        <label for="b">Coefficient for Y \( (b) \):</label>
+        <input type="text" id="b" name="b" required>
+        
+        <label for="targetU">Target Utility \( (U) \):</label>
+        <input type="number" id="targetU" name="targetU" required step="any">
+        
+        <label for="priceX">Price of X \( (P_x) \):</label>
+        <input type="number" id="priceX" name="priceX" required step="any">
+        
+        <label for="priceY">Price of Y \( (P_y) \):</label>
+        <input type="number" id="priceY" name="priceY" required step="any">
+        
+        <button type="button" onclick="calculateHicksian()">Calculate Hicksian Demands</button>
+      </form>
+    </div>
+    
+    <div class="utility-function">
+      Utility function: \( U = \min\{aX,\, bY\} \) <br>
+      Expenditure minimization: minimize \( E = P_xX + P_yY \) subject to achieving \( U \)
+      <br><br>
+    </div>
+    
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateHicksian() {
+      // Retrieve input values
+      const aStr = document.getElementById('a').value;
+      const bStr = document.getElementById('b').value;
+      const targetU = parseFloat(document.getElementById('targetU').value);
+      const priceX = parseFloat(document.getElementById('priceX').value);
+      const priceY = parseFloat(document.getElementById('priceY').value);
+
+      // Evaluate coefficients (ensure safe usage in production)
+      const a = eval(aStr);
+      const b = eval(bStr);
+
+      if (targetU <= 0) {
+        alert("Target utility must be positive.");
+        return;
+      }
+      
+      // For perfect complements, the optimal solution is to consume in fixed proportions:
+      // aX = U  and  bY = U
+      const demandX = targetU / a;
+      const demandY = targetU / b;
+      
+      // Calculate the minimum expenditure:
+      const expenditure = priceX * demandX + priceY * demandY;
+
+      let resultHTML = "<h2>Results</h2>";
+      resultHTML += `<p>Hicksian demand for X: ${demandX.toFixed(4)}</p>`;
+      resultHTML += `<p>Hicksian demand for Y: ${demandY.toFixed(4)}</p>`;
+      resultHTML += `<p>Minimum expenditure: ${expenditure.toFixed(4)}</p>`;
+      
+      resultHTML += "<p>Formulas used:</p>";
+      resultHTML += "<p>\\( X^* = \\frac{U}{a} \\)</p>";
+      resultHTML += "<p>\\( Y^* = \\frac{U}{b} \\)</p>";
+      resultHTML += "<p>\\( E = P_x\\,X^* + P_y\\,Y^* \\)</p>";
+
+      document.getElementById('result').innerHTML = resultHTML;
+      // Re-render MathJax expressions in the updated content
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
