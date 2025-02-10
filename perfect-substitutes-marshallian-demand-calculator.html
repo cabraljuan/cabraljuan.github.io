@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfect Substitutes Marshallian Demands Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-container {
+      width: 100%;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #308b8b;
+      color: rgb(0, 0, 0);
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #308b8b;
+    }
+    .result {
+      margin-top: 20px;
+    }
+    .utility-function {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Perfect Substitutes Calculator</h1>
+    <div class="form-container">
+      <form id="substitutesForm">
+        <label for="a">Coefficient for X \( (a) \):</label>
+        <input type="text" id="a" name="a" required>
+
+        <label for="b">Coefficient for Y \( (b) \):</label>
+        <input type="text" id="b" name="b" required>
+
+        <label for="priceX">Price of X \( (P_x) \):</label>
+        <input type="number" id="priceX" name="priceX" required step="any">
+
+        <label for="priceY">Price of Y \( (P_y) \):</label>
+        <input type="number" id="priceY" name="priceY" required step="any">
+
+        <label for="income">Income \( (M) \):</label>
+        <input type="number" id="income" name="income" required step="any">
+
+        <button type="button" onclick="calculateSubstitutes()">Calculate Marshallian Demands</button>
+      </form>
+    </div>
+    
+    <div class="utility-function">
+      Max \( U = aX + bY \) <br>
+      Subject to \( M = P_xX + P_yY \)
+      <br><br>
+    </div>
+    
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateSubstitutes() {
+      // Retrieve and evaluate the inputs
+      const aStr = document.getElementById('a').value;
+      const bStr = document.getElementById('b').value;
+      const priceX = parseFloat(document.getElementById('priceX').value);
+      const priceY = parseFloat(document.getElementById('priceY').value);
+      const income = parseFloat(document.getElementById('income').value);
+
+      // Use eval to allow expressions (ensure user inputs are safe in your actual implementation)
+      const a = eval(aStr);
+      const b = eval(bStr);
+
+      let resultHTML = '<h2>Results</h2>';
+      // Calculate the marginal utility per dollar for each good
+      const ratioX = a / priceX;
+      const ratioY = b / priceY;
+
+      if (ratioX > ratioY) {
+        // Consumer spends all income on X
+        const demandX = income / priceX;
+        const demandY = 0;
+        const U = a * demandX + b * demandY;
+        resultHTML += `<p>Optimal Demand for X: ${demandX.toFixed(4)}</p>`;
+        resultHTML += `<p>Optimal Demand for Y: ${demandY.toFixed(4)}</p>`;
+        resultHTML += `<p>Utility: ${U.toFixed(4)}</p>`;
+        resultHTML += `<p>Explanation: \( \\frac{a}{P_x} > \\frac{b}{P_y} \\). The consumer spends all income on X.</p>`;
+      } else if (ratioX < ratioY) {
+        // Consumer spends all income on Y
+        const demandX = 0;
+        const demandY = income / priceY;
+        const U = a * demandX + b * demandY;
+        resultHTML += `<p>Optimal Demand for X: ${demandX.toFixed(4)}</p>`;
+        resultHTML += `<p>Optimal Demand for Y: ${demandY.toFixed(4)}</p>`;
+        resultHTML += `<p>Utility: ${U.toFixed(4)}</p>`;
+        resultHTML += `<p>Explanation: \( \\frac{a}{P_x} < \\frac{b}{P_y} \\). The consumer spends all income on Y.</p>`;
+      } else {
+        // Indifference: any bundle on the budget line is optimal
+        resultHTML += `<p>The marginal utility per dollar is equal for both goods, i.e., \( \\frac{a}{P_x} = \\frac{b}{P_y} \\).</p>`;
+        resultHTML += `<p>The consumer is indifferent between the goods, so any combination satisfying the budget constraint \( P_xX + P_yY = M \) is optimal.</p>`;
+        // Optionally, provide one example solution (all on X, for instance)
+        const demandX = income / priceX;
+        const demandY = 0;
+        const U = a * demandX + b * demandY;
+        resultHTML += `<p>For example, one optimal bundle is:</p>`;
+        resultHTML += `<p>Optimal Demand for X: ${demandX.toFixed(4)}</p>`;
+        resultHTML += `<p>Optimal Demand for Y: ${demandY.toFixed(4)}</p>`;
+        resultHTML += `<p>Utility: ${U.toFixed(4)}</p>`;
+      }
+
+      document.getElementById('result').innerHTML = resultHTML;
+      // Re-render MathJax expressions
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
