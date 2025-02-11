@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cobb-Douglas Slutsky Decomposition Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-container {
+      width: 100%;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #308b8b;
+    }
+    .result {
+      margin-top: 20px;
+    }
+    .utility-function {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Cobb-Douglas Slutsky Decomposition Calculator</h1>
+    <div class="form-container">
+      <form id="slutskyForm">
+        <label for="alpha">Alpha \( (\alpha) \):</label>
+        <input type="text" id="alpha" name="alpha" required>
+        
+        <label for="beta">Beta \( (\beta) \):</label>
+        <input type="text" id="beta" name="beta" required>
+        
+        <label for="income">Income \( (M) \):</label>
+        <input type="number" id="income" name="income" required step="any">
+        
+        <label for="priceXOld">Initial Price of X \( (P_{x0}) \):</label>
+        <input type="number" id="priceXOld" name="priceXOld" required step="any">
+        
+        <label for="priceXNew">New Price of X \( (P_{x1}) \):</label>
+        <input type="number" id="priceXNew" name="priceXNew" required step="any">
+        
+        <button type="button" onclick="calculateSlutsky()">Calculate Slutsky Decomposition</button>
+      </form>
+    </div>
+    
+    <div class="utility-function">
+      Cobb-Douglas Utility: \( U = X^{\alpha} Y^{\beta} \) <br>
+      Marshallian demand for \(X\): \( X = \\frac{\\alpha M}{(\\alpha+\\beta)P_x} \) <br>
+      Slutsky Equation: \( \\frac{\\partial X}{\\partial P_x} = \\frac{\\partial X^h}{\\partial P_x} - X\\frac{\\partial X}{\\partial M} \\)
+      <br><br>
+    </div>
+    
+    <div class="result" id="result"></div>
+  </div>
+  
+  <script>
+    function calculateSlutsky() {
+      // Retrieve input values
+      const alphaStr = document.getElementById('alpha').value;
+      const betaStr = document.getElementById('beta').value;
+      const income = parseFloat(document.getElementById('income').value);
+      const P_x0 = parseFloat(document.getElementById('priceXOld').value);
+      const P_x1 = parseFloat(document.getElementById('priceXNew').value);
+      
+      // Evaluate alpha and beta (ensure safe usage in production)
+      const alpha = eval(alphaStr);
+      const beta = eval(betaStr);
+      
+      // Validate inputs: all must be positive
+      if (alpha <= 0 || beta <= 0 || income <= 0 || P_x0 <= 0 || P_x1 <= 0) {
+        alert("All inputs must be positive.");
+        return;
+      }
+      
+      // Calculate initial and new demand for X using the Marshallian formula
+      const X_old = (alpha * income) / ((alpha + beta) * P_x0);
+      const X_new = (alpha * income) / ((alpha + beta) * P_x1);
+      
+      // Total change in demand for X
+      const totalChange = X_new - X_old;
+      
+      // Change in price of X
+      const deltaP = P_x1 - P_x0;
+      
+      // Marginal derivative of X with respect to M (evaluated at P_x0)
+      const dX_dM = alpha / ((alpha + beta) * P_x0);
+      
+      // Income effect (approximate):
+      // Income effect = - X_old * (dX/dM) * (P_x1 - P_x0)
+      const incomeEffect = - X_old * dX_dM * deltaP;
+      
+      // Substitution effect is the remaining part of the total change
+      const substitutionEffect = totalChange - incomeEffect;
+      
+      let resultHTML = "<h2>Results</h2>";
+      resultHTML += `<p>Initial demand for X: ${X_old.toFixed(4)}</p>`;
+      resultHTML += `<p>New demand for X: ${X_new.toFixed(4)}</p>`;
+      resultHTML += `<p>Total change in demand (ΔX): ${totalChange.toFixed(4)}</p>`;
+      resultHTML += `<p>Substitution effect (approx.): ${substitutionEffect.toFixed(4)}</p>`;
+      resultHTML += `<p>Income effect (approx.): ${incomeEffect.toFixed(4)}</p>`;
+      
+      resultHTML += "<p>Formulas used:</p>";
+      resultHTML += "<p>Marshallian demand for X: \\( X = \\frac{\\alpha M}{(\\alpha+\\beta)P_x} \\)</p>";
+      resultHTML += "<p>Total effect: \\( \\Delta X = X(P_{x1}) - X(P_{x0}) \\)</p>";
+      resultHTML += "<p>Income effect: \\( -X(P_{x0})\\cdot\\frac{\\alpha}{(\\alpha+\\beta)P_{x0}}\\cdot(P_{x1}-P_{x0}) \\)</p>";
+      resultHTML += "<p>Substitution effect: \\( \\Delta X - \\text{Income Effect} \\)</p>";
+      
+      document.getElementById('result').innerHTML = resultHTML;
+      // Re-render MathJax expressions in the updated content
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
