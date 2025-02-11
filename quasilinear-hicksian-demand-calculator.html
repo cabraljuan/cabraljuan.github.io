@@ -56,6 +56,9 @@
     <h1>Quasilinear Hicksian Demand Calculator</h1>
     <div class="form-container">
       <form id="hicksianForm">
+        <label for="a">Coefficient for \( \ln(X) \) \( (a) \):</label>
+        <input type="text" id="a" name="a" required>
+        
         <label for="priceX">Price of X \( (P_x) \):</label>
         <input type="number" id="priceX" name="priceX" required step="any">
         
@@ -70,8 +73,8 @@
     </div>
     
     <div class="utility-function">
-      Utility function: \( U = \ln(X) + Y \) <br>
-      Expenditure minimization: minimize \( E = P_xX + P_yY \) subject to \( \ln(X) + Y = U \)
+      Utility function: \( U = a\,\ln(X) + Y \) <br>
+      Expenditure minimization: minimize \( E = P_xX + P_yY \) subject to \( a\,\ln(X) + Y = U \)
       <br><br>
     </div>
     
@@ -81,34 +84,34 @@
   <script>
     function calculateHicksian() {
       // Retrieve input values
+      const aStr = document.getElementById('a').value;
       const priceX = parseFloat(document.getElementById('priceX').value);
       const priceY = parseFloat(document.getElementById('priceY').value);
       const targetU = parseFloat(document.getElementById('targetU').value);
       
-      // Validate inputs
-      if (priceX <= 0 || priceY <= 0) {
-        alert("Prices must be positive.");
-        return;
-      }
-      if (targetU <= 0) {
-        alert("Target utility must be positive.");
+      // Evaluate coefficient (ensure safe usage in production)
+      const a = eval(aStr);
+      
+      // Validate inputs: all must be positive.
+      if (a <= 0 || priceX <= 0 || priceY <= 0 || targetU <= 0) {
+        alert("All inputs must be positive.");
         return;
       }
       
       let demandX, demandY, expenditure;
       
-      // Compute ln(P_y/P_x)
-      const lnRatio = Math.log(priceY / priceX);
+      // Calculate the threshold for the interior solution: a * ln((a*P_y)/P_x)
+      const lnThreshold = a * Math.log((a * priceY) / priceX);
       
-      if (targetU >= lnRatio) {
+      if (targetU >= lnThreshold) {
         // Interior solution:
-        // X* = P_y / P_x, Y* = U - ln(P_y/P_x)
-        demandX = priceY / priceX;
-        demandY = targetU - lnRatio;
+        // X* = (a * P_y) / P_x, Y* = U - a*ln((a*P_y)/P_x)
+        demandX = (a * priceY) / priceX;
+        demandY = targetU - a * Math.log((a * priceY) / priceX);
         expenditure = priceX * demandX + priceY * demandY;
       } else {
-        // Corner solution: set Y = 0, so ln(X) = U => X = e^U
-        demandX = Math.exp(targetU);
+        // Corner solution: set Y = 0, so a*ln(X) = U, which implies X* = e^(U/a)
+        demandX = Math.exp(targetU / a);
         demandY = 0;
         expenditure = priceX * demandX;
       }
@@ -119,11 +122,11 @@
       resultHTML += `<p>Minimum expenditure: ${expenditure.toFixed(4)}</p>`;
       
       resultHTML += "<p>Formulas used:</p>";
-      resultHTML += "<p>For interior solution (if \\( U \\geq \\ln(\\frac{P_y}{P_x}) \\)):</p>";
-      resultHTML += "<p>\\( X^* = \\frac{P_y}{P_x} \\)</p>";
-      resultHTML += "<p>\\( Y^* = U - \\ln\\Bigl(\\frac{P_y}{P_x}\\Bigr) \\)</p>";
-      resultHTML += "<p>For corner solution (if \\( U < \\ln(\\frac{P_y}{P_x}) \\)):</p>";
-      resultHTML += "<p>\\( X^* = e^U \\)</p>";
+      resultHTML += "<p>For interior solution (if \\( U \\geq a\\ln(\\frac{aP_y}{P_x}) \\)):</p>";
+      resultHTML += "<p>\\( X^* = \\frac{aP_y}{P_x} \\)</p>";
+      resultHTML += "<p>\\( Y^* = U - a\\ln\\Bigl(\\frac{aP_y}{P_x}\\Bigr) \\)</p>";
+      resultHTML += "<p>For corner solution (if \\( U < a\\ln(\\frac{aP_y}{P_x}) \\)):</p>";
+      resultHTML += "<p>\\( X^* = e^{U/a} \\)</p>";
       resultHTML += "<p>\\( Y^* = 0 \\)</p>";
       resultHTML += "<p>Expenditure: \\( E = P_xX^* + P_yY^* \\)</p>";
       
