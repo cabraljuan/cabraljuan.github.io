@@ -45,11 +45,12 @@
     .utility-function {
       margin-top: 20px;
       font-weight: bold;
+      text-align: center;
     }
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <div class="container">
@@ -71,15 +72,17 @@
         <label for="priceXNew">New Price of X \( (P_{x1}) \):</label>
         <input type="number" id="priceXNew" name="priceXNew" required step="any">
         
+        <label for="priceY">Price of Y \( (P_y) \):</label>
+        <input type="number" id="priceY" name="priceY" required step="any">
+        
         <button type="button" onclick="calculateSlutsky()">Calculate Slutsky Decomposition</button>
       </form>
     </div>
     
     <div class="utility-function">
-      Cobb-Douglas Utility: \( U = X^{\alpha} Y^{\beta} \) <br>
-      Marshallian demand for \(X\): \( X = \\frac{\\alpha M}{(\\alpha+\\beta)P_x} \) <br>
-      Slutsky Equation: \( \\frac{\\partial X}{\\partial P_x} = \\frac{\\partial X^h}{\\partial P_x} - X\\frac{\\partial X}{\\partial M} \\)
-      <br><br>
+      <p>Cobb‑Douglas Utility: \( U = X^{\alpha}Y^{\beta} \)</p>
+      <p>Marshallian demand for \(X\): \( X = \frac{\alpha M}{(\alpha+\beta)P_x} \)</p>
+      <p>Slutsky Equation: \( \frac{\partial X}{\partial P_x} = \frac{\partial X^h}{\partial P_x} - X\frac{\partial X}{\partial M} \)</p>
     </div>
     
     <div class="result" id="result"></div>
@@ -93,18 +96,20 @@
       const income = parseFloat(document.getElementById('income').value);
       const P_x0 = parseFloat(document.getElementById('priceXOld').value);
       const P_x1 = parseFloat(document.getElementById('priceXNew').value);
+      const P_y = parseFloat(document.getElementById('priceY').value);
       
       // Evaluate alpha and beta (ensure safe usage in production)
       const alpha = eval(alphaStr);
       const beta = eval(betaStr);
       
       // Validate inputs: all must be positive
-      if (alpha <= 0 || beta <= 0 || income <= 0 || P_x0 <= 0 || P_x1 <= 0) {
+      if (alpha <= 0 || beta <= 0 || income <= 0 || P_x0 <= 0 || P_x1 <= 0 || P_y <= 0) {
         alert("All inputs must be positive.");
         return;
       }
       
-      // Calculate initial and new demand for X using the Marshallian formula
+      // Calculate initial and new demand for X using the Marshallian formula:
+      // Note: For Cobb-Douglas, X depends only on P_x (not on P_y)
       const X_old = (alpha * income) / ((alpha + beta) * P_x0);
       const X_new = (alpha * income) / ((alpha + beta) * P_x1);
       
@@ -117,11 +122,11 @@
       // Marginal derivative of X with respect to M (evaluated at P_x0)
       const dX_dM = alpha / ((alpha + beta) * P_x0);
       
-      // Income effect (approximate):
+      // Approximate Income effect:
       // Income effect = - X_old * (dX/dM) * (P_x1 - P_x0)
       const incomeEffect = - X_old * dX_dM * deltaP;
       
-      // Substitution effect is the remaining part of the total change
+      // Substitution effect is the residual
       const substitutionEffect = totalChange - incomeEffect;
       
       let resultHTML = "<h2>Results</h2>";
@@ -132,10 +137,10 @@
       resultHTML += `<p>Income effect (approx.): ${incomeEffect.toFixed(4)}</p>`;
       
       resultHTML += "<p>Formulas used:</p>";
-      resultHTML += "<p>Marshallian demand for X: \\( X = \\frac{\\alpha M}{(\\alpha+\\beta)P_x} \\)</p>";
-      resultHTML += "<p>Total effect: \\( \\Delta X = X(P_{x1}) - X(P_{x0}) \\)</p>";
-      resultHTML += "<p>Income effect: \\( -X(P_{x0})\\cdot\\frac{\\alpha}{(\\alpha+\\beta)P_{x0}}\\cdot(P_{x1}-P_{x0}) \\)</p>";
-      resultHTML += "<p>Substitution effect: \\( \\Delta X - \\text{Income Effect} \\)</p>";
+      resultHTML += "<p>Marshallian demand for X: \( X = \\frac{\\alpha M}{(\\alpha+\\beta)P_x} \)</p>";
+      resultHTML += "<p>Total effect: \( \\Delta X = X(P_{x1}) - X(P_{x0}) \)</p>";
+      resultHTML += "<p>Income effect: \( -X(P_{x0})\\cdot\\frac{\\alpha}{(\\alpha+\\beta)P_{x0}}\\cdot(P_{x1}-P_{x0}) \)</p>";
+      resultHTML += "<p>Substitution effect: \( \\Delta X - \\text{Income Effect} \)</p>";
       
       document.getElementById('result').innerHTML = resultHTML;
       // Re-render MathJax expressions in the updated content
