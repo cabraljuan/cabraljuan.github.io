@@ -81,8 +81,8 @@
     
     <div class="utility-function">
       <p>Cobb‑Douglas Utility: \( U = X^{\alpha}Y^{\beta} \)</p>
-      <p>Marshallian demand for \(X\): \( X = \\frac{\\alpha M}{(\\alpha+\\beta)P_x} \)</p>
-      <p>Slutsky Equation: \( \\frac{\\partial X}{\\partial P_x} = \\frac{\\partial X^h}{\\partial P_x} - X\\,\\frac{\\partial X}{\\partial M} \)</p>
+      <p>Marshallian demand for \(X\): \( X = \frac{\alpha M}{(\alpha+\beta)P_x} \)</p>
+      <p>Slutsky Equation: \( \frac{\partial X}{\partial P_x} = \frac{\partial X^h}{\partial P_x} - X \frac{\partial X}{\partial M} \)</p>
     </div>
     
     <div class="result" id="result"></div>
@@ -122,17 +122,16 @@
       const dX_dM = alpha / ((alpha + beta) * P_x0);
       
       // Finite-difference approximation of the income effect:
-      // Income effect = - X_old * (dX/dM) * (P_x1 - P_x0)
-      const incomeEffect = - X_old * dX_dM * deltaP;
+      // Income effect ≈ -X_old * (dX/dM) * (P_x1 - P_x0)
+      const incomeEffect = -X_old * dX_dM * deltaP;
       
-      // Approximate substitution effect using the finite-difference method:
+      // Approximate substitution effect using finite-difference:
       const substitutionEffect_FD = totalChange - incomeEffect;
       
       // Alternatively, compute the derivative-based substitution effect:
-      // For Cobb-Douglas, dX/dP_x = - (alpha * M)/((alpha+beta)*P_x^2) evaluated at P_x0,
-      // and the substitution effect derivative is:
-      // dX^h/dP_x = dX/dP_x + X_old*(dX/dM)
-      // Therefore, substitution effect ≈ dX^h/dP_x * deltaP.
+      // For Cobb-Douglas: dX/dP_x = - (alpha * M) / ((alpha+beta) * P_x^2) at P_x0,
+      // and the compensated derivative is:
+      // dX^h/dP_x = dX/dP_x + X_old * (dX/dM)
       const dX_dPx = - (alpha * income) / ((alpha + beta) * Math.pow(P_x0, 2));
       const substitutionEffect_Deriv = (dX_dPx + X_old * dX_dM) * deltaP;
       
@@ -147,9 +146,9 @@
       resultHTML += "<p>Formulas used:</p>";
       resultHTML += "<p>Marshallian demand for X: \\( X = \\frac{\\alpha M}{(\\alpha+\\beta)P_x} \\)</p>";
       resultHTML += "<p>Total effect: \\( \\Delta X = X(P_{x1}) - X(P_{x0}) \\)</p>";
-      resultHTML += "<p>Income effect (approx.): \\( -X(P_{x0})\\cdot\\frac{\\alpha}{(\\alpha+\\beta)P_{x0}}\\cdot(P_{x1}-P_{x0}) \\)</p>";
+      resultHTML += "<p>Income effect (approx.): \\( -X(P_{x0}) \\cdot \\frac{\\alpha}{(\\alpha+\\beta)P_{x0}} \\cdot (P_{x1}-P_{x0}) \\)</p>";
       resultHTML += "<p>Substitution effect: Finite difference: \\( \\Delta X - \\text{Income Effect} \\)</p>";
-      resultHTML += "<p>Substitution effect: Derivative-based: \\( \\frac{\\partial X^h}{\\partial P_x}\\,(P_{x1}-P_{x0}) \\)</p>";
+      resultHTML += "<p>Substitution effect: Derivative-based: \\( \\frac{\\partial X^h}{\\partial P_x} \\,(P_{x1}-P_{x0}) \\)</p>";
       
       document.getElementById('result').innerHTML = resultHTML;
       // Re-render MathJax expressions in the updated content
