@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cobb-Douglas Slutsky Decomposition Calculator</title>
+  <title>Cobb-Douglas Hicks Decomposition Calculator</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -49,14 +49,14 @@
     }
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script id="MathJax-script" async 
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>Cobb-Douglas Slutsky Decomposition Calculator</h1>
+    <h1>Cobb-Douglas Hicks Decomposition Calculator</h1>
     <div class="form-container">
-      <form id="slutskyForm">
+      <form id="decompForm">
         <label for="alpha">Alpha \( (\alpha) \):</label>
         <input type="text" id="alpha" name="alpha" required>
         
@@ -75,25 +75,37 @@
         <label for="priceY">Price of Y \( (P_y) \):</label>
         <input type="number" id="priceY" name="priceY" required step="any">
         
-        <button type="button" onclick="calculateSlutsky()">Calculate Slutsky Decomposition</button>
+        <button type="button" onclick="calculateDecomposition()">Calculate Decomposition</button>
       </form>
     </div>
     
     <div class="utility-function">
-      <p>Cobb‑Douglas Utility: \( U = X^{\alpha}Y^{\beta} \)</p>
-      <p>Marshallian demand for \(X\): \( X = \frac{\alpha M}{(\alpha+\beta)P_x} \)</p>
-      <p>Slutsky Equation: \( \frac{\partial X}{\partial P_x} = \frac{\partial X^h}{\partial P_x} - X \frac{\partial X}{\partial M} \)</p>
+      <p>Cobb‑Douglas Utility: \( U = X^{\alpha} Y^{\beta} \)</p>
+      <p>Marshallian demand for \(X\): \( X^M = \frac{\alpha M}{(\alpha+\beta)P_x} \)</p>
+      <p>
+        Hicks (compensated) demand for \(X\) at new price with target utility \(U_0\):  
+        \( X^h = \frac{\alpha}{\alpha+\beta}\frac{E(P_{x1},P_y,U_0)}{P_{x1}} \)
+      </p>
+      <p>
+        Where the expenditure function is:  
+        \( E(P_x,P_y,U) = U\left[\left(\frac{\alpha}{P_x}\right)^{\alpha}\left(\frac{\beta}{P_y}\right)^{\beta}\right]^{-\frac{1}{\alpha+\beta}} \)
+      </p>
+      <p>
+        <strong>Decomposition:</strong><br>
+        Substitution effect: \( X^h - X^M(P_{x0},M) \) <br>
+        Income effect: \( X^M(P_{x1},M) - X^h \)
+      </p>
     </div>
     
     <div class="result" id="result"></div>
   </div>
   
   <script>
-    function calculateSlutsky() {
+    function calculateDecomposition() {
       // Retrieve input values
       const alphaStr = document.getElementById('alpha').value;
       const betaStr = document.getElementById('beta').value;
-      const income = parseFloat(document.getElementById('income').value);
+      const M = parseFloat(document.getElementById('income').value);
       const P_x0 = parseFloat(document.getElementById('priceXOld').value);
       const P_x1 = parseFloat(document.getElementById('priceXNew').value);
       const P_y = parseFloat(document.getElementById('priceY').value);
@@ -102,53 +114,52 @@
       const alpha = eval(alphaStr);
       const beta = eval(betaStr);
       
-      // Validate inputs: all must be positive
-      if (alpha <= 0 || beta <= 0 || income <= 0 || P_x0 <= 0 || P_x1 <= 0 || P_y <= 0) {
+      // Validate that all inputs are positive
+      if (alpha <= 0 || beta <= 0 || M <= 0 || P_x0 <= 0 || P_x1 <= 0 || P_y <= 0) {
         alert("All inputs must be positive.");
         return;
       }
       
-      // Marshallian demand for X: X = (alpha * M) / ((alpha+beta)*P_x)
-      const X_old = (alpha * income) / ((alpha + beta) * P_x0);
-      const X_new = (alpha * income) / ((alpha + beta) * P_x1);
+      // Step 1: Compute the original (initial) Marshallian demands.
+      const X_M0 = (alpha * M) / ((alpha + beta) * P_x0);
+      const Y_M0 = (beta * M) / ((alpha + beta) * P_y);
       
-      // Total change in demand for X (finite difference)
-      const totalChange = X_new - X_old;
+      // Compute the utility level achieved at the original demand:
+      // U0 = (X_M0)^alpha * (Y_M0)^beta
+      const U0 = Math.pow(X_M0, alpha) * Math.pow(Y_M0, beta);
       
-      // Change in price of X
-      const deltaP = P_x1 - P_x0;
+      // Step 2: Compute the expenditure needed to achieve U0 at the new prices.
+      // Expenditure function: E(P_x,P_y,U) = U * [ (alpha/P_x)^alpha * (beta/P_y)^beta ]^(-1/(alpha+beta))
+      const expFactor = Math.pow(Math.pow(alpha / P_x1, alpha) * Math.pow(beta / P_y, beta), -1 / (alpha + beta));
+      const E_new = U0 * expFactor;
       
-      // Marginal derivative of X with respect to M (evaluated at P_x0)
-      const dX_dM = alpha / ((alpha + beta) * P_x0);
+      // Compute the compensated (Hicksian) demand for X at new price:
+      const X_h = (alpha / (alpha + beta)) * (E_new / P_x1);
       
-      // Finite-difference approximation of the income effect:
-      // Income effect ≈ -X_old * (dX/dM) * (P_x1 - P_x0)
-      const incomeEffect = -X_old * dX_dM * deltaP;
+      // Step 3: Compute the new (final) Marshallian demand at the new price.
+      const X_M1 = (alpha * M) / ((alpha + beta) * P_x1);
       
-      // Approximate substitution effect using finite-difference:
-      const substitutionEffect_FD = totalChange - incomeEffect;
-      
-      // Alternatively, compute the derivative-based substitution effect:
-      // For Cobb-Douglas: dX/dP_x = - (alpha * M) / ((alpha+beta) * P_x^2) at P_x0,
-      // and the compensated derivative is:
-      // dX^h/dP_x = dX/dP_x + X_old * (dX/dM)
-      const dX_dPx = - (alpha * income) / ((alpha + beta) * Math.pow(P_x0, 2));
-      const substitutionEffect_Deriv = (dX_dPx + X_old * dX_dM) * deltaP;
+      // Now, the decomposition:
+      // Substitution effect = X^h - X_M0
+      // Income effect = X_M1 - X^h
+      const substitutionEffect = X_h - X_M0;
+      const incomeEffect = X_M1 - X_h;
       
       let resultHTML = "<h2>Results</h2>";
-      resultHTML += `<p>Initial demand for X: ${X_old.toFixed(4)}</p>`;
-      resultHTML += `<p>New demand for X: ${X_new.toFixed(4)}</p>`;
-      resultHTML += `<p>Total change in demand (ΔX): ${totalChange.toFixed(4)}</p>`;
-      resultHTML += `<p>Income effect (approx.): ${incomeEffect.toFixed(4)}</p>`;
-      resultHTML += `<p>Substitution effect (finite difference): ${substitutionEffect_FD.toFixed(4)}</p>`;
-      resultHTML += `<p>Substitution effect (derivative-based): ${substitutionEffect_Deriv.toFixed(4)}</p>`;
+      resultHTML += `<p>Initial Marshallian demand for X: ${X_M0.toFixed(4)}</p>`;
+      resultHTML += `<p>Utility level achieved (U₀): ${U0.toFixed(4)}</p>`;
+      resultHTML += `<p>Hicksian (compensated) demand for X at new price: ${X_h.toFixed(4)}</p>`;
+      resultHTML += `<p>New Marshallian demand for X: ${X_M1.toFixed(4)}</p>`;
+      resultHTML += `<p>Substitution Effect: ${substitutionEffect.toFixed(4)}</p>`;
+      resultHTML += `<p>Income Effect: ${incomeEffect.toFixed(4)}</p>`;
       
       resultHTML += "<p>Formulas used:</p>";
-      resultHTML += "<p>Marshallian demand for X: \\( X = \\frac{\\alpha M}{(\\alpha+\\beta)P_x} \\)</p>";
-      resultHTML += "<p>Total effect: \\( \\Delta X = X(P_{x1}) - X(P_{x0}) \\)</p>";
-      resultHTML += "<p>Income effect (approx.): \\( -X(P_{x0}) \\cdot \\frac{\\alpha}{(\\alpha+\\beta)P_{x0}} \\cdot (P_{x1}-P_{x0}) \\)</p>";
-      resultHTML += "<p>Substitution effect: Finite difference: \\( \\Delta X - \\text{Income Effect} \\)</p>";
-      resultHTML += "<p>Substitution effect: Derivative-based: \\( \\frac{\\partial X^h}{\\partial P_x} \\,(P_{x1}-P_{x0}) \\)</p>";
+      resultHTML += "<p>Original Marshallian demand: \\( X^M = \\frac{\\alpha M}{(\\alpha+\\beta)P_x} \\)</p>";
+      resultHTML += "<p>Utility level: \\( U_0 = (X^M)^{\\alpha}(Y^M)^{\\beta} \\)</p>";
+      resultHTML += "<p>Expenditure function: \\( E(P_x,P_y,U) = U\\left[\\left(\\frac{\\alpha}{P_x}\\right)^{\\alpha}\\left(\\frac{\\beta}{P_y}\\right)^{\\beta}\\right]^{-\\frac{1}{\\alpha+\\beta}} \\)</p>";
+      resultHTML += "<p>Hicksian demand for X: \\( X^h = \\frac{\\alpha}{\\alpha+\\beta}\\frac{E(P_{x1},P_y,U_0)}{P_{x1}} \\)</p>";
+      resultHTML += "<p>Substitution Effect: \\( X^h - X^M(P_{x0},M) \\)</p>";
+      resultHTML += "<p>Income Effect: \\( X^M(P_{x1},M) - X^h \\)</p>";
       
       document.getElementById('result').innerHTML = resultHTML;
       // Re-render MathJax expressions in the updated content
