@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stone-Geary Marshallian Demand Calculator</title>
+  <title>Stone-Geary Hicksian Demand Calculator</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -54,9 +54,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>Stone-Geary Marshallian Demand Calculator</h1>
+    <h1>Stone-Geary Hicksian Demand Calculator</h1>
     <div class="form-container">
-      <form id="stoneGearyForm">
+      <form id="stoneGearyHicksianForm">
         <label for="alpha">Alpha \( (\alpha) \):</label>
         <input type="text" id="alpha" name="alpha" required>
         
@@ -75,26 +75,30 @@
         <label for="priceY">Price of Y \( (P_y) \):</label>
         <input type="number" id="priceY" name="priceY" required step="any">
         
-        <label for="income">Income \( (M) \):</label>
-        <input type="number" id="income" name="income" required step="any">
+        <label for="targetU">Target Utility \( (U) \):</label>
+        <input type="number" id="targetU" name="targetU" required step="any">
         
-        <button type="button" onclick="calculateStoneGeary()">Calculate Marshallian Demands</button>
+        <button type="button" onclick="calculateStoneGearyHicksian()">Calculate Hicksian Demands</button>
       </form>
     </div>
     
     <div class="utility-function">
       <p>Stone‑Geary Utility: \( U = (X-\bar{x})^{\alpha}(Y-\bar{y})^{\beta} \)</p>
-      <p>Budget Constraint: \( M = P_x X + P_y Y \)</p>
-      <p>Marshallian demands:</p>
-      <p>\( X^* = \bar{x} + \frac{\alpha}{\alpha+\beta}\frac{M - P_x\bar{x} - P_y\bar{y}}{P_x} \)</p>
-      <p>\( Y^* = \bar{y} + \frac{\beta}{\alpha+\beta}\frac{M - P_x\bar{x} - P_y\bar{y}}{P_y} \)</p>
+      <p>Expenditure Function: 
+      \[
+        E(P_x,P_y,U) = P_x\bar{x} + P_y\bar{y} + \left[ U \cdot \frac{P_x^{\alpha} P_y^{\beta}}{\left(\frac{\alpha}{\alpha+\beta}\right)^{\alpha} \left(\frac{\beta}{\alpha+\beta}\right)^{\beta}} \right]^{\frac{1}{\alpha+\beta}}
+      \]
+      </p>
+      <p>Hicksian Demands:</p>
+      <p>\( X^h = \bar{x} + \frac{\alpha}{\alpha+\beta}\frac{E(P_x,P_y,U)-P_x\bar{x}-P_y\bar{y}}{P_x} \)</p>
+      <p>\( Y^h = \bar{y} + \frac{\beta}{\alpha+\beta}\frac{E(P_x,P_y,U)-P_x\bar{x}-P_y\bar{y}}{P_y} \)</p>
     </div>
     
     <div class="result" id="result"></div>
   </div>
   
   <script>
-    function calculateStoneGeary() {
+    function calculateStoneGearyHicksian() {
       // Retrieve input values
       const alpha = eval(document.getElementById('alpha').value);
       const beta = eval(document.getElementById('beta').value);
@@ -102,26 +106,35 @@
       const subsY = parseFloat(document.getElementById('subsY').value);
       const priceX = parseFloat(document.getElementById('priceX').value);
       const priceY = parseFloat(document.getElementById('priceY').value);
-      const income = parseFloat(document.getElementById('income').value);
+      const targetU = parseFloat(document.getElementById('targetU').value);
       
-      // Check if income is enough to cover the subsistence consumption:
-      if (income < priceX * subsX + priceY * subsY) {
-        alert("Income is insufficient to cover subsistence consumption.");
+      // Validate inputs: subsistence can be zero or positive; other inputs must be positive.
+      if (alpha <= 0 || beta <= 0 || priceX <= 0 || priceY <= 0 || targetU <= 0) {
+        alert("Alpha, Beta, Prices, and Target Utility must be positive.");
         return;
       }
       
-      // Calculate optimal demands using Stone-Geary formulas
-      const X_star = subsX + (alpha / (alpha + beta)) * ((income - priceX * subsX - priceY * subsY) / priceX);
-      const Y_star = subsY + (beta / (alpha + beta)) * ((income - priceX * subsX - priceY * subsY) / priceY);
+      // Compute the extra expenditure needed above subsistence (E_prime)
+      // E_prime = [ U * (P_x^alpha * P_y^beta) / ((alpha/(alpha+beta))^alpha * (beta/(alpha+beta))^beta) ]^(1/(alpha+beta))
+      const numerator = targetU * Math.pow(priceX, alpha) * Math.pow(priceY, beta);
+      const denominator = Math.pow(alpha / (alpha + beta), alpha) * Math.pow(beta / (alpha + beta), beta);
+      const E_prime = Math.pow(numerator / denominator, 1 / (alpha + beta));
       
-      // Calculate the utility level achieved:
-      // U0 = (X_star - subsX)^alpha * (Y_star - subsY)^beta
-      const U0 = Math.pow(X_star - subsX, alpha) * Math.pow(Y_star - subsY, beta);
+      // Total minimum expenditure:
+      const E_total = priceX * subsX + priceY * subsY + E_prime;
+      
+      // Hicksian (compensated) demands for X and Y:
+      const X_h = subsX + (alpha / (alpha + beta)) * (E_prime / priceX);
+      const Y_h = subsY + (beta / (alpha + beta)) * (E_prime / priceY);
+      
+      // Achieved utility (should be close to the target utility)
+      const achievedU = Math.pow(X_h - subsX, alpha) * Math.pow(Y_h - subsY, beta);
       
       let resultHTML = "<h2>Results</h2>";
-      resultHTML += `<p>Optimal demand for X: ${X_star.toFixed(4)}</p>`;
-      resultHTML += `<p>Optimal demand for Y: ${Y_star.toFixed(4)}</p>`;
-      resultHTML += `<p>Utility level achieved: ${U0.toFixed(4)}</p>`;
+      resultHTML += `<p>Total minimum expenditure needed: ${E_total.toFixed(4)}</p>`;
+      resultHTML += `<p>Hicksian demand for X: ${X_h.toFixed(4)}</p>`;
+      resultHTML += `<p>Hicksian demand for Y: ${Y_h.toFixed(4)}</p>`;
+      resultHTML += `<p>Achieved utility level: ${achievedU.toFixed(4)}</p>`;
       
       document.getElementById('result').innerHTML = resultHTML;
       MathJax.typeset();
