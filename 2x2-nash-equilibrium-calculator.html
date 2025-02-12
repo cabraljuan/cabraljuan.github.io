@@ -58,7 +58,7 @@
     }
     table, th, td {
       border: 1px solid #666;
-      padding: 5px;
+      padding: 8px;
       text-align: center;
     }
   </style>
@@ -107,14 +107,12 @@
     <div class="header">
       <p>
         Game Format: <br>
-        Row Player's payoff matrix: 
+        Combined Payoff Matrix (Row, Column):<br>
         \[
-          \begin{pmatrix} a & b \\ c & d \end{pmatrix}
-        \]
-        <br>
-        Column Player's payoff matrix: 
-        \[
-          \begin{pmatrix} e & f \\ g & h \end{pmatrix}
+          \begin{pmatrix}
+          a, e & b, f \\
+          c, g & d, h
+          \end{pmatrix}
         \]
       </p>
     </div>
@@ -200,22 +198,16 @@
         resultHTML += "<p><strong>No non-degenerate mixed strategy Nash equilibrium found (or mixed equilibrium is not unique).</strong></p>";
       }
       
-      // Also show the mixed strategy formulas used:
+      // Show mixed strategy formulas used:
       resultHTML += "<p class='math'>For Column: \\( q = \\frac{d - b}{a - b - c + d} \\)</p>";
       resultHTML += "<p class='math'>For Row: \\( p = \\frac{h - g}{e - g - f + h} \\)</p>";
       
-      // Create tables for the payoff matrices.
-      let tableHTML = "<h3>Payoff Matrices</h3>";
-      tableHTML += "<h4>Row Player's Payoffs</h4>";
-      tableHTML += "<table><tr><th></th><th>C1</th><th>C2</th></tr>";
-      tableHTML += `<tr><td>R1</td><td>${a}</td><td>${b}</td></tr>`;
-      tableHTML += `<tr><td>R2</td><td>${c}</td><td>${d}</td></tr>`;
-      tableHTML += "</table>";
-      
-      tableHTML += "<h4>Column Player's Payoffs</h4>";
-      tableHTML += "<table><tr><th></th><th>C1</th><th>C2</th></tr>";
-      tableHTML += `<tr><td>R1</td><td>${e}</td><td>${f}</td></tr>`;
-      tableHTML += `<tr><td>R2</td><td>${g}</td><td>${h}</td></tr>`;
+      // Create a single table for the combined payoff matrix.
+      let tableHTML = "<h3>Combined Payoff Matrix</h3>";
+      tableHTML += "<table>";
+      tableHTML += "<tr><th></th><th>C1</th><th>C2</th></tr>";
+      tableHTML += `<tr><td>R1</td><td>${a}, ${e}</td><td>${b}, ${f}</td></tr>`;
+      tableHTML += `<tr><td>R2</td><td>${c}, ${g}</td><td>${d}, ${h}</td></tr>`;
       tableHTML += "</table>";
       
       resultHTML += tableHTML;
