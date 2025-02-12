@@ -41,6 +41,7 @@
     }
     .result {
       margin-top: 20px;
+      width: 100%;
     }
     .header {
       text-align: center;
@@ -49,6 +50,16 @@
     }
     .math {
       margin: 10px 0;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 10px 0;
+      width: 100%;
+    }
+    table, th, td {
+      border: 1px solid #666;
+      padding: 5px;
+      text-align: center;
     }
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -142,15 +153,14 @@
         pureEquilibria.push("(R2, C2)");
       }
       
-      // Compute mixed strategy equilibrium if denominator is nonzero.
-      let mixedEquilibrium = {};
+      // Compute mixed strategy equilibrium if denominators are nonzero.
       let mixedExists = true;
       
       // For the row player, let p = probability of playing R1.
       // Column player's indifference: 
       // Expected payoff of C1: e * p + g*(1-p)
       // Expected payoff of C2: f * p + h*(1-p)
-      // Set them equal: e p + g - g p = f p + h - h p  -> (e - g - f + h) p = h - g.
+      // Set them equal: (e - g - f + h)*p = h - g.
       const denominatorColumn = e - g - f + h;
       let p = null;
       if (denominatorColumn !== 0) {
@@ -163,7 +173,7 @@
       // Row player's indifference:
       // Expected payoff of R1: a * q + b*(1-q)
       // Expected payoff of R2: c * q + d*(1-q)
-      // Set them equal: a q + b - b q = c q + d - d q  -> (a - b - c + d) q = d - b.
+      // Set them equal: (a - b - c + d)*q = d - b.
       const denominatorRow = a - b - c + d;
       let q = null;
       if (denominatorRow !== 0) {
@@ -184,8 +194,8 @@
       // Display Mixed Strategy Equilibrium (if exists and probabilities in [0,1])
       if (mixedExists && p !== null && q !== null && p >= 0 && p <= 1 && q >= 0 && q <= 1) {
         resultHTML += "<p><strong>Mixed Strategy Nash Equilibrium:</strong></p>";
-        resultHTML += `<p>Row player plays R1 with probability \( p = ${p.toFixed(4)} \) and R2 with probability \( 1-p = ${(1-p).toFixed(4)} \).</p>`;
-        resultHTML += `<p>Column player plays C1 with probability \( q = ${q.toFixed(4)} \) and C2 with probability \( 1-q = ${(1-q).toFixed(4)} \).</p>`;
+        resultHTML += `<p>Row player plays R1 with probability \\( p = ${p.toFixed(4)} \\) and R2 with probability \\( 1-p = ${(1-p).toFixed(4)} \\).</p>`;
+        resultHTML += `<p>Column player plays C1 with probability \\( q = ${q.toFixed(4)} \\) and C2 with probability \\( 1-q = ${(1-q).toFixed(4)} \\).</p>`;
       } else {
         resultHTML += "<p><strong>No non-degenerate mixed strategy Nash equilibrium found (or mixed equilibrium is not unique).</strong></p>";
       }
@@ -193,6 +203,22 @@
       // Also show the mixed strategy formulas used:
       resultHTML += "<p class='math'>For Column: \\( q = \\frac{d - b}{a - b - c + d} \\)</p>";
       resultHTML += "<p class='math'>For Row: \\( p = \\frac{h - g}{e - g - f + h} \\)</p>";
+      
+      // Create tables for the payoff matrices.
+      let tableHTML = "<h3>Payoff Matrices</h3>";
+      tableHTML += "<h4>Row Player's Payoffs</h4>";
+      tableHTML += "<table><tr><th></th><th>C1</th><th>C2</th></tr>";
+      tableHTML += `<tr><td>R1</td><td>${a}</td><td>${b}</td></tr>`;
+      tableHTML += `<tr><td>R2</td><td>${c}</td><td>${d}</td></tr>`;
+      tableHTML += "</table>";
+      
+      tableHTML += "<h4>Column Player's Payoffs</h4>";
+      tableHTML += "<table><tr><th></th><th>C1</th><th>C2</th></tr>";
+      tableHTML += `<tr><td>R1</td><td>${e}</td><td>${f}</td></tr>`;
+      tableHTML += `<tr><td>R2</td><td>${g}</td><td>${h}</td></tr>`;
+      tableHTML += "</table>";
+      
+      resultHTML += tableHTML;
       
       document.getElementById('result').innerHTML = resultHTML;
       MathJax.typeset();
