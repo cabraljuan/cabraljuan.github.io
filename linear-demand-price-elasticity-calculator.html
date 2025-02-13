@@ -54,21 +54,33 @@
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    // Call MathJax.typeset() on page load so that static math renders.
+    window.addEventListener("load", function() {
+      MathJax.typeset();
+    });
+  </script>
 </head>
 <body>
   <div class="container">
     <h1>Linear Demand Price Elasticity Calculator</h1>
     <div class="form-group">
-      <label for="a">Intercept, \\(a\\) (in \\(Q = a - bP\\)):</label>
+      <label for="a">
+        <span class="math">\(a\)</span> (in <span class="math">\(Q = a - bP\)</span>):
+      </label>
       <input type="number" id="a" step="any" placeholder="Enter intercept (a)">
     </div>
     <div class="form-group">
-      <label for="b">Slope, \\(b\\):</label>
+      <label for="b">
+        <span class="math">\(b\)</span>:
+      </label>
       <input type="number" id="b" step="any" placeholder="Enter slope (b)">
     </div>
     <div class="form-group">
-      <label for="price">Price, \\(P\\):</label>
+      <label for="price">
+        <span class="math">\(P\)</span>:
+      </label>
       <input type="number" id="price" step="any" placeholder="Enter price (P)">
     </div>
     <button onclick="calculateElasticity()">Calculate Elasticity</button>
@@ -100,8 +112,9 @@
       
       // Display the results
       const resultDiv = document.getElementById('result');
-      resultDiv.innerHTML = `<p>Quantity demanded, \\(Q\\) = ${Q.toFixed(4)}</p>` +
+      resultDiv.innerHTML = `<p>Quantity demanded, <span class="math">\(Q\)</span> = ${Q.toFixed(4)}</p>` +
                             `<p>Price Elasticity of Demand = ${elasticity.toFixed(4)}</p>`;
+      
       MathJax.typeset();
     }
   </script>
