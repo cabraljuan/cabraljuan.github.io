@@ -81,19 +81,19 @@
     <h1>Market Equilibrium Calculator</h1>
     
     <div class="form-group">
-      <label for="a"><span class="math">\(a\)</span> (Demand Intercept, in <span class="math">\(Q = a - bP\)</span>):</label>
+      <label for="a"><span class="math">\\(a\\)</span> (Demand Intercept, in <span class="math">\\(Q = a - bP\\)</span>):</label>
       <input type="number" id="a" step="any" placeholder="Enter demand intercept (a)">
     </div>
     <div class="form-group">
-      <label for="b"><span class="math">\(b\)</span> (Demand Slope, in <span class="math">\(Q = a - bP\)</span>):</label>
+      <label for="b"><span class="math">\\(b\\)</span> (Demand Slope, in <span class="math">\\(Q = a - bP\\)</span>):</label>
       <input type="number" id="b" step="any" placeholder="Enter demand slope (b)">
     </div>
     <div class="form-group">
-      <label for="c"><span class="math">\(c\)</span> (Supply Intercept, in <span class="math">\(Q = c + dP\)</span>):</label>
+      <label for="c"><span class="math">\\(c\\)</span> (Supply Intercept, in <span class="math">\\(Q = c + dP\\)</span>):</label>
       <input type="number" id="c" step="any" placeholder="Enter supply intercept (c)">
     </div>
     <div class="form-group">
-      <label for="d"><span class="math">\(d\)</span> (Supply Slope, in <span class="math">\(Q = c + dP\)</span>):</label>
+      <label for="d"><span class="math">\\(d\\)</span> (Supply Slope, in <span class="math">\\(Q = c + dP\\)</span>):</label>
       <input type="number" id="d" step="any" placeholder="Enter supply slope (d)">
     </div>
     
@@ -138,8 +138,8 @@
       }
       
       const resultDiv = document.getElementById('result');
-      resultDiv.innerHTML = `<p>Equilibrium Price: <span class="math">\(P^* = ${P_eq.toFixed(4)}\)</span></p>
-                             <p>Equilibrium Quantity: <span class="math">\(Q^* = ${Q_eq.toFixed(4)}\)</span></p>`;
+      resultDiv.innerHTML = `<p>Equilibrium Price: <span class="math">\\(P^* = ${P_eq.toFixed(4)}\\)</span></p>
+                             <p>Equilibrium Quantity: <span class="math">\\(Q^* = ${Q_eq.toFixed(4)}\\)</span></p>`;
       MathJax.typeset();
     }
   </script>
