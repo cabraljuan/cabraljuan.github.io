@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cournot Duopoly Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #287a7a;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #308b8b;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+    .math {
+      font-style: italic;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async 
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.addEventListener("load", function() {
+      MathJax.typeset();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Cournot Duopoly Calculator</h1>
+    <h2>Two Symmetric Firms</h2>
+    <div class="form-group">
+      <label for="a"><span class="math">\(a\)</span> (Demand Intercept in \(P = a - bQ\)):</label>
+      <input type="number" id="a" step="any" placeholder="Enter demand intercept (a)">
+    </div>
+    <div class="form-group">
+      <label for="b"><span class="math">\(b\)</span> (Demand Slope in \(P = a - bQ\)):</label>
+      <input type="number" id="b" step="any" placeholder="Enter demand slope (b)">
+    </div>
+    <div class="form-group">
+      <label for="c"><span class="math">\(c\)</span> (Marginal Cost for both firms):</label>
+      <input type="number" id="c" step="any" placeholder="Enter marginal cost (c)">
+    </div>
+    
+    <button onclick="calculateCournot()">Calculate Equilibrium</button>
+    
+    <div class="result" id="result"></div>
+    
+    <div class="back-link">
+      <p><a href="https://cabraljuan.github.io/Resources.html">Back to Resources</a></p>
+    </div>
+  </div>
+  
+  <script>
+    function calculateCournot() {
+      // Retrieve input values
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const c = parseFloat(document.getElementById('c').value);
+      
+      // Validate inputs
+      if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        alert("Please enter valid numbers for all fields.");
+        return;
+      }
+      
+      if (a <= c) {
+        alert("For a meaningful equilibrium, the demand intercept a must be greater than the marginal cost c.");
+        return;
+      }
+      
+      // Cournot equilibrium for two symmetric firms:
+      // Each firm's equilibrium output: q = (a - c) / (3b)
+      const q = (a - c) / (3 * b);
+      // Total market output: Q = 2q
+      const Q = 2 * q;
+      // Equilibrium price: P = a - bQ = a - 2*(a-c)/3
+      const P = a - (2 * (a - c) / 3);
+      // Profit for each firm: profit = (P - c) * q
+      const profit = (P - c) * q;
+      
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<p>Each firm's output: \\(q = ${q.toFixed(4)}\\)</p>
+                             <p>Total market output: \\(Q = ${Q.toFixed(4)}\\)</p>
+                             <p>Equilibrium Price: \\(P = ${P.toFixed(4)}\\)</p>
+                             <p>Profit per firm: \\(\\pi = ${profit.toFixed(4)}\\)</p>`;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
