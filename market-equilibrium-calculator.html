@@ -81,19 +81,19 @@
     <h1>Market Equilibrium Calculator</h1>
     
     <div class="form-group">
-      <label for="a"><span class="math">\(a\)</span> (Demand Intercept, in \(Q = a - bP\)):</label>
+      <label for="a"><span class="math">\(a\)</span> (Demand Intercept, in <span class="math">\(Q = a - bP\)</span>):</label>
       <input type="number" id="a" step="any" placeholder="Enter demand intercept (a)">
     </div>
     <div class="form-group">
-      <label for="b"><span class="math">\(b\)</span> (Demand Slope, in \(Q = a - bP\)):</label>
+      <label for="b"><span class="math">\(b\)</span> (Demand Slope, in <span class="math">\(Q = a - bP\)</span>):</label>
       <input type="number" id="b" step="any" placeholder="Enter demand slope (b)">
     </div>
     <div class="form-group">
-      <label for="c"><span class="math">\(c\)</span> (Supply Intercept, in \(Q = c + dP\)):</label>
+      <label for="c"><span class="math">\(c\)</span> (Supply Intercept, in <span class="math">\(Q = c + dP\)</span>):</label>
       <input type="number" id="c" step="any" placeholder="Enter supply intercept (c)">
     </div>
     <div class="form-group">
-      <label for="d"><span class="math">\(d\)</span> (Supply Slope, in \(Q = c + dP\)):</label>
+      <label for="d"><span class="math">\(d\)</span> (Supply Slope, in <span class="math">\(Q = c + dP\)</span>):</label>
       <input type="number" id="d" step="any" placeholder="Enter supply slope (d)">
     </div>
     
@@ -114,6 +114,7 @@
       const c = parseFloat(document.getElementById('c').value);
       const d = parseFloat(document.getElementById('d').value);
       
+      // Validate that inputs are numbers
       if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
         alert("Please enter valid numbers for all fields.");
         return;
@@ -125,10 +126,16 @@
         return;
       }
       
-      // Equilibrium: a - bP = c + dP  =>  a - c = (b + d)P  =>  P* = (a - c) / (b + d)
+      // Calculate equilibrium price: P* = (a - c) / (b + d)
       const P_eq = (a - c) / denominator;
-      // Equilibrium quantity: Q = a - bP*  (or Q = c + dP*)
+      // Calculate equilibrium quantity using the demand function: Q* = a - b*P_eq
       const Q_eq = a - b * P_eq;
+      
+      // Alert if equilibrium price or quantity is negative
+      if (P_eq < 0 || Q_eq < 0) {
+        alert("The computed equilibrium price or quantity is negative. Please check your input functions.");
+        return;
+      }
       
       const resultDiv = document.getElementById('result');
       resultDiv.innerHTML = `<p>Equilibrium Price: <span class="math">\(P^* = ${P_eq.toFixed(4)}\)</span></p>
