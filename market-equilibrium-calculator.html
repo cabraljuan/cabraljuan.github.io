@@ -126,9 +126,9 @@
         return;
       }
       
-      // Calculate equilibrium price: \(P^* = \frac{a - c}{b + d}\)
+      // Calculate equilibrium price: P* = (a - c) / (b + d)
       const P_eq = (a - c) / denominator;
-      // Calculate equilibrium quantity using the demand function: \(Q^* = a - bP^*\)
+      // Calculate equilibrium quantity using the demand function: Q* = a - bP*
       const Q_eq = a - b * P_eq;
       
       // Alert if equilibrium price or quantity is negative
@@ -138,8 +138,8 @@
       }
       
       const resultDiv = document.getElementById('result');
-      resultDiv.innerHTML = `<p>Equilibrium Price: <span class="math">\(P^* = ${P_eq.toFixed(4)}\)</span></p>
-                             <p>Equilibrium Quantity: <span class="math">\(Q^* = ${Q_eq.toFixed(4)}\)</span></p>`;
+      resultDiv.innerHTML = `<p>Equilibrium Price: $P^* = ${P_eq.toFixed(4)}$</p>
+                             <p>Equilibrium Quantity: $Q^* = ${Q_eq.toFixed(4)}$</p>`;
       MathJax.typeset();
     }
   </script>
