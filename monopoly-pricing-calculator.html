@@ -69,7 +69,7 @@
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
     window.addEventListener("load", function() {
       MathJax.typeset();
@@ -82,25 +82,25 @@
     
     <h2>Demand Function</h2>
     <div class="form-group">
-      <label for="a"><span class="math">\(a\)</span> (Demand Intercept, in \(Q = a - bP\)):</label>
+      <label for="a"><span class="math">\(a\)</span> (Demand Intercept, in <span class="math">\(Q = a - bP\)</span>):</label>
       <input type="number" id="a" step="any" placeholder="Enter demand intercept (a)">
     </div>
     <div class="form-group">
-      <label for="b"><span class="math">\(b\)</span> (Demand Slope, in \(Q = a - bP\)):</label>
+      <label for="b"><span class="math">\(b\)</span> (Demand Slope, in <span class="math">\(Q = a - bP\)</span>):</label>
       <input type="number" id="b" step="any" placeholder="Enter demand slope (b)">
     </div>
     
     <h2>Cost Function</h2>
     <div class="form-group">
-      <label for="F"><span class="math">\(F\)</span> (Cost Intercept, in \(C(Q) = F + cQ + dQ^2\)):</label>
-      <input type="number" id="F" step="any" placeholder="Enter cost intercept (F)">
+      <label for="F"><span class="math">\(F\)</span> (Fixed Cost, in <span class="math">\(C(Q)= F + cQ + dQ^2\)</span>):</label>
+      <input type="number" id="F" step="any" placeholder="Enter fixed cost (F)">
     </div>
     <div class="form-group">
-      <label for="c"><span class="math">\(c\)</span> (Cost Parameter, in \(C(Q) = F + cQ + dQ^2\)):</label>
+      <label for="c"><span class="math">\(c\)</span> (Cost Parameter, in <span class="math">\(C(Q)= F + cQ + dQ^2\)</span>):</label>
       <input type="number" id="c" step="any" placeholder="Enter cost parameter (c)">
     </div>
     <div class="form-group">
-      <label for="d"><span class="math">\(d\)</span> (Cost Curvature, in \(C(Q) = F + cQ + dQ^2\)):</label>
+      <label for="d"><span class="math">\(d\)</span> (Cost Curvature, in <span class="math">\(C(Q)= F + cQ + dQ^2\)</span>):</label>
       <input type="number" id="d" step="any" placeholder="Enter cost curvature (d)">
     </div>
     
@@ -134,15 +134,18 @@
         return;
       }
       
-      // Monopoly equilibrium quantity (Q_m) does not depend on the fixed cost F.
+      // Calculate Monopoly equilibrium quantity (ignoring fixed cost, as it doesn't affect Q):
       // Q_m = (a - b*c) / [2(1 + b*d)]
       const Q_m = (a - b * c) / (2 * (1 + b * d));
       // Monopoly price: P_m = (a - Q_m) / b
       const P_m = (a - Q_m) / b;
       
-      // Perfect competition equilibrium: 
-      // Equilibrium is where price equals marginal cost: (a - Q)/b = c + 2dQ
-      // Solve for Q: Q_pc = (a - b*c) / (1 + 2b*d)
+      // Monopoly Profit: π = P_m * Q_m - [F + c*Q_m + d*Q_m^2]
+      const profit = P_m * Q_m - (F + c * Q_m + d * Q_m * Q_m);
+      
+      // Perfect Competition equilibrium:
+      // Equilibrium is where price equals marginal cost (MC = c + 2dQ):
+      // (a - Q) / b = c + 2dQ  =>  Q_pc = (a - b*c) / (1 + 2b*d)
       const Q_pc = (a - b * c) / (1 + 2 * b * d);
       const P_pc = (a - Q_pc) / b;
       
@@ -155,6 +158,7 @@
       const resultDiv = document.getElementById('result');
       resultDiv.innerHTML = `<p>Monopoly Equilibrium Quantity: \\(Q_m = ${Q_m.toFixed(4)}\\)</p>
                              <p>Monopoly Equilibrium Price: \\(P_m = ${P_m.toFixed(4)}\\)</p>
+                             <p>Monopoly Profit: \\(\\pi = ${profit.toFixed(4)}\\)</p>
                              <p>Perfect Competition Equilibrium Price: \\(P_{pc} = ${P_pc.toFixed(4)}\\)</p>`;
       MathJax.typeset();
     }
