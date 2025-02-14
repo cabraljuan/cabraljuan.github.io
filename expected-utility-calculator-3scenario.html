@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expected Utility Calculator for 3-Scenario Lottery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+    .container {
+      max-width: 500px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #287a7a;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.addEventListener("load", function() {
+      MathJax.typeset();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Expected Utility Calculator</h1>
+    <p>For a lottery with 3 scenarios</p>
+    
+    <div class="form-group">
+      <label for="x1"><span class="math">\(x_1\)</span> (Outcome 1):</label>
+      <input type="number" id="x1" step="any" placeholder="Enter outcome 1">
+    </div>
+    <div class="form-group">
+      <label for="p1"><span class="math">\(p_1\)</span> (Probability for Outcome 1):</label>
+      <input type="number" id="p1" step="any" placeholder="Enter probability 1">
+    </div>
+    <div class="form-group">
+      <label for="x2"><span class="math">\(x_2\)</span> (Outcome 2):</label>
+      <input type="number" id="x2" step="any" placeholder="Enter outcome 2">
+    </div>
+    <div class="form-group">
+      <label for="p2"><span class="math">\(p_2\)</span> (Probability for Outcome 2):</label>
+      <input type="number" id="p2" step="any" placeholder="Enter probability 2">
+    </div>
+    <div class="form-group">
+      <label for="x3"><span class="math">\(x_3\)</span> (Outcome 3):</label>
+      <input type="number" id="x3" step="any" placeholder="Enter outcome 3">
+    </div>
+    <div class="form-group">
+      <label for="p3"><span class="math">\(p_3\)</span> (Probability for Outcome 3):</label>
+      <input type="number" id="p3" step="any" placeholder="Enter probability 3">
+    </div>
+    
+    <div class="form-group">
+      <label for="utilityFunction">Utility Function:</label>
+      <select id="utilityFunction">
+        <option value="identity">Identity \(u(x)=x\)</option>
+        <option value="log">Logarithmic \(u(x)=\ln(x)\)</option>
+        <option value="sqrt">Square Root \(u(x)=\sqrt{x}\)</option>
+      </select>
+    </div>
+    
+    <button onclick="calculateExpectedUtility()">Calculate Expected Utility</button>
+    
+    <div class="result" id="result"></div>
+  </div>
+  
+  <script>
+    function calculateExpectedUtility() {
+      // Retrieve outcome and probability inputs
+      const x1 = parseFloat(document.getElementById('x1').value);
+      const p1 = parseFloat(document.getElementById('p1').value);
+      const x2 = parseFloat(document.getElementById('x2').value);
+      const p2 = parseFloat(document.getElementById('p2').value);
+      const x3 = parseFloat(document.getElementById('x3').value);
+      const p3 = parseFloat(document.getElementById('p3').value);
+      const utilityType = document.getElementById('utilityFunction').value;
+      
+      // Validate inputs
+      if (isNaN(x1) || isNaN(x2) || isNaN(x3) ||
+          isNaN(p1) || isNaN(p2) || isNaN(p3)) {
+        alert("Please enter valid numbers for all outcomes and probabilities.");
+        return;
+      }
+      
+      const totalProb = p1 + p2 + p3;
+      if (Math.abs(totalProb - 1) > 0.001) {
+        alert("The sum of the probabilities should be 1. Currently, it is " + totalProb.toFixed(4));
+        return;
+      }
+      
+      // Define the utility function based on selection
+      let utility;
+      if (utilityType === "identity") {
+        utility = function(x) { return x; };
+      } else if (utilityType === "log") {
+        // For logarithmic, outcomes must be > 0
+        if (x1 <= 0 || x2 <= 0 || x3 <= 0) {
+          alert("All outcomes must be positive for logarithmic utility.");
+          return;
+        }
+        utility = function(x) { return Math.log(x); };
+      } else if (utilityType === "sqrt") {
+        // For square root, outcomes must be >= 0
+        if (x1 < 0 || x2 < 0 || x3 < 0) {
+          alert("Outcomes cannot be negative for square root utility.");
+          return;
+        }
+        utility = function(x) { return Math.sqrt(x); };
+      }
+      
+      // Compute expected utility: EU = p1*u(x1) + p2*u(x2) + p3*u(x3)
+      const EU = p1 * utility(x1) + p2 * utility(x2) + p3 * utility(x3);
+      
+      // Display the result
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<p>Expected Utility: <span class="math">\(EU = ${EU.toFixed(4)}\)</span></p>`;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
