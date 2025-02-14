@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Market Equilibrium Calculator</title>
+  <title>Monopoly Pricing Calculator</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,7 +11,7 @@
       background-color: #f4f4f4;
     }
     .container {
-      max-width: 500px;
+      max-width: 600px;
       background: #fff;
       padding: 20px;
       margin: auto;
@@ -69,7 +69,7 @@
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
     window.addEventListener("load", function() {
       MathJax.typeset();
@@ -78,26 +78,33 @@
 </head>
 <body>
   <div class="container">
-    <h1>Market Equilibrium Calculator</h1>
+    <h1>Monopoly Pricing Calculator</h1>
     
+    <h2>Demand Function</h2>
     <div class="form-group">
-      <label for="a"><span class="math">\(a\)</span> (Demand Intercept, in <span class="math">\(Q = a - bP\)</span>):</label>
+      <label for="a"><span class="math">\(a\)</span> (Demand Intercept, in \(Q = a - bP\)):</label>
       <input type="number" id="a" step="any" placeholder="Enter demand intercept (a)">
     </div>
     <div class="form-group">
-      <label for="b"><span class="math">\(b\)</span> (Demand Slope, in <span class="math">\(Q = a - bP\)</span>):</label>
+      <label for="b"><span class="math">\(b\)</span> (Demand Slope, in \(Q = a - bP\)):</label>
       <input type="number" id="b" step="any" placeholder="Enter demand slope (b)">
     </div>
+    
+    <h2>Cost Function</h2>
     <div class="form-group">
-      <label for="c"><span class="math">\(c\)</span> (Supply Intercept, in <span class="math">\(Q = c + dP\)</span>):</label>
-      <input type="number" id="c" step="any" placeholder="Enter supply intercept (c)">
+      <label for="F"><span class="math">\(F\)</span> (Cost Intercept, in \(C(Q) = F + cQ + dQ^2\)):</label>
+      <input type="number" id="F" step="any" placeholder="Enter cost intercept (F)">
     </div>
     <div class="form-group">
-      <label for="d"><span class="math">\(d\)</span> (Supply Slope, in <span class="math">\(Q = c + dP\)</span>):</label>
-      <input type="number" id="d" step="any" placeholder="Enter supply slope (d)">
+      <label for="c"><span class="math">\(c\)</span> (Cost Parameter, in \(C(Q) = F + cQ + dQ^2\)):</label>
+      <input type="number" id="c" step="any" placeholder="Enter cost parameter (c)">
+    </div>
+    <div class="form-group">
+      <label for="d"><span class="math">\(d\)</span> (Cost Curvature, in \(C(Q) = F + cQ + dQ^2\)):</label>
+      <input type="number" id="d" step="any" placeholder="Enter cost curvature (d)">
     </div>
     
-    <button onclick="calculateEquilibrium()">Calculate Equilibrium</button>
+    <button onclick="calculateMonopoly()">Calculate Equilibrium</button>
     
     <div class="result" id="result"></div>
     
@@ -107,39 +114,48 @@
   </div>
   
   <script>
-    function calculateEquilibrium() {
+    function calculateMonopoly() {
       // Retrieve input values
       const a = parseFloat(document.getElementById('a').value);
       const b = parseFloat(document.getElementById('b').value);
+      const F = parseFloat(document.getElementById('F').value);
       const c = parseFloat(document.getElementById('c').value);
       const d = parseFloat(document.getElementById('d').value);
       
-      // Validate that inputs are numbers
-      if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+      // Validate inputs
+      if (isNaN(a) || isNaN(b) || isNaN(F) || isNaN(c) || isNaN(d)) {
         alert("Please enter valid numbers for all fields.");
         return;
       }
       
-      const denominator = b + d;
-      if (denominator === 0) {
-        alert("The sum of the demand slope and supply slope must not be zero.");
+      // Ensure the model has meaningful parameters: a - b*c must be positive.
+      if (a - b * c <= 0) {
+        alert("The value of (a - b*c) must be positive to have a meaningful equilibrium.");
         return;
       }
       
-      // Calculate equilibrium price: \(P^* = \frac{a - c}{b + d}\)
-      const P_eq = (a - c) / denominator;
-      // Calculate equilibrium quantity using the demand function: \(Q^* = a - bP^*\)
-      const Q_eq = a - b * P_eq;
+      // Monopoly equilibrium quantity (Q_m) does not depend on the fixed cost F.
+      // Q_m = (a - b*c) / [2(1 + b*d)]
+      const Q_m = (a - b * c) / (2 * (1 + b * d));
+      // Monopoly price: P_m = (a - Q_m) / b
+      const P_m = (a - Q_m) / b;
       
-      // Alert if equilibrium price or quantity is negative
-      if (P_eq < 0 || Q_eq < 0) {
-        alert("The computed equilibrium price or quantity is negative. Please check your input functions.");
+      // Perfect competition equilibrium: 
+      // Equilibrium is where price equals marginal cost: (a - Q)/b = c + 2dQ
+      // Solve for Q: Q_pc = (a - b*c) / (1 + 2b*d)
+      const Q_pc = (a - b * c) / (1 + 2 * b * d);
+      const P_pc = (a - Q_pc) / b;
+      
+      // Alert if any computed value is negative
+      if (Q_m < 0 || P_m < 0 || Q_pc < 0 || P_pc < 0) {
+        alert("One or more computed equilibrium values are negative. Please check your inputs.");
         return;
       }
       
       const resultDiv = document.getElementById('result');
-      resultDiv.innerHTML = `<p>Equilibrium Price: \\(P^* = ${P_eq.toFixed(4)}\\)</p>
-                             <p>Equilibrium Quantity: \\(Q^* = ${Q_eq.toFixed(4)}\\)</p>`;
+      resultDiv.innerHTML = `<p>Monopoly Equilibrium Quantity: \\(Q_m = ${Q_m.toFixed(4)}\\)</p>
+                             <p>Monopoly Equilibrium Price: \\(P_m = ${P_m.toFixed(4)}\\)</p>
+                             <p>Perfect Competition Equilibrium Price: \\(P_{pc} = ${P_pc.toFixed(4)}\\)</p>`;
       MathJax.typeset();
     }
   </script>
