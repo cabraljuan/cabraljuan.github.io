@@ -51,6 +51,9 @@
       text-align: center;
       font-weight: bold;
     }
+    .math {
+      font-style: italic;
+    }
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async
@@ -97,6 +100,8 @@
         <option value="identity">Identity \(u(x)=x\)</option>
         <option value="log">Logarithmic \(u(x)=\ln(x)\)</option>
         <option value="sqrt">Square Root \(u(x)=\sqrt{x}\)</option>
+        <option value="square">Square \(u(x)=x^2\)</option>
+        <option value="exp">Exponential \(u(x)=e^x\)</option>
       </select>
     </div>
     
@@ -147,6 +152,12 @@
           return;
         }
         utility = function(x) { return Math.sqrt(x); };
+      } else if (utilityType === "square") {
+        // For square, any real number is acceptable
+        utility = function(x) { return Math.pow(x, 2); };
+      } else if (utilityType === "exp") {
+        // Exponential utility: any real number is acceptable
+        utility = function(x) { return Math.exp(x); };
       }
       
       // Compute expected utility: EU = p1*u(x1) + p2*u(x2) + p3*u(x3)
