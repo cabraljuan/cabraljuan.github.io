@@ -51,8 +51,14 @@
       text-align: center;
       font-weight: bold;
     }
-    .math {
-      font-style: italic;
+    .utility-explanations {
+      margin-top: 20px;
+      background: #eef;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .utility-explanations p {
+      margin: 5px 0;
     }
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -97,17 +103,27 @@
     <div class="form-group">
       <label for="utilityFunction">Utility Function:</label>
       <select id="utilityFunction">
-        <option value="identity">Identity \(u(x)=x\)</option>
-        <option value="log">Logarithmic \(u(x)=\ln(x)\)</option>
-        <option value="sqrt">Square Root \(u(x)=\sqrt{x}\)</option>
-        <option value="square">Square \(u(x)=x^2\)</option>
-        <option value="exp">Exponential \(u(x)=e^x\)</option>
+        <option value="identity">Identity</option>
+        <option value="log">Logarithmic</option>
+        <option value="sqrt">Square Root</option>
+        <option value="square">Square</option>
+        <option value="exp">Exponential</option>
       </select>
     </div>
     
     <button onclick="calculateExpectedUtility()">Calculate Expected Utility</button>
     
     <div class="result" id="result"></div>
+    
+    <div class="utility-explanations">
+      <h2>Utility Function Explanations</h2>
+      <p><strong>Identity:</strong> \( u(x)=x \)</p>
+      <p><strong>Logarithmic:</strong> \( u(x)=\ln(x) \) (requires \(x>0\))</p>
+      <p><strong>Square Root:</strong> \( u(x)=\sqrt{x} \) (requires \(x\ge0\))</p>
+      <p><strong>Square:</strong> \( u(x)=x^2 \)</p>
+      <p><strong>Exponential:</strong> \( u(x)=e^x \)</p>
+    </div>
+    
   </div>
   
   <script>
@@ -139,24 +155,20 @@
       if (utilityType === "identity") {
         utility = function(x) { return x; };
       } else if (utilityType === "log") {
-        // For logarithmic, outcomes must be > 0
         if (x1 <= 0 || x2 <= 0 || x3 <= 0) {
           alert("All outcomes must be positive for logarithmic utility.");
           return;
         }
         utility = function(x) { return Math.log(x); };
       } else if (utilityType === "sqrt") {
-        // For square root, outcomes must be >= 0
         if (x1 < 0 || x2 < 0 || x3 < 0) {
           alert("Outcomes cannot be negative for square root utility.");
           return;
         }
         utility = function(x) { return Math.sqrt(x); };
       } else if (utilityType === "square") {
-        // For square, any real number is acceptable
         utility = function(x) { return Math.pow(x, 2); };
       } else if (utilityType === "exp") {
-        // Exponential utility: any real number is acceptable
         utility = function(x) { return Math.exp(x); };
       }
       
@@ -166,6 +178,7 @@
       // Display the result
       const resultDiv = document.getElementById('result');
       resultDiv.innerHTML = `<p>Expected Utility: <span class="math">\(EU = ${EU.toFixed(4)}\)</span></p>`;
+      
       MathJax.typeset();
     }
   </script>
