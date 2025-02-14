@@ -73,7 +73,7 @@
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
     window.addEventListener("load", function() {
       MathJax.typeset();
@@ -99,32 +99,42 @@
     
     <div class="section">
       <h3>Firm 1 Cost Function</h3>
+      <p class="math">Cost Function: \(C_1(q_1)= F_1 + c_1q_1 + d_1q_1^2\)</p>
       <div class="form-group">
         <label for="F1"><span class="math">\(F_1\)</span> (Fixed Cost):</label>
         <input type="number" id="F1" step="any" placeholder="Enter fixed cost for firm 1">
       </div>
       <div class="form-group">
-        <label for="c1"><span class="math">\(c_1\)</span> (Linear Cost Parameter):</label>
+        <label for="c1">
+          <span class="math">\(c_1\)</span> (Linear Cost Parameter, coefficient of \(q_1\) in \(C_1(q_1)= F_1 + c_1q_1 + d_1q_1^2\)):
+        </label>
         <input type="number" id="c1" step="any" placeholder="Enter linear cost parameter for firm 1">
       </div>
       <div class="form-group">
-        <label for="d1"><span class="math">\(d_1\)</span> (Quadratic Cost Parameter):</label>
+        <label for="d1">
+          <span class="math">\(d_1\)</span> (Quadratic Cost Parameter, coefficient of \(q_1^2\) in \(C_1(q_1)= F_1 + c_1q_1 + d_1q_1^2\)):
+        </label>
         <input type="number" id="d1" step="any" placeholder="Enter quadratic cost parameter for firm 1">
       </div>
     </div>
     
     <div class="section">
       <h3>Firm 2 Cost Function</h3>
+      <p class="math">Cost Function: \(C_2(q_2)= F_2 + c_2q_2 + d_2q_2^2\)</p>
       <div class="form-group">
         <label for="F2"><span class="math">\(F_2\)</span> (Fixed Cost):</label>
         <input type="number" id="F2" step="any" placeholder="Enter fixed cost for firm 2">
       </div>
       <div class="form-group">
-        <label for="c2"><span class="math">\(c_2\)</span> (Linear Cost Parameter):</label>
+        <label for="c2">
+          <span class="math">\(c_2\)</span> (Linear Cost Parameter, coefficient of \(q_2\) in \(C_2(q_2)= F_2 + c_2q_2 + d_2q_2^2\)):
+        </label>
         <input type="number" id="c2" step="any" placeholder="Enter linear cost parameter for firm 2">
       </div>
       <div class="form-group">
-        <label for="d2"><span class="math">\(d_2\)</span> (Quadratic Cost Parameter):</label>
+        <label for="d2">
+          <span class="math">\(d_2\)</span> (Quadratic Cost Parameter, coefficient of \(q_2^2\) in \(C_2(q_2)= F_2 + c_2q_2 + d_2q_2^2\)):
+        </label>
         <input type="number" id="d2" step="any" placeholder="Enter quadratic cost parameter for firm 2">
       </div>
     </div>
@@ -164,7 +174,7 @@
       
       // For meaningful equilibrium, we need a > max(c1, c2) roughly.
       if (a <= Math.max(c1, c2)) {
-        alert("The demand intercept a must be greater than both cost parameters (c1 and c2) for a meaningful equilibrium.");
+        alert("The demand intercept a must be greater than both cost parameters c1 and c2 for a meaningful equilibrium.");
         return;
       }
       
