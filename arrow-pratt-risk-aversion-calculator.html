@@ -51,6 +51,15 @@
       text-align: center;
       font-weight: bold;
     }
+    .utility-explanations {
+      margin-top: 20px;
+      padding: 10px;
+      background: #eef;
+      border-radius: 4px;
+    }
+    .utility-explanations p {
+      margin: 5px 0;
+    }
     .back-link {
       margin-top: 20px;
       text-align: center;
@@ -69,7 +78,7 @@
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
     window.addEventListener("load", function() {
       MathJax.typeset();
@@ -103,6 +112,19 @@
     <button onclick="calculateRiskAversion()">Calculate Risk Aversion</button>
     
     <div class="result" id="result"></div>
+    
+    <div class="utility-explanations">
+      <h2>Utility Function Explanations</h2>
+      <p><strong>CRRA (Power Utility):</strong><br>
+      \( u(x) = \frac{x^{1-\gamma}}{1-\gamma} \)  (if \( \gamma \neq 1 \))<br>
+      - Absolute Risk Aversion: \( A(x) = -\frac{u''(x)}{u'(x)} = \frac{\gamma}{x} \)<br>
+      - Relative Risk Aversion: \( R(x) = xA(x) = \gamma \)</p>
+      
+      <p><strong>Exponential Utility:</strong><br>
+      \( u(x) = 1 - e^{-\alpha x} \)<br>
+      - Absolute Risk Aversion: \( A(x) = -\frac{u''(x)}{u'(x)} = \alpha \)<br>
+      - Relative Risk Aversion: \( R(x) = xA(x) = \alpha x \)</p>
+    </div>
     
     <div class="back-link">
       <p><a href="https://cabraljuan.github.io/Resources.html">Back to Resources</a></p>
@@ -145,8 +167,8 @@
       }
       
       const resultDiv = document.getElementById('result');
-      resultDiv.innerHTML = `<p>Absolute Risk Aversion: <span class="math">\\(A(x) = ${ARA.toFixed(4)}\\)</span></p>
-                             <p>Relative Risk Aversion: <span class="math">\\(R(x) = ${RRA.toFixed(4)}\\)</span></p>`;
+      resultDiv.innerHTML = `<p>Absolute Risk Aversion: <span class="math">\\( A(x) = ${ARA.toFixed(4)} \\)</span></p>
+                             <p>Relative Risk Aversion: <span class="math">\\( R(x) = ${RRA.toFixed(4)} \\)</span></p>`;
       MathJax.typeset();
     }
   </script>
