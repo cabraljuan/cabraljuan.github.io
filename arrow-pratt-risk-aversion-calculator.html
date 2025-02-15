@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrow-Pratt Risk Aversion Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+    .container {
+      max-width: 500px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #287a7a;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .back-link {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #308b8b;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+    .math {
+      font-style: italic;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.addEventListener("load", function() {
+      MathJax.typeset();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Arrow‑Pratt Risk Aversion Calculator</h1>
+    
+    <div class="form-group">
+      <label for="utilityType">Select Utility Function:</label>
+      <select id="utilityType">
+        <option value="crra">CRRA (Power Utility)</option>
+        <option value="exp">Exponential Utility</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="param" class="math">
+        <span id="paramLabel">\( \gamma \)</span> (Risk Aversion Parameter):
+      </label>
+      <input type="number" id="param" step="any" placeholder="Enter risk aversion parameter">
+    </div>
+    
+    <div class="form-group">
+      <label for="wealth" class="math">Wealth \( x \):</label>
+      <input type="number" id="wealth" step="any" placeholder="Enter wealth level">
+    </div>
+    
+    <button onclick="calculateRiskAversion()">Calculate Risk Aversion</button>
+    
+    <div class="result" id="result"></div>
+    
+    <div class="back-link">
+      <p><a href="https://cabraljuan.github.io/Resources.html">Back to Resources</a></p>
+    </div>
+  </div>
+  
+  <script>
+    // Update the label for the parameter when the utility type is changed.
+    document.getElementById('utilityType').addEventListener('change', function() {
+      const type = this.value;
+      const labelSpan = document.getElementById('paramLabel');
+      if (type === 'crra') {
+        labelSpan.innerHTML = '\\( \\gamma \\)';
+      } else if (type === 'exp') {
+        labelSpan.innerHTML = '\\( \\alpha \\)';
+      }
+      MathJax.typeset();
+    });
+    
+    function calculateRiskAversion() {
+      const utilityType = document.getElementById('utilityType').value;
+      const param = parseFloat(document.getElementById('param').value);
+      const wealth = parseFloat(document.getElementById('wealth').value);
+      
+      if (isNaN(param) || isNaN(wealth) || wealth <= 0) {
+        alert("Please enter valid numbers (wealth must be positive).");
+        return;
+      }
+      
+      let ARA, RRA;
+      
+      if (utilityType === 'crra') {
+        // CRRA utility: ARA = gamma/x, RRA = gamma
+        ARA = param / wealth;
+        RRA = param;
+      } else if (utilityType === 'exp') {
+        // Exponential utility: ARA = alpha, RRA = alpha*x
+        ARA = param;
+        RRA = param * wealth;
+      }
+      
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<p>Absolute Risk Aversion: <span class="math">\\(A(x) = ${ARA.toFixed(4)}\\)</span></p>
+                             <p>Relative Risk Aversion: <span class="math">\\(R(x) = ${RRA.toFixed(4)}\\)</span></p>`;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
