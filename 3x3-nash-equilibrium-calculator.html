@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3×3 Nash Equilibrium Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1, h2, h3 {
+      text-align: center;
+    }
+    .section {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"] {
+      width: 90%;
+      padding: 8px;
+      margin-bottom: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #287a7a;
+    }
+    .result {
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+    }
+    .header {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 10px auto;
+      width: 80%;
+    }
+    table, th, td {
+      border: 1px solid #666;
+      padding: 8px;
+      text-align: center;
+    }
+    .math {
+      font-style: italic;
+    }
+    .back-link {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #308b8b;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>3×3 Nash Equilibrium Calculator</h1>
+    
+    <div class="section">
+      <h3>Row Player Payoffs</h3>
+      <!-- Row 1 -->
+      <div class="form-group">
+        <label for="a">Payoff at (R1, C1) \( (a) \):</label>
+        <input type="number" id="a" name="a" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="b">Payoff at (R1, C2) \( (b) \):</label>
+        <input type="number" id="b" name="b" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="c">Payoff at (R1, C3) \( (c) \):</label>
+        <input type="number" id="c" name="c" required step="any">
+      </div>
+      
+      <!-- Row 2 -->
+      <h3>Row 2</h3>
+      <div class="form-group">
+        <label for="d">Payoff at (R2, C1) \( (d) \):</label>
+        <input type="number" id="d" name="d" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="e">Payoff at (R2, C2) \( (e) \):</label>
+        <input type="number" id="e" name="e" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="f">Payoff at (R2, C3) \( (f) \):</label>
+        <input type="number" id="f" name="f" required step="any">
+      </div>
+      
+      <!-- Row 3 -->
+      <h3>Row 3</h3>
+      <div class="form-group">
+        <label for="g">Payoff at (R3, C1) \( (g) \):</label>
+        <input type="number" id="g" name="g" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="h">Payoff at (R3, C2) \( (h) \):</label>
+        <input type="number" id="h" name="h" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="i">Payoff at (R3, C3) \( (i) \):</label>
+        <input type="number" id="i" name="i" required step="any">
+      </div>
+    </div>
+    
+    <div class="section">
+      <h3>Column Player Payoffs</h3>
+      <!-- Row 1 -->
+      <div class="form-group">
+        <label for="j">Payoff at (R1, C1) \( (j) \):</label>
+        <input type="number" id="j" name="j" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="k">Payoff at (R1, C2) \( (k) \):</label>
+        <input type="number" id="k" name="k" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="l">Payoff at (R1, C3) \( (l) \):</label>
+        <input type="number" id="l" name="l" required step="any">
+      </div>
+      
+      <!-- Row 2 -->
+      <h3>Row 2</h3>
+      <div class="form-group">
+        <label for="m">Payoff at (R2, C1) \( (m) \):</label>
+        <input type="number" id="m" name="m" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="n">Payoff at (R2, C2) \( (n) \):</label>
+        <input type="number" id="n" name="n" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="o">Payoff at (R2, C3) \( (o) \):</label>
+        <input type="number" id="o" name="o" required step="any">
+      </div>
+      
+      <!-- Row 3 -->
+      <h3>Row 3</h3>
+      <div class="form-group">
+        <label for="p">Payoff at (R3, C1) \( (p) \):</label>
+        <input type="number" id="p" name="p" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="q">Payoff at (R3, C2) \( (q) \):</label>
+        <input type="number" id="q" name="q" required step="any">
+      </div>
+      <div class="form-group">
+        <label for="r">Payoff at (R3, C3) \( (r) \):</label>
+        <input type="number" id="r" name="r" required step="any">
+      </div>
+    </div>
+    
+    <button type="button" onclick="calculateNash()">Calculate Nash Equilibrium</button>
+    
+    <div class="result" id="result"></div>
+    
+    <div class="header">
+      <p>
+        Game Format: <br>
+        Combined Payoff Matrix (Row, Column):<br>
+        \[
+          \begin{pmatrix}
+          a, j & b, k & c, l \\
+          d, m & e, n & f, o \\
+          g, p & h, q & i, r
+          \end{pmatrix}
+        \]
+      </p>
+    </div>
+    
+    <div class="back-link">
+      <p><a href="https://cabraljuan.github.io/Resources.html">Back to Resources</a></p>
+    </div>
+  </div>
+  
+  <script>
+    function calculateNash() {
+      // Retrieve row player's payoffs into a 2D array
+      const rowPayoffs = [
+        [parseFloat(document.getElementById('a').value), parseFloat(document.getElementById('b').value), parseFloat(document.getElementById('c').value)],
+        [parseFloat(document.getElementById('d').value), parseFloat(document.getElementById('e').value), parseFloat(document.getElementById('f').value)],
+        [parseFloat(document.getElementById('g').value), parseFloat(document.getElementById('h').value), parseFloat(document.getElementById('i').value)]
+      ];
+      
+      // Retrieve column player's payoffs into a 2D array
+      const colPayoffs = [
+        [parseFloat(document.getElementById('j').value), parseFloat(document.getElementById('k').value), parseFloat(document.getElementById('l').value)],
+        [parseFloat(document.getElementById('m').value), parseFloat(document.getElementById('n').value), parseFloat(document.getElementById('o').value)],
+        [parseFloat(document.getElementById('p').value), parseFloat(document.getElementById('q').value), parseFloat(document.getElementById('r').value)]
+      ];
+      
+      // Check that all inputs are valid numbers
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          if (isNaN(rowPayoffs[i][j]) || isNaN(colPayoffs[i][j])) {
+            alert("Please enter valid numbers for all payoff entries.");
+            return;
+          }
+        }
+      }
+      
+      let pureEquilibria = [];
+      
+      // For each cell (i,j) check best responses:
+      // A cell is a Nash equilibrium if:
+      // - For row i, rowPayoffs[i][j] is >= all other entries in that row.
+      // - For column j, colPayoffs[i][j] is >= all other entries in that column.
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          let rowBest = true;
+          let colBest = true;
+          
+          // Check row i: compare with all columns
+          for (let k = 0; k < 3; k++) {
+            if (rowPayoffs[i][j] < rowPayoffs[i][k]) {
+              rowBest = false;
+              break;
+            }
+          }
+          
+          // Check column j: compare with all rows
+          for (let k = 0; k < 3; k++) {
+            if (colPayoffs[i][j] < colPayoffs[k][j]) {
+              colBest = false;
+              break;
+            }
+          }
+          
+          if (rowBest && colBest) {
+            // Use 1-indexed strategy names for display
+            pureEquilibria.push(`(R${i+1}, C${j+1})`);
+          }
+        }
+      }
+      
+      let resultHTML = "<h2>Results</h2>";
+      
+      if (pureEquilibria.length > 0) {
+        resultHTML += `<p><strong>Pure Strategy Nash Equilibria:</strong> ${pureEquilibria.join(", ")}</p>`;
+      } else {
+        resultHTML += `<p><strong>No pure strategy Nash equilibrium found.</strong></p>`;
+      }
+      
+      // Create a table for the combined payoff matrix.
+      let tableHTML = "<h3>Combined Payoff Matrix</h3>";
+      tableHTML += "<table>";
+      tableHTML += "<tr><th></th><th>C1</th><th>C2</th><th>C3</th></tr>";
+      const rowLabels = ["R1", "R2", "R3"];
+      for (let i = 0; i < 3; i++) {
+        tableHTML += `<tr><td>${rowLabels[i]}</td>`;
+        for (let j = 0; j < 3; j++) {
+          tableHTML += `<td>${rowPayoffs[i][j]}, ${colPayoffs[i][j]}</td>`;
+        }
+        tableHTML += "</tr>";
+      }
+      tableHTML += "</table>";
+      
+      resultHTML += tableHTML;
+      
+      document.getElementById('result').innerHTML = resultHTML;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
