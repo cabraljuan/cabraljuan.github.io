@@ -145,8 +145,7 @@
     
     <div class="section">
       <h3>Column Player Payoffs</h3>
-      <!-- For each row, we assume the column player's payoff is given in the same row -->
-      <!-- Row 1 -->
+      <!-- Row 1 (for Column player's payoff, we treat each row separately) -->
       <div class="form-group">
         <label for="j">Payoff at (R1, C1) \( (j) \):</label>
         <input type="number" id="j" name="j" required step="any">
@@ -243,24 +242,26 @@
       let pureEquilibria = [];
       
       // For each cell (i,j), check best responses:
-      // For the row player: Check that rowPayoffs[i][j] is >= all other entries in row i.
-      // For the column player: Given that row player is fixed on row i, check that colPayoffs[i][j] is >= all other entries in row i of the column player's payoff matrix.
+      // For the row player, given column j, check that:
+      // rowPayoffs[i][j] >= rowPayoffs[k][j] for all rows k.
+      // For the column player, given row i, check that:
+      // colPayoffs[i][j] >= colPayoffs[i][l] for all columns l.
       for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
           let rowBest = true;
           let colBest = true;
           
-          // Check row i for row player's best response
+          // Check row player's best response for column j (vary rows)
           for (let k = 0; k < 3; k++) {
-            if (rowPayoffs[i][j] < rowPayoffs[i][k]) {
+            if (rowPayoffs[i][j] < rowPayoffs[k][j]) {
               rowBest = false;
               break;
             }
           }
           
-          // Check row i for column player's best response
-          for (let k = 0; k < 3; k++) {
-            if (colPayoffs[i][j] < colPayoffs[i][k]) {
+          // Check column player's best response for row i (vary columns)
+          for (let l = 0; l < 3; l++) {
+            if (colPayoffs[i][j] < colPayoffs[i][l]) {
               colBest = false;
               break;
             }
