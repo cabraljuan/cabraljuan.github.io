@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stackelberg Duopoly Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #287a7a;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #308b8b;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+    .math {
+      font-style: italic;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.addEventListener("load", function() {
+      MathJax.typeset();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Stackelberg Duopoly Calculator</h1>
+    <p style="text-align:center;">Assuming Firm 1 is the leader and Firm 2 is the follower.</p>
+    
+    <div class="section">
+      <h2>Market Demand</h2>
+      <div class="form-group">
+        <label for="a"><span class="math">\(a\)</span> (Demand Intercept, in \(P = a - bQ\)):</label>
+        <input type="number" id="a" step="any" placeholder="Enter demand intercept (a)">
+      </div>
+      <div class="form-group">
+        <label for="b"><span class="math">\(b\)</span> (Demand Slope, in \(P = a - bQ\)):</label>
+        <input type="number" id="b" step="any" placeholder="Enter demand slope (b)">
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>Cost Functions</h2>
+      <p class="math">Firm 1: \(C_1(q_1) = c_1\,q_1\)</p>
+      <div class="form-group">
+        <label for="c1"><span class="math">\(c_1\)</span> (Marginal Cost for Firm 1):</label>
+        <input type="number" id="c1" step="any" placeholder="Enter cost for firm 1">
+      </div>
+      <p class="math">Firm 2: \(C_2(q_2) = c_2\,q_2\)</p>
+      <div class="form-group">
+        <label for="c2"><span class="math">\(c_2\)</span> (Marginal Cost for Firm 2):</label>
+        <input type="number" id="c2" step="any" placeholder="Enter cost for firm 2">
+      </div>
+    </div>
+    
+    <button onclick="calculateStackelberg()">Calculate Equilibrium</button>
+    
+    <div class="result" id="result"></div>
+    
+    <div class="back-link">
+      <p><a href="https://cabraljuan.github.io/Resources.html">Back to Resources</a></p>
+    </div>
+  </div>
+  
+  <script>
+    function calculateStackelberg() {
+      // Retrieve input values
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const c1 = parseFloat(document.getElementById('c1').value);
+      const c2 = parseFloat(document.getElementById('c2').value);
+      
+      // Validate inputs
+      if (isNaN(a) || isNaN(b) || isNaN(c1) || isNaN(c2)) {
+        alert("Please enter valid numbers for all fields.");
+        return;
+      }
+      
+      // For a meaningful equilibrium, we need a > max(c1, c2)
+      if (a <= Math.max(c1, c2)) {
+        alert("The demand intercept a must be greater than both cost parameters for a positive equilibrium.");
+        return;
+      }
+      
+      // Follower's best response: q2 = (a - c2 - b*q1) / (2b)
+      // Leader chooses q1 to maximize profit: π1 = (P - c1)*q1, with P = a - b(q1 + q2).
+      // The derived equilibrium outputs are:
+      const q1 = (a + c2 - 2*c1) / (2*b);
+      const q2 = (a - c2 - b*q1) / (2*b);
+      const Q = q1 + q2;
+      const P = a - b * Q;
+      
+      const profit1 = (P - c1) * q1;
+      const profit2 = (P - c2) * q2;
+      
+      if (q1 < 0 || q2 < 0 || P < 0) {
+        alert("Computed equilibrium values are negative. Please check your parameters.");
+        return;
+      }
+      
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<p>Leader (Firm 1) Output: \\(q_1^* = ${q1.toFixed(4)}\\)</p>
+                             <p>Follower (Firm 2) Output: \\(q_2^* = ${q2.toFixed(4)}\\)</p>
+                             <p>Total Market Output: \\(Q^* = ${Q.toFixed(4)}\\)</p>
+                             <p>Equilibrium Price: \\(P^* = ${P.toFixed(4)}\\)</p>
+                             <p>Firm 1 Profit: \\(\\pi_1 = ${profit1.toFixed(4)}\\)</p>
+                             <p>Firm 2 Profit: \\(\\pi_2 = ${profit2.toFixed(4)}\\)</p>`;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
