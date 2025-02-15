@@ -145,6 +145,7 @@
     
     <div class="section">
       <h3>Column Player Payoffs</h3>
+      <!-- For each row, we assume the column player's payoff is given in the same row -->
       <!-- Row 1 -->
       <div class="form-group">
         <label for="j">Payoff at (R1, C1) \( (j) \):</label>
@@ -241,16 +242,15 @@
       
       let pureEquilibria = [];
       
-      // For each cell (i,j) check best responses:
-      // A cell is a Nash equilibrium if:
-      // - For row i, rowPayoffs[i][j] is >= all other entries in that row.
-      // - For column j, colPayoffs[i][j] is >= all other entries in that column.
+      // For each cell (i,j), check best responses:
+      // For the row player: Check that rowPayoffs[i][j] is >= all other entries in row i.
+      // For the column player: Given that row player is fixed on row i, check that colPayoffs[i][j] is >= all other entries in row i of the column player's payoff matrix.
       for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
           let rowBest = true;
           let colBest = true;
           
-          // Check row i: compare with all columns
+          // Check row i for row player's best response
           for (let k = 0; k < 3; k++) {
             if (rowPayoffs[i][j] < rowPayoffs[i][k]) {
               rowBest = false;
@@ -258,9 +258,9 @@
             }
           }
           
-          // Check column j: compare with all rows
+          // Check row i for column player's best response
           for (let k = 0; k < 3; k++) {
-            if (colPayoffs[i][j] < colPayoffs[k][j]) {
+            if (colPayoffs[i][j] < colPayoffs[i][k]) {
               colBest = false;
               break;
             }
