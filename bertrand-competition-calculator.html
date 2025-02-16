@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bertrand Competition Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+    .container {
+      max-width: 500px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #287a7a;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #308b8b;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+    .math {
+      font-style: italic;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async 
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.addEventListener("load", function() {
+      MathJax.typeset();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Bertrand Competition Calculator</h1>
+    <p style="text-align: center;">For 2 firms with linear demand and constant marginal costs</p>
+    
+    <div class="form-group">
+      <label for="a"><span class="math">\(a\)</span> (Demand Intercept in \(Q = a - bP\)):</label>
+      <input type="number" id="a" step="any" placeholder="Enter demand intercept (a)">
+    </div>
+    <div class="form-group">
+      <label for="b"><span class="math">\(b\)</span> (Demand Slope):</label>
+      <input type="number" id="b" step="any" placeholder="Enter demand slope (b)">
+    </div>
+    <div class="form-group">
+      <label for="c1"><span class="math">\(c_1\)</span> (Marginal Cost for Firm 1):</label>
+      <input type="number" id="c1" step="any" placeholder="Enter marginal cost for Firm 1">
+    </div>
+    <div class="form-group">
+      <label for="c2"><span class="math">\(c_2\)</span> (Marginal Cost for Firm 2):</label>
+      <input type="number" id="c2" step="any" placeholder="Enter marginal cost for Firm 2">
+    </div>
+    
+    <button onclick="calculateBertrand()">Calculate Equilibrium</button>
+    
+    <div class="result" id="result"></div>
+    
+    <div class="back-link">
+      <p><a href="https://cabraljuan.github.io/Resources.html">Back to Resources</a></p>
+    </div>
+  </div>
+  
+  <script>
+    function calculateBertrand() {
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const c1 = parseFloat(document.getElementById('c1').value);
+      const c2 = parseFloat(document.getElementById('c2').value);
+      
+      if (isNaN(a) || isNaN(b) || isNaN(c1) || isNaN(c2)) {
+        alert("Please enter valid numbers for all fields.");
+        return;
+      }
+      
+      // Compute equilibrium based on marginal costs:
+      let P, q1, q2, Q, profit1, profit2;
+      
+      if (Math.abs(c1 - c2) < 1e-6) {
+        // Firms have identical costs: equilibrium price equals marginal cost, and market is split.
+        P = c1; // or c2
+        Q = a - b * P;
+        q1 = Q / 2;
+        q2 = Q / 2;
+        profit1 = (P - c1) * q1;
+        profit2 = (P - c2) * q2;
+      } else if (c1 < c2) {
+        // Firm 1 has lower cost; it undercuts firm 2
+        P = c2; // Equilibrium price equals the higher cost
+        Q = a - b * P;
+        q1 = Q;  // Firm 1 captures the whole market
+        q2 = 0;
+        profit1 = (P - c1) * q1;
+        profit2 = 0;
+      } else { // c1 > c2
+        // Firm 2 has lower cost; it undercuts firm 1
+        P = c1;
+        Q = a - b * P;
+        q1 = 0;
+        q2 = Q;
+        profit1 = 0;
+        profit2 = (P - c2) * q2;
+      }
+      
+      if (P < 0 || Q < 0) {
+        alert("Computed equilibrium values are negative. Please check your inputs.");
+        return;
+      }
+      
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<p>Equilibrium Price: \\(P^* = ${P.toFixed(4)}\\)</p>
+                             <p>Total Market Output: \\(Q^* = ${Q.toFixed(4)}\\)</p>
+                             <p>Firm 1 Output: \\(q_1 = ${q1.toFixed(4)}\\)</p>
+                             <p>Firm 2 Output: \\(q_2 = ${q2.toFixed(4)}\\)</p>
+                             <p>Firm 1 Profit: \\(\\pi_1 = ${profit1.toFixed(4)}\\)</p>
+                             <p>Firm 2 Profit: \\(\\pi_2 = ${profit2.toFixed(4)}\\)</p>`;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
