@@ -91,21 +91,31 @@
     </div>
     
     <h2>Firm Costs</h2>
-    <div class="form-group">
-      <label for="c1"><span class="math">\(c_1\)</span> (Marginal Cost for Firm 1):</label>
-      <input type="number" id="c1" step="any" placeholder="Enter marginal cost for Firm 1">
+    
+    <div class="section">
+      <h3>Firm 1 Cost Function</h3>
+      <p class="math">Cost Function: \(C_1(q_1)= F_1 + c_1\,q_1\)</p>
+      <div class="form-group">
+        <label for="c1"><span class="math">\(c_1\)</span> (Marginal Cost for Firm 1):</label>
+        <input type="number" id="c1" step="any" placeholder="Enter marginal cost for Firm 1">
+      </div>
+      <div class="form-group">
+        <label for="F1"><span class="math">\(F_1\)</span> (Fixed Cost for Firm 1):</label>
+        <input type="number" id="F1" step="any" placeholder="Enter fixed cost for Firm 1">
+      </div>
     </div>
-    <div class="form-group">
-      <label for="F1"><span class="math">\(F_1\)</span> (Fixed Cost for Firm 1):</label>
-      <input type="number" id="F1" step="any" placeholder="Enter fixed cost for Firm 1">
-    </div>
-    <div class="form-group">
-      <label for="c2"><span class="math">\(c_2\)</span> (Marginal Cost for Firm 2):</label>
-      <input type="number" id="c2" step="any" placeholder="Enter marginal cost for Firm 2">
-    </div>
-    <div class="form-group">
-      <label for="F2"><span class="math">\(F_2\)</span> (Fixed Cost for Firm 2):</label>
-      <input type="number" id="F2" step="any" placeholder="Enter fixed cost for Firm 2">
+    
+    <div class="section">
+      <h3>Firm 2 Cost Function</h3>
+      <p class="math">Cost Function: \(C_2(q_2)= F_2 + c_2\,q_2\)</p>
+      <div class="form-group">
+        <label for="c2"><span class="math">\(c_2\)</span> (Marginal Cost for Firm 2):</label>
+        <input type="number" id="c2" step="any" placeholder="Enter marginal cost for Firm 2">
+      </div>
+      <div class="form-group">
+        <label for="F2"><span class="math">\(F_2\)</span> (Fixed Cost for Firm 2):</label>
+        <input type="number" id="F2" step="any" placeholder="Enter fixed cost for Firm 2">
+      </div>
     </div>
     
     <button onclick="calculateBertrand()">Calculate Equilibrium & Profits</button>
@@ -140,8 +150,8 @@
       
       let P, Q, q1, q2, profit1, profit2;
       
+      // If the marginal costs are equal, both firms charge the same price and split the market:
       if (Math.abs(c1 - c2) < 1e-6) {
-        // Identical marginal costs: Equilibrium price equals marginal cost, split market equally.
         P = c1;
         Q = a - b * P;
         q1 = Q / 2;
@@ -149,15 +159,15 @@
         profit1 = (P - c1) * q1 - F1;
         profit2 = (P - c2) * q2 - F2;
       } else if (c1 < c2) {
-        // Firm 1 is lower cost; it can capture the entire market by undercutting firm 2.
-        P = c2; // Equilibrium price equals the higher marginal cost
+        // Firm 1 has lower marginal cost and undercuts Firm 2:
+        P = c2; // Equilibrium price equals higher marginal cost
         Q = a - b * P;
-        q1 = Q;
+        q1 = Q;  // Firm 1 captures the whole market
         q2 = 0;
         profit1 = (P - c1) * Q - F1;
         profit2 = -F2;
       } else {
-        // c1 > c2: Firm 2 is lower cost; it captures the entire market.
+        // Firm 2 has lower marginal cost:
         P = c1;
         Q = a - b * P;
         q1 = 0;
