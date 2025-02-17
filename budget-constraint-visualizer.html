@@ -7,8 +7,8 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
       background-color: #f4f4f4;
+      margin: 20px;
     }
     .container {
       max-width: 600px;
@@ -20,6 +20,11 @@
     }
     h1, h2 {
       text-align: center;
+    }
+    .formula {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 20px;
     }
     .form-group {
       margin-bottom: 15px;
@@ -70,11 +75,22 @@
   </style>
   <!-- Include Chart.js from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.addEventListener("load", function() {
+      MathJax.typeset();
+    });
+  </script>
 </head>
 <body>
   <div class="container">
     <h1>Budget Constraint Visualizer</h1>
-    <p style="text-align:center;">Enter your Income and Prices for Goods X and Y</p>
+    <div class="formula">
+      <p class="math">Budget Constraint: \( P_X X + P_Y Y = M \)</p>
+      <p class="math">Equivalently: \( Y = \frac{M - P_X X}{P_Y} \)</p>
+    </div>
     
     <div class="form-group">
       <label for="income" class="math">Income \(M\):</label>
@@ -82,11 +98,11 @@
     </div>
     <div class="form-group">
       <label for="priceX" class="math">Price of Good X \(P_X\):</label>
-      <input type="number" id="priceX" step="any" placeholder="Enter price of X">
+      <input type="number" id="priceX" step="any" placeholder="Enter price of Good X">
     </div>
     <div class="form-group">
       <label for="priceY" class="math">Price of Good Y \(P_Y\):</label>
-      <input type="number" id="priceY" step="any" placeholder="Enter price of Y">
+      <input type="number" id="priceY" step="any" placeholder="Enter price of Good Y">
     </div>
     
     <button onclick="visualizeBudget()">Visualize Budget Constraint</button>
@@ -113,23 +129,23 @@
         return;
       }
       
-      // X-intercept is M/P_X, Y-intercept is M/P_Y.
+      // X-intercept: when Y = 0 -> X = M / P_X
       const X_intercept = M / P_X;
+      // Y-intercept: when X = 0 -> Y = M / P_Y
       const Y_intercept = M / P_Y;
       
-      // Create a set of X values from 0 to X_intercept
+      // Generate data points for the budget line:
       const numPoints = 50;
       const dataX = [];
       const dataY = [];
       for (let i = 0; i <= numPoints; i++) {
         const x = (X_intercept * i) / numPoints;
         dataX.push(x);
-        // Budget line: Y = (M - P_X * X) / P_Y
         const y = (M - P_X * x) / P_Y;
         dataY.push(y);
       }
       
-      // If a chart exists, destroy it before creating a new one.
+      // If chart exists, destroy it before creating a new one.
       if (chart) {
         chart.destroy();
       }
@@ -140,7 +156,7 @@
         data: {
           labels: dataX,
           datasets: [{
-            label: 'Budget Line: \(Y = \\frac{M - P_X X}{P_Y}\\)',
+            label: 'Budget Line: \( Y = \\frac{M - P_X X}{P_Y} \\)',
             data: dataY,
             borderColor: 'rgba(50, 139, 139, 1)',
             backgroundColor: 'rgba(50, 139, 139, 0.2)',
@@ -162,7 +178,7 @@
                 display: true,
                 text: 'Quantity of Good Y'
               },
-              beginAtZero: true,
+              beginAtZero: true
             }
           },
           plugins: {
@@ -171,7 +187,7 @@
               text: 'Budget Constraint'
             },
             legend: {
-              display: true,
+              display: true
             }
           }
         }
