@@ -129,10 +129,9 @@
         return;
       }
       
-      // X-intercept: when Y = 0 -> X = M / P_X
-      const X_intercept = M / P_X;
-      // Y-intercept: when X = 0 -> Y = M / P_Y
-      const Y_intercept = M / P_Y;
+      // Calculate intercepts
+      const X_intercept = M / P_X; // when Y = 0
+      const Y_intercept = M / P_Y; // when X = 0
       
       // Generate data points for the budget line:
       const numPoints = 50;
@@ -141,11 +140,12 @@
       for (let i = 0; i <= numPoints; i++) {
         const x = (X_intercept * i) / numPoints;
         dataX.push(x);
+        // Budget line equation: Y = (M - P_X * X) / P_Y
         const y = (M - P_X * x) / P_Y;
         dataY.push(y);
       }
       
-      // If chart exists, destroy it before creating a new one.
+      // If a chart exists, destroy it before creating a new one.
       if (chart) {
         chart.destroy();
       }
@@ -156,7 +156,7 @@
         data: {
           labels: dataX,
           datasets: [{
-            label: 'Budget Line: \( Y = \\frac{M - P_X X}{P_Y} \\)',
+            label: 'Budget Line',
             data: dataY,
             borderColor: 'rgba(50, 139, 139, 1)',
             backgroundColor: 'rgba(50, 139, 139, 0.2)',
@@ -178,7 +178,7 @@
                 display: true,
                 text: 'Quantity of Good Y'
               },
-              beginAtZero: true
+              beginAtZero: true,
             }
           },
           plugins: {
@@ -187,7 +187,7 @@
               text: 'Budget Constraint'
             },
             legend: {
-              display: true
+              display: true,
             }
           }
         }
