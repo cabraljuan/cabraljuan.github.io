@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stone-Geary Marshallian Demand Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-container {
+      width: 100%;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #308b8b;
+    }
+    .result {
+      margin-top: 20px;
+    }
+    .utility-function {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Stone-Geary Marshallian Demand Calculator</h1>
+    <div class="form-container">
+      <form id="stoneGearyForm">
+        <label for="alpha">Alpha \( (\alpha) \):</label>
+        <input type="text" id="alpha" name="alpha" required>
+        
+        <label for="beta">Beta \( (\beta) \):</label>
+        <input type="text" id="beta" name="beta" required>
+        
+        <label for="subsX">Subsistence for X \( (\bar{x}) \):</label>
+        <input type="number" id="subsX" name="subsX" required step="any">
+        
+        <label for="subsY">Subsistence for Y \( (\bar{y}) \):</label>
+        <input type="number" id="subsY" name="subsY" required step="any">
+        
+        <label for="priceX">Price of X \( (P_x) \):</label>
+        <input type="number" id="priceX" name="priceX" required step="any">
+        
+        <label for="priceY">Price of Y \( (P_y) \):</label>
+        <input type="number" id="priceY" name="priceY" required step="any">
+        
+        <label for="income">Income \( (M) \):</label>
+        <input type="number" id="income" name="income" required step="any">
+        
+        <button type="button" onclick="calculateStoneGeary()">Calculate Marshallian Demands</button>
+      </form>
+    </div>
+    
+    <div class="utility-function">
+      <p>Stone‑Geary Utility: \( U = (X-\bar{x})^{\alpha}(Y-\bar{y})^{\beta} \)</p>
+      <p>Budget Constraint: \( M = P_x X + P_y Y \)</p>
+      <p>Marshallian demands:</p>
+      <p>\( X^* = \bar{x} + \frac{\alpha}{\alpha+\beta}\frac{M - P_x\bar{x} - P_y\bar{y}}{P_x} \)</p>
+      <p>\( Y^* = \bar{y} + \frac{\beta}{\alpha+\beta}\frac{M - P_x\bar{x} - P_y\bar{y}}{P_y} \)</p>
+    </div>
+    
+    <div class="result" id="result"></div>
+  </div>
+  
+  <script>
+    function calculateStoneGeary() {
+      // Retrieve input values
+      const alpha = eval(document.getElementById('alpha').value);
+      const beta = eval(document.getElementById('beta').value);
+      const subsX = parseFloat(document.getElementById('subsX').value);
+      const subsY = parseFloat(document.getElementById('subsY').value);
+      const priceX = parseFloat(document.getElementById('priceX').value);
+      const priceY = parseFloat(document.getElementById('priceY').value);
+      const income = parseFloat(document.getElementById('income').value);
+      
+      // Check if income is enough to cover the subsistence consumption:
+      if (income < priceX * subsX + priceY * subsY) {
+        alert("Income is insufficient to cover subsistence consumption.");
+        return;
+      }
+      
+      // Calculate optimal demands using Stone-Geary formulas
+      const X_star = subsX + (alpha / (alpha + beta)) * ((income - priceX * subsX - priceY * subsY) / priceX);
+      const Y_star = subsY + (beta / (alpha + beta)) * ((income - priceX * subsX - priceY * subsY) / priceY);
+      
+      // Calculate the utility level achieved:
+      // U0 = (X_star - subsX)^alpha * (Y_star - subsY)^beta
+      const U0 = Math.pow(X_star - subsX, alpha) * Math.pow(Y_star - subsY, beta);
+      
+      let resultHTML = "<h2>Results</h2>";
+      resultHTML += `<p>Optimal demand for X: ${X_star.toFixed(4)}</p>`;
+      resultHTML += `<p>Optimal demand for Y: ${Y_star.toFixed(4)}</p>`;
+      resultHTML += `<p>Utility level achieved: ${U0.toFixed(4)}</p>`;
+      
+      document.getElementById('result').innerHTML = resultHTML;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>

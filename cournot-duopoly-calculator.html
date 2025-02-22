@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cournot Duopoly with Quadratic Costs Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 700px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    h1, h2, h3 {
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #287a7a;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #308b8b;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+    .math {
+      font-style: italic;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.addEventListener("load", function() {
+      MathJax.typeset();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Cournot Duopoly Calculator</h1>
+    <h2>With Quadratic Costs (Non‑Symmetric)</h2>
+    
+    <div class="section">
+      <h3>Market Demand</h3>
+      <div class="form-group">
+        <label for="a"><span class="math">\(a\)</span> (Demand Intercept in \(P = a - bQ\)):</label>
+        <input type="number" id="a" step="any" placeholder="Enter demand intercept (a)">
+      </div>
+      <div class="form-group">
+        <label for="b"><span class="math">\(b\)</span> (Demand Slope in \(P = a - bQ\)):</label>
+        <input type="number" id="b" step="any" placeholder="Enter demand slope (b)">
+      </div>
+    </div>
+    
+    <div class="section">
+      <h3>Firm 1 Cost Function</h3>
+      <p class="math">Cost Function: \(C_1(q_1)= F_1 + c_1q_1 + d_1q_1^2\)</p>
+      <div class="form-group">
+        <label for="F1"><span class="math">\(F_1\)</span> (Fixed Cost):</label>
+        <input type="number" id="F1" step="any" placeholder="Enter fixed cost for firm 1">
+      </div>
+      <div class="form-group">
+        <label for="c1">
+          <span class="math">\(c_1\)</span> (Linear Cost Parameter, coefficient of \(q_1\) in \(C_1(q_1)= F_1 + c_1q_1 + d_1q_1^2\)):
+        </label>
+        <input type="number" id="c1" step="any" placeholder="Enter linear cost parameter for firm 1">
+      </div>
+      <div class="form-group">
+        <label for="d1">
+          <span class="math">\(d_1\)</span> (Quadratic Cost Parameter, coefficient of \(q_1^2\) in \(C_1(q_1)= F_1 + c_1q_1 + d_1q_1^2\)):
+        </label>
+        <input type="number" id="d1" step="any" placeholder="Enter quadratic cost parameter for firm 1">
+      </div>
+    </div>
+    
+    <div class="section">
+      <h3>Firm 2 Cost Function</h3>
+      <p class="math">Cost Function: \(C_2(q_2)= F_2 + c_2q_2 + d_2q_2^2\)</p>
+      <div class="form-group">
+        <label for="F2"><span class="math">\(F_2\)</span> (Fixed Cost):</label>
+        <input type="number" id="F2" step="any" placeholder="Enter fixed cost for firm 2">
+      </div>
+      <div class="form-group">
+        <label for="c2">
+          <span class="math">\(c_2\)</span> (Linear Cost Parameter, coefficient of \(q_2\) in \(C_2(q_2)= F_2 + c_2q_2 + d_2q_2^2\)):
+        </label>
+        <input type="number" id="c2" step="any" placeholder="Enter linear cost parameter for firm 2">
+      </div>
+      <div class="form-group">
+        <label for="d2">
+          <span class="math">\(d_2\)</span> (Quadratic Cost Parameter, coefficient of \(q_2^2\) in \(C_2(q_2)= F_2 + c_2q_2 + d_2q_2^2\)):
+        </label>
+        <input type="number" id="d2" step="any" placeholder="Enter quadratic cost parameter for firm 2">
+      </div>
+    </div>
+    
+    <button onclick="calculateCournot()">Calculate Equilibrium</button>
+    
+    <div class="result" id="result"></div>
+    
+    <div class="back-link">
+      <p><a href="https://cabraljuan.github.io/Resources.html">Back to Resources</a></p>
+    </div>
+  </div>
+  
+  <script>
+    function calculateCournot() {
+      // Retrieve market demand parameters
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      
+      // Retrieve firm 1 cost parameters
+      const F1 = parseFloat(document.getElementById('F1').value);
+      const c1 = parseFloat(document.getElementById('c1').value);
+      const d1 = parseFloat(document.getElementById('d1').value);
+      
+      // Retrieve firm 2 cost parameters
+      const F2 = parseFloat(document.getElementById('F2').value);
+      const c2 = parseFloat(document.getElementById('c2').value);
+      const d2 = parseFloat(document.getElementById('d2').value);
+      
+      // Validate inputs
+      if (isNaN(a) || isNaN(b) ||
+          isNaN(F1) || isNaN(c1) || isNaN(d1) ||
+          isNaN(F2) || isNaN(c2) || isNaN(d2)) {
+        alert("Please enter valid numbers for all fields.");
+        return;
+      }
+      
+      // For meaningful equilibrium, we need a > max(c1, c2) roughly.
+      if (a <= Math.max(c1, c2)) {
+        alert("The demand intercept a must be greater than both cost parameters c1 and c2 for a meaningful equilibrium.");
+        return;
+      }
+      
+      // Define coefficients for the first order conditions:
+      // For firm 1: (2b + 2d1) * q1 + b * q2 = a - c1.
+      // For firm 2: b * q1 + (2b + 2d2) * q2 = a - c2.
+      const A = 2 * (b + d1);
+      const C = 2 * (b + d2);
+      const B = b;
+      const denom = A * C - B * B;
+      
+      if (denom === 0) {
+        alert("The parameters yield a degenerate equilibrium. Please check your inputs.");
+        return;
+      }
+      
+      // Solve for equilibrium outputs:
+      const q1 = ((a - c1) * C - B * (a - c2)) / denom;
+      const q2 = ((a - c2) * A - B * (a - c1)) / denom;
+      
+      // Total market output:
+      const Q = q1 + q2;
+      // Equilibrium price:
+      const P = a - b * Q;
+      
+      // Calculate profit for each firm:
+      const profit1 = (P - c1) * q1 - d1 * q1 * q1 - F1;
+      const profit2 = (P - c2) * q2 - d2 * q2 * q2 - F2;
+      
+      // Validation: if any equilibrium value is negative, alert.
+      if (q1 < 0 || q2 < 0 || P < 0) {
+        alert("One or more computed equilibrium values are negative. Please check your input parameters.");
+        return;
+      }
+      
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<p>Firm 1 Output: \\(q_1 = ${q1.toFixed(4)}\\)</p>
+                             <p>Firm 2 Output: \\(q_2 = ${q2.toFixed(4)}\\)</p>
+                             <p>Total Market Output: \\(Q = ${Q.toFixed(4)}\\)</p>
+                             <p>Equilibrium Price: \\(P = ${P.toFixed(4)}\\)</p>
+                             <p>Firm 1 Profit: \\(\\pi_1 = ${profit1.toFixed(4)}\\)</p>
+                             <p>Firm 2 Profit: \\(\\pi_2 = ${profit2.toFixed(4)}\\)</p>`;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>

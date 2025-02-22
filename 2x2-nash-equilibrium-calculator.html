@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2×2 Nash Equilibrium Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-container {
+      width: 100%;
+    }
+    input[type="number"],
+    input[type="text"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #308b8b;
+    }
+    .result {
+      margin-top: 20px;
+      width: 100%;
+    }
+    .header {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .math {
+      margin: 10px 0;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 10px 0;
+      width: 100%;
+    }
+    table, th, td {
+      border: 1px solid #666;
+      padding: 8px;
+      text-align: center;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>2×2 Nash Equilibrium Calculator</h1>
+    
+    <div class="form-container">
+      <form id="nashForm">
+        <h3>Row Player Payoffs</h3>
+        <label for="a">Payoff at (R1, C1) \( (a) \):</label>
+        <input type="number" id="a" name="a" required step="any">
+        
+        <label for="b">Payoff at (R1, C2) \( (b) \):</label>
+        <input type="number" id="b" name="b" required step="any">
+        
+        <label for="c">Payoff at (R2, C1) \( (c) \):</label>
+        <input type="number" id="c" name="c" required step="any">
+        
+        <label for="d">Payoff at (R2, C2) \( (d) \):</label>
+        <input type="number" id="d" name="d" required step="any">
+        
+        <h3>Column Player Payoffs</h3>
+        <label for="e">Payoff at (R1, C1) \( (e) \):</label>
+        <input type="number" id="e" name="e" required step="any">
+        
+        <label for="f">Payoff at (R1, C2) \( (f) \):</label>
+        <input type="number" id="f" name="f" required step="any">
+        
+        <label for="g">Payoff at (R2, C1) \( (g) \):</label>
+        <input type="number" id="g" name="g" required step="any">
+        
+        <label for="h">Payoff at (R2, C2) \( (h) \):</label>
+        <input type="number" id="h" name="h" required step="any">
+        
+        <button type="button" onclick="calculateNash()">Calculate Nash Equilibrium</button>
+      </form>
+    </div>
+    
+    <div class="result" id="result"></div>
+    
+    <div class="header">
+      <p>
+        Game Format: <br>
+        Combined Payoff Matrix (Row, Column):<br>
+        \[
+          \begin{pmatrix}
+          a, e & b, f \\
+          c, g & d, h
+          \end{pmatrix}
+        \]
+      </p>
+    </div>
+  </div>
+  
+  <script>
+    function calculateNash() {
+      // Retrieve row player's payoffs
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const c = parseFloat(document.getElementById('c').value);
+      const d = parseFloat(document.getElementById('d').value);
+      
+      // Retrieve column player's payoffs
+      const e = parseFloat(document.getElementById('e').value);
+      const f = parseFloat(document.getElementById('f').value);
+      const g = parseFloat(document.getElementById('g').value);
+      const h = parseFloat(document.getElementById('h').value);
+      
+      let pureEquilibria = [];
+      
+      // Check (R1, C1): Conditions: Row: a >= c; Column: e >= f
+      if (a >= c && e >= f) {
+        pureEquilibria.push("(R1, C1)");
+      }
+      // Check (R1, C2): Conditions: Row: b >= d; Column: f >= h
+      if (b >= d && f >= h) {
+        pureEquilibria.push("(R1, C2)");
+      }
+      // Check (R2, C1): Conditions: Row: c >= a; Column: g >= e
+      if (c >= a && g >= e) {
+        pureEquilibria.push("(R2, C1)");
+      }
+      // Check (R2, C2): Conditions: Row: d >= b; Column: h >= g
+      if (d >= b && h >= g) {
+        pureEquilibria.push("(R2, C2)");
+      }
+      
+      // Compute mixed strategy equilibrium if denominators are nonzero.
+      let mixedExists = true;
+      
+      // For the row player, let p = probability of playing R1.
+      // Column player's indifference: 
+      // Expected payoff of C1: e * p + g*(1-p)
+      // Expected payoff of C2: f * p + h*(1-p)
+      // Set them equal: (e - g - f + h)*p = h - g.
+      const denominatorColumn = e - g - f + h;
+      let p = null;
+      if (denominatorColumn !== 0) {
+        p = (h - g) / denominatorColumn;
+      } else {
+        mixedExists = false;
+      }
+      
+      // For the column player, let q = probability of playing C1.
+      // Row player's indifference:
+      // Expected payoff of R1: a * q + b*(1-q)
+      // Expected payoff of R2: c * q + d*(1-q)
+      // Set them equal: (a - b - c + d)*q = d - b.
+      const denominatorRow = a - b - c + d;
+      let q = null;
+      if (denominatorRow !== 0) {
+        q = (d - b) / denominatorRow;
+      } else {
+        mixedExists = false;
+      }
+      
+      let resultHTML = "<h2>Results</h2>";
+      
+      // Display Pure Strategy Equilibria:
+      if (pureEquilibria.length > 0) {
+        resultHTML += "<p><strong>Pure Strategy Nash Equilibria:</strong> " + pureEquilibria.join(", ") + "</p>";
+      } else {
+        resultHTML += "<p><strong>No pure strategy Nash equilibrium found.</strong></p>";
+      }
+      
+      // Display Mixed Strategy Equilibrium (if exists and probabilities in [0,1])
+      if (mixedExists && p !== null && q !== null && p >= 0 && p <= 1 && q >= 0 && q <= 1) {
+        resultHTML += "<p><strong>Mixed Strategy Nash Equilibrium:</strong></p>";
+        resultHTML += `<p>Row player plays R1 with probability \\( p = ${p.toFixed(4)} \\) and R2 with probability \\( 1-p = ${(1-p).toFixed(4)} \\).</p>`;
+        resultHTML += `<p>Column player plays C1 with probability \\( q = ${q.toFixed(4)} \\) and C2 with probability \\( 1-q = ${(1-q).toFixed(4)} \\).</p>`;
+      } else {
+        resultHTML += "<p><strong>No non-degenerate mixed strategy Nash equilibrium found (or mixed equilibrium is not unique).</strong></p>";
+      }
+      
+      // Show mixed strategy formulas used:
+      resultHTML += "<p class='math'>For Column: \\( q = \\frac{d - b}{a - b - c + d} \\)</p>";
+      resultHTML += "<p class='math'>For Row: \\( p = \\frac{h - g}{e - g - f + h} \\)</p>";
+      
+      // Create a single table for the combined payoff matrix.
+      let tableHTML = "<h3>Combined Payoff Matrix</h3>";
+      tableHTML += "<table>";
+      tableHTML += "<tr><th></th><th>C1</th><th>C2</th></tr>";
+      tableHTML += `<tr><td>R1</td><td>${a}, ${e}</td><td>${b}, ${f}</td></tr>`;
+      tableHTML += `<tr><td>R2</td><td>${c}, ${g}</td><td>${d}, ${h}</td></tr>`;
+      tableHTML += "</table>";
+      
+      resultHTML += tableHTML;
+      
+      document.getElementById('result').innerHTML = resultHTML;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>

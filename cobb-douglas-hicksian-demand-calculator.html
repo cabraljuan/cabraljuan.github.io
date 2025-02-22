@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cobb-Douglas Hicksian Demand Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-container {
+      width: 100%;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #308b8b;
+    }
+    .result {
+      margin-top: 20px;
+    }
+    .utility-function {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Cobb-Douglas Hicksian Demand Calculator</h1>
+    <div class="form-container">
+      <form id="hicksianForm">
+        <label for="alpha">Alpha \( (\alpha) \):</label>
+        <input type="text" id="alpha" name="alpha" required>
+        
+        <label for="beta">Beta \( (\beta) \):</label>
+        <input type="text" id="beta" name="beta" required>
+        
+        <label for="targetU">Target Utility \( (U) \):</label>
+        <input type="number" id="targetU" name="targetU" required step="any">
+        
+        <label for="priceX">Price of X \( (P_x) \):</label>
+        <input type="number" id="priceX" name="priceX" required step="any">
+        
+        <label for="priceY">Price of Y \( (P_y) \):</label>
+        <input type="number" id="priceY" name="priceY" required step="any">
+        
+        <button type="button" onclick="calculateHicksian()">Calculate Hicksian Demands</button>
+      </form>
+    </div>
+    
+    <div class="utility-function">
+      Utility function: \( U = X^{\alpha}Y^{\beta} \) <br>
+      Expenditure minimization: minimize \( E = P_xX + P_yY \) subject to \( X^{\alpha}Y^{\beta} = U \)
+      <br><br>
+    </div>
+    
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateHicksian() {
+      // Retrieve input values
+      const alphaStr = document.getElementById('alpha').value;
+      const betaStr = document.getElementById('beta').value;
+      const targetU = parseFloat(document.getElementById('targetU').value);
+      const priceX = parseFloat(document.getElementById('priceX').value);
+      const priceY = parseFloat(document.getElementById('priceY').value);
+
+      // Evaluate coefficients (ensure safe usage in production)
+      const alpha = eval(alphaStr);
+      const beta = eval(betaStr);
+
+      if (targetU <= 0) {
+        alert("Target utility must be positive.");
+        return;
+      }
+      
+      // Compute the optimal ratio from the first-order condition:
+      // X / Y = (P_y * alpha) / (P_x * beta)
+      const ratioFactor = (priceY * alpha) / (priceX * beta);
+      
+      // Substitute the relation into the utility constraint:
+      // ( (ratioFactor * Y) )^alpha * Y^beta = U  =>  Y^(alpha+beta) * (ratioFactor)^alpha = U
+      // Thus, the Hicksian demand for Y is:
+      const demandY = Math.pow( targetU / Math.pow(ratioFactor, alpha), 1 / (alpha + beta) );
+      // And the Hicksian demand for X:
+      const demandX = ratioFactor * demandY;
+      
+      // Compute the minimum expenditure:
+      const expenditure = priceX * demandX + priceY * demandY;
+
+      let resultHTML = "<h2>Results</h2>";
+      resultHTML += `<p>Hicksian demand for X: ${demandX.toFixed(4)}</p>`;
+      resultHTML += `<p>Hicksian demand for Y: ${demandY.toFixed(4)}</p>`;
+      resultHTML += `<p>Minimum expenditure: ${expenditure.toFixed(4)}</p>`;
+      
+      resultHTML += "<p>Formulas used:</p>";
+      resultHTML += "<p>\\( \\frac{X}{Y} = \\frac{P_y\\,\\alpha}{P_x\\,\\beta} \\)</p>";
+      resultHTML += "<p>\\( Y^* = \\left[ \\frac{U}{\\left( \\frac{P_y\\,\\alpha}{P_x\\,\\beta} \\right)^\\alpha} \\right]^{\\frac{1}{\\alpha+\\beta}} \\)</p>";
+      resultHTML += "<p>\\( X^* = \\frac{P_y\\,\\alpha}{P_x\\,\\beta}\\,Y^* \\)</p>";
+      resultHTML += "<p>Expenditure: \\( E = P_xX^* + P_yY^* \\)</p>";
+
+      document.getElementById('result').innerHTML = resultHTML;
+      // Re-render MathJax expressions in the updated content
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>

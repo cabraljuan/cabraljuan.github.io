@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stone-Geary Hicksian Demand Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-container {
+      width: 100%;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #308b8b;
+    }
+    .result {
+      margin-top: 20px;
+    }
+    .utility-function {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Stone-Geary Hicksian Demand Calculator</h1>
+    <div class="form-container">
+      <form id="stoneGearyHicksianForm">
+        <label for="alpha">Alpha \( (\alpha) \):</label>
+        <input type="text" id="alpha" name="alpha" required>
+        
+        <label for="beta">Beta \( (\beta) \):</label>
+        <input type="text" id="beta" name="beta" required>
+        
+        <label for="subsX">Subsistence for X \( (\bar{x}) \):</label>
+        <input type="number" id="subsX" name="subsX" required step="any">
+        
+        <label for="subsY">Subsistence for Y \( (\bar{y}) \):</label>
+        <input type="number" id="subsY" name="subsY" required step="any">
+        
+        <label for="priceX">Price of X \( (P_x) \):</label>
+        <input type="number" id="priceX" name="priceX" required step="any">
+        
+        <label for="priceY">Price of Y \( (P_y) \):</label>
+        <input type="number" id="priceY" name="priceY" required step="any">
+        
+        <label for="targetU">Target Utility \( (U) \):</label>
+        <input type="number" id="targetU" name="targetU" required step="any">
+        
+        <button type="button" onclick="calculateStoneGearyHicksian()">Calculate Hicksian Demands</button>
+      </form>
+    </div>
+    
+    <div class="utility-function">
+      <p>Stone‑Geary Utility: \( U = (X-\bar{x})^{\alpha}(Y-\bar{y})^{\beta} \)</p>
+      <p>Expenditure Function: 
+      \[
+        E(P_x,P_y,U) = P_x\bar{x} + P_y\bar{y} + \left[ U \cdot \frac{P_x^{\alpha} P_y^{\beta}}{\left(\frac{\alpha}{\alpha+\beta}\right)^{\alpha} \left(\frac{\beta}{\alpha+\beta}\right)^{\beta}} \right]^{\frac{1}{\alpha+\beta}}
+      \]
+      </p>
+      <p>Hicksian Demands:</p>
+      <p>\( X^h = \bar{x} + \frac{\alpha}{\alpha+\beta}\frac{E(P_x,P_y,U)-P_x\bar{x}-P_y\bar{y}}{P_x} \)</p>
+      <p>\( Y^h = \bar{y} + \frac{\beta}{\alpha+\beta}\frac{E(P_x,P_y,U)-P_x\bar{x}-P_y\bar{y}}{P_y} \)</p>
+    </div>
+    
+    <div class="result" id="result"></div>
+  </div>
+  
+  <script>
+    function calculateStoneGearyHicksian() {
+      // Retrieve input values
+      const alpha = eval(document.getElementById('alpha').value);
+      const beta = eval(document.getElementById('beta').value);
+      const subsX = parseFloat(document.getElementById('subsX').value);
+      const subsY = parseFloat(document.getElementById('subsY').value);
+      const priceX = parseFloat(document.getElementById('priceX').value);
+      const priceY = parseFloat(document.getElementById('priceY').value);
+      const targetU = parseFloat(document.getElementById('targetU').value);
+      
+      // Validate inputs: subsistence can be zero or positive; other inputs must be positive.
+      if (alpha <= 0 || beta <= 0 || priceX <= 0 || priceY <= 0 || targetU <= 0) {
+        alert("Alpha, Beta, Prices, and Target Utility must be positive.");
+        return;
+      }
+      
+      // Compute the extra expenditure needed above subsistence (E_prime)
+      // E_prime = [ U * (P_x^alpha * P_y^beta) / ((alpha/(alpha+beta))^alpha * (beta/(alpha+beta))^beta) ]^(1/(alpha+beta))
+      const numerator = targetU * Math.pow(priceX, alpha) * Math.pow(priceY, beta);
+      const denominator = Math.pow(alpha / (alpha + beta), alpha) * Math.pow(beta / (alpha + beta), beta);
+      const E_prime = Math.pow(numerator / denominator, 1 / (alpha + beta));
+      
+      // Total minimum expenditure:
+      const E_total = priceX * subsX + priceY * subsY + E_prime;
+      
+      // Hicksian (compensated) demands for X and Y:
+      const X_h = subsX + (alpha / (alpha + beta)) * (E_prime / priceX);
+      const Y_h = subsY + (beta / (alpha + beta)) * (E_prime / priceY);
+      
+      // Achieved utility (should be close to the target utility)
+      const achievedU = Math.pow(X_h - subsX, alpha) * Math.pow(Y_h - subsY, beta);
+      
+      let resultHTML = "<h2>Results</h2>";
+      resultHTML += `<p>Total minimum expenditure needed: ${E_total.toFixed(4)}</p>`;
+      resultHTML += `<p>Hicksian demand for X: ${X_h.toFixed(4)}</p>`;
+      resultHTML += `<p>Hicksian demand for Y: ${Y_h.toFixed(4)}</p>`;
+      resultHTML += `<p>Achieved utility level: ${achievedU.toFixed(4)}</p>`;
+      
+      document.getElementById('result').innerHTML = resultHTML;
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>

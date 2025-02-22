@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expected Utility Calculator for 3-Scenario Lottery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+    .container {
+      max-width: 500px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #308b8b;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #287a7a;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .utility-explanations {
+      margin-top: 20px;
+      background: #eef;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .utility-explanations p {
+      margin: 5px 0;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #308b8b;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.addEventListener("load", function() {
+      MathJax.typeset();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Expected Utility Calculator</h1>
+    <p>For a lottery with 3 scenarios</p>
+    
+    <div class="form-group">
+      <label for="x1"><span class="math">\(x_1\)</span> (Outcome 1):</label>
+      <input type="number" id="x1" step="any" placeholder="Enter outcome 1">
+    </div>
+    <div class="form-group">
+      <label for="p1"><span class="math">\(p_1\)</span> (Probability for Outcome 1):</label>
+      <input type="number" id="p1" step="any" placeholder="Enter probability 1">
+    </div>
+    <div class="form-group">
+      <label for="x2"><span class="math">\(x_2\)</span> (Outcome 2):</label>
+      <input type="number" id="x2" step="any" placeholder="Enter outcome 2">
+    </div>
+    <div class="form-group">
+      <label for="p2"><span class="math">\(p_2\)</span> (Probability for Outcome 2):</label>
+      <input type="number" id="p2" step="any" placeholder="Enter probability 2">
+    </div>
+    <div class="form-group">
+      <label for="x3"><span class="math">\(x_3\)</span> (Outcome 3):</label>
+      <input type="number" id="x3" step="any" placeholder="Enter outcome 3">
+    </div>
+    <div class="form-group">
+      <label for="p3"><span class="math">\(p_3\)</span> (Probability for Outcome 3):</label>
+      <input type="number" id="p3" step="any" placeholder="Enter probability 3">
+    </div>
+    
+    <div class="form-group">
+      <label for="utilityFunction">Utility Function:</label>
+      <select id="utilityFunction">
+        <option value="identity">Identity</option>
+        <option value="log">Logarithmic</option>
+        <option value="sqrt">Square Root</option>
+        <option value="square">Square</option>
+        <option value="exp">Exponential</option>
+      </select>
+    </div>
+    
+    <button onclick="calculateExpectedUtility()">Calculate Expected Utility</button>
+    
+    <div class="result" id="result"></div>
+    
+    <div class="utility-explanations">
+      <h2>Utility Function Explanations</h2>
+      <p><strong>Identity:</strong> \( u(x)=x \)</p>
+      <p><strong>Logarithmic:</strong> \( u(x)=\ln(x) \) (requires \(x>0\))</p>
+      <p><strong>Square Root:</strong> \( u(x)=\sqrt{x} \) (requires \(x\ge0\))</p>
+      <p><strong>Square:</strong> \( u(x)=x^2 \)</p>
+      <p><strong>Exponential:</strong> \( u(x)=e^x \)</p>
+    </div>
+    
+    <div class="back-link">
+      <p><a href="https://cabraljuan.github.io/Resources.html">Back to Resources</a></p>
+    </div>
+    
+  </div>
+  
+  <script>
+    function calculateExpectedUtility() {
+      // Retrieve outcome and probability inputs
+      const x1 = parseFloat(document.getElementById('x1').value);
+      const p1 = parseFloat(document.getElementById('p1').value);
+      const x2 = parseFloat(document.getElementById('x2').value);
+      const p2 = parseFloat(document.getElementById('p2').value);
+      const x3 = parseFloat(document.getElementById('x3').value);
+      const p3 = parseFloat(document.getElementById('p3').value);
+      const utilityType = document.getElementById('utilityFunction').value;
+      
+      // Validate inputs
+      if (isNaN(x1) || isNaN(x2) || isNaN(x3) ||
+          isNaN(p1) || isNaN(p2) || isNaN(p3)) {
+        alert("Please enter valid numbers for all outcomes and probabilities.");
+        return;
+      }
+      
+      const totalProb = p1 + p2 + p3;
+      if (Math.abs(totalProb - 1) > 0.001) {
+        alert("The sum of the probabilities should be 1. Currently, it is " + totalProb.toFixed(4));
+        return;
+      }
+      
+      // Define the utility function based on selection
+      let utility;
+      if (utilityType === "identity") {
+        utility = function(x) { return x; };
+      } else if (utilityType === "log") {
+        if (x1 <= 0 || x2 <= 0 || x3 <= 0) {
+          alert("All outcomes must be positive for logarithmic utility.");
+          return;
+        }
+        utility = function(x) { return Math.log(x); };
+      } else if (utilityType === "sqrt") {
+        if (x1 < 0 || x2 < 0 || x3 < 0) {
+          alert("Outcomes cannot be negative for square root utility.");
+          return;
+        }
+        utility = function(x) { return Math.sqrt(x); };
+      } else if (utilityType === "square") {
+        utility = function(x) { return Math.pow(x, 2); };
+      } else if (utilityType === "exp") {
+        utility = function(x) { return Math.exp(x); };
+      }
+      
+      // Compute expected utility: EU = p1*u(x1) + p2*u(x2) + p3*u(x3)
+      const EU = p1 * utility(x1) + p2 * utility(x2) + p3 * utility(x3);
+      
+      // Display the result
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<p>Expected Utility: <span class="math">\(EU = ${EU.toFixed(4)}\)</span></p>`;
+      
+      MathJax.typeset();
+    }
+  </script>
+</body>
+</html>
