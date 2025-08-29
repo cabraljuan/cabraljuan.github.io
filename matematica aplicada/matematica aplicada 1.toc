@@ -1,0 +1,41 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Curvas de nivel}{3}{section.1}%
+\contentsline {section}{\numberline {2}Curvas de nivel en Economía}{7}{section.2}%
+\contentsline {section}{\numberline {3}Optimización con curvas de nivel}{10}{section.3}%
+\contentsline {section}{\numberline {4}Continuidad}{18}{section.4}%
+\contentsline {section}{\numberline {5}Derivadas parciales}{21}{section.5}%
+\contentsline {section}{\numberline {6}Diferencial}{27}{section.6}%
+\contentsline {section}{\numberline {7}Aplicación económica de diferencial}{30}{section.7}%
+\contentsline {section}{\numberline {8}Clasificación de bienes y elasticidad}{33}{section.8}%
+\contentsline {section}{\numberline {9}Derivadas implícitas}{37}{section.9}%
+\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{37}{section*.112}%
+\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{38}{section*.113}%
+\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{39}{section*.119}%
+\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{39}{section*.120}%
+\contentsline {paragraph}{\color {teal}Paso 3: evaluar en un punto}{39}{section*.121}%
+\contentsline {section}{\numberline {10}Derivadas implícitas en sistemas de ecuaciones}{42}{section.10}%
+\contentsline {paragraph}{\color {teal}Paso 1: Calcular las derivadas parciales}{43}{section*.132}%
+\contentsline {paragraph}{\color {teal}Paso 2: Diferenciar implícitamente y escribir el sistema}{43}{section*.133}%
+\contentsline {paragraph}{\color {teal}Paso 3: Escribir el sistema en forma matricial}{43}{section*.134}%
+\contentsline {paragraph}{\color {teal}Paso 4: Resolver el sistema con la Regla de Cramer}{44}{section*.135}%
+\contentsline {section}{\numberline {11}IS-LM}{48}{section.11}%
+\contentsline {paragraph}{1. Mercado de bienes y servicios (IS)}{48}{section*.143}%
+\contentsline {paragraph}{2. Mercado monetario (LM)}{48}{section*.144}%
+\contentsline {paragraph}{3. Ingreso disponible}{48}{section*.145}%
+\contentsline {section}{\numberline {12}Homogeneidad}{51}{section.12}%
+\contentsline {section}{\numberline {13}Autovalores y autovectores}{55}{section.13}%
+\contentsline {section}{\numberline {14}Formas cuadráticas}{60}{section.14}%
+\contentsline {section}{\numberline {15}Menores}{63}{section.15}%
+\contentsline {paragraph}{Menor (general) de orden $k$.}{63}{section*.193}%
+\contentsline {paragraph}{Menor principal de orden $k$.}{63}{section*.194}%
+\contentsline {paragraph}{Menor principal inicial (o dominante) de orden $k$.}{63}{section*.195}%
+\contentsline {section}{\numberline {16}Concavidad y convexidad}{69}{section.16}%
+\contentsline {section}{\numberline {17}Optimización sin restricciones}{77}{section.17}%
+\contentsline {section}{\numberline {18}Aplicaciones económicas de optimización}{82}{section.18}%
+\contentsline {paragraph}{Interpretación}{88}{section*.284}%
+\contentsline {section}{\numberline {19}Optimización con restricciones de igualdad}{89}{section.19}%
+\contentsline {section}{\numberline {20}Optimización con restricciones de desigualdad}{96}{section.20}%
+\contentsline {paragraph}{Condiciones de primer orden}{99}{section*.310}%
+\contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{99}{section*.311}%
+\contentsline {paragraph}{Condiciones de Kuhn-Tucker}{102}{section*.316}%
+\contentsline {paragraph}{Análisis de casos}{102}{section*.317}%
