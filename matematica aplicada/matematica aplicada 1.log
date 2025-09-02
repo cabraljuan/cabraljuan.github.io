@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.4.17)  29 AUG 2025 13:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.4.17)  2 SEP 2025 11:49
 entering extended mode
 **"./matematica aplicada 1.tex"
 (matematica aplicada 1.tex
@@ -1496,7 +1496,21 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
-[37]
+[37pdfTeX warning (ext4): destination with the same identifier (name{equation.9
+.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.2355 \]
+         pdfTeX warning (ext4): destination with the same identifier (name{equa
+tion.9.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.2355 \]
+         ]
+Overfull \hbox (3.8448pt too wide) detected at line 2409
+[][]
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -1617,12 +1631,6 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [52]
-Overfull \hbox (17.32439pt too wide) in paragraph at lines 3627--3629
-[]\OT1/cmr/bx/n/10 Demanda ho-mogenea de grado cero en pre-cios e in-greso: \O
-T1/cmr/m/n/10 Una funcion de de-manda $\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 (\O
-ML/cmm/m/it/10 p[]; [] ; p[]; M\OT1/cmr/m/n/10 )$
- []
-
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -1655,6 +1663,12 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [56]
+Overfull \hbox (17.32439pt too wide) in paragraph at lines 3951--3953
+[]\OT1/cmr/bx/n/10 Demanda ho-mogenea de grado cero en pre-cios e in-greso: \O
+T1/cmr/m/n/10 Una funcion de de-manda $\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 (\O
+ML/cmm/m/it/10 p[]; [] ; p[]; M\OT1/cmr/m/n/10 )$
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -1760,6 +1774,38 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 
 [69]
 
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[70]
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[71]
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[72]
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[73]
+
 ! Package pgfplots Error: 'name path' is undefined. Please load \usetikzlibrary
 {intersections} or \usepgfplotslibrary{fillbetween}.
 
@@ -1767,7 +1813,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4873 ..._curve, domain=-1:1, samples=100] {x^2};
+l.5197 ..._curve, domain=-1:1, samples=100] {x^2};
                                                   
 (That was another \errmessage.)
 
@@ -1779,7 +1825,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4879 ...      {\pgfkeysvalueof{/pgfplots/ymax}};
+l.5203 ...      {\pgfkeysvalueof{/pgfplots/ymax}};
                                                   
 (That was another \errmessage.)
 
@@ -1791,14 +1837,14 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4882 ...ll between[of=f_curve and top_boundary];
+l.5206 ...ll between[of=f_curve and top_boundary];
                                                   
 (That was another \errmessage.)
 
 ! Undefined control sequence.
 \pgfplots@countplots@advance ...andlername@actual 
                                                   \endcsname 
-l.4882 ...ll between[of=f_curve and top_boundary];
+l.5206 ...ll between[of=f_curve and top_boundary];
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1809,7 +1855,7 @@ and I'll forget about whatever was undefined.
 ! Missing number, treated as zero.
 <to be read again> 
                    \c@pgfplots@numplotsofactualtype@ 
-l.4882 ...ll between[of=f_curve and top_boundary];
+l.5206 ...ll between[of=f_curve and top_boundary];
                                                   
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
@@ -1823,7 +1869,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4887   \end{axis}
+l.5211   \end{axis}
                    
 (That was another \errmessage.)
 
@@ -1835,7 +1881,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4887   \end{axis}
+l.5211   \end{axis}
                    
 (That was another \errmessage.)
 
@@ -1847,7 +1893,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4905 ...ncave, domain=-1:1, samples=100] {-x^2};
+l.5229 ...ncave, domain=-1:1, samples=100] {-x^2};
                                                   
 (That was another \errmessage.)
 
@@ -1859,7 +1905,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4911 ...      {\pgfkeysvalueof{/pgfplots/ymin}};
+l.5235 ...      {\pgfkeysvalueof{/pgfplots/ymin}};
                                                   
 (That was another \errmessage.)
 
@@ -1871,14 +1917,14 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4914 ...of=f_curve_concave and bottom_boundary];
+l.5238 ...of=f_curve_concave and bottom_boundary];
                                                   
 (That was another \errmessage.)
 
 ! Undefined control sequence.
 \pgfplots@countplots@advance ...andlername@actual 
                                                   \endcsname 
-l.4914 ...of=f_curve_concave and bottom_boundary];
+l.5238 ...of=f_curve_concave and bottom_boundary];
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1894,7 +1940,7 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4919   \end{axis}
+l.5243   \end{axis}
                    
 (That was another \errmessage.)
 
@@ -1906,14 +1952,14 @@ See the pgfplots package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4919   \end{axis}
+l.5243   \end{axis}
                    
 (That was another \errmessage.)
 
 ! Undefined control sequence.
 <recently read> \R 
                    
-l.4924 ...tion*{Concavidad y convexidad en $\R^2$}
+l.5248 ...tion*{Concavidad y convexidad en $\R^2$}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1928,13 +1974,13 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
-[70]
-Underfull \hbox (badness 10000) in paragraph at lines 4953--4954
+[74]
+Underfull \hbox (badness 10000) in paragraph at lines 5277--5278
 
  []
 
 ! Undefined control sequence.
-l.4955 ...os \((x_1,y_1)\) y \((x_2,y_2)\) en \(\R
+l.5279 ...os \((x_1,y_1)\) y \((x_2,y_2)\) en \(\R
                                                   ^2\) y sea
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1949,11 +1995,11 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
-[71]
+[75]
 ! Undefined control sequence.
 <recently read> \R 
                    
-l.5081 \subsection*{Extensión a $\R^n$}
+l.5405 \subsection*{Extensión a $\R^n$}
                                         
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1962,7 +2008,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.5083 ...1-t)x + t\,y\bigr)\)—se aplica en \(\R
+l.5407 ...1-t)x + t\,y\bigr)\)—se aplica en \(\R
                                                   ^n\). Si la matriz de deri...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1971,7 +2017,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.5086 da concavidad de \(f\) en \(\R
+l.5410 da concavidad de \(f\) en \(\R
                                      ^n\)
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1980,7 +2026,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.5120 \qquad (x,y)\in\R
+l.5444 \qquad (x,y)\in\R
                         ^2
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1989,7 +2035,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.5150 ...es \emph{definida positiva} en todo \(\R
+l.5474 ...es \emph{definida positiva} en todo \(\R
                                                   ^2\)
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1998,7 +2044,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.5155 ... es \emph{estrictamente convexa} en \(\R
+l.5479 ... es \emph{estrictamente convexa} en \(\R
                                                   ^2\)}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2013,9 +2059,9 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
-[72]
+[76]
 ! Undefined control sequence.
-l.5162 \qquad (x,y)\in\R
+l.5486 \qquad (x,y)\in\R
                         ^2
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2024,14 +2070,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5166--5167
+Underfull \hbox (badness 10000) in paragraph at lines 5490--5491
 
  []
 
 ! Undefined control sequence.
 <argument> ... semidefinida negativa en todo \(\R 
                                                   ^2\), \(f\) es \emph {cón...
-l.5194 ...ente cóncava, ni estrictamente convexa}
+l.5518 ...ente cóncava, ni estrictamente convexa}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2040,7 +2086,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.5225 \{\,x\in\R
+l.5549 \{\,x\in\R
                  ^n : f(x)=\alpha\}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2049,7 +2095,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.5230 L_\alpha(f) &= \{\,x\in\R
+l.5554 L_\alpha(f) &= \{\,x\in\R
                                 ^n : f(x)\le \alpha\}\\[4pt]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2058,7 +2104,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.5231 U^\alpha(f) &= \{\,x\in\R
+l.5555 U^\alpha(f) &= \{\,x\in\R
                                 ^n : f(x)\ge \alpha\}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2073,9 +2119,9 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
-[73]
+[77]
 ! Undefined control sequence.
-l.5291 f\colon A\to\R
+l.5615 f\colon A\to\R
                      ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2084,7 +2130,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.5293 A=\{(x,y)\in\R
+l.5617 A=\{(x,y)\in\R
                      ^2:x>0,\;y>0\},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2093,51 +2139,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5300--5301
+Underfull \hbox (badness 10000) in paragraph at lines 5624--5625
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5332--5333
+Underfull \hbox (badness 10000) in paragraph at lines 5656--5657
 
  []
 
-
-Package fancyhdr Warning: \headheight is too small (10.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
-
-[74]
-
-Package fancyhdr Warning: \headheight is too small (10.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
-
-[75]
-Underfull \hbox (badness 10000) in paragraph at lines 5439--5440
-
- []
-
-
-Package fancyhdr Warning: \headheight is too small (10.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
-
-[76]
-
-Package fancyhdr Warning: \headheight is too small (10.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
-
-[77]
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -2146,15 +2156,6 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [78]
-! Undefined control sequence.
-l.5705 ...\(F\) es convexa o cóncava en todo \(\R
-                                                  ^2\). Calculamos de nuevo ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -2163,47 +2164,9 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [79]
-! Undefined control sequence.
-l.5725 f(x,y)=x^2+y^2,\qquad (x,y)\in\R
-                                       ^2
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+Underfull \hbox (badness 10000) in paragraph at lines 5763--5764
 
-! Undefined control sequence.
-<argument> ...ph {definida positiva} en todo \(\R 
-                                                  ^2\). Por el criterio de s...
-l.5755 }
-        
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...abla ^2f(x,y) \geq 0\) en todo \(\R 
-                                                  ^2\), \(f\) es \emph {conv...
-l.5758 ...cal es también \emph{mínimo global}. }
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...), \(f\) es \emph {convexa} en \(\R 
-                                                  ^2\). En toda función con...
-l.5758 ...cal es también \emph{mínimo global}. }
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+ []
 
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
@@ -2221,15 +2184,6 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [81]
-! Undefined control sequence.
-l.5868 \(\{\,z=f(x,y,\phi):(x,y)\in\R
-                                     ^2\}\) al variar el parámetro \(\phi\)...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -2239,19 +2193,8 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 
 [82]
 ! Undefined control sequence.
-l.5885 \qquad x\in\R
-                    ,\;t<0
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> x\in \R 
-                   
-l.5893 V(t)=\max_{x\in\R}
-                         f(x;t)
+l.6029 ...\(F\) es convexa o cóncava en todo \(\R
+                                                  ^2\). Calculamos de nuevo ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2266,6 +2209,48 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [83]
+! Undefined control sequence.
+l.6049 f(x,y)=x^2+y^2,\qquad (x,y)\in\R
+                                       ^2
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...ph {definida positiva} en todo \(\R 
+                                                  ^2\). Por el criterio de s...
+l.6079 }
+        
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...abla ^2f(x,y) \geq 0\) en todo \(\R 
+                                                  ^2\), \(f\) es \emph {conv...
+l.6082 ...cal es también \emph{mínimo global}. }
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...), \(f\) es \emph {convexa} en \(\R 
+                                                  ^2\). En toda función con...
+l.6082 ...cal es también \emph{mínimo global}. }
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -2282,6 +2267,15 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [85]
+! Undefined control sequence.
+l.6192 \(\{\,z=f(x,y,\phi):(x,y)\in\R
+                                     ^2\}\) al variar el parámetro \(\phi\)...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -2290,6 +2284,26 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [86]
+! Undefined control sequence.
+l.6209 \qquad x\in\R
+                    ,\;t<0
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> x\in \R 
+                   
+l.6217 V(t)=\max_{x\in\R}
+                         f(x;t)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -2322,42 +2336,6 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [90]
-! Undefined control sequence.
-l.6492 f:\R
-           ^2\to\R,
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.6492 f:\R^2\to\R
-                  ,
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.6494 g:\R
-           ^2\to\R,
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.6494 g:\R^2\to\R
-                  ,
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -2366,10 +2344,78 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [91]
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[92]
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[93]
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[94]
+! Undefined control sequence.
+l.6816 f:\R
+           ^2\to\R,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.6816 f:\R^2\to\R
+                  ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.6818 g:\R
+           ^2\to\R,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.6818 g:\R^2\to\R
+                  ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[95]
 ! Undefined control sequence.
 <argument> x\in \R 
                    ^n
-l.6631 &\min_{x\in\R^n}
+l.6955 &\min_{x\in\R^n}
                         && f(x),\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2378,14 +2424,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6633--6636
+Underfull \hbox (badness 10000) in paragraph at lines 6957--6960
 
  []
 
 ! Undefined control sequence.
 <argument> x\in \R 
                    ^n
-l.6638 &\max_{x\in\R^n}
+l.6962 &\max_{x\in\R^n}
                         && f(x),\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2400,9 +2446,9 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
-[92]
+[96]
 ! Undefined control sequence.
-l.6657 \;\in\;\R
+l.6981 \;\in\;\R
                 ^{n\times k}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2417,44 +2463,12 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
-[93]
-Overfull \hbox (11.643pt too wide) detected at line 6778
+[97]
+Overfull \hbox (11.643pt too wide) detected at line 7102
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; y[]; z[]; []; []\OT1/cmr/m/n/10 ) = 
 []
  []
 
-
-Package fancyhdr Warning: \headheight is too small (10.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
-
-[94]
-
-Package fancyhdr Warning: \headheight is too small (10.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
-
-[95]
-
-Package fancyhdr Warning: \headheight is too small (10.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
-
-[96]
-
-Package fancyhdr Warning: \headheight is too small (10.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\headheight}{12.0pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
-
-[97]
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -2487,10 +2501,6 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
 [101]
-Underfull \hbox (badness 10000) in paragraph at lines 7498--7499
-
- []
-
 
 Package fancyhdr Warning: \headheight is too small (10.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -2514,16 +2524,52 @@ Package fancyhdr Warning: \headheight is too small (10.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
 
-[104] (matematica aplicada 1.aux)
+[104]
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[105]
+Underfull \hbox (badness 10000) in paragraph at lines 7822--7823
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[106]
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[107]
+
+Package fancyhdr Warning: \headheight is too small (10.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{12.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.0pt}.
+
+[108] (matematica aplicada 1.aux)
 Package rerunfilecheck Info: File `"matematica aplicada 1".out' has not changed
 .
-(rerunfilecheck)             Checksum: C877A45B94CDD53ED060503045CCA8D4;3547.
+(rerunfilecheck)             Checksum: F5D05CC9EDB71CD7C841ECE4EFF81830;3695.
  ) 
 Here is how much of TeX's memory you used:
- 40569 strings out of 479334
- 935079 string characters out of 2860352
+ 40588 strings out of 479334
+ 935274 string characters out of 2860352
  1589394 words of memory out of 3000000
- 56885 multiletter control sequences out of 15000+200000
+ 56886 multiletter control sequences out of 15000+200000
  417500 words of font info for 80 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,23n,103p,739b,2139s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2559,9 +2605,9 @@ tex/fonts/type1/public/amsfonts/cm/cmtt10.pfb><E:/programs files (windows 10)/m
 iktex/fonts/type1/public/amsfonts/symbols/msam10.pfb><E:/programs files (window
 s 10)/miktex/fonts/type1/public/amsfonts/symbols/msbm10.pfb><E:/programs files 
 (windows 10)/miktex/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "matematica aplicada 1.pdf" (105 pages, 894093 bytes).
+Output written on "matematica aplicada 1.pdf" (109 pages, 912393 bytes).
 PDF statistics:
- 1329 PDF objects out of 1440 (max. 8388607)
- 552 named destinations out of 1000 (max. 500000)
- 173 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1372 PDF objects out of 1440 (max. 8388607)
+ 570 named destinations out of 1000 (max. 500000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 

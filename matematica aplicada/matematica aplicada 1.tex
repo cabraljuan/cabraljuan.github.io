@@ -54,7 +54,7 @@
 \addtolength{\topmargin}{-2.0pt}
 
 % --- Defino la versión manualmente ---
-\newcommand{\version}{0.5}
+\newcommand{\version}{0.6}
 
 \begin{document}
 
@@ -2244,6 +2244,330 @@ Esto significa que, ante un aumento del 1\% en el ingreso, la cantidad demandada
 
 \textbf{Interpretación respecto a bienes de lujo vs. esenciales:}\\
 Dado que \(0 < E_I < 1\), el bien se clasifica como un \textbf{\color{teal}bien esencial} (o necesidad básica), ya que la respuesta de la demanda a cambios en el ingreso es relativamente baja
+
+
+
+
+
+
+
+
+\newpage
+
+\section{Derivadas compuestas}
+
+
+
+
+
+En matemática aplicada a la economía es muy común que una variable dependa de otra \emph{a través} de funciones intermedias. Por ejemplo, la cantidad demandada \(Q\) depende del precio \(P\) vía \(Q = D(P)\), y el precio a su vez depende de un impuesto ad-valorem \(\tau\) vía \(P = P_0(1+\tau)\). Esta \emph{composición} se modela como
+\[
+y = g\big(h(x)\big)
+\]
+donde \(g\) y \(h\) son funciones diferenciables. Una pregunta que puede surgir es ¿Cómo afecta el cambio en el impuesto a la demanda? La respuesta de esta pregunta se puede encontrar a través de la derivada de una función compuesta.
+
+\section*{En una variable}
+
+Recordemos que si \(y=f(x)\) y \(x\) cambia de \(a\) a \(a+\Delta x\), definimos el incremento de \(y\) como
+\[
+\Delta y \;=\; f(a+\Delta x)-f(a)
+\]
+De acuerdo con la definición de derivada,
+\[
+\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x} \;=\; f'(a)
+\]
+
+Si denotamos por \(\varepsilon\) la diferencia entre el cociente incremental y la derivada, obtenemos
+\[
+\lim_{\Delta x\to 0}\varepsilon
+=\lim_{\Delta x\to 0}\!\left(\frac{\Delta y}{\Delta x}-f'(a)\right)
+= f'(a)-f'(a)=0
+\]
+Pero
+\[
+\varepsilon \;=\; \frac{\Delta y}{\Delta x}-f'(a)
+\quad\Longrightarrow\quad
+\Delta y \;=\; f'(a)\,\Delta x \;+\; \varepsilon\,\Delta x
+\]
+Definimos \(\varepsilon=0\) cuando \(\Delta x=0\).
+
+\medskip
+\noindent
+Así, para una función \(f\) diferenciable, podemos escribir
+\begin{equation}
+\Delta y \;=\; f'(a)\,\Delta x \;+\; \varepsilon\,\Delta x,
+\qquad
+\varepsilon\to 0 \text{ cuando } \Delta x\to 0
+\tag{5}
+\end{equation}
+y \(\varepsilon\) es función continua de \(\Delta x\). Esta propiedad habilita la prueba de la regla de la cadena.
+
+\subsection*{Prueba de la regla de la cadena}
+Supongamos \(u=g(x)\) diferenciable en \(a\) y \(y=f(u)\) diferenciable en \(b=g(a)\).
+Si \(\Delta x\) es un incremento en \(x\) y \(\Delta u, \Delta y\) los incrementos correspondientes en \(u\) e \(y\),
+entonces, aplicando \((5)\) a \(g\) en \(a\),
+\begin{equation}
+\Delta u \;=\; g'(a)\,\Delta x \;+\; \varepsilon_1\,\Delta x
+\;=\; \big[g'(a)+\varepsilon_1\big]\Delta x,
+\qquad
+\varepsilon_1\to 0 \text{ cuando } \Delta x\to 0
+\tag{6}
+\end{equation}
+De modo análogo, aplicando \((5)\) a \(f\) en \(b\),
+\begin{equation}
+\Delta y \;=\; f'(b)\,\Delta u \;+\; \varepsilon_2\,\Delta u
+\;=\; \big[f'(b)+\varepsilon_2\big]\Delta u
+\qquad
+\varepsilon_2\to 0 \text{ cuando } \Delta u\to 0
+\tag{7}
+\end{equation}
+
+Sustituyendo \(\Delta u\) de \((6)\) en \((7)\), obtenemos
+\[
+\Delta y \;=\; \big[f'(b)+\varepsilon_2\big]\big[g'(a)+\varepsilon_1\big]\Delta x,
+\qquad\text{por lo tanto}\qquad
+\frac{\Delta y}{\Delta x} \;=\; \big[f'(b)+\varepsilon_2\big]\big[g'(a)+\varepsilon_1\big]
+\]
+Cuando \(\Delta x\to 0\), la ecuación \((6)\) muestra que \(\Delta u\to 0\); así, \(\varepsilon_1\to 0\) y \(\varepsilon_2\to 0\).
+Luego
+\[ \color{teal}
+\frac{dy}{dx}
+=\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}
+=\lim_{\Delta x\to 0}\big[f'(b)+\varepsilon_2\big]\big[g'(a)+\varepsilon_1\big]
+=f'(b)\,g'(a)
+=f'\big(g(a)\big)\,g'(a)
+\]
+
+\subsection*{Ejemplo}
+
+
+
+\textbf{Función:} \(\displaystyle y(x) = (\,1+2x\,)^5\).
+
+\textbf{Identificación de la composición:}
+\[
+g(u)=u^{5}, \qquad h(x)=1+2x, \qquad y(x)=g\!\big(h(x)\big)
+\]
+
+\textbf{Derivadas de cada capa:}
+\[
+g'(u)=5u^{4}, \qquad h'(x)=2
+\]
+
+\textbf{Aplicación de la regla de la cadena:}
+\[\color{teal}
+y'(x)=g'\!\big(h(x)\big)\cdot h'(x)
+=5\big(1+2x\big)^{4}\cdot 2
+={\,10\big(1+2x\big)^{4}\,}
+\]
+
+
+
+
+
+\section*{Regla de la cadena (caso multivariable)}
+
+
+Un cambio \(\Delta t\) produce cambios \(\Delta x=g(t_0+\Delta t)-g(t_0)\) y
+\(\Delta y=h(t_0+\Delta t)-h(t_0)\). Por diferenciabilidad de \(f\) en \((x_0,y_0)\),
+\[
+\Delta z
+= f(x_0+\Delta x,\,y_0+\Delta y)-f(x_0,y_0)
+= \frac{\partial f}{\partial x}(x_0,y_0)\,\Delta x
++ \frac{\partial f}{\partial y}(x_0,y_0)\,\Delta y
++ \varepsilon_1(\Delta x,\Delta y)\,\Delta x
++ \varepsilon_2(\Delta x,\Delta y)\,\Delta y,
+\]
+donde \(\varepsilon_1(\Delta x,\Delta y)\to 0\) y \(\varepsilon_2(\Delta x,\Delta y)\to 0\) cuando
+\((\Delta x,\Delta y)\to(0,0)\) (si \((\Delta x,\Delta y)=(0,0)\), definimos \(\varepsilon_1=\varepsilon_2=0\)).
+
+Dividiendo por \(\Delta t\),
+\[
+\frac{\Delta z}{\Delta t}
+= \frac{\partial f}{\partial x}(x_0,y_0)\,\frac{\Delta x}{\Delta t}
++ \frac{\partial f}{\partial y}(x_0,y_0)\,\frac{\Delta y}{\Delta t}
++ \varepsilon_1(\Delta x,\Delta y)\,\frac{\Delta x}{\Delta t}
++ \varepsilon_2(\Delta x,\Delta y)\,\frac{\Delta y}{\Delta t}.
+\]
+
+Como \(g,h\) son derivables en \(t_0\), se tiene \(\Delta x/\Delta t \to g'(t_0)\) y
+\(\Delta y/\Delta t \to h'(t_0)\); además \(\Delta t\to0\Rightarrow (\Delta x,\Delta y)\to(0,0)\),
+luego \(\varepsilon_1,\varepsilon_2\to 0\). Por lo tanto,
+\[
+\begin{aligned}
+\frac{dz}{dt}\Big|_{t_0}
+&= \lim_{\Delta t\to0}\frac{\Delta z}{\Delta t} \\
+&= \frac{\partial f}{\partial x}(x_0,y_0)\,\lim_{\Delta t\to0}\frac{\Delta x}{\Delta t}
+  + \frac{\partial f}{\partial y}(x_0,y_0)\,\lim_{\Delta t\to0}\frac{\Delta y}{\Delta t}
+  + \underbrace{\lim_{\Delta t\to0}\varepsilon_1(\Delta x,\Delta y)}_{0}\!
+    \underbrace{\lim_{\Delta t\to0}\frac{\Delta x}{\Delta t}}_{g'(t_0)}
+  + \underbrace{\lim_{\Delta t\to0}\varepsilon_2(\Delta x,\Delta y)}_{0}\!
+    \underbrace{\lim_{\Delta t\to0}\frac{\Delta y}{\Delta t}}_{h'(t_0)} \\
+&= \frac{\partial f}{\partial x}(x_0,y_0)\,g'(t_0)
+ +  \frac{\partial f}{\partial y}(x_0,y_0)\,h'(t_0).
+\end{aligned}
+\]
+
+\textbf{Forma compacta.} Usando \(\partial z/\partial x=\partial f/\partial x\) y
+\(\partial z/\partial y=\partial f/\partial y\), la regla queda
+\[\color{teal}
+{\;\frac{dz}{dt}
+= \frac{\partial z}{\partial x}\,\frac{dx}{dt}
++ \frac{\partial z}{\partial y}\,\frac{dy}{dt}\;}
+\]
+
+
+\subsection*{Un ejemplo más complejo}
+
+
+
+
+Supongamos funciones diferenciables
+\[
+z = f(x,y), \qquad x = x(u,v), \qquad y = y(u,v)
+\]
+Ahora podemos encontrar dos derivadas $z'_u$ y $z'_v$, las cuales se calculan con la misma regla que antes
+\[\color{teal}{\,z_u \;=\; f_x\,x_u + f_y\,y_u, \qquad
+z_v \;=\; f_x\,x_v + f_y\,y_v\, }
+\]
+
+
+\subsection*{Cuando hay más dependencias de variables}
+
+En muchos problemas hay más dependencias entre variables. El esquema general es:
+\[
+z \;=\; g(u_1,\dots,u_m),
+\qquad
+u_i \;=\; u_i(x_1,\dots,x_n)
+\]
+Aquí \(g\) es diferenciable en \(\mathbb{R}^m\) y cada \(u_i\) es diferenciable en \(\mathbb{R}^n\).
+
+Para cada variable básica \(x_j\) (\(j=1,\dots,n\)):
+\[
+\color{teal}
+\frac{\partial z}{\partial x_j}
+\;=\;\sum_{i=1}^m \frac{\partial g}{\partial u_i}\,\frac{\partial u_i}{\partial x_j}
+\]
+
+
+\subsection*{Dependencias encadenadas}
+Cuando hay varias capas, se \emph{suman} los productos de derivadas a lo largo de cada camino.
+
+\medskip
+\[
+y\,=\,y(u,v),\qquad
+u\,=\,u(p,q),\qquad
+v\,=\,v(q,s),\qquad
+p=p(t),\; q=q(t),\; s=s(t)
+\]
+Entonces
+\[
+\color{teal}
+\frac{dy}{dt}
+= y_u\!\left(u_p\,p' + u_q\,q'\right)
++ y_v\!\left(v_q\,q' + v_s\,s'\right)
+\]
+
+
+
+
+
+
+\subsection*{Ejemplos}
+
+\[
+z=f(x,y)=x^{2}y, 
+\qquad x=g(t)=t^{2}, 
+\qquad y=h(t)=e^{t}
+\]
+
+\textbf{Derivadas}
+\[
+f_x=2xy, \qquad f_y=x^{2},
+\qquad \frac{dx}{dt}=2t, \qquad \frac{dy}{dt}=e^{t}
+\]
+
+\[ \color{teal}
+\frac{dz}{dt}
+=\frac{\partial f}{\partial x}\frac{dx}{dt}
++\frac{\partial f}{\partial y}\frac{dy}{dt}
+= (2xy)(2t) + (x^{2})(e^{t})
+\]
+Sustituyendo \(x=t^{2}\) y \(y=e^{t}\):
+\[
+\frac{dz}{dt}
+= 2(t^{2})(e^{t})(2t) + (t^{2})^{2}e^{t}
+= 4t^{3}e^{t} + t^{4}e^{t}
+= e^{t}\big(4t^{3}+t^{4}\big)
+\]
+
+\textbf{Comprobación directa.}
+Como \(z(t)=x(t)^{2}y(t)=(t^{2})^{2}e^{t}=t^{4}e^{t}\)
+\[ \color{teal}
+\frac{d}{dt}\big(t^{4}e^{t}\big)
+=4t^{3}e^{t}+t^{4}e^{t}
+= e^{t}(4t^{3}+t^{4})
+\]
+que coincide con el resultado obtenido por la regla de la cadena.
+
+
+
+\subsection*{Otro caso}
+
+\[
+z=f(x,y)=x\,y^{2}, 
+\qquad x=x(v,w)=v+w, 
+\qquad y=y(v,w)=v-w
+\]
+
+\textbf{Derivadas parciales y derivadas de las dependencias:}
+\[
+f_x=y^{2},\qquad f_y=2xy,\qquad 
+x_v=1,\; x_w=1,\qquad 
+y_v=1,\; y_w=-1
+\]
+
+\textbf{Regla de la cadena:}
+\[\color{teal}
+{\;z_v=f_x\,x_v+f_y\,y_v,\qquad z_w=f_x\,x_w+f_y\,y_w\;}
+\]
+
+\textbf{Cálculo:}
+\[
+z_v = y^{2}\cdot 1 + (2xy)\cdot 1 = y^{2}+2xy,
+\qquad
+z_w = y^{2}\cdot 1 + (2xy)\cdot(-1) = y^{2}-2xy
+\]
+
+\textbf{Sustituyendo } \(x=v+w,\; y=v-w\):
+\[
+z_v = (v-w)^{2} + 2(v+w)(v-w)
+     = (v-w)\big[(v-w)+2(v+w)\big]
+     =\color{teal} (v-w)(3v+w)
+\]
+\[
+z_w = (v-w)^{2} - 2(v+w)(v-w)
+     = (v-w)\big[(v-w)-2(v+w)\big]
+     =\color{teal} (v-w)(-v-3w)
+\]
+
+\textbf{Comprobación directa.}
+Como \(z(v,w)=x\,y^{2}=(v+w)(v-w)^{2}\)
+\[\color{teal}
+\frac{\partial z}{\partial v}
+= (v-w)^{2}+2(v+w)(v-w)
+= (v-w)(3v+w)
+\]
+\[\color{teal}
+\frac{\partial z}{\partial w}
+= (v-w)^{2}-2(v+w)(v-w)
+= (v-w)(-v-3w)
+\]
+coincidiendo con la regla de la cadena.
+
+
+
+
 
 
 \newpage

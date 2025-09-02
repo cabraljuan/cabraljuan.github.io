@@ -7,35 +7,36 @@
 \contentsline {section}{\numberline {6}Diferencial}{27}{section.6}%
 \contentsline {section}{\numberline {7}Aplicación económica de diferencial}{30}{section.7}%
 \contentsline {section}{\numberline {8}Clasificación de bienes y elasticidad}{33}{section.8}%
-\contentsline {section}{\numberline {9}Derivadas implícitas}{37}{section.9}%
-\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{37}{section*.112}%
-\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{38}{section*.113}%
-\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{39}{section*.119}%
-\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{39}{section*.120}%
-\contentsline {paragraph}{\color {teal}Paso 3: evaluar en un punto}{39}{section*.121}%
-\contentsline {section}{\numberline {10}Derivadas implícitas en sistemas de ecuaciones}{42}{section.10}%
-\contentsline {paragraph}{\color {teal}Paso 1: Calcular las derivadas parciales}{43}{section*.132}%
-\contentsline {paragraph}{\color {teal}Paso 2: Diferenciar implícitamente y escribir el sistema}{43}{section*.133}%
-\contentsline {paragraph}{\color {teal}Paso 3: Escribir el sistema en forma matricial}{43}{section*.134}%
-\contentsline {paragraph}{\color {teal}Paso 4: Resolver el sistema con la Regla de Cramer}{44}{section*.135}%
-\contentsline {section}{\numberline {11}IS-LM}{48}{section.11}%
-\contentsline {paragraph}{1. Mercado de bienes y servicios (IS)}{48}{section*.143}%
-\contentsline {paragraph}{2. Mercado monetario (LM)}{48}{section*.144}%
-\contentsline {paragraph}{3. Ingreso disponible}{48}{section*.145}%
-\contentsline {section}{\numberline {12}Homogeneidad}{51}{section.12}%
-\contentsline {section}{\numberline {13}Autovalores y autovectores}{55}{section.13}%
-\contentsline {section}{\numberline {14}Formas cuadráticas}{60}{section.14}%
-\contentsline {section}{\numberline {15}Menores}{63}{section.15}%
-\contentsline {paragraph}{Menor (general) de orden $k$.}{63}{section*.193}%
-\contentsline {paragraph}{Menor principal de orden $k$.}{63}{section*.194}%
-\contentsline {paragraph}{Menor principal inicial (o dominante) de orden $k$.}{63}{section*.195}%
-\contentsline {section}{\numberline {16}Concavidad y convexidad}{69}{section.16}%
-\contentsline {section}{\numberline {17}Optimización sin restricciones}{77}{section.17}%
-\contentsline {section}{\numberline {18}Aplicaciones económicas de optimización}{82}{section.18}%
-\contentsline {paragraph}{Interpretación}{88}{section*.284}%
-\contentsline {section}{\numberline {19}Optimización con restricciones de igualdad}{89}{section.19}%
-\contentsline {section}{\numberline {20}Optimización con restricciones de desigualdad}{96}{section.20}%
-\contentsline {paragraph}{Condiciones de primer orden}{99}{section*.310}%
-\contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{99}{section*.311}%
-\contentsline {paragraph}{Condiciones de Kuhn-Tucker}{102}{section*.316}%
-\contentsline {paragraph}{Análisis de casos}{102}{section*.317}%
+\contentsline {section}{\numberline {9}Derivadas compuestas}{37}{section.9}%
+\contentsline {section}{\numberline {10}Derivadas implícitas}{41}{section.10}%
+\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{41}{section*.124}%
+\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{42}{section*.125}%
+\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{43}{section*.131}%
+\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{43}{section*.132}%
+\contentsline {paragraph}{\color {teal}Paso 3: evaluar en un punto}{43}{section*.133}%
+\contentsline {section}{\numberline {11}Derivadas implícitas en sistemas de ecuaciones}{46}{section.11}%
+\contentsline {paragraph}{\color {teal}Paso 1: Calcular las derivadas parciales}{47}{section*.144}%
+\contentsline {paragraph}{\color {teal}Paso 2: Diferenciar implícitamente y escribir el sistema}{47}{section*.145}%
+\contentsline {paragraph}{\color {teal}Paso 3: Escribir el sistema en forma matricial}{47}{section*.146}%
+\contentsline {paragraph}{\color {teal}Paso 4: Resolver el sistema con la Regla de Cramer}{48}{section*.147}%
+\contentsline {section}{\numberline {12}IS-LM}{52}{section.12}%
+\contentsline {paragraph}{1. Mercado de bienes y servicios (IS)}{52}{section*.155}%
+\contentsline {paragraph}{2. Mercado monetario (LM)}{52}{section*.156}%
+\contentsline {paragraph}{3. Ingreso disponible}{52}{section*.157}%
+\contentsline {section}{\numberline {13}Homogeneidad}{55}{section.13}%
+\contentsline {section}{\numberline {14}Autovalores y autovectores}{59}{section.14}%
+\contentsline {section}{\numberline {15}Formas cuadráticas}{64}{section.15}%
+\contentsline {section}{\numberline {16}Menores}{67}{section.16}%
+\contentsline {paragraph}{Menor (general) de orden $k$.}{67}{section*.205}%
+\contentsline {paragraph}{Menor principal de orden $k$.}{67}{section*.206}%
+\contentsline {paragraph}{Menor principal inicial (o dominante) de orden $k$.}{67}{section*.207}%
+\contentsline {section}{\numberline {17}Concavidad y convexidad}{73}{section.17}%
+\contentsline {section}{\numberline {18}Optimización sin restricciones}{81}{section.18}%
+\contentsline {section}{\numberline {19}Aplicaciones económicas de optimización}{86}{section.19}%
+\contentsline {paragraph}{Interpretación}{92}{section*.296}%
+\contentsline {section}{\numberline {20}Optimización con restricciones de igualdad}{93}{section.20}%
+\contentsline {section}{\numberline {21}Optimización con restricciones de desigualdad}{100}{section.21}%
+\contentsline {paragraph}{Condiciones de primer orden}{103}{section*.322}%
+\contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{103}{section*.323}%
+\contentsline {paragraph}{Condiciones de Kuhn-Tucker}{106}{section*.328}%
+\contentsline {paragraph}{Análisis de casos}{106}{section*.329}%
