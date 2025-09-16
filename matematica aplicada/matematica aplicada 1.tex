@@ -1,62 +1,146 @@
 
-
 \documentclass{article}
-\usepackage[utf8]{inputenc}
+
+% === Básico ===
+\usepackage[utf8]{inputenc} % opcional en LaTeX moderno
 \usepackage[english]{babel}
+
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+% OJO: no usar vmargin junto con geometry
+% \usepackage{vmargin}  % <-- QUITAR
+% \setmargins{...}      % <-- QUITAR
+
 \usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{hyperref}
-\usepackage{amsfonts}
-\usepackage{multirow}
-\usepackage{amssymb}
-\usepackage{array}
-\usepackage{pgfplots}
-\usepackage{tikz}
-\usetikzlibrary{datavisualization.formats.functions}
-\usepgfplotslibrary{polar}
-\usepgflibrary{shapes.geometric}
-\usetikzlibrary{calc}
-\usepackage{color}
-\usepackage[left=2.50cm, right=2.50cm, top=3.00cm, bottom=3.00cm]{geometry}
-\usepackage{vmargin}
-\usepackage{natbib}
-\usepackage{float}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{array,multirow,float}
+\usepackage{enumitem}
 \usepackage{chngcntr}
 \usepackage{blindtext}
-\usepackage{breqn}
 \usepackage{verbatim}
 \usepackage{ifoddpage}
-\usepackage{enumitem}
+% \usepackage{breqn}    % <- Suele dar problemas con amsmath; si no lo usás, mejor quitarlo.
 
+% === TikZ / PGFPlots (arregla 'name path' & fillbetween) ===
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections,shapes.geometric,datavisualization.formats.functions}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar,fillbetween}
+\pgfplotsset{compat=1.18} % usa 1.17 si tu TeX es más viejo
+
+% === Colores & enlaces ===
+\usepackage{xcolor} % mejor que 'color'
+\usepackage{hyperref}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=teal,
-    urlcolor=teal,
-    citecolor=green
+  colorlinks=true,
+  linkcolor=teal,
+  urlcolor=teal,
+  citecolor=teal
 }
 
+% === Bibliografía (biber) ===
+\usepackage{csquotes}
+\usepackage[style=authoryear,sorting=nyt,backend=biber]{biblatex}
+% Usa ruta relativa o barras normales si es absoluta:
+% \addbibresource{E:/articulos/LATEX/test/bibliography.bib}
+\addbibresource{bibliography.bib}
+
+% --- (tus overrides para enlazar título/año; los dejo tal cual) ---
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}\printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}\printtext[bibhyperref]{\usebibmacro{citeyear}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}\printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\parencite}[\mkbibparens]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}\printtext[bibhyperref]{\usebibmacro{citeyear}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}\printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcitetext}[\mkbibfootnotetext]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}\printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\textcite}
+  {\boolfalse{cbx:parens}}
+  {\usebibmacro{citeindex}\printtext[bibhyperref]{\usebibmacro{textcite}}}
+  {\ifbool{cbx:parens}{\bibcloseparen\global\boolfalse{cbx:parens}}{\multicitedelim}}
+  {\usebibmacro{textcite:postnote}}
+
+% === Cabeceras ===
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[C]{\href{https://cabraljuan.github.io}{Juan Andrés Cabral}} 
-
+\fancyhead[C]{\href{https://cabraljuan.github.io}{Juan Andrés Cabral}}
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyhead[C]{\href{https://cabraljuan.github.io/Website/}{Juan Andrés Cabral}} 
+  \fancyhead[C]{\href{https://cabraljuan.github.io/Website/}{Juan Andrés Cabral}}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0pt}
 }
-
-\pgfplotsset{compat=1.18}
-\setlength{\headheight}{12.0pt}
+\setlength{\headheight}{14.5pt}
 \setlength\parindent{24pt}
-\setmargins{2.5 cm}{1.5cm}{16.5cm}{23.42cm}{10pt}{1cm}{0pt}{2cm}
-\addtolength{\topmargin}{-2.0pt}
 
-% --- Defino la versión manualmente ---
-\newcommand{\version}{0.6}
+% === Atajos matemáticos seguros ===
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SPANISH  LABELS
+% Figure/Table/Contents names
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{Figura}%
+  \renewcommand{\tablename}{Tabla}%
+  \renewcommand{\contentsname}{Contenido}%
+  \renewcommand{\listfigurename}{Índice de figuras}%
+  \renewcommand{\listtablename}{Índice de tablas}%
+}
+
+% hyperref/autoref names
+\providecommand*{\figureautorefname}{Figura}
+\providecommand*{\tableautorefname}{Tabla}
+\providecommand*{\sectionautorefname}{Sección}
+\providecommand*{\subsectionautorefname}{Subsección}
+
+% biblatex headings/words
+\DefineBibliographyStrings{english}{%
+  bibliography = {Bibliografía},
+  references   = {Referencias},
+  and          = {y},
+  urlseen      = {consultado el},
+}
+
+%%%%%%%%%%%%%%%%%%%%%
+% --- tu versión ---
+\newcommand{\version}{0.7}
 
 \begin{document}
+
 
 \begin{titlepage}
     \centering
@@ -82,13 +166,83 @@ Este libro reúne notas y resoluciones de ejercicios de clase de Matemática Apl
 \tableofcontents
 \newpage
 
-% --- Título estándar ---
-\title{Guía 1 – Ejercicio 1}
-\author{}
-\date{}
 
 
 
+
+
+\section{Técnicas de estudio basadas en evidencia}
+
+
+\begin{quote}
+``Somos malos jueces de cuándo estamos aprendiendo bien y cuándo no. Cuando el progreso es más difícil y más lento y no se siente productivo, tendemos a recurrir a estrategias que parecen más fructíferas, sin darnos cuenta de que las ganancias de esas estrategias suelen ser temporales.''\\
+\emph{Brown, Roediger y McDaniel,} \textit{Make It Stick: The Science of Successful Learning}. \textit{(traducción propia)}
+\end{quote}
+
+La evidencia es clara: solemos juzgar mal nuestro propio aprendizaje y preferimos métodos que “se sienten” productivos pero no son eficientes (\cite{Brown2014MakeItStick}). Por eso el primer capítulo del libro no es de cálculo ni de álgebra sino, una breve introducción a \textbf{\color{teal}técnicas de estudio con respaldo empírico.}
+
+\subsection*{Por qué empezar por el \emph{cómo} aprender}
+Estudiar matemática y aplicarla a algún campo concreto como Economía requiere conectar definiciones formales con intuiciones económicas, derivar condiciones de primer orden y, a la vez, interpretar esas condiciones con conceptos económicos. Ese “puente” exige memoria a largo plazo \emph{y} flexibilidad conceptual. La literatura en psicología del aprendizaje muestra que dos prácticas destacan mucho por su utilidad: \textbf{\color{teal}recuperación activa} (practice testing) y \textbf{\color{teal}práctica espaciada} (distributed practice) (\cite{Dunlosky2013,RoedigerButler2011,Cepeda2006,Cepeda2008}). Este capítulo propone incorporar estas y otras desde el primer día, con procedimientos concretos orientados a los temas que se tratan en los otros capítulos.
+
+\subsection*{Qué evitar al momento del estudio}
+En general, cuando uno estudia hay ciertas conductas que se aplican por defecto sin cuestionamiento ni crítica. Estas técnicas pueden no ser las mejores ya que no son tan efectivas para mejorar la retención de lo aprendido o porque ocupan el tiempo limitado que puede ser utilizado para otras técnicas con mayor respaldo. Aquí, algunas técnicas que \textbf{no} son recomendables debido a la falta de eficacia probada:
+
+
+\paragraph{\color{teal}Releer sin más.} Releer crea una \emph{sensación} de familiaridad que no garantiza retención ni transferencia. Varios estudios no encuentran ventajas de la relectura frente a métodos activos \cite{CallenderMcDaniel2009,Weinstein2010,Agarwal2008}. En este sentido, no es recomendable releer 10 veces un teorema para intentar acordarse del mismo.
+
+\paragraph{\color{teal}Subrayar sin criterio.} La evidencia es mixta: hay trabajos que no hallan beneficios o incluso efectos negativos si se subraya demasiado o mal \cite{Peterson1991,LorchKlusewitz1995,Winchell2018}, y otros que muestran que \emph{con instrucciones precisas} puede ayudar \cite{Yue2015,Miyatsu2018}. Si uno decide usar esta técnica, la recomendación es que sea mínima y con reglas (p.\,ej., una idea clave por párrafo).
+
+\paragraph{\color{teal}Resumir.} Resumir puede ayudar si uno sabe qué y cómo destilar \cite{BretzingKulhavy1979,Rinehart1986}, pero su efectividad es muy variable y suele perder frente a estrategias más activas como la autoexplicación o el auto-cuestionamiento \cite{BednallKehoe2011,King1992,Dunlosky2013}.
+
+\subsection*{Lo que sí funciona y cómo aplicarlo}
+
+\paragraph{\color{teal}1) Recuperación activa (Active Recall).} 
+Consiste en \emph{intentar recordar y reconstruir} sin mirar el material. Funciona en laboratorio y en aula, a corto y largo plazo \cite{McDaniel2007,RoedigerButler2011,Larsen2009,Schmidmaier2011,Agarwal2008}. Esta idea se basa en intentar simular situaciones de exámenes constantemente, haciéndose preguntas como ¿Cómo era esta fórmula? ¿Cuál es la intuición detrás de esta ecuación? ¿Qué regla se utiliza acá? Este autotesteo requiere esfuerzo mental, el cual facilita la retención de los contenidos. Existe una relación entre el esfuerzo mental invertido en responder una pregunta y la cantidad de tiempo que va a transcurrir hasta que uno se olvide de cómo responderla. A mayor esfuerzo, recordamos más.
+\vspace{3pt}
+
+\textbf{\color{teal}Cómo implementarlo:} Al momento de leer un libro en vez de simplemente ir pasando página por página, detenerse cada cierto tiempo y preguntarse el porqué de los pasos realizados o intentar averiguar cuál es el procedimiento posterior para resolver un problema. Obviamente estos testeos no pueden durar demasiado ya que consumirían mucho tiempo, pero tomarse unos minutos para plantearse si uno está entendiendo lo explicado siempre es buena idea. Una vez finalizada la lectura sobre un tema, una buena práctica que cuenta con mucha evidencia a favor es realizar “flashcards”. Las flashcards son tarjetas que de un lado contienen una pregunta y del otro lado una respuesta, son cortas y la idea es no estar demasiado tiempo pensando. Por ejemplo, una flashcard puede ser ¿Cuál es la fórmula para la elasticidad precio de la demanda? y del otro lado puede estar la fórmula. Estas flashcards pueden hacerse con lápiz y papel, pero también existen aplicaciones que permiten crearlas digitalmente como Anki.
+\vspace{3pt}
+
+
+\paragraph{\color{teal}2) Práctica espaciada.}
+Repartir las sesiones en el tiempo aumenta la retención \cite{Bahrick1979,Cepeda2006}. El espaciado óptimo suele estar entre el 5–30\% del intervalo hasta la evaluación \cite{RohrerPashler2007,Cepeda2008}. 
+\vspace{3pt}
+
+\textbf{\color{teal}Cómo implementarlo:} Si el examen es en 30 días y se toma 10\% como guía, conviene programar repasos cada 3 días ($30\cdot 0.1=3$). Lo ideal es espaciar las sesiones de estudio y al momento de tenerlas, aplicar recuperación activa.
+
+\paragraph{\color{teal}3) Autoexplicación y generación.}
+Explicar con tus palabras por qué un paso es válido, o \emph{generar} preguntas/respuestas propias, potencia el aprendizaje y supera en general al resumen pasivo \cite{King1992,Weinstein2010}. 
+\vspace{3pt}
+
+\textbf{\color{teal}Cómo implementarlo:} Después de una clase, tomar el cuaderno y ver si se entienden los pasos algebraicos o generar una explicación propia de la interpretación de las ecuaciones, etc.
+
+\paragraph{\color{teal}4) Intercalado (\emph{interleaving}) y variación.}
+Alternar tipos de problemas, es decir, ir cambiando de tema constantemente. Esto dificulta un poco el estudio pero mejora la discriminación de métodos. 
+\vspace{3pt}
+
+\textbf{\color{teal}Cómo implementarlo:} Por ejemplo, tomar ejercicios de las guías de forma aleatoria e intentar resolverlos uno después de otro, en vez de ir por los primeros 1, 2, 3 y así sucesivamente, saltearse ejercicios y resolver: 2, 6, 10, 3, 8,... y así.
+
+
+\subsection*{Ejemplo}
+Supongamos que queremos estudiar dos temas diferentes: elasticidad de demanda y derivadas compuestas. La idea sería primero tener en cuenta que si el examen es dentro de un mes, planear estudiar cada cierta cantidad de días en vez de realizar pocas sesiones largas. Por otro lado, al momento de leer el material de estudio, ir preguntándose si uno entiende lo que está leyendo y generar flashcards con preguntas clave: ¿Cómo es la fórmula? ¿Para qué sirve? ¿Cómo interpreto este resultado? ¿Cuáles son los pasos a seguir? entre otras. Una vez hecho esto, practicar ejercicios combinando los dos temas en la misma sesión y no dejando un tema para una sesión de estudio y otro tema para otra sesión. Por último, al momento de realizar las últimas sesiones, intentar asemejar el contexto de estudio lo máximo posible al contexto de evaluación. Utilizar temporizadores, no tener a mano el libro para revisar las respuestas, solamente contar con las herramientas disponibles que van a estar en el examen, etc.
+
+\subsection*{El rol de las inteligencias artificiales generativas}
+Es imposible ignorar que los chatbots generativos hoy en día cada vez son más populares. Más que un obstáculo, el uso de los mismos puede generar oportunidades. Algunas recomendaciones para utilizarlos serían las siguientes:
+
+\begin{enumerate}
+    \item Utilizarlos para generar problemas nuevos o que combinen ejercicios.
+    \item Solicitar intuiciones diferentes o puntos de vista distintos a los que uno tiene.
+    \item Usarlos para criticar nuestros razonamientos o intuiciones. Si creemos que tal vez nos equivocamos, una buena forma es darle a la IA nuestro razonamiento y pedirle que lo analice rigurosamente.
+    \item Generar ideas para flashcards.
+    \item Generar un plan de estudio separado por días y que tenga en cuenta las técnicas propuestas anteriormente.
+\end{enumerate}
+Por último, es importante recordar que cualquier inteligencia artificial generativa al día de hoy comete errores, muchas veces sutiles y otras veces groseros. Esto último debe servir de advertencia no para restringir su uso sino, para ser críticos al momento de tomar en cuenta lo generado.
+
+
+
+\printbibliography
+
+\newpage
 
 
 \section{Curvas de nivel}
@@ -3455,16 +3609,14 @@ v_y = \frac{-x^2 + 2u\,v}{-x - 2u\,y}
 
 
 
-\section*{Introducción}
-
 
 El modelo IS–LM determina simultáneamente el ingreso real \(Y\) y la tasa de interés \(r\) en el corto plazo, mediante el equilibrio en dos mercados: el de bienes y servicios (curva IS) y el monetario (curva LM). Además, incorpora la relación entre ingreso y recaudación fiscal.
 
 \[
 \begin{cases}
-Y = C\bigl(Y_d\bigr) + I(r) + g,\\[6pt]
-M_p = L\bigl(Y,r\bigr),\\[6pt]
-Y_d = Y - T\bigl(Y,\theta\bigr).
+Y = C\bigl(Y_d\bigr) + I(r) + g\\[6pt]
+M_p = L\bigl(Y,r\bigr)\\[6pt]
+Y_d = Y - T\bigl(Y,\theta\bigr)
 \end{cases}
 \]
 
@@ -3472,7 +3624,7 @@ Y_d = Y - T\bigl(Y,\theta\bigr).
 
 \paragraph{1. Mercado de bienes y servicios (IS)}  
 \[
-Y = C\bigl(Y_d\bigr) + I(r) + g.
+Y = C\bigl(Y_d\bigr) + I(r) + g
 \]
 \begin{itemize}
   \item \(Y\): producción (o ingreso) agregado.
@@ -3485,7 +3637,7 @@ La curva IS (“Investment–Saving”) es el conjunto de \((Y,r)\) que satisfac
 
 \paragraph{2. Mercado monetario (LM)}  
 \[
-M_p = L\bigl(Y,r\bigr).
+M_p = L\bigl(Y,r\bigr)
 \]
 \begin{itemize}
   \item \(M_p\): oferta real de dinero (stock), fijada por la autoridad monetaria.
@@ -3497,7 +3649,7 @@ La curva LM (“Liquidity preference–Money supply”) es el conjunto de puntos
 
 \paragraph{3. Ingreso disponible}  
 \[
-Y_d = Y - T\bigl(Y,\theta\bigr),
+Y_d = Y - T\bigl(Y,\theta\bigr)
 \]
 donde \(T(Y,\theta)\) es la recaudación fiscal, función creciente de \(Y\). El ingreso disponible \(Y_d\) es el que efectivamente determina el consumo.
 
@@ -3511,9 +3663,9 @@ donde \(T(Y,\theta)\) es la recaudación fiscal, función creciente de \(Y\). El
 Partimos del modelo:
 \[
 \begin{cases}
-Y = C(Y_d) + I(r) + g,\\
-M_p = L(Y,r),\\
-Y_d = Y - T(Y,\theta).
+Y = C(Y_d) + I(r) + g\\
+M_p = L(Y,r)\\
+Y_d = Y - T(Y,\theta)
 \end{cases}
 \]
 
@@ -3555,8 +3707,8 @@ T_\theta(Y,\theta) >0
 Sustituyendo \(Y_d\) en la primera ecuación obtenemos dos ecuaciones en las variables endógenas \(Y\) y \(r\):
 \[
 \begin{cases}
-F(Y,r;g,\theta)\;=\;Y - C\bigl(Y - T(Y,\theta)\bigr) - I(r) - g \;=\;0,\\[6pt]
-G(Y,r;M_p)\;=\;L(Y,r) - M_p \;=\;0.
+F(Y,r;g,\theta)\;=\;Y - C\bigl(Y - T(Y,\theta)\bigr) - I(r) - g \;=\;0\\[6pt]
+G(Y,r;M_p)\;=\;L(Y,r) - M_p \;=\;0
 \end{cases}
 \]
 
@@ -3585,14 +3737,14 @@ Derivamos ambas ecuaciones respecto a \(g\), manteniendo \(M_p\) y \(\theta\) co
 = \Bigl(1 - C'\bigl(Y - T(Y,\theta)\bigr)\,[1 - T_Y(Y,\theta)]\Bigr)\,\frac{\partial Y}{\partial g}
 - I'(r)\,\frac{\partial r}{\partial g}
 - 1
-= 0,
+= 0
 \]
 
 \[
 \frac{\partial}{\partial g}\bigl[L(Y,r) - M_p\bigr]
 = L_Y(Y,r)\,\frac{\partial Y}{\partial g}
 + L_r(Y,r)\,\frac{\partial r}{\partial g}
-= 0.
+= 0
 \]
 
 
@@ -3603,12 +3755,12 @@ Derivamos ambas ecuaciones respecto a \(g\), manteniendo \(M_p\) y \(\theta\) co
 = \Bigl(1 - C'\bigl(Y - T(Y,\theta)\bigr)\,[1 - T_Y(Y,\theta)]\Bigr)\,\dfrac{\partial Y}{\partial g}
 - I'(r)\,\dfrac{\partial r}{\partial g}
 - 1
-= 0,\\[1.5em]
+= 0\\[1.5em]
 \displaystyle
 \frac{\partial}{\partial g}\bigl[L(Y,r) - M_p\bigr]
 = L_Y(Y,r)\,\dfrac{\partial Y}{\partial g}
 + L_r(Y,r)\,\dfrac{\partial r}{\partial g}
-= 0.
+= 0
 \end{cases}
 \]
 
@@ -3627,7 +3779,7 @@ L_Y(Y,r)                                              & \;L_r(Y,r)
 \begin{pmatrix}
 1 \\[4pt]
 0
-\end{pmatrix}.
+\end{pmatrix}
 \]
 
 \subsection*{Paso 3: Resolver con la Regla de Cramer}
@@ -3636,7 +3788,7 @@ El determinante del sistema es
 \[
 J \;=\;
 \bigl[1 - C'\bigl(Y - T(Y,\theta)\bigr)\,[1 - T_Y(Y,\theta)]\bigr]\;L_r(Y,r)
-\;-\;\bigl[-I'(r)\bigr]\;L_Y(Y,r).
+\;-\;\bigl[-I'(r)\bigr]\;L_Y(Y,r)
 \]
 Por Cramer,
 \[
@@ -3648,7 +3800,7 @@ Por Cramer,
 \end{vmatrix}
 }{J}
 = \frac{1\cdot L_r(Y,r)}{J}
-= \frac{L_r(Y,r)}{J},
+= \frac{L_r(Y,r)}{J}
 \]
 \[
 \frac{\partial r}{\partial g}
@@ -3658,28 +3810,28 @@ Por Cramer,
 L_Y(Y,r)                                              & 0
 \end{vmatrix}
 }{J}
-= \frac{-\,L_Y(Y,r)}{J}.
+= \frac{-\,L_Y(Y,r)}{J}
 \]
 
 \subsection*{Paso 4: Signos e interpretación}
 
 Dado que
 \[
-0 < C'\bigl(Y - T(Y,\theta)\bigr) < 1,
+0 < C'\bigl(Y - T(Y,\theta)\bigr) < 1
 \quad
-0 < T_Y(Y,\theta) < 1,
+0 < T_Y(Y,\theta) < 1
 \quad
-I'(r) < 0,
+I'(r) < 0
 \quad
-L_Y(Y,r) > 0,
+L_Y(Y,r) > 0
 \quad
-L_r(Y,r) < 0,
+L_r(Y,r) < 0
 \]
 se cumple
 \[
-1 - C'\bigl(Y - T(Y,\theta)\bigr)\,[1 - T_Y(Y,\theta)] > 0,
+1 - C'\bigl(Y - T(Y,\theta)\bigr)\,[1 - T_Y(Y,\theta)] > 0
 \quad
--\,I'(r) > 0.
+-\,I'(r) > 0
 \]
 Por tanto el determinante
 
@@ -3700,7 +3852,7 @@ J
 \underbrace{\bigl(-I'(r)\bigr)}_{>0}
 \;\times\;
 \underbrace{L_Y(Y,r)}_{>0}
-\;<\;0.
+\;<\;0
 \]
 
 
@@ -3711,11 +3863,11 @@ Como \(L_r<0\), \(\,L_Y>0\), el numerador de \(\partial Y/\partial g\) es negati
 \[\color{teal}
 \frac{\partial Y}{\partial g}
 = \frac{L_r}{J}
->0,
+>0
 \qquad
 \frac{\partial r}{\partial g}
 = \frac{-\,L_Y}{J}
->0.
+>0
 \]
 
 

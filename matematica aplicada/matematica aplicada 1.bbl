@@ -1,0 +1,984 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{Agarwal2008}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=d049ec63c4b011f7d3d27ad7c3d5abb6}{%
+           family={Agarwal},
+           familyi={A\bibinitperiod},
+           given={P.\bibnamedelimi K.},
+           giveni={P\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=96f0f5fa66a7595d9f54f2efb2876668}{%
+           family={Karpicke},
+           familyi={K\bibinitperiod},
+           given={J.\bibnamedelimi D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7c8058e009f4cff53ed47e8c17d0bc78}{%
+           family={Kang},
+           familyi={K\bibinitperiod},
+           given={S.\bibnamedelimi H.},
+           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b0f15619e6825b8084921a333aae85c9}{%
+           family={Roediger\bibnamedelima III},
+           familyi={R\bibinitperiod\bibinitdelim I\bibinitperiod},
+           given={H.\bibnamedelimi L.},
+           giveni={H\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=73e9759355262946890f7dcd200f88d8}{%
+           family={McDermott},
+           familyi={M\bibinitperiod},
+           given={K.\bibnamedelimi B.},
+           giveni={K\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{09ee6b71f240257419103c62293e38b9}
+      \strng{fullhash}{f0e6774e9c7035f0c7caff2622e7088a}
+      \strng{fullhashraw}{f0e6774e9c7035f0c7caff2622e7088a}
+      \strng{bibnamehash}{09ee6b71f240257419103c62293e38b9}
+      \strng{authorbibnamehash}{09ee6b71f240257419103c62293e38b9}
+      \strng{authornamehash}{09ee6b71f240257419103c62293e38b9}
+      \strng{authorfullhash}{f0e6774e9c7035f0c7caff2622e7088a}
+      \strng{authorfullhashraw}{f0e6774e9c7035f0c7caff2622e7088a}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Applied Cognitive Psychology}
+      \field{number}{7}
+      \field{title}{Examining the testing effect with open- and closed-book tests}
+      \field{volume}{22}
+      \field{year}{2008}
+      \field{pages}{861\bibrangedash 876}
+      \range{pages}{16}
+    \endentry
+    \entry{Bahrick1979}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5e3abf92f42146f760d0623ec3b639cd}{%
+           family={Bahrick},
+           familyi={B\bibinitperiod},
+           given={H.\bibnamedelimi P.},
+           giveni={H\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5e3abf92f42146f760d0623ec3b639cd}
+      \strng{fullhash}{5e3abf92f42146f760d0623ec3b639cd}
+      \strng{fullhashraw}{5e3abf92f42146f760d0623ec3b639cd}
+      \strng{bibnamehash}{5e3abf92f42146f760d0623ec3b639cd}
+      \strng{authorbibnamehash}{5e3abf92f42146f760d0623ec3b639cd}
+      \strng{authornamehash}{5e3abf92f42146f760d0623ec3b639cd}
+      \strng{authorfullhash}{5e3abf92f42146f760d0623ec3b639cd}
+      \strng{authorfullhashraw}{5e3abf92f42146f760d0623ec3b639cd}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Experimental Psychology: General}
+      \field{number}{3}
+      \field{title}{Maintenance of knowledge: Questions about memory we forgot to ask}
+      \field{volume}{108}
+      \field{year}{1979}
+      \field{pages}{296}
+      \range{pages}{1}
+    \endentry
+    \entry{BednallKehoe2011}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=20777d2aceb23878b4d8f3034c161f96}{%
+           family={Bednall},
+           familyi={B\bibinitperiod},
+           given={T.\bibnamedelimi C.},
+           giveni={T\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6db424ff58054b06e3ceceb1130d9136}{%
+           family={Kehoe},
+           familyi={K\bibinitperiod},
+           given={E.\bibnamedelimi J.},
+           giveni={E\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6b55c03dbcf2fe55677298b139fd5e0a}
+      \strng{fullhash}{6b55c03dbcf2fe55677298b139fd5e0a}
+      \strng{fullhashraw}{6b55c03dbcf2fe55677298b139fd5e0a}
+      \strng{bibnamehash}{6b55c03dbcf2fe55677298b139fd5e0a}
+      \strng{authorbibnamehash}{6b55c03dbcf2fe55677298b139fd5e0a}
+      \strng{authornamehash}{6b55c03dbcf2fe55677298b139fd5e0a}
+      \strng{authorfullhash}{6b55c03dbcf2fe55677298b139fd5e0a}
+      \strng{authorfullhashraw}{6b55c03dbcf2fe55677298b139fd5e0a}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Instructional Science}
+      \field{number}{2}
+      \field{title}{Effects of self-regulatory instructional aids on self-directed study}
+      \field{volume}{39}
+      \field{year}{2011}
+      \field{pages}{205\bibrangedash 226}
+      \range{pages}{22}
+    \endentry
+    \entry{BretzingKulhavy1979}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ba9aa43d9d9a3b2c4bc4173ef895b08f}{%
+           family={Bretzing},
+           familyi={B\bibinitperiod},
+           given={B.\bibnamedelimi H.},
+           giveni={B\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ae22ad59b607c9a672d7278231634d91}{%
+           family={Kulhavy},
+           familyi={K\bibinitperiod},
+           given={R.\bibnamedelimi W.},
+           giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8df8792aa4a0f2581bcefdd2fe0571bc}
+      \strng{fullhash}{8df8792aa4a0f2581bcefdd2fe0571bc}
+      \strng{fullhashraw}{8df8792aa4a0f2581bcefdd2fe0571bc}
+      \strng{bibnamehash}{8df8792aa4a0f2581bcefdd2fe0571bc}
+      \strng{authorbibnamehash}{8df8792aa4a0f2581bcefdd2fe0571bc}
+      \strng{authornamehash}{8df8792aa4a0f2581bcefdd2fe0571bc}
+      \strng{authorfullhash}{8df8792aa4a0f2581bcefdd2fe0571bc}
+      \strng{authorfullhashraw}{8df8792aa4a0f2581bcefdd2fe0571bc}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Contemporary Educational Psychology}
+      \field{number}{2}
+      \field{title}{Notetaking and depth of processing}
+      \field{volume}{4}
+      \field{year}{1979}
+      \field{pages}{145\bibrangedash 153}
+      \range{pages}{9}
+    \endentry
+    \entry{Brown2014MakeItStick}{book}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=d900fdc3699d9160b860780a271c735b}{%
+           family={Brown},
+           familyi={B\bibinitperiod},
+           given={Peter\bibnamedelima C.},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1e92f0f4dc19f38ecb56336e0fbeb042}{%
+           family={Roediger},
+           familyi={R\bibinitperiod},
+           given={III},
+           giveni={I\bibinitperiod},
+           givenun=0,
+           suffix={Henry\bibnamedelima L.},
+           suffixi={H\bibinitperiod\bibinitdelim L\bibinitperiod},
+           suffixun=0}}%
+        {{un=2,uniquepart=given,hash=658eb6ee7f6caca03a843c38a3d02647}{%
+           family={McDaniel},
+           familyi={M\bibinitperiod},
+           given={Mark\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=2}}%
+      }
+      \list{publisher}{1}{%
+        {Harvard University Press}%
+      }
+      \strng{namehash}{29988eaf9c1c1006ab3e21a17aad2a55}
+      \strng{fullhash}{29988eaf9c1c1006ab3e21a17aad2a55}
+      \strng{fullhashraw}{29988eaf9c1c1006ab3e21a17aad2a55}
+      \strng{bibnamehash}{29988eaf9c1c1006ab3e21a17aad2a55}
+      \strng{authorbibnamehash}{29988eaf9c1c1006ab3e21a17aad2a55}
+      \strng{authornamehash}{29988eaf9c1c1006ab3e21a17aad2a55}
+      \strng{authorfullhash}{29988eaf9c1c1006ab3e21a17aad2a55}
+      \strng{authorfullhashraw}{29988eaf9c1c1006ab3e21a17aad2a55}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Make It Stick}
+      \field{year}{2014}
+    \endentry
+    \entry{CallenderMcDaniel2009}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=c5143097378d0bfab7d166531daf9a54}{%
+           family={Callender},
+           familyi={C\bibinitperiod},
+           given={A.\bibnamedelimi A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=2,uniquepart=given,hash=5fceeaf6efe59ef8bb15785caab025ac}{%
+           family={McDaniel},
+           familyi={M\bibinitperiod},
+           given={M.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=2}}%
+      }
+      \strng{namehash}{9c4ab9d31a8a37491e0deb7550fbe42b}
+      \strng{fullhash}{9c4ab9d31a8a37491e0deb7550fbe42b}
+      \strng{fullhashraw}{9c4ab9d31a8a37491e0deb7550fbe42b}
+      \strng{bibnamehash}{9c4ab9d31a8a37491e0deb7550fbe42b}
+      \strng{authorbibnamehash}{9c4ab9d31a8a37491e0deb7550fbe42b}
+      \strng{authornamehash}{9c4ab9d31a8a37491e0deb7550fbe42b}
+      \strng{authorfullhash}{9c4ab9d31a8a37491e0deb7550fbe42b}
+      \strng{authorfullhashraw}{9c4ab9d31a8a37491e0deb7550fbe42b}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Contemporary Educational Psychology}
+      \field{number}{1}
+      \field{title}{The limited benefits of rereading educational texts}
+      \field{volume}{34}
+      \field{year}{2009}
+      \field{pages}{30\bibrangedash 41}
+      \range{pages}{12}
+    \endentry
+    \entry{Cepeda2006}{article}{}{}
+      \name{author}{5}{ul=2}{%
+        {{un=0,uniquepart=base,hash=1a45613f5e579c31f275f23911d362b8}{%
+           family={Cepeda},
+           familyi={C\bibinitperiod},
+           given={N.\bibnamedelimi J.},
+           giveni={N\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=250f8c57c2937ef5c122eb2895c30787}{%
+           family={Pashler},
+           familyi={P\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=63277ed430ffeb905c8c7ad225383d18}{%
+           family={Vul},
+           familyi={V\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e6b6623d85ebe4d08ecbf0e497f9e115}{%
+           family={Wixted},
+           familyi={W\bibinitperiod},
+           given={J.\bibnamedelimi T.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=645f9e0e5a2c778f3576d8d4d132e43b}{%
+           family={Rohrer},
+           familyi={R\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0fbca3d013fc6a2fa7ee0bf015c29f05}
+      \strng{fullhash}{608aa088b654b20065b2b5c4fe2dad33}
+      \strng{fullhashraw}{608aa088b654b20065b2b5c4fe2dad33}
+      \strng{bibnamehash}{0fbca3d013fc6a2fa7ee0bf015c29f05}
+      \strng{authorbibnamehash}{0fbca3d013fc6a2fa7ee0bf015c29f05}
+      \strng{authornamehash}{0fbca3d013fc6a2fa7ee0bf015c29f05}
+      \strng{authorfullhash}{608aa088b654b20065b2b5c4fe2dad33}
+      \strng{authorfullhashraw}{608aa088b654b20065b2b5c4fe2dad33}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Psychological Bulletin}
+      \field{number}{3}
+      \field{title}{Distributed practice in verbal recall tasks: A review and quantitative synthesis}
+      \field{volume}{132}
+      \field{year}{2006}
+      \field{pages}{354}
+      \range{pages}{1}
+    \endentry
+    \entry{Cepeda2008}{article}{}{}
+      \name{author}{5}{ul=2}{%
+        {{un=0,uniquepart=base,hash=1a45613f5e579c31f275f23911d362b8}{%
+           family={Cepeda},
+           familyi={C\bibinitperiod},
+           given={N.\bibnamedelimi J.},
+           giveni={N\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=63277ed430ffeb905c8c7ad225383d18}{%
+           family={Vul},
+           familyi={V\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=645f9e0e5a2c778f3576d8d4d132e43b}{%
+           family={Rohrer},
+           familyi={R\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e6b6623d85ebe4d08ecbf0e497f9e115}{%
+           family={Wixted},
+           familyi={W\bibinitperiod},
+           given={J.\bibnamedelimi T.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=250f8c57c2937ef5c122eb2895c30787}{%
+           family={Pashler},
+           familyi={P\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d56e7d36e3f94765280de745408f78a5}
+      \strng{fullhash}{3db45d3dc9ed41243b9961191896acc1}
+      \strng{fullhashraw}{3db45d3dc9ed41243b9961191896acc1}
+      \strng{bibnamehash}{d56e7d36e3f94765280de745408f78a5}
+      \strng{authorbibnamehash}{d56e7d36e3f94765280de745408f78a5}
+      \strng{authornamehash}{d56e7d36e3f94765280de745408f78a5}
+      \strng{authorfullhash}{3db45d3dc9ed41243b9961191896acc1}
+      \strng{authorfullhashraw}{3db45d3dc9ed41243b9961191896acc1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Psychological Science}
+      \field{number}{11}
+      \field{title}{Spacing effects in learning: A temporal ridgeline of optimal retention}
+      \field{volume}{19}
+      \field{year}{2008}
+      \field{pages}{1095\bibrangedash 1102}
+      \range{pages}{8}
+    \endentry
+    \entry{Dunlosky2013}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=0c6ada5f31cfca5d76ea74a0a47c2d06}{%
+           family={Dunlosky},
+           familyi={D\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2c28515b9a01982a973be18c23bee792}{%
+           family={Rawson},
+           familyi={R\bibinitperiod},
+           given={K.\bibnamedelimi A.},
+           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=51a69417dfdc14e5eed436f096569e27}{%
+           family={Marsh},
+           familyi={M\bibinitperiod},
+           given={E.\bibnamedelimi J.},
+           giveni={E\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cddf22d1ea2da735a27c66bf79ee9308}{%
+           family={Nathan},
+           familyi={N\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=221ee31eebc03a6f44961ad32bfe07e4}{%
+           family={Willingham},
+           familyi={W\bibinitperiod},
+           given={D.\bibnamedelimi T.},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a7a9316cccd274d4f82b0ff3bcb9143a}
+      \strng{fullhash}{e71c2c881dace8c95c3193e40c44a23a}
+      \strng{fullhashraw}{e71c2c881dace8c95c3193e40c44a23a}
+      \strng{bibnamehash}{a7a9316cccd274d4f82b0ff3bcb9143a}
+      \strng{authorbibnamehash}{a7a9316cccd274d4f82b0ff3bcb9143a}
+      \strng{authornamehash}{a7a9316cccd274d4f82b0ff3bcb9143a}
+      \strng{authorfullhash}{e71c2c881dace8c95c3193e40c44a23a}
+      \strng{authorfullhashraw}{e71c2c881dace8c95c3193e40c44a23a}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Psychological Science in the Public Interest}
+      \field{number}{1}
+      \field{title}{Improving students’ learning with effective learning techniques: Promising directions from cognitive and educational psychology}
+      \field{volume}{14}
+      \field{year}{2013}
+      \field{pages}{4\bibrangedash 58}
+      \range{pages}{55}
+    \endentry
+    \entry{King1992}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=71dba03eb8615a9f16fd35ce92b19cc2}{%
+           family={King},
+           familyi={K\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{71dba03eb8615a9f16fd35ce92b19cc2}
+      \strng{fullhash}{71dba03eb8615a9f16fd35ce92b19cc2}
+      \strng{fullhashraw}{71dba03eb8615a9f16fd35ce92b19cc2}
+      \strng{bibnamehash}{71dba03eb8615a9f16fd35ce92b19cc2}
+      \strng{authorbibnamehash}{71dba03eb8615a9f16fd35ce92b19cc2}
+      \strng{authornamehash}{71dba03eb8615a9f16fd35ce92b19cc2}
+      \strng{authorfullhash}{71dba03eb8615a9f16fd35ce92b19cc2}
+      \strng{authorfullhashraw}{71dba03eb8615a9f16fd35ce92b19cc2}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Educational Research Journal}
+      \field{number}{2}
+      \field{title}{Comparison of self-questioning, summarizing, and notetaking-review as strategies for learning from lectures}
+      \field{volume}{29}
+      \field{year}{1992}
+      \field{pages}{303\bibrangedash 323}
+      \range{pages}{21}
+    \endentry
+    \entry{Larsen2009}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=7436a8b70ebbeb6e1b7827b27ff4e653}{%
+           family={Larsen},
+           familyi={L\bibinitperiod},
+           given={D.\bibnamedelimi P.},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dd6a46e0182067a8302dd31efdcf1192}{%
+           family={Butler},
+           familyi={B\bibinitperiod},
+           given={A.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b0f15619e6825b8084921a333aae85c9}{%
+           family={Roediger\bibnamedelima III},
+           familyi={R\bibinitperiod\bibinitdelim I\bibinitperiod},
+           given={H.\bibnamedelimi L.},
+           giveni={H\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{322ed3c75f25d8e0b88868a8ba8aca44}
+      \strng{fullhash}{322ed3c75f25d8e0b88868a8ba8aca44}
+      \strng{fullhashraw}{322ed3c75f25d8e0b88868a8ba8aca44}
+      \strng{bibnamehash}{322ed3c75f25d8e0b88868a8ba8aca44}
+      \strng{authorbibnamehash}{322ed3c75f25d8e0b88868a8ba8aca44}
+      \strng{authornamehash}{322ed3c75f25d8e0b88868a8ba8aca44}
+      \strng{authorfullhash}{322ed3c75f25d8e0b88868a8ba8aca44}
+      \strng{authorfullhashraw}{322ed3c75f25d8e0b88868a8ba8aca44}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Medical Education}
+      \field{number}{12}
+      \field{title}{Repeated testing improves long-term retention relative to repeated study: a randomised controlled trial}
+      \field{volume}{43}
+      \field{year}{2009}
+      \field{pages}{1174\bibrangedash 1181}
+      \range{pages}{8}
+    \endentry
+    \entry{LorchKlusewitz1995}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=90ae118f1b8011c02edcd7b8d39f79e1}{%
+           family={Lorch},
+           familyi={L\bibinitperiod},
+           given={E.\bibnamedelimi P.},
+           giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bb0eeb24f21a49d2f2b1ab0dc0cfd977}{%
+           family={Klusewitz},
+           familyi={K\bibinitperiod},
+           given={M.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3e1c838b30fe129c85fc54f5051f9980}
+      \strng{fullhash}{3e1c838b30fe129c85fc54f5051f9980}
+      \strng{fullhashraw}{3e1c838b30fe129c85fc54f5051f9980}
+      \strng{bibnamehash}{3e1c838b30fe129c85fc54f5051f9980}
+      \strng{authorbibnamehash}{3e1c838b30fe129c85fc54f5051f9980}
+      \strng{authornamehash}{3e1c838b30fe129c85fc54f5051f9980}
+      \strng{authorfullhash}{3e1c838b30fe129c85fc54f5051f9980}
+      \strng{authorfullhashraw}{3e1c838b30fe129c85fc54f5051f9980}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Contemporary Educational Psychology}
+      \field{number}{1}
+      \field{title}{Effects of typographical cues on reading and recall of text}
+      \field{volume}{20}
+      \field{year}{1995}
+      \field{pages}{51\bibrangedash 64}
+      \range{pages}{14}
+    \endentry
+    \entry{McDaniel2007}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=2,uniquepart=given,hash=5fceeaf6efe59ef8bb15785caab025ac}{%
+           family={McDaniel},
+           familyi={M\bibinitperiod},
+           given={M.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=2}}%
+        {{un=0,uniquepart=base,hash=a5054cde8467d78acc7f1e34103d0a1e}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={J.\bibnamedelimi L.},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=efab2edd0720b275080e81005c7ed25d}{%
+           family={Derbish},
+           familyi={D\bibinitperiod},
+           given={M.\bibnamedelimi H.},
+           giveni={M\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3c4a21410534dc801ffd88cb6faef88}{%
+           family={Morrisette},
+           familyi={M\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{af48d06285eaa686bb3b5608ae917ceb}
+      \strng{fullhash}{5b5385a3fc248111063d46a5de56a290}
+      \strng{fullhashraw}{5b5385a3fc248111063d46a5de56a290}
+      \strng{bibnamehash}{af48d06285eaa686bb3b5608ae917ceb}
+      \strng{authorbibnamehash}{af48d06285eaa686bb3b5608ae917ceb}
+      \strng{authornamehash}{af48d06285eaa686bb3b5608ae917ceb}
+      \strng{authorfullhash}{5b5385a3fc248111063d46a5de56a290}
+      \strng{authorfullhashraw}{5b5385a3fc248111063d46a5de56a290}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{European Journal of Cognitive Psychology}
+      \field{number}{4--5}
+      \field{title}{Testing the testing effect in the classroom}
+      \field{volume}{19}
+      \field{year}{2007}
+      \field{pages}{494\bibrangedash 513}
+      \range{pages}{20}
+    \endentry
+    \entry{Miyatsu2018}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=bc3ad25e0e5df0b14791f3fa8de46a19}{%
+           family={Miyatsu},
+           familyi={M\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4dec59068676671f268da53d4c7c7b05}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=2,uniquepart=given,hash=5fceeaf6efe59ef8bb15785caab025ac}{%
+           family={McDaniel},
+           familyi={M\bibinitperiod},
+           given={M.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=2}}%
+      }
+      \strng{namehash}{8c32b5ca10b682d96f519a71f917570d}
+      \strng{fullhash}{8c32b5ca10b682d96f519a71f917570d}
+      \strng{fullhashraw}{8c32b5ca10b682d96f519a71f917570d}
+      \strng{bibnamehash}{8c32b5ca10b682d96f519a71f917570d}
+      \strng{authorbibnamehash}{8c32b5ca10b682d96f519a71f917570d}
+      \strng{authornamehash}{8c32b5ca10b682d96f519a71f917570d}
+      \strng{authorfullhash}{8c32b5ca10b682d96f519a71f917570d}
+      \strng{authorfullhashraw}{8c32b5ca10b682d96f519a71f917570d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Perspectives on Psychological Science}
+      \field{number}{3}
+      \field{title}{Five popular study strategies: Their pitfalls and optimal implementations}
+      \field{volume}{13}
+      \field{year}{2018}
+      \field{pages}{390\bibrangedash 407}
+      \range{pages}{18}
+    \endentry
+    \entry{Peterson1991}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=dc04d918c81705f90522b6d682697444}{%
+           family={Peterson},
+           familyi={P\bibinitperiod},
+           given={S.\bibnamedelimi E.},
+           giveni={S\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{dc04d918c81705f90522b6d682697444}
+      \strng{fullhash}{dc04d918c81705f90522b6d682697444}
+      \strng{fullhashraw}{dc04d918c81705f90522b6d682697444}
+      \strng{bibnamehash}{dc04d918c81705f90522b6d682697444}
+      \strng{authorbibnamehash}{dc04d918c81705f90522b6d682697444}
+      \strng{authornamehash}{dc04d918c81705f90522b6d682697444}
+      \strng{authorfullhash}{dc04d918c81705f90522b6d682697444}
+      \strng{authorfullhashraw}{dc04d918c81705f90522b6d682697444}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Literacy Research and Instruction}
+      \field{number}{2}
+      \field{title}{The cognitive functions of underlining as a study technique}
+      \field{volume}{31}
+      \field{year}{1991}
+      \field{pages}{49\bibrangedash 56}
+      \range{pages}{8}
+    \endentry
+    \entry{Rinehart1986}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=a8bd977666c8e3e34705a4aafe68c5bd}{%
+           family={Rinehart},
+           familyi={R\bibinitperiod},
+           given={S.\bibnamedelimi D.},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fd75af5d1618bec99212fb5145de63c8}{%
+           family={Stahl},
+           familyi={S\bibinitperiod},
+           given={S.\bibnamedelimi A.},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a9d4b768c95e74af9c77917dda3136f4}{%
+           family={Erickson},
+           familyi={E\bibinitperiod},
+           given={L.\bibnamedelimi G.},
+           giveni={L\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{185ca664ffe3b0eada327ed072be2d04}
+      \strng{fullhash}{185ca664ffe3b0eada327ed072be2d04}
+      \strng{fullhashraw}{185ca664ffe3b0eada327ed072be2d04}
+      \strng{bibnamehash}{185ca664ffe3b0eada327ed072be2d04}
+      \strng{authorbibnamehash}{185ca664ffe3b0eada327ed072be2d04}
+      \strng{authornamehash}{185ca664ffe3b0eada327ed072be2d04}
+      \strng{authorfullhash}{185ca664ffe3b0eada327ed072be2d04}
+      \strng{authorfullhashraw}{185ca664ffe3b0eada327ed072be2d04}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Reading Research Quarterly}
+      \field{title}{Some effects of summarization training on reading and studying}
+      \field{year}{1986}
+      \field{pages}{422\bibrangedash 438}
+      \range{pages}{17}
+    \endentry
+    \entry{RoedigerButler2011}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b0f15619e6825b8084921a333aae85c9}{%
+           family={Roediger\bibnamedelima III},
+           familyi={R\bibinitperiod\bibinitdelim I\bibinitperiod},
+           given={H.\bibnamedelimi L.},
+           giveni={H\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dd6a46e0182067a8302dd31efdcf1192}{%
+           family={Butler},
+           familyi={B\bibinitperiod},
+           given={A.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{78e5ec91950fa4a5a34dd543edd5eb83}
+      \strng{fullhash}{78e5ec91950fa4a5a34dd543edd5eb83}
+      \strng{fullhashraw}{78e5ec91950fa4a5a34dd543edd5eb83}
+      \strng{bibnamehash}{78e5ec91950fa4a5a34dd543edd5eb83}
+      \strng{authorbibnamehash}{78e5ec91950fa4a5a34dd543edd5eb83}
+      \strng{authornamehash}{78e5ec91950fa4a5a34dd543edd5eb83}
+      \strng{authorfullhash}{78e5ec91950fa4a5a34dd543edd5eb83}
+      \strng{authorfullhashraw}{78e5ec91950fa4a5a34dd543edd5eb83}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Trends in Cognitive Sciences}
+      \field{number}{1}
+      \field{title}{The critical role of retrieval practice in long-term retention}
+      \field{volume}{15}
+      \field{year}{2011}
+      \field{pages}{20\bibrangedash 27}
+      \range{pages}{8}
+    \endentry
+    \entry{RohrerPashler2007}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=645f9e0e5a2c778f3576d8d4d132e43b}{%
+           family={Rohrer},
+           familyi={R\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=250f8c57c2937ef5c122eb2895c30787}{%
+           family={Pashler},
+           familyi={P\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0bb2075911c4be12a312e78e7971e376}
+      \strng{fullhash}{0bb2075911c4be12a312e78e7971e376}
+      \strng{fullhashraw}{0bb2075911c4be12a312e78e7971e376}
+      \strng{bibnamehash}{0bb2075911c4be12a312e78e7971e376}
+      \strng{authorbibnamehash}{0bb2075911c4be12a312e78e7971e376}
+      \strng{authornamehash}{0bb2075911c4be12a312e78e7971e376}
+      \strng{authorfullhash}{0bb2075911c4be12a312e78e7971e376}
+      \strng{authorfullhashraw}{0bb2075911c4be12a312e78e7971e376}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Current Directions in Psychological Science}
+      \field{number}{4}
+      \field{title}{Increasing retention without increasing study time}
+      \field{volume}{16}
+      \field{year}{2007}
+      \field{pages}{183\bibrangedash 186}
+      \range{pages}{4}
+    \endentry
+    \entry{Schmidmaier2011}{article}{}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=c392a65967d89d4a5fb0d280bba1e4de}{%
+           family={Schmidmaier},
+           familyi={S\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=387af0f2044d4a63cd1b21afa1ba500d}{%
+           family={Ebersbach},
+           familyi={E\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=41584a15f65b444f6b4d8ea078960c1d}{%
+           family={Schiller},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1d279313bf0983071ea2f8f69f999918}{%
+           family={Hege},
+           familyi={H\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=641d5ca9784d649e814e2b83981506ec}{%
+           family={Holzer},
+           familyi={H\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=78a3779d58009ff582fdbf88eff0053a}{%
+           family={Fischer},
+           familyi={F\bibinitperiod},
+           given={M.\bibnamedelimi R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{670fbe19f42a5310f81cb0db940adbf0}
+      \strng{fullhash}{c41a1c0f2e6f275f809b41f809047af4}
+      \strng{fullhashraw}{c41a1c0f2e6f275f809b41f809047af4}
+      \strng{bibnamehash}{670fbe19f42a5310f81cb0db940adbf0}
+      \strng{authorbibnamehash}{670fbe19f42a5310f81cb0db940adbf0}
+      \strng{authornamehash}{670fbe19f42a5310f81cb0db940adbf0}
+      \strng{authorfullhash}{c41a1c0f2e6f275f809b41f809047af4}
+      \strng{authorfullhashraw}{c41a1c0f2e6f275f809b41f809047af4}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Medical Education}
+      \field{number}{11}
+      \field{title}{Using electronic flashcards to promote learning in medical students: retesting versus restudying}
+      \field{volume}{45}
+      \field{year}{2011}
+      \field{pages}{1101\bibrangedash 1110}
+      \range{pages}{10}
+    \endentry
+    \entry{Weinstein2010}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=8bf4cf811fc5d3199a4b25916e427ff4}{%
+           family={Weinstein},
+           familyi={W\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=73e9759355262946890f7dcd200f88d8}{%
+           family={McDermott},
+           familyi={M\bibinitperiod},
+           given={K.\bibnamedelimi B.},
+           giveni={K\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b0f15619e6825b8084921a333aae85c9}{%
+           family={Roediger\bibnamedelima III},
+           familyi={R\bibinitperiod\bibinitdelim I\bibinitperiod},
+           given={H.\bibnamedelimi L.},
+           giveni={H\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6acddf9bd88bfce595ef8ee63720cf98}
+      \strng{fullhash}{6acddf9bd88bfce595ef8ee63720cf98}
+      \strng{fullhashraw}{6acddf9bd88bfce595ef8ee63720cf98}
+      \strng{bibnamehash}{6acddf9bd88bfce595ef8ee63720cf98}
+      \strng{authorbibnamehash}{6acddf9bd88bfce595ef8ee63720cf98}
+      \strng{authornamehash}{6acddf9bd88bfce595ef8ee63720cf98}
+      \strng{authorfullhash}{6acddf9bd88bfce595ef8ee63720cf98}
+      \strng{authorfullhashraw}{6acddf9bd88bfce595ef8ee63720cf98}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Experimental Psychology: Applied}
+      \field{number}{3}
+      \field{title}{A comparison of study strategies for passages: Rereading, answering questions, and generating questions}
+      \field{volume}{16}
+      \field{year}{2010}
+      \field{pages}{308}
+      \range{pages}{1}
+    \endentry
+    \entry{Winchell2018}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=746f4022629c237a19ccf11becaa53bf}{%
+           family={Winchell},
+           familyi={W\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=77077fcee6dfa9a4ef5e7b64ec70d54a}{%
+           family={Mozer},
+           familyi={M\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=99730704d43ad4b97bb7bf2dd5cdd635}{%
+           family={Lan},
+           familyi={L\bibinitperiod},
+           given={A.\bibnamedelimi S.},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f641c74062d2381be23f99e91a291ccc}{%
+           family={Grimaldi},
+           familyi={G\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=250f8c57c2937ef5c122eb2895c30787}{%
+           family={Pashler},
+           familyi={P\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a92286ffcdf4430b91688b5bcc7f2901}
+      \strng{fullhash}{a4e098933171995a476c2146474d2e39}
+      \strng{fullhashraw}{a4e098933171995a476c2146474d2e39}
+      \strng{bibnamehash}{a92286ffcdf4430b91688b5bcc7f2901}
+      \strng{authorbibnamehash}{a92286ffcdf4430b91688b5bcc7f2901}
+      \strng{authornamehash}{a92286ffcdf4430b91688b5bcc7f2901}
+      \strng{authorfullhash}{a4e098933171995a476c2146474d2e39}
+      \strng{authorfullhashraw}{a4e098933171995a476c2146474d2e39}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the International Conference on Educational Data Mining (EDM)}
+      \field{title}{Textbook annotations as an early predictor of student learning}
+      \field{year}{2018}
+    \endentry
+    \entry{Yue2015}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=a3597119c160db7cf85ee522c8d9290e}{%
+           family={Yue},
+           familyi={Y\bibinitperiod},
+           given={C.\bibnamedelimi L.},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=52052c99584c5efb1b07ab535d603938}{%
+           family={Storm},
+           familyi={S\bibinitperiod},
+           given={B.\bibnamedelimi C.},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=80e3a4385ed5699dcc6be4b15e9a50ce}{%
+           family={Kornell},
+           familyi={K\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f256cc589437b70722e27224e79739bc}{%
+           family={Bjork},
+           familyi={B\bibinitperiod},
+           given={E.\bibnamedelimi L.},
+           giveni={E\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{635a69f3cd1f4bffa7bf0853f97f9653}
+      \strng{fullhash}{45dc90b475e1dd79a1131fa3ee988fac}
+      \strng{fullhashraw}{45dc90b475e1dd79a1131fa3ee988fac}
+      \strng{bibnamehash}{635a69f3cd1f4bffa7bf0853f97f9653}
+      \strng{authorbibnamehash}{635a69f3cd1f4bffa7bf0853f97f9653}
+      \strng{authornamehash}{635a69f3cd1f4bffa7bf0853f97f9653}
+      \strng{authorfullhash}{45dc90b475e1dd79a1131fa3ee988fac}
+      \strng{authorfullhashraw}{45dc90b475e1dd79a1131fa3ee988fac}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Educational Psychology Review}
+      \field{number}{1}
+      \field{title}{Highlighting and its relation to distributed study and students’ metacognitive beliefs}
+      \field{volume}{27}
+      \field{year}{2015}
+      \field{pages}{69\bibrangedash 78}
+      \range{pages}{10}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
