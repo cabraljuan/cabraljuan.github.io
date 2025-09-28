@@ -8105,4 +8105,408 @@ Si se satisfacen las siguientes condiciones en un punto $x^*$
 }
 
 
+\newpage
+
+
+\section{Apéndice sobre Álgebra}
+\subsection*{Determinantes}
+
+\subsubsection*{Idea general}
+Para una matriz cuadrada \(A\in\mathbb R^{n\times n}\), el determinante \(\det(A)\) es un número que mide, entre otras cosas, el {\color{teal}factor de cambio de volumen} de la transformación lineal asociada, y nos permite saber si \(A\) es invertible
+\[
+A \text{ es invertible } \Longleftrightarrow \det(A)\neq 0
+\]
+
+Para una intuición gráfica del determinante ver el video \href{https://www.youtube.com/watch?v=yt3eoYvGel0}{``El determinante'' de 3Blue1Brown}. Este apartado se reduce solamente al cálculo del mismo.
+\subsubsection*{Fórmulas básicas}
+En el caso de una matriz \(2\times 2\):
+\\
+\(A=\begin{pmatrix}a&b\\ c&d\end{pmatrix}\),
+\[
+\det(A)=ad-bc
+\]
+Para el caso más sencillo de una matriz \(2\times 2\) el determinante se calcula a través de multiplicar los elementos de una diagonal y restarlos por el producto de la otra.
+
+Sea $A=\begin{pmatrix}2&3\\ 4&5\end{pmatrix}$. Entonces
+\[
+\det(A)=2\cdot5-3\cdot4=10-12=-2
+\]
+
+
+Para el caso de una matriz $3\times 3$ \\
+Podemos calcular a través de dos métodos diferentes:
+\subsubsection*{Regla de Sarrus}
+Para \(A=\begin{pmatrix}a&b&c\\ d&e&f\\ g&h&i\end{pmatrix}\), duplicamos las \emph{dos primeras filas} debajo para formar la matriz \emph{expandida}:
+\[
+\left[
+\begin{array}{ccc}
+a & b & c\\
+d & e & f\\
+g & h & i\\
+a & b & c\\
+d & e & f
+\end{array}
+\right]
+\]
+
+Las tres diagonales \emph{descendentes} (\(\searrow\)) se \textbf{suman} y las tres \emph{ascendentes} (\(\nearrow\)) se \textbf{restan}. En notación de entradas \(a_{ij}\) y también con letras:
+
+\[
+\text{suman:}\quad
+{\color{teal}{aei}},\quad
+{\color{teal}{bfg}},\quad
+{\color{teal}{cdh}}
+\]
+\[
+\text{restan:}\quad
+{\color{red}{ceg}},\quad
+{\color{red}{afh}},\quad
+{\color{red}{bdi}}
+\]
+
+Por lo tanto
+
+\[
+\det(A)={\color{teal}{aei}}+{\color{teal}{bfg}}+{\color{teal}{cdh}}-{\color{red}{ceg}}-{\color{red}{afh}}-{\color{red}{bdi}}
+\]
+
+
+\subsubsection*{Ejemplo}
+
+\[
+A=\begin{pmatrix}
+1 & 2 & 3\\
+0 & -1 & 4\\
+2 & 1 & 0
+\end{pmatrix}
+\]
+
+Duplicamos las dos primeras filas debajo para formar la matriz expandida
+\[
+\left[
+\begin{array}{ccc}
+1 & 2 & 3\\
+0 & -1 & 4\\
+2 & 1 & 0\\
+1 & 2 & 3\\
+0 & -1 & 4
+\end{array}
+\right]
+\]
+
+Las diagonales descendentes \(\searrow\) se \textbf{suman} y las ascendentes \(\nearrow\) se \textbf{restan}
+
+\[
+\text{suman: } {\color{teal}{1\cdot(-1)\cdot 0}},\ {\color{teal}{2\cdot 4\cdot 2}},\ {\color{teal}{3\cdot 0\cdot 1}}
+\]
+
+\[
+\text{restan: } {\color{red}{3\cdot(-1)\cdot 2}},\ {\color{red}{1\cdot 4\cdot 1}},\ {\color{red}{2\cdot 0\cdot 0}}
+\]
+
+Por lo tanto
+\[
+\det(A)={\color{teal}{1\cdot(-1)\cdot 0}}+{\color{teal}{2\cdot 4\cdot 2}}+{\color{teal}{3\cdot 0\cdot 1}}-{\color{red}{3\cdot(-1)\cdot 2}}-{\color{red}{1\cdot 4\cdot 1}}-{\color{red}{2\cdot 0\cdot 0}}=18
+\]
+
+\subsubsection*{A través de los cofactores (Laplace)}
+Sea \(A=[a_{ij}]\). Para cada entrada \(a_{ij}\), definimos su \emph{menor} \(M_{ij}\) como el determinante de la submatriz que se obtiene al \textbf{borrar} la fila \(i\) y la columna \(j\). El \emph{cofactor} es
+\[
+C_{ij}=(-1)^{i+j}\,M_{ij}
+\]
+Con estos cofactores, podemos expandir por cualquier fila \(i\) o columna \(j\)
+\[
+\det(A)=\sum_{j=1}^{n} a_{ij}\,C_{ij}
+\]
+Veamos cómo hacerlo con una matriz \(3\times 3\) aunque este método sirve para matrices cuadradas de cualquier dimensión.
+
+Tomemos
+\[
+A=\begin{pmatrix}
+a & b & c\\
+d & e & f\\
+g & h & i
+\end{pmatrix}
+\]
+
+\paragraph*{Cofactor asociado al elemento \({\color{teal}a}=a_{11}\)} 
+Su menor se obtiene borrando la fila 1 y la columna 1, quedando la submatriz en {\color{red}rojo}
+
+\[
+A=\begin{pmatrix}
+\color{teal}a & b & c\\
+d & \color{red}e & \color{red}f\\
+g & \color{red}h & \color{red}i
+\end{pmatrix}
+\]
+
+
+\[
+M_{11}=\det\Big({\color{red}\begin{pmatrix} e & f\\ h & i \end{pmatrix}}\Big)=ei-fh
+\]
+Como \(1+1\) es par, el cofactor es positivo
+\[
+{\color{teal}{C_{11}}}=(-1)^{1+1}M_{11}=ei-fh
+\]
+
+\paragraph*{Cofactor asociado al elemento \(b=a_{12}\)} 
+Ahora borramos la fila 1 y la columna 2, y el menor queda
+\[
+A=\begin{pmatrix}
+a & \color{teal}b & c\\
+\color{red}d & e & \color{red}f\\
+ \color{red}g &h & \color{red}i
+\end{pmatrix}
+\]
+
+\[
+M_{12}=\det\Big({\color{red}\begin{pmatrix} d & f\\ g & i \end{pmatrix}}\Big)=di-fg
+\]
+Como \(1+2\) es impar, el cofactor cambia de signo
+\[
+{\color{teal}{C_{12}}}=(-1)^{1+2}M_{12}=-(di-fg)=fg-di
+\]
+
+\paragraph*{Cofactor asociado al elemento \(c=a_{13}\)} 
+Borrando la fila 1 y la columna 3
+\[
+A=\begin{pmatrix}
+a & b & \color{teal}c\\
+\color{red}d &  \color{red}e &f\\
+ \color{red}g & \color{red}h &i
+\end{pmatrix}
+\]
+
+\[
+M_{13}=\det\Big({\color{red}\begin{pmatrix} d & e\\ g & h \end{pmatrix}}\Big)=dh-eg
+\]
+Y como \(1+3\) es par
+\[
+{\color{teal}{C_{13}}}=(-1)^{1+3}M_{13}=dh-eg
+\]
+
+\paragraph*{Expansión de Laplace por la primera fila} 
+La expansión \(\det(A)=a\,C_{11}+b\,C_{12}+c\,C_{13}\) se ve, con nuestros colores, así
+\[
+\det(A)={\color{teal}{C_{11}}}\,{\color{black}{a}}+{\color{teal}{C_{12}}}\,{\color{black}{b}}+{\color{teal}{C_{13}}}\,{\color{black}{c}}
+\]
+es decir
+\[
+\det(A)=a\,(ei-fh)+b\,(fg-di)+c\,(dh-eg)
+\]
+
+De esta forma podemos calcular el determinante de una matriz tomando cualquier fila o columna de la misma y aplicando la expansión de Laplace. Una recomendación es siempre intentar elegir la fila o columna con mayor cantidad de ceros de tal forma de anular varios términos al escribir la expansión.
+
+
+
+
+\subsubsection*{Ejemplo}
+
+Calculemos \(\det(A)\) expandiendo por la \textbf{primera columna}
+
+\[
+A=
+\begin{pmatrix}
+2 & 0 & 3\\
+1 & 4 & -1\\
+0 & 2 & 5
+\end{pmatrix}
+\]
+
+\paragraph*{Término con \(a_{11}={\color{teal}2}\)}
+Borramos fila 1 y columna 1. El \emph{menor} es el determinante de la submatriz en {\color{red}rojo}
+
+\[
+A=
+\begin{pmatrix}
+{\color{teal}2} & 0 & 3\\
+1 & {\color{red}4} & {\color{red}-1}\\
+0 & {\color{red}2} & {\color{red}5}
+\end{pmatrix}
+\qquad
+M_{11}=\det\!\begin{pmatrix}{\color{red}4} & {\color{red}-1}\\ {\color{red}2} & {\color{red}5}\end{pmatrix}
+=4\cdot 5-(-1)\cdot 2=22
+\]
+
+\[
+{\color{teal}{C_{11}}}=(-1)^{1+1}M_{11}=22
+\qquad
+\text{aporte }=a_{11}\,{\color{teal}{C_{11}}}=2\cdot 22=44
+\]
+
+\paragraph*{Término con \(a_{21}={\color{teal}1}\)}
+Borramos fila 2 y columna 1
+
+\[
+A=
+\begin{pmatrix}
+{\color{gray}2} & {\color{red}0} & {\color{red}3}\\
+{\color{teal}1} & 4 & -1\\
+{\color{gray}0} & {\color{red}2} & {\color{red}5}
+\end{pmatrix}
+\qquad
+M_{21}=\det\!\begin{pmatrix}{\color{red}0} & {\color{red}3}\\ {\color{red}2} & {\color{red}5}\end{pmatrix}
+=0\cdot 5-3\cdot 2=-6
+\]
+
+\[
+{\color{teal}{C_{21}}}=(-1)^{2+1}M_{21}=-(-6)=6
+\qquad
+\text{aporte }=a_{21}\,{\color{teal}{C_{21}}}=1\cdot 6=6
+\]
+
+\paragraph*{Término con \(a_{31}=0\)}
+Aporta \(0\), pero mostramos su menor para completar la idea
+
+\[
+A=
+\begin{pmatrix}
+{\color{gray}2} & {\color{red}0} & {\color{red}3}\\
+{\color{gray}1} & {\color{red}4} & {\color{red}-1}\\
+0 & 2 & 5
+\end{pmatrix}
+\qquad
+M_{31}=\det\!\begin{pmatrix}{\color{red}0} & {\color{red}3}\\ {\color{red}4} & {\color{red}-1}\end{pmatrix}
+=0\cdot(-1)-3\cdot 4=-12
+\]
+
+\[
+{\color{teal}{C_{31}}}=(-1)^{3+1}M_{31}=-12
+\qquad
+\text{aporte }=a_{31}\,{\color{teal}{C_{31}}}=0\cdot(-12)=0
+\]
+
+\paragraph*{Suma de aportes}
+\[
+\det(A)=a_{11}{\color{teal}{C_{11}}}+a_{21}{\color{teal}{C_{21}}}+a_{31}{\color{teal}{C_{31}}}=44+6+0=50
+\]
+
+
+
+
+
+
+\subsection*{Multiplicación de matrices}
+
+Dados \(A\in\mathbb R^{m\times n}\) y \(B\in\mathbb R^{n\times p}\), definimos el producto \(C=AB\in\mathbb R^{m\times p}\) por
+\[
+c_{ij}=\sum_{k=1}^{n} a_{ik}\,b_{kj}
+\]
+Solo podemos multiplicar matrices cuando el número de columnas de \(A\) coincide con el número de filas de \(B\). En caso contrario, el producto no está definido. El resultado final es una matriz con la cantidad de filas de \(A\) y la cantidad de columnas de \(B\).
+
+\subsection*{Intuición}
+\begin{itemize}
+  \item \textbf{{\color{teal}Fila por columna}}: \(c_{ij}\) es el \emph{producto punto} de la fila \(i\) de \(A\) con la columna \(j\) de \(B\).\footnote{\smallskip
+{\color{teal}\textit{Producto punto}} entre dos vectores \(\mathbf u=(u_1,\dots,u_n)\) y \(\mathbf v=(v_1,\dots,v_n)\):
+\[
+\mathbf u\cdot \mathbf v=\sum_{k=1}^{n} u_k\,v_k
+\] }
+  
+\end{itemize}
+Una forma de entender el procedimiento es que para cada elemento de fila i y columna j de la matriz final va a estar implicada la fila i de la primera matriz y la columna j de la segunda matriz.
+
+\subsubsection*{Ejemplo}
+Sea
+\[
+A=\begin{pmatrix}
+2 & -1 & 0\\
+1 & 3 & 2
+\end{pmatrix},
+\qquad
+B=\begin{pmatrix}
+1 & 4\\
+0 & -1\\
+2 & 5
+\end{pmatrix}
+\]
+Calculamos \(C=AB\in\mathbb R^{2\times 2}\) por \emph{fila por columna}
+\[
+c_{11}=(2)(1)+(-1)(0)+(0)(2)=2
+\]
+\[
+c_{12}=(2)(4)+(-1)(-1)+(0)(5)=9
+\]
+\[
+c_{21}=(1)(1)+(3)(0)+(2)(2)=5
+\]
+\[
+c_{22}=(1)(4)+(3)(-1)+(2)(5)=11
+\]
+\[\color{teal}
+AB=\begin{pmatrix}2&9\\ 5&11\end{pmatrix}
+\]
+
+
+\subsubsection*{Ejemplo \(2\times 2\)}
+Sea
+\[
+A=\begin{pmatrix}
+3 & -2\\
+1 & 5
+\end{pmatrix},
+\qquad
+B=\begin{pmatrix}
+4 & 0\\
+-1 & 2
+\end{pmatrix}
+\]
+Calculamos \(C=AB\in\mathbb R^{2\times 2}\) por fila por columna
+\[
+c_{11}=3\cdot 4+(-2)\cdot(-1)=12+2=14
+\]
+\[
+c_{12}=3\cdot 0+(-2)\cdot 2=0-4=-4
+\]
+\[
+c_{21}=1\cdot 4+5\cdot(-1)=4-5=-1
+\]
+\[
+c_{22}=1\cdot 0+5\cdot 2=0+10=10
+\]
+\[\color{teal}
+AB=\begin{pmatrix}14&-4\\ -1&10\end{pmatrix}
+\]
+
+\subsubsection*{\(3\times 2\) por \(2\times 3\)}
+Sea
+\[
+A=\begin{pmatrix}
+1 & 2\\
+0 & -1\\
+3 & 1
+\end{pmatrix},
+\qquad
+B=\begin{pmatrix}
+2 & 1 & 0\\
+-1 & 4 & 3
+\end{pmatrix}
+\]
+Calculamos \(C=AB\in\mathbb R^{3\times 3}\)
+\[
+c_{11}=1\cdot 2+2\cdot(-1)=2-2=0,\quad
+c_{12}=1\cdot 1+2\cdot 4=1+8=9,\quad
+c_{13}=1\cdot 0+2\cdot 3=0+6=6
+\]
+\[
+c_{21}=0\cdot 2+(-1)\cdot(-1)=1,\quad
+c_{22}=0\cdot 1+(-1)\cdot 4=-4,\quad
+c_{23}=0\cdot 0+(-1)\cdot 3=-3
+\]
+\[
+c_{31}=3\cdot 2+1\cdot(-1)=6-1=5,\quad
+c_{32}=3\cdot 1+1\cdot 4=3+4=7,\quad
+c_{33}=3\cdot 0+1\cdot 3=3
+\]
+\[ \color{teal}
+AB=\begin{pmatrix}
+0 & 9 & 6\\
+1 & -4 & -3\\
+5 & 7 & 3
+\end{pmatrix}
+\]
+
+
+
+
+
 \end{document}

@@ -48,3 +48,4 @@
 \contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{110}{section*.335}%
 \contentsline {paragraph}{Condiciones de Kuhn-Tucker}{113}{section*.340}%
 \contentsline {paragraph}{Análisis de casos}{114}{section*.341}%
+\contentsline {section}{\numberline {23}Apéndice sobre Álgebra}{117}{section.23}%
