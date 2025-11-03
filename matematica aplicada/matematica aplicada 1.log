@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.15)  3 NOV 2025 16:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.15)  3 NOV 2025 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1720,7 +1720,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8572--8573
 [125]
 
 [126]
-Overfull \hbox (5.8367pt too wide) in paragraph at lines 9165--9168
+Overfull \hbox (5.8367pt too wide) in paragraph at lines 9173--9176
 []\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
 m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
 10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
@@ -1730,7 +1730,7 @@ m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
 
 
 [127]
-Overfull \hbox (5.8367pt too wide) in paragraph at lines 9213--9216
+Overfull \hbox (5.8367pt too wide) in paragraph at lines 9221--9224
 []\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
 m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
 10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
@@ -1738,7 +1738,12 @@ m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9248--9249
+Underfull \hbox (badness 10000) in paragraph at lines 9257--9258
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9308--9309
 
  []
 
@@ -1751,46 +1756,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 9248--9249
 [130]
 
 [131]
-Overfull \hbox (5.8367pt too wide) in paragraph at lines 9558--9561
-[]\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
-m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
-10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
-\OML/cmm/m/it/10 g[]; [] ; g[]$
- []
-
-
 
 [132]
-Overfull \hbox (5.8367pt too wide) in paragraph at lines 9606--9609
-[]\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
-m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
-10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
-\OML/cmm/m/it/10 g[]; [] ; g[]$
- []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 9642--9643
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9693--9694
-
- []
-
-
-
-[133]
-
-[134]
-
-[135]
-
-[136]
-
-[137]
-
-[138] (matematica aplicada 1.aux)
+[133] (matematica aplicada 1.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
@@ -1803,10 +1772,10 @@ Package logreq Info: Writing requests to '"matematica aplicada 1".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49722 strings out of 468133
- 1148134 string characters out of 5430712
+ 49696 strings out of 468133
+ 1147782 string characters out of 5430712
  2051711 words of memory out of 5000000
- 76991 multiletter control sequences out of 15000+600000
+ 76979 multiletter control sequences out of 15000+600000
  641254 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,26n,91p,1100b,2221s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1847,9 +1816,9 @@ onts/cm/cmtt10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/symbols/msam10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/juanc/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "matematica aplicada 1.pdf" (139 pages, 1124470 bytes).
+Output written on "matematica aplicada 1.pdf" (134 pages, 1094855 bytes).
 PDF statistics:
- 1778 PDF objects out of 2073 (max. 8388607)
- 701 named destinations out of 1000 (max. 500000)
+ 1741 PDF objects out of 2073 (max. 8388607)
+ 687 named destinations out of 1000 (max. 500000)
  213 words of extra memory for PDF output out of 10000 (max. 10000000)
 

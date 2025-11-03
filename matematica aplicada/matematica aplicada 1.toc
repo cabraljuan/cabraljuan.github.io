@@ -56,5 +56,5 @@
 \contentsline {paragraph}{Condiciones de Kuhn--Tucker}{121}{section*.354}%
 \contentsline {paragraph}{Análisis de casos}{121}{section*.355}%
 \contentsline {paragraph}{Condiciones suficientes para mínimo global}{123}{section*.360}%
-\contentsline {section}{\numberline {24}Temas adicionales de optimización}{131}{section.24}%
-\contentsline {section}{\numberline {25}Apéndice sobre Álgebra}{134}{section.25}%
+\contentsline {section}{\numberline {24}Temas adicionales de optimización}{126}{section.24}%
+\contentsline {section}{\numberline {25}Apéndice sobre Álgebra}{129}{section.25}%
