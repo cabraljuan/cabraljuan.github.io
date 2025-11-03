@@ -137,7 +137,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%
 % --- tu versión ---
-\newcommand{\version}{0.7}
+\newcommand{\version}{0.8}
 
 \begin{document}
 
@@ -5249,6 +5249,8 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
     \noindent\textbf{Intuición geométrica:} Aquí la desigualdad se invierte: el gráfico de \(f\) “queda por encima” de la recta secante entre los puntos dados
 \end{itemize}
 
+
+
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[
@@ -5280,6 +5282,8 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
   \end{axis}
 \end{tikzpicture}
 \end{center}
+
+
 
 \begin{center}
 \begin{tikzpicture}
@@ -5313,6 +5317,70 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
   \end{axis}
 \end{tikzpicture}
 \end{center}
+
+
+
+
+De hecho los dos casos anteriores corresponden a \textbf{\color{teal}convexidad estricta} ya que la recta secante pasa por arriba o por debajo de cualquier punto. También puede suceder que la recta secante esté justo por arriba de la función. Lo que implicaría convexidad no estricta:
+
+
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    xmin=-1, xmax=1, ymin=-0.1, ymax=1.1,
+    domain=-1:1, samples=300,
+    clip=false
+  ]
+    % f(x) = max(x^2, 1/4)
+    \addplot[thick,blue] {max(x^2, 0.25)};
+
+    % Referencias del tramo recto [-0.5, 0.5] (sin texto)
+
+    % Dos puntos y la secante (sin etiquetas)
+    \coordinate (P1) at (axis cs:-0.3,0.25);
+    \coordinate (P2) at (axis cs: 0.3,0.25);
+    \fill[teal] (P1) circle (2pt);
+    \fill[teal] (P2) circle (2pt);
+    \draw[teal, thick] (P1) -- (P2);
+
+    % Punto medio (sin etiqueta)
+    \fill[teal] (axis cs:0,0.25) circle (2pt);
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    xmin=-1, xmax=1, ymin=-1.1, ymax=0.2,
+    domain=-1:1, samples=300,
+    clip=false
+  ]
+    % f(x) = min(-x^2, -1/4): concava con tramo recto en [-0.5, 0.5]
+    \addplot[thick,blue] {min(-x^2, -0.25)};
+
+
+    % Dos puntos dentro del tramo recto y su secante (coincide con f)
+    \coordinate (Q1) at (axis cs:-0.3,-0.25);
+    \coordinate (Q2) at (axis cs: 0.3,-0.25);
+    \fill[teal] (Q1) circle (2pt);
+    \fill[teal] (Q2) circle (2pt);
+    \draw[teal, thick] (Q1) -- (Q2);
+
+    % Punto medio (sin etiqueta)
+    \fill[teal] (axis cs:0,-0.25) circle (2pt);
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+
 
 \subsection*{Relacionando la concavidad y convexidad con conjuntos convexos}
 
@@ -5569,7 +5637,7 @@ da concavidad de \(f\) en \(\R^n\)
 \begin{array}{|c|l|c|}
 \hline
 \textbf{\color{teal}Hessiana } H_f(x)
-  & \textbf{\color{teal}Condición (}\forall x\in D\ \text{convexo},\ \forall h\in\mathbb{R}^n\textbf{)}
+  & \textbf{\color{teal}Condición }(\forall x\in D\ \text{convexo},\ \forall h\in\mathbb{R}^n\textbf{)}
   & \textbf{\color{teal}Función \(f\)} \\ \hline
 \text{Semidefinida positiva}
   & h^{T} H_f(x)\, h \;\ge\; 0
@@ -5689,6 +5757,8 @@ Además, \(f\) no es convexa, ni estrictamente cóncava, ni estrictamente convex
 
 
 
+
+
 \noindent\textbf{Caracterización de cuasiconvexidad y cuasiconcavidad}
 \begin{itemize}
   \item \color{teal}\(f\) es \emph{cuasiconvexa} si y solo si todos sus \emph{subniveles} \(L_\alpha(f)\) son conjuntos convexos
@@ -5708,6 +5778,357 @@ U^\alpha(f) &= \{\,x\in\R^n : f(x)\ge \alpha\}
 \end{aligned}
 \]
 
+
+\noindent\textbf{Versión estricta (interpretación geométrica pura)}\\[2pt]
+- \(f\) es \textbf{estrictamente cuasiconvexa} si, para todo \(\alpha\), cada subnivel \(L_\alpha(f)\) es un \emph{conjunto estrictamente convexo}.  
+  Es decir: no sólo \(L_\alpha(f)\) es convexo, sino que además sus fronteras no contienen tramos lineales.
+\noindent- \(f\) es \textbf{estrictamente cuasicóncava} si, para todo \(\alpha\), cada supernivel \(U^\alpha(f)\) es un \emph{conjunto estrictamente convexo}.  
+
+
+
+\subsubsection*{Ejemplos gráficos}
+Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de nivel para analizar el conjunto que está por arriba o por debajo de esas curvas: 
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    title={Estrictamente cuasic\'oncava: $u(x,y)=\sqrt{xy}$, $x>0$, $y>0$},
+    xmin=0.4, xmax=3.0,
+    ymin=0,   ymax=3.2,
+    domain=0.4:3.0,
+    samples=100,
+    clip=false
+  ]
+
+    % Región sombreada: u(x,y) >= 1  <=>  y >= 1/x
+    % Polígono hecho a mano: borde superior horizontal y=3.2,
+    % luego seguimos la curva y=1/x de vuelta.
+    \path[fill=teal, fill opacity=0.3]
+      (axis cs:0.4,3.2) --
+      (axis cs:3.0,3.2) --
+      (axis cs:3.0,0.3333) --
+      (axis cs:2.5,0.4) --
+      (axis cs:2.0,0.5) --
+      (axis cs:1.5,0.6667) --
+      (axis cs:1.2,0.8333) --
+      (axis cs:1.0,1.0) --
+      (axis cs:0.8,1.25) --
+      (axis cs:0.6,1.6667) --
+      (axis cs:0.5,2.0) --
+      (axis cs:0.4,2.5) -- cycle;
+
+    % Curva de indiferencia u(x,y)=1  <=> y = 1/x
+    \addplot[thick,blue,domain=0.4:3.0,samples=200] {1/x};
+
+    % Etiquetas cortas (sin saltos de línea)
+    \node[blue] at (axis cs:1,1) {$u(x,y)=1$};
+    \node[teal!60!black] at (axis cs:2.1,2.4) {$u(x,y)\ge 1$};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=7cm, height=7cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    title={Estrictamente cuasiconvexa: $v(x,y)=x^2+y^2$},
+    xmin=-1.5, xmax=1.5,
+    ymin=-1.5, ymax=1.5,
+    clip=false,
+    axis equal image
+  ]
+
+    % Región sombreada: v(x,y) <= 1  <=>  x^2 + y^2 <= 1
+    % Aproximamos el círculo con un polígono de muchos puntos
+    \path[fill=teal, fill opacity=0.3]
+      (axis cs: 1.0000,  0.0000) --
+      (axis cs: 0.9397,  0.3420) --
+      (axis cs: 0.7660,  0.6428) --
+      (axis cs: 0.5000,  0.8660) --
+      (axis cs: 0.1736,  0.9848) --
+      (axis cs:-0.1736,  0.9848) --
+      (axis cs:-0.5000,  0.8660) --
+      (axis cs:-0.7660,  0.6428) --
+      (axis cs:-0.9397,  0.3420) --
+      (axis cs:-1.0000,  0.0000) --
+      (axis cs:-0.9397, -0.3420) --
+      (axis cs:-0.7660, -0.6428) --
+      (axis cs:-0.5000, -0.8660) --
+      (axis cs:-0.1736, -0.9848) --
+      (axis cs: 0.1736, -0.9848) --
+      (axis cs: 0.5000, -0.8660) --
+      (axis cs: 0.7660, -0.6428) --
+      (axis cs: 0.9397, -0.3420) -- cycle;
+
+    % Frontera del subnivel: x^2 + y^2 = 1 (círculo de radio 1)
+    \addplot[thick,blue,domain=0:360,samples=200]
+      ({cos(x)},{sin(x)});
+
+    % Etiquetas cortas
+    \node[blue] at (axis cs:0.8,0.6) {$x^2+y^2=1$};
+    \node[teal!60!black] at (axis cs:0,0) {$v(x,y)\le 1$};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    title={Cuasic\'oncava (no estricta): $u(x,y)=\min\{x,y\}$},
+    xmin=0, xmax=3.0,
+    ymin=0, ymax=3.0,
+    clip=false
+  ]
+
+    % Región sombreada: u(x,y) >= 1  <=>  min(x,y) >= 1  <=>  x >= 1 y y >= 1
+    % La mostramos como el rectángulo [1,3]x[1,3] dentro del gráfico
+    \path[fill=teal, fill opacity=0.3]
+      (axis cs:1,1) --
+      (axis cs:3,1) --
+      (axis cs:3,3) --
+      (axis cs:1,3) -- cycle;
+
+    % Curva de nivel u=1: min(x,y)=1
+    % Tramo horizontal: y=1, x>=1
+    \addplot[thick,blue,domain=1:3,samples=2] {1};
+
+    % Tramo vertical: x=1, y>=1
+    \addplot[thick,blue,domain=1:3,samples=2] ({1},{x});
+
+    % Etiquetas
+    \node[blue] at (axis cs:1.3,1.1) {$u=1$};
+    \node[teal!60!black] at (axis cs:2.2,2.2) {$u\ge 1$};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    title={Cuasiconvexa (no estricta): $f(x,y)=\max\{x,y\}$},
+    xmin=0, xmax=3.0,
+    ymin=0, ymax=3.0,
+    clip=false
+  ]
+
+    % Subnivel: f(x,y) <= 1  <=>  max(x,y) <= 1
+    % Cuadrado [0,1] x [0,1]
+    \path[fill=teal, fill opacity=0.30]
+      (axis cs:0,0) --
+      (axis cs:1,0) --
+      (axis cs:1,1) --
+      (axis cs:0,1) -- cycle;
+
+    % Curva de nivel f=1: dos segmentos, y=1 (0<=x<=1) y x=1 (0<=y<=1)
+    \addplot[thick,blue,domain=0:1,samples=2] {1};
+    \addplot[thick,blue,domain=0:1,samples=2] ({1},{x});
+
+    % Etiquetas cortas
+    \node[teal!60!black] at (axis cs:0.5,0.5) {$f\le 1$};
+    \node[blue]          at (axis cs:0.7,1.1) {$f=1$};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    title={Cuasiconvexa y cuasic\'oncava: $g(x,y)=x+y$},
+    xmin=0, xmax=2.5,
+    ymin=0, ymax=2.5,
+    domain=0:2,
+    samples=2,
+    clip=false
+  ]
+
+    % Subnivel: g(x,y) <= 2  (cuasiconvexa)  --> triángulo inferior-izquierdo
+    \path[fill=teal, fill opacity=0.30]
+      (axis cs:0,0) --
+      (axis cs:2,0) --
+      (axis cs:0,2) -- cycle;
+
+    % Supernivel: g(x,y) >= 2 (cuasicóncava) --> región superior-derecha en el cuadro
+    \path[fill=blue, fill opacity=0.18]
+      (axis cs:2,0) --
+      (axis cs:2.5,0) --
+      (axis cs:2.5,2.5) --
+      (axis cs:0,2.5) --
+      (axis cs:0,2) -- cycle;
+
+    % Frontera común: x + y = 2  <=>  y = 2 - x
+    \addplot[thick,blue,domain=0:2] {2 - x};
+
+    % Etiquetas cortas
+    \node[blue] at (axis cs:1,1) {$x+y=2$};
+    \node[teal!60!black]    at (axis cs:0.6,0.6)  {cuasiconvexa};
+    \node[blue!60!black] at (axis cs:1.8,2.1)  {cuasic\'oncava};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\subsubsection*{Casos univariables}
+Para los casos de funciones de una sola variable el análisis gráfico es análogo, solamente que ahora los conjuntos de supernivel y subnivel son lineas rectas, que son convexas cuando no están cortadas y son convexos cuando se cortan.
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$f(x)$},
+    title={Cuasic\'oncava},
+    xmin=-0.2, xmax=2.2,
+    ymin=0,   ymax=2.5,
+    domain=-0.2:2.2,
+    samples=200,
+    clip=false
+  ]
+
+    % f(x) = -(x-1)^2 + 2
+    \addplot[thick,blue]
+      {-(x-1)^2 + 2};
+
+    % recta horizontal f = alpha = 1.5
+    \addplot[teal,thick,dashed,domain=-0.2:2.2,samples=2]
+      {1.5};
+
+    % segmento grueso sobre el eje x representando el supernivel { x : f(x) >= alpha }
+    % intervalo aproximado [0.2929 , 1.7071]
+    \draw[teal, line width=2pt]
+      (axis cs:0.2929,0) -- (axis cs:1.7071,0);
+
+    % Etiquetas
+    \node[blue] at (axis cs:1,2.2) {f(x)};
+    \node[teal!60!black] at (axis cs:2.0,1.7) {nivel $\alpha$};
+    \node[teal!60!black] at (axis cs:1.0,0.3) {supernivel};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$g(x)$},
+    title={Cuasiconvexa},
+    xmin=-0.2, xmax=2.2,
+    ymin=0,   ymax=2.0,
+    domain=-0.2:2.2,
+    samples=200,
+    clip=false
+  ]
+
+    % g(x) = (x-1)^2
+    \addplot[thick,blue]
+      {(x-1)^2};
+
+    % recta horizontal g = alpha = 0.7
+    \addplot[teal,thick,dashed,domain=-0.2:2.2,samples=2]
+      {0.7};
+
+    % segmento grueso sobre el eje x representando el subnivel { x : g(x) <= alpha }
+    % intervalo aproximado [0.1633 , 1.8367]
+    \draw[teal, line width=2pt]
+      (axis cs:0.1633,0) -- (axis cs:1.8367,0);
+
+    % Etiquetas
+    \node[blue] at (axis cs:1,1.4) {g(x)};
+    \node[teal!60!black] at (axis cs:2.1,0.82) {nivel $\alpha$};
+    \node[teal!60!black] at (axis cs:1.0,0.3) {subnivel};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$h(x)$},
+    title={No cuasiconvexa},
+    xmin=-1.5, xmax=1.5,
+    ymin=0,   ymax=2.0,
+    domain=-1.5:1.5,
+    samples=300,
+    clip=false
+  ]
+
+    % h(x) = (x+1)^2 (x-1)^2 + 0.2
+    \addplot[thick,blue]
+      {((x+1)^2*(x-1)^2)+0.2};
+
+    % Recta horizontal h = alpha = 0.6
+    \addplot[teal,thick,dashed,domain=-1.5:1.5,samples=2]
+      {0.6};
+
+    % Subnivel { x : h(x) <= 0.6 }
+    % Cortes aproximados dentro de [-1.5,1.5]:
+    % x ≈ -1.2777, -0.6063, 0.6063, 1.2777
+    \draw[teal, line width=2pt]
+      (axis cs:-1.2777,0) -- (axis cs:-0.6063,0);
+    \draw[teal, line width=2pt]
+      (axis cs:0.6063,0) -- (axis cs:1.2777,0);
+
+    % Etiquetas
+    \node[blue]          at (axis cs:0,1.7)        {$h(x)$};
+    \node[teal!60!black] at (axis cs:1.2,0.8)      {nivel $\alpha$};
+    \node[teal!60!black] at (axis cs:-0.85,0.3)    {subnivel};
+    \node[teal!60!black] at (axis cs:0.95,0.3)     {subnivel};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+Existe un teorema asociado a la cuasiconcavidad y cuasiconvexidad de funciones de una variable.
+Si una función es creciente o decreciente, entonces es simultáneamente cuasiconvexa y cuasicóncava.
+
+\noindent\textbf{Teorema (monotonicidad y cuasiconvexidad/cuasiconcavidad en una variable).}
+Sea $f:\mathbb{R}\to\mathbb{R}$ una función diferenciable en un intervalo $I\subseteq\mathbb{R}$.
+
+Si
+\[
+f'(x)\ge 0 \quad \text{para todo } x\in I
+\]
+o bien
+\[
+f'(x)\le 0 \quad \text{para todo } x\in I
+\]
+entonces $f$ es simultáneamente
+\begin{itemize}
+  \item cuasiconvexa en $I$, y
+  \item cuasicóncava en $I$.
+\end{itemize}
+
+
+
 \section*{Criterio de hessiano orlado para cuasiconvexidad y cuasiconcavidad}
 Las siguientes condiciones son válidas cuando evaluamos las funciones en números positivos (es decir en el ortante no negativo):\\
 Sea \(f\colon U\subseteq\mathbb{R}^n\to\mathbb{R}\) de clase \(C^2\) en un dominio convexo \(U\), y supongamos \(\nabla f(x)\neq0\) para todo \(x\in U\). Definimos la \emph{matriz hessiano orlado} en \(x\) como
@@ -5724,14 +6145,14 @@ donde \(H_f(x)\) es la Hessiana usual de \(f\)
 
 Condiciones necesarias:
 \begin{itemize}
-  \item {\color{teal}\(f\) es cuasiconvexa en \(U\) solo si los menores principales de orden inicial (sin contar el 0) son todos menores o iguales a 0}
-  \item {\color{teal}\(f\) es cuasicóncava en \(U\) solo si los menores principales de orden inicial (sin contar el 0) alternan de signo (o son iguales a 0) empezando por el negativo}
+  \item {\color{teal}\(f\) es cuasiconvexa en \(U\) solo si los menores principales líderes (sin contar el 0) son todos menores o iguales a 0}
+  \item {\color{teal}\(f\) es cuasicóncava en \(U\) solo si los menores principales líderes (sin contar el 0) alternan de signo (o son iguales a 0) empezando por el negativo}
 \end{itemize}
 
 Condiciones suficientes y que además aseguran cuasiconcavidad y cuasiconvexidad estricta:
 \begin{itemize}
-  \item {\color{teal}\(f\) es cuasiconvexa en \(U\) si los menores principales de orden inicial (sin contar el 0) son todos menores a 0}
-  \item {\color{teal}\(f\) es cuasicóncava en \(U\) si los menores principales de orden inicial (sin contar el 0) alternan de signo empezando por el negativo}
+  \item {\color{teal}\(f\) es cuasiconvexa en \(U\) si los menores principales de líderes (sin contar el 0) son todos menores a 0}
+  \item {\color{teal}\(f\) es cuasicóncava en \(U\) si los menores principales de líderes (sin contar el 0) alternan de signo empezando por el negativo}
 \end{itemize}
 
 Para que \(z = f(x_1,\dots,x_n)\) sea cuasicóncava en el \(n\)-ortante no negativo, es necesario que
@@ -5839,6 +6260,8 @@ f(x,y)=x\,y\text{ es cuasicóncava en }A
       \item La recíproca no es cierta: hay funciones cuasicóncavas que no son cóncavas
       \item Toda función \emph{convexa} es \emph{cuasiconvexa}
       \item La recíproca no es cierta: hay funciones cuasiconvexas que no son convexas
+        \item Toda función \emph{estrictamente cóncava} es \emph{estrictamente cuasicóncava}
+            \item Toda función \emph{estrictamente convexa} es \emph{estrictamente cuasiconvexa}
     \end{itemize}
 
   \item \textbf{Operaciones y composición:}
@@ -5917,6 +6340,7 @@ D_2(x,y)=\det B_2=\frac{2}{x^2\,y^2}>0
 D_1<0,\quad D_2>0
 \]
 \textbf{\color{teal}Por tanto \(g(x,y)=\ln(xy)\) es \emph{cuasicóncava} en \(A\)}
+
 
 
 
@@ -7306,6 +7730,180 @@ es también óptimo global y único.}
 
 
 \newpage
+\section{Aplicaciones económicas con optimización con restricciones de igualdad}
+
+
+\section*{Interpretación del multiplicador de Lagrange}
+La interpretación del multiplicador de lagrange puede verse como el efecto que tiene relajar la restricción sobre la función objetivo. El significado de “relajar” la restricción dependerá de si estamos maximizando o minimizando. Para entender claramente vamos a ver un ejemplo de maximización de utilidad.
+
+
+
+Consideremos un consumidor que elige \(x=(x_1,x_2)\in\mathbb{R}^2_+\) para maximizar su utilidad sujeta a una restricción presupuestaria lineal:
+\[
+\max_{x\ge 0}\; u(x_1,x_2)
+\qquad\text{s.a.}\qquad
+p_1 x_1 + p_2 x_2 = M,
+\]
+donde \(p=(p_1,p_2)\gg 0\) son los precios y \(M>0\) es el ingreso. Denotemos por
+\[
+v(M,p)\;= u(x_1^*,x_2^*)
+\]
+la \emph{utilidad indirecta}. Usaremos la convención de Lagrangiano
+\[
+\mathcal L(x,\lambda;M,p)
+\;=\;
+u(x)\;+\;\lambda\,\bigl(M - p_1x_1-p_2x_2),
+\]
+
+\subsection*{Teorema de la envolvente (versión paramétrica)}
+Las condiciones de primer orden requieren que:
+
+\[
+\frac{\partial \mathcal L}{\partial x_1}(x_1,x_2,\lambda)
+= u_{x_1}(x_1,x_2) - \lambda\,p_1 \;=\; 0,
+\]
+\[
+\frac{\partial \mathcal L}{\partial x_2}(x_1,x_2,\lambda)
+= u_{x_2}(x_1,x_2) - \lambda\,p_2 \;=\; 0,
+\]
+\[
+\frac{\partial \mathcal L}{\partial \lambda}(x_1,x_2,\lambda)
+= M - p_1 x_1 - p_2 x_2 \;=\; 0.
+\]
+
+
+El teorema de la envolvente indica que si buscamos derivar la función objetivo en el óptimo respecto a un parámetro, podemos primero obtener la función de utilidad indirecta y después derivar o primero derivar y después reemplazar por los valores de $x_1$, $x_2$ en el óptimo. Es decir, dado que tanto $x_1$, como $x_2$ y $\lambda$ en el óptimo dependerían de $M$.
+
+\[
+\mathcal L(x_1,x_2,\lambda;M,p)=u(x_1,x_2)+\lambda\,(M-p_1x_1-p_2x_2),
+\]
+y evaluando a lo largo de la solución óptima \((x_1^*(M,p),x_2^*(M,p),\lambda^*(M,p))\), se tiene
+\[
+\frac{d}{dM}\,\mathcal L\bigl(x_1^*,x_2^*,\lambda^*;M,p\bigr)
+=
+\underbrace{\mathcal L'_{x_1}}_{0}\,\frac{dx_1^*}{dM}
+\;+\;
+\underbrace{\mathcal L'_{x_2}}_{0}\,\frac{dx_2^*}{dM}
+\;+\;
+\underbrace{\mathcal L'_{\lambda}}_{0}\,\frac{d\lambda^*}{dM}
+\;+\;
+\underbrace{\mathcal L_{M}}_{=\,\lambda}.
+\]
+
+Por las condiciones de primer orden en el óptimo,
+\[
+\mathcal L'_{x_1}(x_1^*,x_2^*,\lambda^*;M,p)=0,\qquad
+\mathcal L'_{x_2}(x_1^*,x_2^*,\lambda^*;M,p)=0,\qquad
+\mathcal L'_{\lambda}(x_1^*,x_2^*,\lambda^*;M,p)=0,
+\]
+Entonces
+\[
+{\color{teal}\;
+\frac{d}{dM}\,\mathcal L\bigl(x_1^*,x_2^*,\lambda^*;M,p\bigr)
+=\mathcal L_M(x_1^*,x_2^*,\lambda^*;M,p)
+=\lambda^*(M,p)\; }.
+\]
+
+
+
+En particular, como en el óptimo la restricción se cumple con igualdad
+\(\,M-p_1x_1^*-p_2x_2^*=0\,\), el Lagrangiano evaluado en el óptimo coincide con la utilidad:
+\[
+v(M,p)\;=\;u(x_1^*,x_2^*)\;=\;\mathcal L(x_1^*,x_2^*,\lambda^*;M,p).
+\]
+La conclusión entonces es que
+\[
+{\color{teal}\;\frac{\partial v(M,p)}{\partial M}
+=\frac{\partial \mathcal L}{\partial M}\Big|_{(x_1^*,x_2^*,\lambda^*;M,p)}
+=\lambda^*(M,p)\;}
+\]
+
+
+Es decir, {\color{teal}\(\lambda^*\) mide el cambio marginal de la utilidad óptima cuando se \emph{relaja} la restricción presupuestaria en una unidad}, o sea, cuando se le da ingresos adicionales al individuo. Por eso \(\lambda^*\) se interpreta como \emph{utilidad marginal del ingreso}. Esto puede ser útil ya que nos informa cómo cambia la utilidad si le brindamos al individuo una unidad monetaria adicional.
+
+
+\subsubsection*{Ejemplo}
+
+
+
+\textbf{Datos:} \(M=100\), \(p_1=10\), \(p_2=20\), \(u(x_1,x_2)=x_1^2 x_2^2\).
+
+\[
+\max_{x_1,x_2>0}\; x_1^2 x_2^2 \quad \text{s.a.}\quad 10x_1+20x_2=100,
+\qquad
+\mathcal L(x_1,x_2,\lambda)=x_1^2 x_2^2+\lambda\,(100-10x_1-20x_2).
+\]
+
+\paragraph{CPO}
+\[
+\mathcal L_{x_1}=2x_1 x_2^2-10\lambda=0,\qquad
+\mathcal L_{x_2}=2x_2 x_1^2-20\lambda=0,\qquad
+\mathcal L_{\lambda}=100-10x_1-20x_2=0.
+\]
+
+De las dos primeras:
+\[
+\frac{2x_1 x_2^2}{10}=\lambda=\frac{2x_2 x_1^2}{20}
+\;\Longrightarrow\;2x_2=x_1.
+\]
+Con la restricción:
+\[
+10(2x_2)+20x_2=100\;\Longrightarrow\;40x_2=100\;\Longrightarrow\;x_2^*=2.5,\quad x_1^*=5.
+\]
+\[
+v(100,10,20)=u(x_1^*,x_2^*)=5^2\cdot 2.5^2=25\cdot 6.25=156.25.
+\]
+
+\paragraph{Multiplicador lagrangiano}
+\[\color{teal}
+\lambda^*=\frac{2x_1^*(x_2^*)^2}{10}
+=\frac{2\cdot 5\cdot (2.5)^2}{10}
+=\frac{10\cdot 6.25}{10}
+=6.25.
+\]
+
+La interpretación es la siguiente: {\color{teal}si aumentamos el ingreso en una unidad (manteniendo precios), la utilidad óptima aumenta en aproximadamente \(6.25\) unidades. O sea la nueva utilidad sería de 162.5}
+
+
+
+\subsubsection*{Ejemplo con minimización}
+El multiplicador de lagrange también puede interpretarse en el contexto de una minimización.
+
+\textbf{Datos:} \(w_1=10\), \(w_2=40\), meta de producción \(=100\), tecnología \(F(z_1,z_2)=\sqrt{z_1 z_2}\).
+
+\[
+\min_{z_1,z_2>0}\; C=10\,z_1+40\,z_2
+\quad \text{s.a.}\quad \sqrt{z_1 z_2}=100,
+\qquad
+\mathcal L(z_1,z_2,\mu)=10z_1+40z_2+\mu\,(100-\sqrt{z_1 z_2}).
+\]
+
+\paragraph{CPO}
+\[
+\mathcal L_{z_1}=10-\mu\cdot \tfrac{1}{2}\,z_1^{-1/2}z_2^{1/2}=0,\quad
+\mathcal L_{z_2}=40-\mu\cdot \tfrac{1}{2}\,z_2^{-1/2}z_1^{1/2}=0,\quad
+\sqrt{z_1 z_2}=100.
+\]
+
+De las dos primeras:
+\[
+\frac{10}{40}=\frac{z_2}{z_1}\;\Longrightarrow\; z_2=\frac{1}{4}\,z_1.
+\]
+Con la restricción: \(z_1 z_2=100^2\Rightarrow z_1\!\left(\tfrac{1}{4}z_1\right)=10{,}000 \Rightarrow z_1^2=40{,}000\Rightarrow
+z_1^*=200,\; z_2^*=50.\)
+
+\paragraph{Costo mínimo e interpretación de \(\mu^*\)}
+\[
+C_{\min}=10\cdot 200+40\cdot 50=2000+2000=4000.
+\]
+\[
+\mu^* \;=\; 2\,\sqrt{w_1 w_2}\;=\;2\sqrt{10\cdot 40}=40.
+\]
+
+{\color{teal}\(\mu^*=40\) nos indica que al relajar la restricción (es decir si en vez de exigir una producción de 100, exigimos solo 99 unidades), el costo mínimo se reduce aproximadamente en \(40\). Por lo tanto el costo nuevo sería de 3960.}
+
+
+\newpage
 \section{Optimización con restricciones de desigualdad}
 
 
@@ -8002,6 +8600,287 @@ y de que las dos restricciones pueden estar activas o inactivas. Hay cuatro comb
 \]
 
 
+\section*{Ejemplo sin restricciones de no negatividad}
+
+
+\[
+\begin{cases}
+\min\; f(x,y) = (x-1)^4 + e^{y} \\
+\text{s. a. } \; 2x + y \leq 5
+\end{cases}
+\]
+
+
+\subsection*{Problema de minimización propuesto}
+
+Consideremos el siguiente problema de optimización con restricción de desigualdad:
+
+\[
+\min_{x,y} f(x,y) \;=\; (x-1)^4 + e^{y}
+\]
+sujeto a
+\[
+-2x - y \;\ge\; -5.
+\]
+
+Notemos que la restricción puede reescribirse como
+\[
+-2x - y + 5 \;\ge\; 0.
+\]
+Para usar las condiciones de Kuhn--Tucker en la forma estándar \(g(x,y)\le 0\), definimos
+\[
+g(x,y) \;\equiv\; (2x + y - 5) \;\le\; 0.
+\]
+Esta $g(x,y)\le0$ es algebraicamente la misma que la restricción original \(-2x-y\ge -5\), sólo escrita al otro lado. Vamos a trabajar con \(g(x,y)\) para construir el Lagrangiano, pero cuando verifiquemos factibilidad siempre vamos a chequear la forma original
+\[
+-2x - y \;\ge\; -5.
+\]
+
+Introducimos el multiplicador de Kuhn--Tucker \(\lambda \ge 0\).  
+El Lagrangiano es
+\[
+\mathcal{L}(x,y,\lambda)
+= (x-1)^4 + e^{y}
++ \lambda\,\bigl(2x + y - 5\bigr).
+\]
+
+\paragraph{Condiciones de Kuhn--Tucker}
+
+Las condiciones KKT (necesarias y, como veremos, suficientes) son:
+\[
+\begin{cases}
+\text{(1) Estacionariedad:} &
+\dfrac{\partial \mathcal{L}}{\partial x}
+=4(x-1)^3 + 2\lambda
+=0,
+\\[8pt]
+&
+\dfrac{\partial \mathcal{L}}{\partial y}
+=e^{y} + \lambda
+=0,
+\\[10pt]
+\text{(2) Factibilidad primal:} &
+-2x - y \;\ge\; -5,
+\\[6pt]
+\text{(3) Factibilidad dual:} &
+\lambda \;\ge\; 0,
+\\[6pt]
+\text{(4) Holgura complementaria:} &
+\lambda\,\bigl(2x + y - 5\bigr)=0.
+\end{cases}
+\]
+
+Observación importante:  
+En el Lagrangiano usamos \(2x+y-5\), pero la factibilidad primal la seguimos expresando en la forma original \(-2x-y\ge -5\), es decir, ``mayor o igual a un número''.
+
+\paragraph{Análisis de casos}
+
+Vamos a estudiar las dos posibilidades para \(\lambda\).
+
+\subsubsection*{Caso 1: \(\lambda = 0\)}
+
+Si \(\lambda = 0\), las ecuaciones de estacionariedad quedan:
+\[
+4(x-1)^3 + 0 = 0 
+\quad\Longrightarrow\quad
+(x-1)^3 = 0
+\quad\Longrightarrow\quad
+x = 1,
+\]
+y
+\[
+e^{y} + 0 = 0
+\quad\Longrightarrow\quad
+e^{y} = 0,
+\]
+lo cual es imposible porque \(e^{y} > 0\) para todo \(y\).  
+Por lo tanto, \(\lambda=0\) no puede describir el óptimo.
+
+\subsubsection*{Caso 2: \(\lambda > 0\)}
+
+Si \(\lambda>0\), por holgura complementaria debe cumplirse
+\[
+2x + y - 5 = 0
+\quad\Longrightarrow\quad
+y = 5 - 2x.
+\]
+
+Usamos estacionariedad otra vez.  
+De
+\[
+\dfrac{\partial \mathcal{L}}{\partial y} = e^{y} + \lambda = 0
+\quad\Longrightarrow\quad
+\lambda = -\,e^{y}.
+\]
+Como \(\lambda>0\), esto nos dice que \(-e^{y} > 0\), lo cual sería imposible.  
+Esto sugiere que, con el Lagrangiano escrito como
+\[
+\mathcal{L}(x,y,\lambda)
+= f(x,y)+\lambda(2x+y-5),
+\]
+el signo de \(\lambda\) que hace que KKT funcione debe ser \(\lambda \le 0\) si usamos \(2x+y-5\) directamente.
+
+Para evitar esa inconsistencia de signos, es más cómodo (y estándar) definir la restricción \emph{negada} en el Lagrangiano, tal como se hizo en el ejemplo anterior:
+
+Reescribimos:
+\[
+g(x,y) \equiv 5 - 2x - y \;\le\;0,
+\]
+que es exactamente la misma restricción original \(-2x-y\ge-5\), sólo movida de lado.  
+Ahora tomamos el Lagrangiano en la forma
+\[
+\widetilde{\mathcal{L}}(x,y,\lambda)
+= (x-1)^4 + e^{y}
++ \lambda\,\bigl(5 - 2x - y\bigr),
+\quad \lambda \ge 0.
+\]
+
+Volvemos a plantear las KKT con esta versión (que es la convención usual y evita el problema de signo):
+
+\[
+\begin{cases}
+\text{(1) Estacionariedad:} &
+\dfrac{\partial \widetilde{\mathcal{L}}}{\partial x}
+=4(x-1)^3 - 2\lambda
+=0,
+\\[8pt]
+&
+\dfrac{\partial \widetilde{\mathcal{L}}}{\partial y}
+=e^{y} - \lambda
+=0,
+\\[10pt]
+\text{(2) Factibilidad primal (forma original):} &
+-2x - y \;\ge\; -5,
+\\[6pt]
+\text{(3) Factibilidad dual:} &
+\lambda \;\ge\; 0,
+\\[6pt]
+\text{(4) Holgura complementaria:} &
+\lambda\,\bigl(5 - 2x - y\bigr)=0.
+\end{cases}
+\]
+
+Ahora sí, analizamos casos con esta \(\widetilde{\mathcal{L}}\).
+
+\subsubsection*{Caso A: \(\lambda = 0\)}
+
+Si \(\lambda = 0\), de estacionariedad:
+\[
+4(x-1)^3 - 0 = 0
+\quad\Longrightarrow\quad
+x = 1.
+\]
+Y
+\[
+e^{y} - 0 = 0
+\quad\Longrightarrow\quad
+e^{y} = 0,
+\]
+imposible.  
+Por lo tanto, \(\lambda=0\) sigue sin ser factible.
+
+\subsubsection*{Caso B: \(\lambda > 0\)}
+
+Si \(\lambda > 0\), por holgura complementaria la restricción está activa:
+\[
+5 - 2x - y = 0
+\quad\Longrightarrow\quad
+y = 5 - 2x.
+\]
+
+De \(\frac{\partial \widetilde{\mathcal{L}}}{\partial y}=0\):
+\[
+e^{y} - \lambda = 0
+\quad\Longrightarrow\quad
+\lambda = e^{y} = e^{\,5-2x}.
+\]
+
+De \(\frac{\partial \widetilde{\mathcal{L}}}{\partial x}=0\):
+\[
+4(x-1)^3 - 2\lambda = 0
+\quad\Longrightarrow\quad
+2(x-1)^3 = \lambda.
+\]
+
+Igualando las dos expresiones de \(\lambda\):
+\[
+2(x-1)^3 \;=\; e^{\,5-2x}.
+\]
+
+Esa ecuación determina el \(x\) óptimo. Resolviéndola numéricamente:
+\[
+x^* \;\approx\; 2.0625.
+\]
+
+Luego
+\[
+y^* = 5 - 2x^* 
+\;\approx\; 5 - 2(2.0625)
+\;\approx\; 0.8750.
+\]
+
+Y el multiplicador
+\[
+\lambda^* = e^{y^*}
+\;\approx\; e^{0.8750}
+\;\approx\; 2.3989 \;>\; 0,
+\]
+consistente con la hipótesis \(\lambda>0\).
+
+Ahora verificamos la factibilidad \emph{en la forma original de la restricción}:
+\[
+-2x^* - y^*
+\;\approx\;
+-2(2.0625) - 0.8750
+\;\approx\;
+-5.0000
+\;\ge\;
+-5.
+\]
+Se cumple exactamente como igualdad: estamos sobre la frontera \(-2x-y=-5\), es decir, ``mayor o igual a \(-5\)''.
+
+El valor de la función objetivo en \((x^*,y^*)\) es
+\[
+f(x^*,y^*) 
+= (x^*-1)^4 + e^{y^*}
+\;\approx\;
+(2.0625-1)^4 + e^{0.8750}
+\;\approx\;
+3.6733.
+\]
+
+\paragraph{Condiciones suficientes para mínimo global}
+
+La función objetivo
+\[
+f(x,y) = (x-1)^4 + e^{y}
+\]
+es convexa: \((x-1)^4\) es convexa en \(x\), y \(e^{y}\) es convexa en \(y\); la suma de convexas es convexa.
+
+El conjunto factible definido por
+\[
+-2x - y \;\ge\; -5
+\]
+es un semiespacio afín (una región descrita por una desigualdad lineal), por lo tanto es convexo.
+
+En un problema de minimización convexa con restricciones convexas (aquí lineales), cualquier punto que satisface KKT es óptimo global.
+
+Como encontramos \((x^*,y^*) \approx (2.0625,\;0.8750)\) con \(\lambda^*>0\) que satisface:
+\[
+-2x^* - y^* \;\ge\; -5,
+\quad
+\text{y todas las condiciones KKT,}
+\]
+concluimos que
+\[
+(x^*,y^*) \approx (2.0625,\;0.8750)
+\]
+es el minimizador global del problema original con la restricción escrita en la forma
+\[
+-2x - y \;\ge\; -5.
+\]
+
+
 \section*{Condiciones suficientes}
 Como en el caso de optimización con restricciones y optimización libre, las condiciones suficientes van a estar asociadas a la concavidad de las funciones analizadas. Vamos a ver dos tipos de condiciones, una sobre concavidad y convexidad y otra más débil sobre cuasiconcavidad y cuasiconvexidad.
 
@@ -8105,7 +8984,720 @@ Si se satisfacen las siguientes condiciones en un punto $x^*$
 }
 
 
+
+\subsection*{Ejemplo}
+Volvamos a este ejemplo
+\[
+\begin{aligned}
+\min_{x_1,x_2}\quad & C(x_1,x_2)=(x_1-4)^2+(x_2-4)^2\\
+\text{sujeto a}\quad & 2x_1+3x_2 \ge 6,\\
+& -3x_1-2x_2 \ge -12,\\
+& x_1\ge 0,\quad x_2\ge 0.
+\end{aligned}
+\]
+El potencial óptimo es $x_1=28/13$, $x_2=36/13$. Vamos a chequear las condiciones de segundo orden con el teorema de Arrow-Enthoven. La función objetivo en este caso es convexa por lo tanto es cuasiconvexa:
+
+
+\[
+H(x_1,x_2)=
+\begin{bmatrix}
+2 & 0\\
+0 & 2
+\end{bmatrix}.
+\]
+
+\[
+\Delta_1=2>0,\qquad
+\Delta_2=\det\!\begin{bmatrix}2&0\\0&2\end{bmatrix}=4>0
+\]
+
+
+Por otro lado, las funciones de las restricciones son lineales con lo cual son cóncavas y convexas y por lo tanto son cuasicóncavas y cuasiconvexas. Por último, evaluamos una de las 4 condiciones de como por ejemplo: $f_j(x^*)<0$, para algún $x_j$ que tome un valor positivo en el óptimo:
+
+Chequeando:
+\begin{equation*}
+C'_{x_1}=2(x_1^*-4)<0
+\end{equation*}
+Esto implica que el óptimo es mínimo global.
+
+
+
+\section*{Calificación de las restricciones}
+Anteriormente cuando calculamos las condiciones de primer orden para máximos y mínimos argumentamos que estas son necesarias para obtener un punto óptimo. Sin embargo, existen casos donde por la naturaleza de las restricciones, las condiciones de primer orden dejan de ser válidas tanto para optimización con restricciones de igualdad como optimización con restricciones de desigualdad. Véase el siguiente ejemplo:
+
+Consideremos el problema de maximizar \( f(x,y) = x \) sujeto a la restricción 
+definida por 
+\[
+h(x,y) = x^3 + y^2 = 0.
+\]
+Armamos el lagrangiano:
+\[
+L(x,y,\lambda) = f(x,y) - \lambda\,[-h(x,y)] 
+= x + \lambda(-x^3 - y^2).
+\]
+El sistema de ecuaciones que debemos resolver es:
+\[
+\begin{cases}
+\dfrac{\partial L}{\partial x} = 1 - 3\lambda x^2 = 0, \\[1em]
+\dfrac{\partial L}{\partial y} = -2\lambda y = 0, \\[1em]
+\dfrac{\partial L}{\partial \lambda} = -(x^3 + y^2) = 0.
+\end{cases}
+\]
+
+
+
+De \(\dfrac{\partial L}{\partial y}=0\) se sigue que \(\lambda=0\) \textbf{o} \(y=0\).
+
+\textbf{Caso 1:} \(\lambda=0\). Entonces la primera ecuación da \(1-3\cdot 0\cdot x^2=1=0\), que es imposible. 
+Por lo tanto, \(\lambda\neq 0\).
+
+\textbf{Caso 2:} Como \(\lambda\neq 0\), debe ser \(y=0\). La tercera ecuación impone
+\(x^3+y^2=0 \Rightarrow x^3=0 \Rightarrow x=0\).
+Sustituyendo \(x=0\) en la primera ecuación:
+\[
+1-3\lambda x^2 = 1-3\lambda\cdot 0 = 1=0,
+\]
+nueva contradicción.
+
+En ambos casos se arriba a una contradicción; por ende, el sistema no tiene solución.
+
+Sin embargo el problema sí cuenta con un óptimo que es $(0,0)$. Esto puede verse gráficamente. Graficando la restricción:
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    xmin=-1, xmax=0.3,
+    ymin=-0.8, ymax=0.8,
+    ticks=none,
+    clip=false,
+    width=7cm, height=5cm
+  ]
+    % Restricción: y^2 = -x^3 (x <= 0)
+    % Parametrización: x = -t^2, y = ± t^3
+    \addplot[very thick, domain=0:1.0, samples=300, parametric] ({-x^2},{ x^3});
+    \addplot[very thick, domain=0:1.0, samples=300, parametric] ({-x^2},{-x^3});
+
+    % pequeño trazo vertical en x=0 (opcional, como en la figura de referencia)
+    \addplot[dashed, domain=-0.3:0.3] ({0},{x});
+
+    % punto óptimo en (0,0) en color teal, sin etiqueta
+    \addplot[only marks, mark=*, mark size=2pt, teal] coordinates {(0,0)};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+Como estamos maximizando una función que es $f(x,y)=x$, el punto óptimo se encuentra lo más al este posible pero que cumpla al mismo tiempo con la restricción, ese punto es el $(0,0)$.
+
+Veamos otro ejemplo pero con restricciones de desigualdad:
+
+
+\[
+\begin{aligned}
+&\max_{x_1,x_2}\ \ f=x_1\\
+&\text{s.a.}\quad 
+\begin{cases}
+x_2-(1-x_1)^3 \le 0,\\
+x_1 \ge 0,\\
+x_2 \ge 0.
+\end{cases}
+\end{aligned}
+\]
+
+
+\[
+\mathcal{L}(x_1,x_2,\lambda_1)
+= x_1 \;+\; \lambda\big[x_2-(1-x_1)^3\big]
+\]
+
+Este problema como el anterior puede ser resuelto gráficamente graficando la restricción:
+
+
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    axis lines=middle,
+    xlabel={$x_1$}, ylabel={$x_2$},
+    xmin=-0.05, xmax=2.6,
+    ymin=-1.2, ymax=1.1,
+    ticks=none,
+    clip=false,
+    width=12cm, height=6cm
+  ]
+    % Área factible: bajo la curva y sobre el eje x, solo 0 <= x1 <= 1
+    \addplot[fill=teal, fill opacity=0.15, draw=none, domain=0:1, samples=300]
+      {(1-x)^3} \closedcycle;
+
+    % Curva frontera extendida (muestra x2<0 cuando x1>1)
+    \addplot[very thick, domain=0:2, samples=400] {(1-x)^3};
+
+    % Punto óptimo (1,0) en teal (sin texto)
+    \addplot[only marks, mark=*, mark size=2pt, color=teal] coordinates {(1,0)};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+El resultado es que el punto óptimo resulta ser: $(1,0)$. Sin embargo si chequeamos las condiciones de primer orden, en particular la primera:
+
+
+\begin{equation*}
+\dfrac{\partial \mathcal L}{\partial x_1}
+= 1 \;+\; 3\lambda(1-x_1)^2  \leq 0
+\end{equation*}
+Si $x_1=1$ tenemos:
+\begin{equation*}
+\dfrac{\partial \mathcal L}{\partial x_1}
+= 1\leq 0
+\end{equation*}
+Lo cual es contradictorio, nuevamente lo que sucede es que las restricciones de este problema dejan sin efecto las condiciones necesarias. El problema que pueden generar estos casos "patológicos" es que a veces las restricciones no permiten la tangencia entre las curvas de nivel de la restricción y curvas de nivel de la función objetivo entre otras cosas. La forma de resolver este problema es requerir que el conjunto de restricciones cumpla con ciertas condiciones. Por ejemplo, si las restricciones fueran todas lineales, no habría problema, o si el problema fuera de maximización y las restricciones fueran todas cóncavas tampoco habría problema. El resumen de restricciones puede verse a continuación:
+
+\subsubsection*{Teoremas de calificación de restricciones para máximos}
+
+
+Sea $f, g_1, \ldots, g_k$ y supóngase que 
+$x^* \in \mathbb{R}^n$ es un máximo local de $f$ sobre el conjunto definido por las restricciones
+
+\[
+g_1(x) \le r_1, \ \ldots,\ g_k(x) \le r_k.
+\]
+
+Para simplificar la notación, supóngase que $g_1,\ldots,g_h$ son las restricciones \textit{activas} en $x^*$,
+y que $g_{h+1},\ldots,g_k$ no lo son. 
+Supóngase que las funciones de restricción activas satisfacen una de las siguientes propiedades:
+
+\begin{enumerate}[label=(\alph*)]
+\item \color{teal}
+La matriz jacobiana de las restricciones activas es
+\[
+\left( \frac{\partial g_i}{\partial x_j}(x^*) \right),
+\quad i=1,\ldots,h,\ j=1,\ldots,n.
+\]
+Los gradientes de las restricciones activas son linealmente independientes en 
+$x^*$, es decir, generan un subespacio de dimensión igual al número de restricciones activas.
+
+
+%\item \textbf{(Karush–Kuhn–Tucker CQ)}  
+%Para cualquier vector $v \in \mathbb{R}^n$ tal que 
+%$Dg_i(x^*)(v) \le 0$ para $i=1,\ldots,h$, 
+%existe $\varepsilon > 0$ y una curva de clase $C^1$, 
+%$\alpha:[0,\varepsilon)\to \mathbb{R}^n$, tal que:
+%\begin{enumerate}[label=(\roman*)]
+%\item $\alpha(0)=x^*$,
+%\item $\alpha'(0)=v$, y
+%\item $g_i(\alpha(t)) \le b_i$ para todo $i=1,\ldots,k$ y todo $t\in[0,\varepsilon)$.
+%\end{enumerate}
+
+%\item \textbf{(Slater)}  
+%Existe una bola $U$ alrededor de $x^*$ en %$\mathbb{R}^n$ tal que 
+%$g_1,\ldots,g_h$ son funciones convexas en $U$, 
+%y existe un punto $z\in U$ tal que $g_i(z) < b_i$ para todo $i$.
+
+\item $g_1,\ldots,g_h$ son funciones cóncavas.
+
+\item $g_1,\ldots,g_h$ son funciones lineales.
+\end{enumerate}
+
+Entonces, podemos aplicar las condiciones de primer orden sin problemas.
+
+\subsubsection*{Teoremas de calificación de restricciones para mínimos}
+
+
+Sea $f, g_1, \ldots, g_k$ y supóngase que 
+$x^* \in \mathbb{R}^n$ es un mínimo local de $f$ sobre el conjunto definido por las restricciones
+
+\[
+g_1(x) \geq r_1, \ \ldots,\ g_k(x) \geq r_k.
+\]
+
+Para simplificar la notación, supóngase que $g_1,\ldots,g_h$ son las restricciones \textit{activas} en $x^*$,
+y que $g_{h+1},\ldots,g_k$ no lo son. 
+Supóngase que las funciones de restricción activas satisfacen una de las siguientes propiedades:
+
+\begin{enumerate}[label=(\alph*)]
+\item \color{teal}
+La matriz jacobiana de las restricciones activas es
+\[
+\left( \frac{\partial g_i}{\partial x_j}(x^*) \right),
+\quad i=1,\ldots,h,\ j=1,\ldots,n.
+\]
+Los gradientes de las restricciones activas son linealmente independientes en 
+$x^*$, es decir, generan un subespacio de dimensión igual al número de restricciones activas.
+
+%\item \textbf{(Karush–Kuhn–Tucker CQ)}  
+%Para cualquier vector $v \in \mathbb{R}^n$ tal que 
+%$Dg_i(x^*)(v) \le 0$ para $i=1,\ldots,h$, 
+%existe $\varepsilon > 0$ y una curva de clase $C^1$, 
+%$\alpha:[0,\varepsilon)\to \mathbb{R}^n$, tal que:
+%\begin{enumerate}[label=(\roman*)]
+%\item $\alpha(0)=x^*$,
+%\item $\alpha'(0)=v$, y
+%\item $g_i(\alpha(t)) \le b_i$ para todo $i=1,\ldots,k$ y todo $t\in[0,\varepsilon)$.
+%\end{enumerate}
+
+%\item \textbf{(Slater)}  
+%Existe una bola $U$ alrededor de $x^*$ en %$\mathbb{R}^n$ tal que 
+%$g_1,\ldots,g_h$ son funciones convexas en $U$, 
+%y existe un punto $z\in U$ tal que $g_i(z) < b_i$ para todo $i$.
+
+\item $g_1,\ldots,g_h$ son funciones convexas.
+
+\item $g_1,\ldots,g_h$ son funciones lineales.
+\end{enumerate}
+
+Entonces, podemos aplicar las condiciones de primer orden sin problemas.\\
+
+
+Volviendo con el ejemplo anterior, podemos ver que no hay independencia lineal en el gradiente de las restricciones ya que estos son: 
+
+
+
+Consideremos las restricciones en forma estándar \( g_i(x_1,x_2) \le 0 \):
+\[
+\begin{aligned}
+g_1(x_1,x_2) &= x_2 - (1-x_1)^3,\\
+g_2(x_1,x_2) &= -x_1,\\
+g_3(x_1,x_2) &= -x_2.
+\end{aligned}
+\]
+
+El punto candidato al óptimo es \(x^*=(1,0)\).  
+Evaluamos cuáles restricciones son activas:
+\[
+g_1(1,0)=0,\qquad g_2(1,0)=-1<0,\qquad g_3(1,0)=0.
+\]
+Por lo tanto, las restricciones activas son \(g_1\) y \(g_3\).
+
+\vspace{0.5em}
+Calculamos los gradientes:
+\[
+\nabla g_1(x_1,x_2)
+=\left(
+\frac{\partial g_1}{\partial x_1},\frac{\partial g_1}{\partial x_2}
+\right)
+=\big(3(1-x_1)^2,\,1\big),
+\]
+\[
+\nabla g_2(x_1,x_2)=(-1,\,0), \qquad
+\nabla g_3(x_1,x_2)=(0,\,-1).
+\]
+
+Evaluando en \(x^*=(1,0)\):
+\[
+\nabla g_1(1,0)=(0,\,1), \qquad
+\nabla g_3(1,0)=(0,\,-1).
+\]
+
+\vspace{0.5em}
+Se observa que
+\[
+\nabla g_3(1,0)=-\,\nabla g_1(1,0),
+\]
+por lo que los gradientes de las restricciones activas
+\textbf{no son linealmente independientes en \(x^*\)}. 
+
+En consecuencia, la condición de independencia lineal de gradientes no se cumple en este punto. Tampoco se cumplen que las restricciones sean cóncavas ni lineales y por esa razón las condiciones de primer orden dejan de ser válidas. \\
+Véamos qué sucede si agregamos una nueva restricción al problema pero que no cambia el punto óptimo:
+\[
+\begin{aligned}
+&\max_{x_1,x_2}\ f=x_1\\
+&\text{s.a.}\ 
+\begin{cases}
+g_1(x)\equiv x_2-(1-x_1)^3 \le 0,\\
+g_3(x)\equiv x_1,x_2 \geq 0,\\
+g_4(x)\equiv 2x_1+x_2-2 \le 0.
+\end{cases}
+\end{aligned}
+\]
+
+\textbf{Punto candidato: } \(x^*=(1,0)\).
+\[
+g_1(1,0)=0,\qquad g_3(1,0)=0,\qquad g_4(1,0)=0,
+\]
+o sea, \(g_1,g_3,g_4\) están \emph{activas}.
+
+\textbf{Gradientes:}
+\[
+\nabla g_1(x_1,x_2)=\big(3(1-x_1)^2,\,1\big),\quad
+\nabla g_3(x_1,x_2)=(0,-1),\quad
+\nabla g_4(x_1,x_2)=(2,1).
+\]
+\[
+\nabla g_1(1,0)=(0,1),\qquad
+\nabla g_3(1,0)=(0,-1),\qquad
+\nabla g_4(1,0)=(2,1).
+\]
+
+\textbf{Chequeo de calificación de restricciones}
+Formamos la matriz jacobiana de restricciones activas en \(x^*\):
+\[
+J(x^*)=
+\begin{bmatrix}
+0 & 1\\
+0 & -1\\
+2 & 1
+\end{bmatrix}.
+\]
+Su rango es 2 (por ejemplo, las filas \((0,1)\) y \((2,1)\) son linealmente independientes).
+Como \(2=n\), los gradientes de las restricciones activas \emph{generan} \(\mathbb R^2\)
+(rango completo). Por lo tanto, se cumple una calificación de restricciones estándar y por lo tanto las condiciones de primer orden vuelven a ser válidas. Aunque \(g_1\) y \(g_3\) son colineales entre sí, la presencia de la tercera
+frontera \(g_4\) aporta una normal no colineal; el conjunto de gradientes activos tiene rango \(2\),
+suficiente en dimensión \(n=2\). Veamos de resolver el problema nuevamente:
+
+\[
+\max_{x_1,x_2}\; f = x_1
+\quad\text{sujeto a}\quad
+\begin{cases}
+x_2 - (1 - x_1)^3 \le 0,\\
+2x_1 + x_2 - 2 \le 0,\\
+x_1 \ge 0,\; x_2 \ge 0.
+\end{cases}
+\]
+
+\[
+\mathcal L(x_1,x_2,\lambda_1,\lambda_2)
+= x_1
++ \lambda_1\bigl((1 - x_1)^3 - x_2\bigr)
++ \lambda_2\bigl(2 - 2x_1 - x_2\bigr).
+\]
+
+Las condiciones de Kuhn–Tucker se agrupan en:
+\[
+\begin{aligned}
+&\frac{\partial\mathcal L}{\partial x_1}
+= 1 - 3\lambda_1(1 - x_1)^2 - 2\lambda_2 \;\le 0,
+\quad x_1 \ge 0,\quad
+x_1\!\left[1 - 3\lambda_1(1 - x_1)^2 - 2\lambda_2\right]=0,\\[0.6em]
+&\frac{\partial\mathcal L}{\partial x_2}
+= -\lambda_1 - \lambda_2 \;\le 0,
+\quad x_2 \ge 0,\quad
+x_2(-\lambda_1 - \lambda_2)=0,\\[0.6em]
+&\frac{\partial\mathcal L}{\partial \lambda_1}
+= (1 - x_1)^3 - x_2 \;\ge 0,
+\quad \lambda_1 \ge 0,\quad
+\lambda_1\bigl((1 - x_1)^3 - x_2\bigr)=0,\\[0.6em]
+&\frac{\partial\mathcal L}{\partial \lambda_2}
+= 2 - 2x_1 - x_2 \;\ge 0,
+\quad \lambda_2 \ge 0,\quad
+\lambda_2\bigl(2 - 2x_1 - x_2\bigr)=0.
+\end{aligned}
+\]
+
+En el punto \(x^*=(1,0)\):
+\[
+(1 - x_1)^3 - x_2 = 0,\quad 2 - 2x_1 - x_2 = 0,
+\]
+ambas restricciones son activas.
+
+Sustituyendo \(x_1=1,\ x_2=0\) en las derivadas:
+\[
+\begin{cases}
+1 - 3\lambda_1(1 - 1)^2 - 2\lambda_2 = 1 - 2\lambda_2 \le 0,\\[0.4em]
+-\lambda_1 - \lambda_2 \le 0.
+\end{cases}
+\]
+
+
+De la primera ecuación se obtiene \(1 - 2\lambda_2 = 0 \Rightarrow \lambda_2 = \tfrac{1}{2}\).
+
+
+Por lo tanto,
+\[\color{teal}
+{x^*=(1,0) \quad \lambda_2=\tfrac{1}{2}}
+\]
+cumple las condiciones de Kuhn–Tucker y representa un óptimo local.  
+
 \newpage
+
+
+\section{Temas adicionales de optimización}
+
+
+
+
+\subsection*{Calificación de las restricciones}
+Anteriormente cuando calculamos las condiciones de primer orden para máximos y mínimos argumentamos que estas son necesarias para obtener un punto óptimo. Sin embargo, existen casos donde por la naturaleza de las restricciones, las condiciones de primer orden dejan de ser válidas tanto para optimización con restricciones de igualdad como optimización con restricciones de desigualdad. Véase el siguiente ejemplo:
+
+Consideremos el problema de maximizar \( f(x,y) = x \) sujeto a la restricción 
+definida por 
+\[
+h(x,y) = x^3 + y^2 = 0.
+\]
+Armamos el lagrangiano:
+\[
+L(x,y,\lambda) = f(x,y) + \lambda\,[-h(x,y)] 
+= x + \lambda(-x^3 - y^2).
+\]
+El sistema de ecuaciones que debemos resolver es:
+\[
+\begin{cases}
+\dfrac{\partial L}{\partial x} = 1 - 3\lambda x^2 = 0, \\[1em]
+\dfrac{\partial L}{\partial y} = -2\lambda y = 0, \\[1em]
+\dfrac{\partial L}{\partial \lambda} = -(x^3 + y^2) = 0.
+\end{cases}
+\]
+
+
+
+De \(\dfrac{\partial L}{\partial y}=0\) se sigue que \(\lambda=0\) \textbf{o} \(y=0\).
+
+\textbf{Caso 1:} \(\lambda=0\). Entonces la primera ecuación da \(1-3\cdot 0\cdot x^2=1=0\), que es imposible. 
+Por lo tanto, \(\lambda\neq 0\).
+
+\textbf{Caso 2:} Como \(\lambda\neq 0\), debe ser \(y=0\). La tercera ecuación impone
+\(x^3+y^2=0 \Rightarrow x^3=0 \Rightarrow x=0\).
+Sustituyendo \(x=0\) en la primera ecuación:
+\[
+1-3\lambda x^2 = 1-3\lambda\cdot 0 = 1=0,
+\]
+nueva contradicción.
+
+En ambos casos se arriba a una contradicción; por ende, el sistema no tiene solución.
+
+Sin embargo el problema sí cuenta con un óptimo que es $(0,0)$. Esto puede verse gráficamente. Graficando la restricción:
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    xmin=-1, xmax=0.3,
+    ymin=-0.8, ymax=0.8,
+    ticks=none,
+    clip=false,
+    width=7cm, height=5cm
+  ]
+    % Restricción: y^2 = -x^3 (x <= 0)
+    % Parametrización: x = -t^2, y = ± t^3
+    \addplot[very thick, domain=0:1.0, samples=300, parametric] ({-x^2},{ x^3});
+    \addplot[very thick, domain=0:1.0, samples=300, parametric] ({-x^2},{-x^3});
+
+    % pequeño trazo vertical en x=0 (opcional, como en la figura de referencia)
+    \addplot[dashed, domain=-0.3:0.3] ({0},{x});
+
+    % punto óptimo en (0,0) en color teal, sin etiqueta
+    \addplot[only marks, mark=*, mark size=2pt, teal] coordinates {(0,0)};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+Como estamos maximizando una función que es $f(x,y)=x$, el punto óptimo se encuentra lo más al este posible pero que cumpla al mismo tiempo con la restricción, ese punto es el $(0,0)$.
+
+Veamos otro ejemplo pero con restricciones de desigualdad:
+
+
+\[
+\begin{aligned}
+&\max_{x_1,x_2}\ \ f=x_1\\
+&\text{s.a.}\quad 
+\begin{cases}
+x_2-(1-x_1)^3 \le 0,\\
+x_1 \ge 0,\\
+x_2 \ge 0.
+\end{cases}
+\end{aligned}
+\]
+
+
+\[
+\mathcal{L}(x_1,x_2,\lambda_1)
+= x_1 \;+\; \lambda\big[x_2-(1-x_1)^3\big]
+\]
+
+Este problema como el anterior puede ser resuelto gráficamente graficando la restricción:
+
+
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    axis lines=middle,
+    xlabel={$x_1$}, ylabel={$x_2$},
+    xmin=-0.05, xmax=2.6,
+    ymin=-1.2, ymax=1.1,
+    ticks=none,
+    clip=false,
+    width=12cm, height=6cm
+  ]
+    % Área factible: bajo la curva y sobre el eje x, solo 0 <= x1 <= 1
+    \addplot[fill=teal, fill opacity=0.15, draw=none, domain=0:1, samples=300]
+      {(1-x)^3} \closedcycle;
+
+    % Curva frontera extendida (muestra x2<0 cuando x1>1)
+    \addplot[very thick, domain=0:2, samples=400] {(1-x)^3};
+
+    % Punto óptimo (1,0) en teal (sin texto)
+    \addplot[only marks, mark=*, mark size=2pt, color=teal] coordinates {(1,0)};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+El resultado es que el punto óptimo resulta ser: $(1,0)$. Sin embargo si chequeamos las condiciones de primer orden, en particular la primera:
+
+
+\begin{equation*}
+\dfrac{\partial \mathcal L}{\partial x_1}
+= 1 \;+\; 3\lambda(1-x_1)^2  \leq 0
+\end{equation*}
+Si $x_1=1$ tenemos:
+\begin{equation*}
+\dfrac{\partial \mathcal L}{\partial x_1}
+= 1\leq 0
+\end{equation*}
+Lo cual es contradictorio, nuevamente lo que sucede es que las restricciones de este problema dejan sin efecto las condiciones necesarias. El problema que pueden generar estos casos "patológicos" es que a veces las restricciones no permiten la tangencia entre las curvas de nivel de la restricción y curvas de nivel de la función objetivo entre otras cosas. La forma de resolver este problema es requerir que el conjunto de restricciones cumpla con ciertas condiciones. Por ejemplo, si las restricciones fueran todas lineales, no habría problema, o si el problema fuera de maximización y las restricciones fueran todas convexas tampoco habría problema. Un resumen de las condiciones de calificación puede verse a continuación:
+
+\subsubsection*{Teoremas de calificación de restricciones para máximos}
+
+
+Sea $f, g_1, \ldots, g_k$ y supóngase que 
+$x^* \in \mathbb{R}^n$ es un máximo local de $f$ sobre el conjunto definido por las restricciones
+
+\[
+g_1(x) \le r_1, \ \ldots,\ g_k(x) \le r_k.
+\]
+
+Para simplificar la notación, supóngase que $g_1,\ldots,g_h$ son las restricciones \textit{activas} en $x^*$,
+y que $g_{h+1},\ldots,g_k$ no lo son. 
+Supóngase que las funciones de restricción activas satisfacen una de las siguientes propiedades:
+
+\begin{enumerate}[label=(\alph*)] \color{teal}
+\item
+La matriz jacobiana de las restricciones activas es
+\[
+\left( \frac{\partial g_i}{\partial x_j}(x^*) \right),
+\quad i=1,\ldots,h,\ j=1,\ldots,n.
+\]
+Los gradientes de las restricciones activas son linealmente independientes en 
+$x^*$, es decir, generan un subespacio de dimensión igual al número de restricciones activas.
+
+
+%\item \textbf{(Karush–Kuhn–Tucker CQ)}  
+%Para cualquier vector $v \in \mathbb{R}^n$ tal que 
+%$Dg_i(x^*)(v) \le 0$ para $i=1,\ldots,h$, 
+%existe $\varepsilon > 0$ y una curva de clase $C^1$, 
+%$\alpha:[0,\varepsilon)\to \mathbb{R}^n$, tal que:
+%\begin{enumerate}[label=(\roman*)]
+%\item $\alpha(0)=x^*$,
+%\item $\alpha'(0)=v$, y
+%\item $g_i(\alpha(t)) \le b_i$ para todo $i=1,\ldots,k$ y todo $t\in[0,\varepsilon)$.
+%\end{enumerate}
+
+%\item \textbf{(Slater)}  
+%Existe una bola $U$ alrededor de $x^*$ en %$\mathbb{R}^n$ tal que 
+%$g_1,\ldots,g_h$ son funciones convexas en $U$, 
+%y existe un punto $z\in U$ tal que $g_i(z) < b_i$ para todo $i$.
+
+\item $g_1,\ldots,g_h$ son funciones convexas.
+
+\item $g_1,\ldots,g_h$ son funciones lineales.
+\end{enumerate}
+
+Entonces, podemos aplicar las condiciones de primer orden sin problemas.
+
+\subsubsection*{Teoremas de calificación de restricciones para mínimos}
+
+
+Sea $f, g_1, \ldots, g_k$ y supóngase que 
+$x^* \in \mathbb{R}^n$ es un mínimo local de $f$ sobre el conjunto definido por las restricciones
+
+\[
+g_1(x) \geq r_1, \ \ldots,\ g_k(x) \geq r_k.
+\]
+
+Para simplificar la notación, supóngase que $g_1,\ldots,g_h$ son las restricciones \textit{activas} en $x^*$,
+y que $g_{h+1},\ldots,g_k$ no lo son. 
+Supóngase que las funciones de restricción activas satisfacen una de las siguientes propiedades:
+
+\begin{enumerate}[label=(\alph*)]
+ \color{teal}
+\item
+La matriz jacobiana de las restricciones activas es
+\[
+\left( \frac{\partial g_i}{\partial x_j}(x^*) \right),
+\quad i=1,\ldots,h,\ j=1,\ldots,n.
+\]
+Los gradientes de las restricciones activas son linealmente independientes en 
+$x^*$, es decir, generan un subespacio de dimensión igual al número de restricciones activas.
+
+%\item \textbf{(Karush–Kuhn–Tucker CQ)}  
+%Para cualquier vector $v \in \mathbb{R}^n$ tal que 
+%$Dg_i(x^*)(v) \le 0$ para $i=1,\ldots,h$, 
+%existe $\varepsilon > 0$ y una curva de clase $C^1$, 
+%$\alpha:[0,\varepsilon)\to \mathbb{R}^n$, tal que:
+%\begin{enumerate}[label=(\roman*)]
+%\item $\alpha(0)=x^*$,
+%\item $\alpha'(0)=v$, y
+%\item $g_i(\alpha(t)) \le b_i$ para todo $i=1,\ldots,k$ y todo $t\in[0,\varepsilon)$.
+%\end{enumerate}
+
+%\item \textbf{(Slater)}  
+%Existe una bola $U$ alrededor de $x^*$ en %$\mathbb{R}^n$ tal que 
+%$g_1,\ldots,g_h$ son funciones convexas en $U$, 
+%y existe un punto $z\in U$ tal que $g_i(z) < b_i$ para todo $i$.
+
+\item $g_1,\ldots,g_h$ son funciones cóncavas.
+
+\item $g_1,\ldots,g_h$ son funciones lineales.
+\end{enumerate}
+
+Entonces, podemos aplicar las condiciones de primer orden sin problemas.\\
+
+
+Volviendo con el ejemplo anterior, podemos ver que no hay independencia lineal en el gradiente de las restricciones ya que estos son: 
+
+
+
+Consideremos las restricciones en forma estándar \( g_i(x_1,x_2) \le 0 \):
+\[
+\begin{aligned}
+g_1(x_1,x_2) &= x_2 - (1-x_1)^3,\\
+g_2(x_1,x_2) &= -x_1,\\
+g_3(x_1,x_2) &= -x_2.
+\end{aligned}
+\]
+
+El punto candidato al óptimo es \(x^*=(1,0)\).  
+Evaluamos cuáles restricciones son activas:
+\[
+g_1(1,0)=0,\qquad g_2(1,0)=-1<0,\qquad g_3(1,0)=0.
+\]
+Por lo tanto, las restricciones activas son \(g_1\) y \(g_3\).
+
+\vspace{0.5em}
+Calculamos los gradientes:
+\[
+\nabla g_1(x_1,x_2)
+=\left(
+\frac{\partial g_1}{\partial x_1},\frac{\partial g_1}{\partial x_2}
+\right)
+=\big(3(1-x_1)^2,\,1\big),
+\]
+\[
+\nabla g_2(x_1,x_2)=(-1,\,0), \qquad
+\nabla g_3(x_1,x_2)=(0,\,-1).
+\]
+
+Evaluando en \(x^*=(1,0)\):
+\[
+\nabla g_1(1,0)=(0,\,1), \qquad
+\nabla g_3(1,0)=(0,\,-1).
+\]
+
+\vspace{0.5em}
+Se observa que
+\[
+\nabla g_3(1,0)=-\,\nabla g_1(1,0),
+\]
+por lo que los gradientes de las restricciones activas
+\textbf{no son linealmente independientes en \(x^*\)}. 
+
+En consecuencia, la condición de independencia lineal de gradientes no se cumple en este punto. Tampoco se cumplen que las restricciones sean convexas ni lineales y por esa razón las condiciones de primer orden dejan de ser válidas. \\
+
+
+
+
+
+\newpage
+
 
 
 \section{Apéndice sobre Álgebra}
