@@ -137,7 +137,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%
 % --- tu versión ---
-\newcommand{\version}{0.9}
+\newcommand{\version}{1.1}
 
 \begin{document}
 
@@ -2214,8 +2214,8 @@ se interpreta como: {\color{teal}“cuánto debe reducirse \( x_2 \) para aument
 Una forma intuitiva de pensarlo es:
 
 \begin{itemize}
-  \item {\color{teal}El numerador es lo que se entrega o se cede}
-  \item {\color{teal}El denominador es lo que se desea obtener}
+  \item {\color{teal}El numerador es lo que aumenta}
+  \item {\color{teal}El denominador es lo que se entrega o cede}
 \end{itemize}
 
 
@@ -2398,17 +2398,34 @@ Esto significa que, ante un aumento del 1\% en el ingreso, la cantidad demandada
 
 \textbf{Interpretación respecto a bienes de lujo vs. esenciales:}\\
 Dado que \(0 < E_I < 1\), el bien se clasifica como un \textbf{\color{teal}bien esencial} (o necesidad básica), ya que la respuesta de la demanda a cambios en el ingreso es relativamente baja
+\newpage
+
+
+\section*{Nota sobre bienes Giffen}
 
 
 
+Como vimos anteriormente, los bienes Giffen son aquellos bienes para los cuales, cuando el precio aumenta, la demanda también aumenta
+\[
+\color{teal}
+\frac{\partial Q}{\partial P} > 0
+\]
 
+Los bienes Giffen aparecen en situaciones muy particulares. Se trata de bienes inferiores que suelen ocupar una parte importante del presupuesto de consumidores con ingresos bajos. Cuando el precio de ese bien básico aumenta, el consumidor pierde poder adquisitivo y, en algunos casos extremos, termina consumiendo aún más de ese mismo bien porque no puede reemplazarlo fácilmente por otros.
 
+Un ejemplo clásico que suele utilizarse para ilustrar este fenómeno es el caso de la papa en Irlanda. La idea general es la siguiente: para muchos hogares pobres, la papa constituía una parte muy importante de la dieta porque era un alimento relativamente accesible y que aportaba una gran cantidad de calorías. Si el precio de ese bien básico aumentaba, esos hogares sufrían una caída fuerte de su poder adquisitivo real. En ese contexto, en lugar de poder reemplazar la papa por alimentos mejores o más variados, se veían obligados a reducir todavía más el consumo de otros bienes y a destinar una proporción aún mayor de su presupuesto a la compra de papas. Esto se debe a que los otros alimentos disponibles resultaban relativamente más caros en relación con las calorías que aportaban. En otras palabras, {\color{teal}el aumento del precio no generaba una sustitución hacia otros bienes, sino una mayor dependencia del bien básico encarecido}
 
+Este ejemplo debe interpretarse con cuidado. No se trata de que el consumidor desee más el bien porque ahora sea más caro, sino de que, al empeorar su restricción presupuestaria, queda prácticamente forzado a concentrar más su consumo en ese bien de subsistencia. Por eso, el caso de los bienes Giffen requiere condiciones muy especiales: \textbf{\color{teal}el bien debe ser inferior, debe representar una fracción importante del gasto del consumidor y, además, deben existir pocas alternativas de reemplazo cercanas}
+
+Por esta razón, los bienes Giffen son \textbf{\color{teal}casos muy limitados y poco frecuentes en la práctica}. Su importancia es sobre todo teórica, porque muestran que la relación entre precio y cantidad demandada no siempre tiene que ser negativa
+
+\textbf{No confundir con los bienes Veblen:} un bien Giffen no es lo mismo que un bien Veblen. En ambos casos puede ocurrir que la demanda aumente cuando sube el precio, pero la razón económica es completamente distinta. En un \textbf{\color{teal}bien Giffen}, el aumento de la demanda se explica por una situación de restricción presupuestaria severa: el consumidor compra más del bien porque no puede desplazarse hacia alternativas mejores y necesita seguir cubriendo una necesidad básica. En cambio, en un \textbf{\color{teal}bien Veblen}, el aumento de la demanda se relaciona con el carácter de lujo, prestigio o señalización social del bien. Allí el precio alto vuelve al bien más atractivo precisamente porque comunica estatus, exclusividad o poder adquisitivo. De hecho, en un bien Veblen puede pensarse que el precio alto forma parte de la naturaleza misma del bien: si el precio dejara de ser el que es, el bien cambiaría también en su valor simbólico
 
 
 \newpage
 
 \section{Derivadas compuestas}
+
 
 
 
@@ -2718,6 +2735,129 @@ Como \(z(v,w)=x\,y^{2}=(v+w)(v-w)^{2}\)
 = (v-w)(-v-3w)
 \]
 coincidiendo con la regla de la cadena.
+
+
+
+\subsection*{Otro ejemplo aún más complejo}
+\[
+z=z(u,v)=u^{2}v,
+\qquad
+u=u(p,q)=p+q,
+\qquad
+v=v(q,s)=qs,
+\qquad
+p=t,\; q=t^{2},\; s=e^{t}
+\]
+
+En esta situación conviene graficar la relación entre variables para que quede claro:
+
+\begin{center}
+\begin{tikzpicture}[>=latex, every node/.style={draw, rounded corners}]
+
+\node (z) at (0,0) {$z$};
+
+\node (u) at (-2,-1.5) {$u$};
+\node (v) at (2,-1.5) {$v$};
+
+\node (p) at (-3,-3) {$p$};
+\node (q) at (0,-3) {$q$};
+\node (s) at (3,-3) {$s$};
+
+\node (t) at (0,-4.5) {$t$};
+
+\draw[->] (z) -- (u);
+\draw[->] (z) -- (v);
+
+\draw[->] (u) -- (p);
+\draw[->] (u) -- (q);
+
+\draw[->] (v) -- (q);
+\draw[->] (v) -- (s);
+
+\draw[->] (p) -- (t);
+\draw[->] (q) -- (t);
+\draw[->] (s) -- (t);
+
+\end{tikzpicture}
+\end{center}
+
+
+\textbf{Derivadas parciales y derivadas de las dependencias}
+\[
+z_u=2uv,\qquad z_v=u^{2}
+\]
+\[
+u_p=1,\qquad u_q=1,\qquad v_q=s,\qquad v_s=q
+\]
+\[
+p'=1,\qquad q'=2t,\qquad s'=e^{t}
+\]
+
+\textbf{Regla de la cadena}
+\[
+\color{teal}
+\frac{dz}{dt}
+=
+z_u\!\left(u_p\,p'+u_q\,q'\right)
++
+z_v\!\left(v_q\,q'+v_s\,s'\right)
+\]
+
+\textbf{Cálculo}
+\[
+\frac{dz}{dt}
+=
+(2uv)(1\cdot 1+1\cdot 2t)
++
+(u^{2})(s\cdot 2t+q\cdot e^{t})
+\]
+\[
+=
+2uv(1+2t)+u^{2}(2ts+qe^{t})
+\]
+
+Sustituyendo \(u=p+q=t+t^{2}\), \(v=qs=t^{2}e^{t}\), \(s=e^{t}\) y \(q=t^{2}\)
+\[
+\frac{dz}{dt}
+=
+2(t+t^{2})(t^{2}e^{t})(1+2t)
++
+(t+t^{2})^{2}(2te^{t}+t^{2}e^{t})
+\]
+\[
+=
+2(t+t^{2})(t^{2}e^{t})(1+2t)
++
+(t+t^{2})^{2}e^{t}(2t+t^{2})
+\]
+\[
+=
+2t^{3}e^{t}(1+t)(1+2t)
++
+t^{3}e^{t}(1+t)^{2}(2+t)
+\]
+\[
+\color{teal}
+\frac{dz}{dt}
+=
+e^{t}t^{3}(1+t)(4+7t+t^{2})
+\]
+
+\textbf{Comprobación directa}
+
+Como
+\[
+z(t)=u(t)^{2}v(t)=(t+t^{2})^{2}(t^{2}e^{t})=t^{4}(1+t)^{2}e^{t}
+\]
+
+derivando directamente
+\[
+\frac{d}{dt}\Big(t^{4}(1+t)^{2}e^{t}\Big)
+=
+e^{t}t^{3}(1+t)(4+7t+t^{2})
+\]
+
+que coincide con el resultado obtenido por la regla de la cadena.
 
 
 
