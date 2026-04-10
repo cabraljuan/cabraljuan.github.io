@@ -2430,7 +2430,6 @@ Por esta razón, los bienes Giffen son \textbf{\color{teal}casos muy limitados y
 
 
 
-
 En matemática aplicada a la economía es muy común que una variable dependa de otra \emph{a través} de funciones intermedias. Por ejemplo, la cantidad demandada \(Q\) depende del precio \(P\) vía \(Q = D(P)\), y el precio a su vez depende de un impuesto ad-valorem \(\tau\) vía \(P = P_0(1+\tau)\). Esta \emph{composición} se modela como
 \[
 y = g\big(h(x)\big)
@@ -2746,7 +2745,7 @@ u=u(p,q)=p+q,
 \qquad
 v=v(q,s)=qs,
 \qquad
-p=t,\; q=t^{2},\; s=e^{t}
+p=2t,\; q=t^{2},\; s=e^{t}
 \]
 
 En esta situación conviene graficar la relación entre variables para que quede claro:
@@ -2781,7 +2780,6 @@ En esta situación conviene graficar la relación entre variables para que quede
 \end{tikzpicture}
 \end{center}
 
-
 \textbf{Derivadas parciales y derivadas de las dependencias}
 \[
 z_u=2uv,\qquad z_v=u^{2}
@@ -2790,7 +2788,7 @@ z_u=2uv,\qquad z_v=u^{2}
 u_p=1,\qquad u_q=1,\qquad v_q=s,\qquad v_s=q
 \]
 \[
-p'=1,\qquad q'=2t,\qquad s'=e^{t}
+p'=2,\qquad q'=2t,\qquad s'=e^{t}
 \]
 
 \textbf{Regla de la cadena}
@@ -2807,59 +2805,61 @@ z_v\!\left(v_q\,q'+v_s\,s'\right)
 \[
 \frac{dz}{dt}
 =
-(2uv)(1\cdot 1+1\cdot 2t)
+(2uv)(1\cdot 2+1\cdot 2t)
 +
 (u^{2})(s\cdot 2t+q\cdot e^{t})
 \]
 \[
 =
-2uv(1+2t)+u^{2}(2ts+qe^{t})
+2uv(2+2t)+u^{2}(2ts+qe^{t})
 \]
 
-Sustituyendo \(u=p+q=t+t^{2}\), \(v=qs=t^{2}e^{t}\), \(s=e^{t}\) y \(q=t^{2}\)
+Sustituyendo \(u=p+q=2t+t^{2}\), \(v=qs=t^{2}e^{t}\), \(s=e^{t}\) y \(q=t^{2}\)
 \[
 \frac{dz}{dt}
 =
-2(t+t^{2})(t^{2}e^{t})(1+2t)
+2(2t+t^{2})(t^{2}e^{t})(2+2t)
 +
-(t+t^{2})^{2}(2te^{t}+t^{2}e^{t})
+(2t+t^{2})^{2}(2te^{t}+t^{2}e^{t})
 \]
 \[
 =
-2(t+t^{2})(t^{2}e^{t})(1+2t)
+2(2t+t^{2})(t^{2}e^{t})(2+2t)
 +
-(t+t^{2})^{2}e^{t}(2t+t^{2})
+(2t+t^{2})^{2}e^{t}(2t+t^{2})
 \]
 \[
 =
-2t^{3}e^{t}(1+t)(1+2t)
+4t^{3}e^{t}(2+t)(1+t)
 +
-t^{3}e^{t}(1+t)^{2}(2+t)
+t^{3}e^{t}(2+t)^{3}
+\]
+\[
+=
+t^{3}e^{t}(2+t)\bigl(4(1+t)+(2+t)^{2}\bigr)
 \]
 \[
 \color{teal}
 \frac{dz}{dt}
 =
-e^{t}t^{3}(1+t)(4+7t+t^{2})
+e^{t}t^{3}(2+t)(t^{2}+8t+8)
 \]
 
 \textbf{Comprobación directa}
 
 Como
 \[
-z(t)=u(t)^{2}v(t)=(t+t^{2})^{2}(t^{2}e^{t})=t^{4}(1+t)^{2}e^{t}
+z(t)=u(t)^{2}v(t)=(2t+t^{2})^{2}(t^{2}e^{t})=t^{4}(2+t)^{2}e^{t}
 \]
 
-derivando directamente
+al derivar directamente
 \[
-\frac{d}{dt}\Big(t^{4}(1+t)^{2}e^{t}\Big)
+\frac{d}{dt}\Big(t^{4}(2+t)^{2}e^{t}\Big)
 =
-e^{t}t^{3}(1+t)(4+7t+t^{2})
+e^{t}t^{3}(2+t)(t^{2}+8t+8)
 \]
 
-que coincide con el resultado obtenido por la regla de la cadena.
-
-
+que coincide con el resultado obtenido por la regla de la cadena
 
 
 

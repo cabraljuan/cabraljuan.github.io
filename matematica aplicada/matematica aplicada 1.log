@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.15)  7 APR 2026 19:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.15)  8 APR 2026 19:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1444,15 +1444,15 @@ pdfTeX warning (ext4): destination with the same identifier (name{equation.1})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2521 \]
+l.2520 \]
          
 pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2521 \]
+l.2520 \]
          ]
-Overfull \hbox (1.28403pt too wide) detected at line 2580
+Overfull \hbox (1.28403pt too wide) detected at line 2579
 [][]
  []
 
@@ -1820,7 +1820,7 @@ onts/cm/cmtt10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/symbols/msam10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/juanc/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "matematica aplicada 1.pdf" (136 pages, 1103629 bytes).
+Output written on "matematica aplicada 1.pdf" (136 pages, 1103736 bytes).
 PDF statistics:
  1754 PDF objects out of 2073 (max. 8388607)
  691 named destinations out of 1000 (max. 500000)
