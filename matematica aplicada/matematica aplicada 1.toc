@@ -33,28 +33,28 @@
 \contentsline {paragraph}{3. Ingreso disponible}{61}{section*.171}%
 \contentsline {section}{\numberline {14}Homogeneidad}{64}{section.14}%
 \contentsline {section}{\numberline {15}Autovalores y autovectores}{68}{section.15}%
-\contentsline {section}{\numberline {16}Formas cuadráticas}{73}{section.16}%
-\contentsline {section}{\numberline {17}Menores}{76}{section.17}%
-\contentsline {paragraph}{Menor (general) de orden $k$.}{76}{section*.219}%
-\contentsline {paragraph}{Menor principal de orden $k$.}{76}{section*.220}%
-\contentsline {paragraph}{Menor principal inicial (o dominante) de orden $k$.}{76}{section*.221}%
-\contentsline {section}{\numberline {18}Concavidad y convexidad}{82}{section.18}%
-\contentsline {section}{\numberline {19}Optimización sin restricciones}{93}{section.19}%
-\contentsline {section}{\numberline {20}Aplicaciones económicas de optimización}{98}{section.20}%
-\contentsline {paragraph}{Interpretación}{104}{section*.312}%
-\contentsline {section}{\numberline {21}Optimización con restricciones de igualdad}{105}{section.21}%
-\contentsline {section}{\numberline {22}Aplicaciones económicas con optimización con restricciones de igualdad}{112}{section.22}%
-\contentsline {paragraph}{CPO}{113}{section*.335}%
-\contentsline {paragraph}{Multiplicador lagrangiano}{113}{section*.336}%
-\contentsline {paragraph}{CPO}{113}{section*.338}%
-\contentsline {paragraph}{Costo mínimo e interpretación de \(\mu ^*\)}{114}{section*.339}%
-\contentsline {section}{\numberline {23}Optimización con restricciones de desigualdad}{115}{section.23}%
-\contentsline {paragraph}{Condiciones de primer orden}{118}{section*.346}%
-\contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{118}{section*.347}%
-\contentsline {paragraph}{Condiciones de Kuhn-Tucker}{121}{section*.352}%
-\contentsline {paragraph}{Análisis de casos}{122}{section*.353}%
-\contentsline {paragraph}{Condiciones de Kuhn--Tucker}{123}{section*.356}%
-\contentsline {paragraph}{Análisis de casos}{123}{section*.357}%
-\contentsline {paragraph}{Condiciones suficientes para mínimo global}{125}{section*.362}%
-\contentsline {section}{\numberline {24}Temas adicionales de optimización}{128}{section.24}%
-\contentsline {section}{\numberline {25}Apéndice sobre Álgebra}{131}{section.25}%
+\contentsline {section}{\numberline {16}Formas cuadráticas}{76}{section.16}%
+\contentsline {section}{\numberline {17}Menores}{79}{section.17}%
+\contentsline {paragraph}{Menor (general) de orden $k$.}{79}{section*.224}%
+\contentsline {paragraph}{Menor principal de orden $k$.}{79}{section*.225}%
+\contentsline {paragraph}{Menor principal inicial (o dominante) de orden $k$.}{79}{section*.226}%
+\contentsline {section}{\numberline {18}Concavidad y convexidad}{85}{section.18}%
+\contentsline {section}{\numberline {19}Optimización sin restricciones}{96}{section.19}%
+\contentsline {section}{\numberline {20}Aplicaciones económicas de optimización}{101}{section.20}%
+\contentsline {paragraph}{Interpretación}{107}{section*.317}%
+\contentsline {section}{\numberline {21}Optimización con restricciones de igualdad}{108}{section.21}%
+\contentsline {section}{\numberline {22}Aplicaciones económicas con optimización con restricciones de igualdad}{115}{section.22}%
+\contentsline {paragraph}{CPO}{116}{section*.340}%
+\contentsline {paragraph}{Multiplicador lagrangiano}{116}{section*.341}%
+\contentsline {paragraph}{CPO}{116}{section*.343}%
+\contentsline {paragraph}{Costo mínimo e interpretación de \(\mu ^*\)}{117}{section*.344}%
+\contentsline {section}{\numberline {23}Optimización con restricciones de desigualdad}{118}{section.23}%
+\contentsline {paragraph}{Condiciones de primer orden}{121}{section*.351}%
+\contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{121}{section*.352}%
+\contentsline {paragraph}{Condiciones de Kuhn-Tucker}{124}{section*.357}%
+\contentsline {paragraph}{Análisis de casos}{125}{section*.358}%
+\contentsline {paragraph}{Condiciones de Kuhn--Tucker}{126}{section*.361}%
+\contentsline {paragraph}{Análisis de casos}{126}{section*.362}%
+\contentsline {paragraph}{Condiciones suficientes para mínimo global}{128}{section*.367}%
+\contentsline {section}{\numberline {24}Temas adicionales de optimización}{131}{section.24}%
+\contentsline {section}{\numberline {25}Apéndice sobre Álgebra}{134}{section.25}%

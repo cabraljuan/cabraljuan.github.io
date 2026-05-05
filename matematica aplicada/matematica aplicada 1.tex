@@ -4280,24 +4280,91 @@ En economía, la homogeneidad y el Teorema de Euler tienen aplicaciones directas
 \newpage
 \section{Autovalores y autovectores}
 
-
 \section*{Definición de autovalor y autovector}
 
-Sea \(A\in\mathbb{K}^{n\times n}\)
+Sea \(A\in\mathbb{R}^{n\times n}\)
 
-Un escalar \(\lambda\in\mathbb{K}\) es autovalor de \(A\) si existe un vector \(v\in\mathbb{K}^n\setminus\{0\}\) tal que
+Un escalar \(\lambda\in\mathbb{R}\) es autovalor de \(A\) si existe un vector \(v\in\mathbb{R}^n\setminus\{0\}\) tal que
 \[ \color{teal}
 A\,v = \lambda\,v
 \]
 
-El vector \(v\) que satisface esta igualdad se llama autovector asociado al autovalor \(\lambda\)
+El vector \(v\) que satisface esta igualdad se llama autovector asociado al autovalor \(\lambda\).
+
+Una breve intuición de qué significa esto es la siguiente. Primero pensemos a la matriz A como una transformación (de la misma manera que una función al insertarle un input, cambia este input, una matriz al premultiplicar por un vector lo gira, estira, encoge, etc. En este sentido un autovector es un vector que mantiene la dirección, no gira, solamente se agranda o achica o cambia de sentido. El autovalor es la escala en la cual se agranda o achica dicho autovector. En el siguiente gráfico se puede ver la naturaleza de un autovector, en este caso sería un vector tal que tiene la dirección del vector $(1,1)$ y que la matriz al premultiplicarlo no lo gira, solamente lo achica o agranda. Dependiendo del autovalor que tenga puede achicarse o agrandarse.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+
+  % Ejes
+  \draw[->] (-5.5,0) -- (5.5,0) node[right] {$x_1$};
+  \draw[->] (0,-5.5) -- (0,5.5) node[above] {$x_2$};
+
+  % Dirección del autovector (recta y = x)
+  \draw[densely dashed, gray] (-5,-5) -- (5,5) node[above right] {dirección de $v$};
+
+  % Autovector base v = (2,2)
+  \draw[ultra thick] (0,0) -- (2,2);
+  \fill (2,2) circle (1.2pt);
+  \node[anchor=south east, xshift=-4pt, yshift=4pt] at (2,2) {$v=(2,2)$};
+
+  % Escalados que mantienen la dirección (λ>0)
+  \draw[very thick, teal]   (0,0) -- (1,1);
+  \node[teal, anchor=west, xshift=8pt, yshift=-8pt] at (1,1) {$\lambda=0.5$};
+
+  \draw[very thick, blue]   (0,0) -- (3,3);
+  \node[blue, anchor=west, xshift=10pt, yshift=-10pt] at (3,3) {$\lambda=1.5$};
+
+  \draw[very thick, purple] (0,0) -- (4,4);
+  \node[purple, anchor=west, xshift=12pt, yshift=-12pt] at (4,4) {$\lambda=2$};
+
+  % Escalados con inversión de sentido (λ<0)
+  \draw[very thick, orange] (0,0) -- (-1,-1);
+  \node[orange, anchor=east, xshift=-8pt, yshift=8pt] at (-1,-1) {$\lambda=-0.5$};
+
+  \draw[very thick, red]    (0,0) -- (-2,-2);
+  \node[red, anchor=east, xshift=-10pt, yshift=10pt] at (-2,-2) {$\lambda=-1$};
+
+  \draw[very thick, brown]  (0,0) -- (-3,-3);
+  \node[brown, anchor=east, xshift=-12pt, yshift=12pt] at (-3,-3) {$\lambda=-1.5$};
+
+\end{tikzpicture}
+\end{center}
+
+
+
 \section*{Polinomio característico}
 
 \subsection*{Definición}
-Sea \(A\in\mathbb{K}^{n\times n}\). El \emph{polinomio característico} de \(A\) se define como
+Sea \(R\in\mathbb{K}^{n\times n}\). El \emph{polinomio característico} de \(A\) se define como
 \[ \color{teal}
 \chi_A(\lambda)=\det\bigl(A - \lambda I\bigr)
 \]
+El polinomio característico proviene de la siguiente deducción, dado:
+\[
+A v=\lambda v,\quad v\neq 0
+\]
+
+Reordenando
+\[
+(A-\lambda I)v=0
+\]
+
+Este es un sistema homogéneo con solución no trivial \(v\neq 0\) \emph{si y solo si} la matriz \(A-\lambda I\) es \textbf{singular}  
+Una matriz cuadrada es singular \(\Leftrightarrow\) su determinante es cero, entonces
+\[
+\det(A-\lambda I)=0
+\]
+
+Los \(\lambda\) que hacen nula esa determinante son exactamente los \textbf{autovalores} de \(A\)  
+Por eso se define el \emph{polinomio característico}
+\[
+\chi_A(\lambda)=\det(A-\lambda I)
+\]
+y los autovalores son las raíces de \(\chi_A\)
+
+
+
 
 \subsection*{Cómo hallarlo}
 \begin{enumerate}
@@ -4335,7 +4402,7 @@ y
 
 \subsection*{Procedimiento}
 \begin{enumerate}
-  \item Resolver \(\chi_A(\lambda)=0\) para obtener los valores propios \(\lambda_1,\lambda_2, \lambda_3,...\)
+  \item Resolver \(\chi_A(\lambda)=0\) para obtener los autovalores \(\lambda_1,\lambda_2, \lambda_3,...\)
   \item Para cada \(\lambda_i\), resolver
   \( (A - \lambda_i I)\,v = 0 \)
   buscando vectores no nulos
@@ -4422,7 +4489,6 @@ v_1 = \begin{pmatrix}x\\y\end{pmatrix}
 = x\begin{pmatrix}1\\-1\end{pmatrix},
 \quad x\neq 0
 \]
-Tomamos \(\color{teal}v_1 = (1,-1)^T\)
 
 \paragraph*{Para \(\lambda_2 = 3\)}
 Calculamos
@@ -4469,8 +4535,9 @@ v_1 = \begin{pmatrix}1\\-1\end{pmatrix}
  y 
 \(
 v_2 = \begin{pmatrix}1\\1\end{pmatrix}
-\) para \(\lambda=3\)
-
+\) para \(\lambda=3\).
+ \paragraph*{Observación sobre la no unicidad de los autovectores}
+Los autovectores asociados a un mismo autovalor no son únicos. Es decir se pueden tomar cualquiera de los siguientes vectores como autovectores del autovalor $\lambda=1$: \((1,-1)\), \((2,-2)\), \((-3,3)\), etcétera, todos representan la misma dirección y son autovectores válidos del mismo autovalor
 
 \section*{Relación entre coeficientes del polinomio característico, traza y determinante}
 
@@ -4492,8 +4559,6 @@ En palabras: el coeficiente \(c_{n-1}\) representa el negativo de la suma de tod
 Recordando que:
 \[
 \operatorname{tr}(A) = \sum_{i=1}^n a_{ii},
-\quad
-\det(A) = \prod_{i=1}^n \lambda_i
 \]
 Existe una relación entre autovalores y traza y determinante:
 \[\color{teal}
@@ -4540,9 +4605,9 @@ De donde se observa que:
 
 
 \subsection*{Multiplicidad algebraica}
-Sea \(A\in\mathbb{K}^{n\times n}\) y \(\lambda\) un autovalor de \(A\).  
+Sea \(A\in\mathbb{R}^{n\times n}\) y \(\lambda\) un autovalor de \(A\).  
 \begin{itemize}
-  \item La \emph{multiplicidad algebraica} de \(\lambda\), denotada \(\mathrm{mult}_{\mathrm{alg}}(\lambda)\), es el grado con que \(\lambda\) aparece como raíz del polinomio característico \(\chi_A(\lambda)\).  
+  \item La \emph{multiplicidad algebraica} de \(\lambda\), denotada \(\mathrm{mult}_{\mathrm{alg}}(\lambda)\), es el grado con que \(\lambda\) aparece como raíz del polinomio característico \(\chi_A(\lambda)\). Puede pensarse como la cantidad de veces que se repite el autovalor. 
   \[
     \chi_A(\lambda) = (\lambda - \lambda_1)^{m_1}\cdots(\lambda - \lambda_k)^{m_k},
     \quad
@@ -4562,6 +4627,21 @@ Para cada autovalor \(\lambda\), definimos su \emph{multiplicidad geométrica} c
 \]
 Donde $\ker()$ es el conjunto de todos los vectores que se envían al vector cero (espacio nulo).
 \textbf{\color{teal}Es el número de vectores linealmente independientes que generan el espacio propio asociado a \(\lambda\).}
+
+Para un autovalor \(\lambda\), el espacio propio asociado a \(\lambda\) es el conjunto de todos los vectores que cumplen
+\[
+(A-\lambda I)v=0
+\]
+
+Ese conjunto es un subespacio vectorial. Entonces podemos preguntarnos:
+
+\begin{center}
+\emph{¿Cuántos vectores necesito para formar una base de ese espacio propio?}
+\end{center}
+
+Esa cantidad es la multiplicidad geométrica.
+
+
 
 \subsection*{Relación entre ambas multiplicidades}
 Para todo autovalor \(\lambda\) de \(A\) se tiene siempre:
@@ -4583,7 +4663,7 @@ Su polinomio característico es
   \chi_B(\lambda) = (2-\lambda)^2
 \]
 luego \(\lambda=2\) tiene \(\mathrm{mult}_{\mathrm{alg}}(2)=2\).  
-En cambio,
+
 \paragraph*{Cálculo de los autovectores para \(\lambda=2\)}
 
 Partimos de
@@ -4679,6 +4759,181 @@ v_1 = \begin{pmatrix}1\\0\end{pmatrix},
 v_2 = \begin{pmatrix}0\\1\end{pmatrix}
 \]
 
+
+
+
+
+
+\paragraph*{Un tercer ejemplo}
+
+Considérese ahora
+\[
+  D = \begin{pmatrix}
+    2 & 0\\
+    0 & 3
+  \end{pmatrix}
+\]
+
+\paragraph*{Polinomio característico}
+
+\[
+\chi_D(\lambda) = \det(D - \lambda I)
+= \begin{vmatrix}
+2-\lambda & 0\\
+0 & 3-\lambda
+\end{vmatrix}
+= (2-\lambda)(3-\lambda)
+\]
+
+Por lo tanto, los autovalores son
+\[\color{teal}
+\lambda_1 = 2,
+\qquad
+\lambda_2 = 3
+\]
+
+Como cada raíz aparece una sola vez en el polinomio característico, se tiene que
+\[\color{teal}
+\mathrm{mult}_{\mathrm{alg}}(2)=1,
+\qquad
+\mathrm{mult}_{\mathrm{alg}}(3)=1
+\]
+
+\paragraph*{Autovectores para \(\lambda=2\)}
+
+Calculamos
+\[
+D - 2I =
+\begin{pmatrix}
+0 & 0\\
+0 & 1
+\end{pmatrix}
+\]
+
+Buscamos todos los vectores \(v=(x,y)^T\) tales que
+\[
+(D-2I)v = 0
+\]
+
+Es decir,
+\[
+\begin{pmatrix}
+0 & 0\\
+0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\
+y
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\
+0
+\end{pmatrix}
+\]
+
+De aquí obtenemos
+\[
+y=0
+\]
+
+Entonces \(x\) es libre, y los autovectores asociados a \(\lambda=2\) son
+\[
+v =
+\begin{pmatrix}
+x\\
+0
+\end{pmatrix},
+\quad x\neq 0
+\]
+
+Por ejemplo, podemos tomar
+\[
+v_1 =
+\begin{pmatrix}
+1\\
+0
+\end{pmatrix}
+\]
+
+\paragraph*{Autovectores para \(\lambda=3\)}
+
+Calculamos
+\[
+D - 3I =
+\begin{pmatrix}
+-1 & 0\\
+0 & 0
+\end{pmatrix}
+\]
+
+Buscamos todos los vectores \(v=(x,y)^T\) tales que
+\[
+(D-3I)v = 0
+\]
+
+Es decir,
+\[
+\begin{pmatrix}
+-1 & 0\\
+0 & 0
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y
+\end{pmatrix}
+=
+\begin{pmatrix}
+-x\\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\
+0
+\end{pmatrix}
+\]
+
+De aquí obtenemos
+\[
+x=0
+\]
+
+Entonces \(y\) es libre, y los autovectores asociados a \(\lambda=3\) son
+\[
+v =
+\begin{pmatrix}
+0\\
+y
+\end{pmatrix},
+\quad y\neq 0
+\]
+
+Por ejemplo, podemos tomar
+\[
+v_2 =
+\begin{pmatrix}
+0\\
+1
+\end{pmatrix}
+\]
+
+
+
+En este caso hay dos autovalores distintos. Cada uno tiene multiplicidad algebraica igual a 1 y multiplicidad geométrica igual a 1.
+
+{\color{teal}
+\[
+\mathrm{mult}_{\mathrm{alg}}(2)=1,
+\qquad
+\mathrm{mult}_{\mathrm{geom}}(2)=1
+\]
+}
 
 \newpage
 
