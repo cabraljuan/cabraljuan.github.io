@@ -4943,7 +4943,7 @@ En este caso hay dos autovalores distintos. Cada uno tiene multiplicidad algebra
 
 \subsection*{Definición}
 Una forma cuadrática en las variables \(x_1,\dots,x_n\) es un polinomio homogéneo de grado dos:
-\[
+\[\color{teal}
 q(x_1,\dots,x_n)
 = a_{11}x_1^2 + a_{22}x_2^2 + \cdots + a_{nn}x_n^2
 + 2\bigl(a_{12}x_1x_2 + a_{13}x_1x_3 + \cdots + a_{n-1,n}x_{n-1}x_n\bigr)
@@ -4981,7 +4981,7 @@ Q = \begin{pmatrix}
 3 & 1 & 2\\
 1 & 4 & 3\\
 2 & 3 & 5
-\end{pmatrix},
+\end{pmatrix}
 \]
 con lo que
 \[\color{teal}
@@ -4994,6 +4994,85 @@ q(x) = x^T Q x
 \end{pmatrix}
 \begin{pmatrix}x_1\\ x_2\\ x_3\end{pmatrix}.
 \]
+
+Primero multiplicamos las dos primeras matrices:
+\[
+\begin{pmatrix}x_1 & x_2 & x_3\end{pmatrix}
+\begin{pmatrix}
+3 & 1 & 2\\
+1 & 4 & 3\\
+2 & 3 & 5
+\end{pmatrix}
+=
+\begin{pmatrix}
+3x_1+x_2+2x_3
+&
+x_1+4x_2+3x_3
+&
+2x_1+3x_2+5x_3
+\end{pmatrix}
+\]
+
+Entonces,
+\[
+q(x)
+=
+\begin{pmatrix}
+3x_1+x_2+2x_3
+&
+x_1+4x_2+3x_3
+&
+2x_1+3x_2+5x_3
+\end{pmatrix}
+\begin{pmatrix}
+x_1\\
+x_2\\
+x_3
+\end{pmatrix}
+\]
+
+Multiplicando ahora por la última matriz, obtenemos:
+\[
+q(x)
+=
+(3x_1+x_2+2x_3)x_1
++
+(x_1+4x_2+3x_3)x_2
++
+(2x_1+3x_2+5x_3)x_3
+\]
+
+Distribuyendo:
+\[
+q(x)
+=
+3x_1^2+x_1x_2+2x_1x_3
++
+x_1x_2+4x_2^2+3x_2x_3
++
+2x_1x_3+3x_2x_3+5x_3^2
+\]
+
+Agrupando términos semejantes:
+\[
+q(x)
+=
+3x_1^2
++
+4x_2^2
++
+5x_3^2
++
+2x_1x_2
++
+4x_1x_3
++
+6x_2x_3
+\]
+
+{\color{teal}
+Por lo tanto, al calcular \(x^TQx\), recuperamos exactamente la forma cuadrática original}
+
 
 % (Omitir \documentclass y paquetes según tu preferencia)
 
@@ -5029,8 +5108,116 @@ Sea una forma cuadrática \(q(x)=x^T Q x\) con matriz simétrica \(Q\) y autoval
 \end{itemize}
 
 
-\subsection*{Ejemplo práctico}
 
+\subsection*{Intuición geométrica}
+
+La clasificación de una forma cuadrática nos dice qué forma tiene el gráfico de \(q(x)=x^TQx\).
+
+En el caso de dos variables independientes, \(q(x_1,x_2)\), podemos dibujar su gráfico en tres dimensiones. La matriz \(Q\) determina si ese gráfico se parece a un bowl abierto hacia arriba, a un bowl dado vuelta, a un bowl achatado o a una silla de montar.
+
+Por eso, los autovalores de \(Q\) nos dan información sobre cómo se curva el gráfico en distintas direcciones.
+
+
+
+
+\begin{itemize}
+  \item \textbf{Definida positiva:} el gráfico tiene forma de bowl abierto hacia arriba, como un bowl de cereales. El origen es el punto más bajo y, al movernos en cualquier dirección distinta de cero, el valor de \(q\) aumenta.
+
+  \item \textbf{Semidefinida positiva:} el gráfico mira hacia arriba, pero puede tener alguna dirección plana. Se parece a un bowl parcialmente achatado.
+
+  \item \textbf{Definida negativa:} el gráfico tiene forma de bowl dado vuelta, abierto hacia abajo. El origen es el punto más alto.
+
+  \item \textbf{Semidefinida negativa:} el gráfico mira hacia abajo, pero puede tener alguna dirección plana. Es como un bowl invertido y achatado en alguna dirección.
+
+  \item \textbf{Indefinida:} el gráfico sube en algunas direcciones y baja en otras. En dos variables independientes, la figura típica es una silla de montar.
+\end{itemize}
+
+
+\subsection*{Aclaración sobre dimensiones mayores}
+
+La intuición del bowl o de la silla de montar es más fácil de visualizar con dos variables, porque el gráfico puede dibujarse en tres dimensiones.
+
+Si la forma cuadrática tiene más variables, el gráfico estaría en más dimensiones y ya no podemos dibujarlo directamente. Sin embargo, la idea sigue siendo la misma: los autovalores indican cómo se comporta \(q(x)\) en distintas direcciones.
+
+{\color{teal}
+Si todos los autovalores son positivos, \(q(x)\) crece en todas las direcciones; si todos son negativos, decrece en todas las direcciones; si hay positivos y negativos, sube en algunas direcciones y baja en otras}
+
+
+\subsection*{Ejemplo}
+
+
+Planteamos una forma cuadrática homogénea de grado 2
+\[
+q(x_1,x_2,x_3)=2x_1^2+2x_2^2+3x_3^2+2x_1x_2
+\]
+
+La matriz simétrica asociada es
+\[
+Q=\begin{pmatrix}
+2 & 1 & 0\\
+1 & 2 & 0\\
+0 & 0 & 3
+\end{pmatrix}
+\]
+de modo que \(q(x)=x^\top Q x\)
+
+Polinomio característico:
+\[
+\chi_Q(\lambda)=\det(Q-\lambda I)
+=\det\!\begin{pmatrix}
+2-\lambda & 1 & 0\\
+1 & 2-\lambda & 0\\
+0 & 0 & 3-\lambda
+\end{pmatrix}
+=(3-\lambda)\big((2-\lambda)^2-1\big)
+\]
+
+Factorización
+\[
+\chi_Q(\lambda)=(3-\lambda)\,(\lambda-1)\,(\lambda-3)
+\]
+
+Autovalores
+\[ \color{teal}
+\lambda_1=1,\quad \lambda_2=3,\quad \lambda_3=3
+\]
+
+Como \(\lambda_i>0\) para todo \(i\), concluimos que \(q\) es \textbf{definida positiva}
+
+
+% HACER EXPLICACION DE FORMAS CUADRATICAS RESTRINGIDAS
+
+
+\subsection*{Formas cuadráticas restringidas}
+
+
+
+Una forma cuadrática \(q(x)=x^T A x\) asigna a cada vector \(x\) un número real. Estudiar su signo significa preguntar si ese número es siempre positivo, siempre negativo, o si puede cambiar de signo según la dirección elegida.
+
+Cuando aparecen restricciones lineales, ya no estudiamos la forma cuadrática en todo el espacio, sino solamente sobre los vectores que cumplen esas restricciones. Es decir, si las restricciones se escriben como
+\[
+C x = 0
+\]
+entonces solo nos interesan los vectores \(x\) que satisfacen ese sistema de ecuaciones.
+
+La idea central es que las restricciones reducen las direcciones posibles. Por eso, una forma cuadrática que no es positiva definida en todo el espacio podría ser positiva definida si la miramos solamente sobre las direcciones permitidas por las restricciones.
+
+Para estudiar una forma cuadrática restringida, hay dos métodos equivalentes:
+
+\begin{itemize}
+    \item \textbf{Método por parametrización:} se resuelven las restricciones y se escriben las variables originales en función de una o más variables libres
+
+    \item \textbf{Método matricial:} se busca una matriz \(B\) cuyas columnas describan todas las direcciones permitidas por las restricciones, y se estudia la nueva matriz restringida
+    \[
+    M = B^T A B
+    \]
+\end{itemize}
+
+En ambos casos, el objetivo es transformar la forma original en una nueva forma cuadrática más pequeña, escrita solamente en términos de las variables libres. Luego se estudia el signo de esa forma restringida.
+
+
+
+\subsubsection*{Ejemplo}
 Estudiar el signo de
 \[
 \varphi(x_1,x_2,x_3)
@@ -5081,113 +5268,469 @@ Como \(2\,y^2>0\) para todo \(y\neq0\), la forma cuadrática
 \(\varphi\) es \emph{positiva definida} en el subespacio
 definido por las dos restricciones.
 
+\noindent\textbf{Verificación mediante autovalores.}\\
+La forma restringida es
+\[
+\psi(y)=2y^2
+\]
 
-\subsection*{Método matricial (sin sustitución directa)}
+Matricialmente, esto se puede escribir como
+\[
+\psi(y)=y^T M y
+\]
+donde
+\[
+M=(2)
+\]
+
+Como \(M\) es una matriz de \(1\times 1\), su único autovalor es
+\[
+\lambda_1=2
+\]
+
+Como el único autovalor de la matriz restringida es positivo, la forma restringida es positiva definida.
+
+\medskip
+\subsection*{Método matricial: matriz de direcciones permitidas}
 
 Queremos estudiar
 \[
-\varphi(x) = x^T A x,
+\varphi(x)=x^T A x
 \]
-sujeta a las restricciones lineales \(C\,x=0\). 
+sujeta a las restricciones lineales
+\[
+C x=0
+\]
 
-\paragraph*{1. Matriz \(A\) y restricción \(C\).}  
+\paragraph*{1. Matriz \(A\) y matriz de restricciones \(C\).}
+
 De
 \[
 \varphi(x_1,x_2,x_3)
-= x_1^2 - 2x_1x_2 + 3x_2^2 + x_3^2
+=
+x_1^2-2x_1x_2+3x_2^2+x_3^2
 \]
-leemos
+obtenemos la matriz de coeficientes
 \[
-A = \begin{pmatrix}
+A=
+\begin{pmatrix}
 1 & -1 & 0\\[4pt]
--1 &  3 & 0\\[4pt]
- 0 &  0 & 1
+-1 & 3 & 0\\[4pt]
+0 & 0 & 1
 \end{pmatrix}
 \]
-y las ecuaciones
+
+Las restricciones son
 \[
 \begin{cases}
-x_1 + x_2 - x_3 = 0,\\
--\,x_1 + x_3 = 0
+x_1+x_2-x_3=0\\[4pt]
+-x_1+x_3=0
 \end{cases}
-\;\Longrightarrow\;
-C = \begin{pmatrix}
-1 & 1 & -1\\[4pt]
--1 & 0 &  1
-\end{pmatrix}.
 \]
-
-\paragraph*{2. Base del espacio restringido (cálculo de \(\ker C\)).}
-
-Partimos de
+por lo tanto
 \[
-C = \begin{pmatrix}
+C=
+\begin{pmatrix}
 1 & 1 & -1\\[4pt]
 -1 & 0 & 1
-\end{pmatrix},
-\quad
-x = \begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix},
+\end{pmatrix}
 \]
-y resolvemos la ecuación lineal
+
+\paragraph*{2. Matriz de direcciones permitidas.}
+
+Buscamos describir todos los vectores \(x\) que cumplen las restricciones. Partimos de
 \[
-C\,x = 0
-\;\Longleftrightarrow\;
 \begin{cases}
-x_1 + x_2 - x_3 = 0,\\[4pt]
--\,x_1 + x_3 = 0.
+x_1+x_2-x_3=0\\[4pt]
+-x_1+x_3=0
 \end{cases}
 \]
+
 De la segunda ecuación se obtiene
 \[
-x_3 = x_1.
+x_3=x_1
 \]
-Sustituyendo en la primera:
+
+Sustituyendo en la primera restricción:
 \[
-x_1 + x_2 - x_1 = 0
-\;\Longrightarrow\;
-x_2 = 0.
+x_1+x_2-x_1=0
 \]
-Así, todo vector \(x\) en \(\ker C\) tiene la forma
 \[
-x = \begin{pmatrix}x_1\\0\\x_1\end{pmatrix}
-= x_1 \begin{pmatrix}1\\0\\1\end{pmatrix}.
+x_2=0
 \]
-Por tanto una base de \(\ker C\) está dada por la columna
+
+Entonces todo vector que cumple las restricciones tiene la forma
 \[
-B = \begin{pmatrix}1\\0\\1\end{pmatrix},
+x=
+\begin{pmatrix}
+x_1\\
+0\\
+x_1
+\end{pmatrix}
 \]
-y cualquier \(x\) que satisfaga las restricciones se puede escribir \(x = B\,y\), donde \(y\in\mathbb{R}\) es la variable libre.
 
-
-
-
-
-
-
-
-
-\paragraph*{3. Forma cuadrática restringida.}  
-La matriz de la forma en la variable libre \(y\) es
+Sacando factor común \(x_1\), obtenemos
 \[
-M = B^T A B
-= \begin{pmatrix}1 & 0 & 1\end{pmatrix}
-  \begin{pmatrix}
-    1 & -1 & 0\\
-   -1 &  3 & 0\\
-    0 &  0 & 1
-  \end{pmatrix}
-  \begin{pmatrix}1\\0\\1\end{pmatrix}
-= 2.
+x=
+x_1
+\begin{pmatrix}
+1\\
+0\\
+1
+\end{pmatrix}
 \]
-Por tanto la forma restringida es
+
+Si llamamos \(y=x_1\), podemos escribir
 \[
-\psi(y) = y^T M y = 2\,y^2.
+x=
+\begin{pmatrix}
+1\\
+0\\
+1
+\end{pmatrix}y
 \]
 
-\paragraph*{4. Conclusión.}  
-Como \(M=2>0\), la forma \(\varphi\) es \emph{positiva definida} sobre el subespacio dado por las restricciones.
+Por lo tanto, definimos la matriz de direcciones permitidas como
+\[
+B=
+\begin{pmatrix}
+1\\
+0\\
+1
+\end{pmatrix}
+\]
+
+La matriz \(B\) contiene las direcciones que cumplen las restricciones. En este caso hay una sola dirección permitida, por eso \(B\) tiene una sola columna.
+
+\paragraph*{3. Forma cuadrática restringida.}
+
+Como todo vector que cumple las restricciones se puede escribir como
+\[
+x=By
+\]
+sustituimos esto en la forma cuadrática original:
+\[
+\varphi(x)=x^T A x
+\]
+
+Entonces
+\[
+\varphi(By)=(By)^T A(By)
+\]
+
+Usando que
+\[
+(By)^T=y^T B^T
+\]
+queda
+\[
+\varphi(By)=y^T B^T A B y
+\]
+
+Por eso, la matriz de la forma cuadrática restringida es
+\[
+M=B^T A B
+\]
+
+Calculamos:
+\[
+M
+=
+\begin{pmatrix}
+1 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & -1 & 0\\[4pt]
+-1 & 3 & 0\\[4pt]
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1\\[4pt]
+0\\[4pt]
+1
+\end{pmatrix}
+\]
+
+Primero:
+\[
+A B
+=
+\begin{pmatrix}
+1 & -1 & 0\\[4pt]
+-1 & 3 & 0\\[4pt]
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1\\[4pt]
+0\\[4pt]
+1
+\end{pmatrix}
+=
+\begin{pmatrix}
+1\\[4pt]
+-1\\[4pt]
+1
+\end{pmatrix}
+\]
+
+Luego:
+\[
+B^T A B
+=
+\begin{pmatrix}
+1 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1\\[4pt]
+-1\\[4pt]
+1
+\end{pmatrix}
+=
+2
+\]
+
+Por lo tanto,
+\[
+M=(2)
+\]
+
+y la forma cuadrática restringida queda
+\[
+\psi(y)=y^T M y
+\]
+\[
+\psi(y)=2y^2
+\]
+
+\paragraph*{4. Verificación mediante autovalores.}
+
+Como la matriz restringida es
+\[
+M=(2)
+\]
+su único autovalor es
+\[
+\lambda_1=2
+\]
+
+Como
+\[
+\lambda_1>0
+\]
+la forma restringida es positiva definida.
+
+\paragraph*{5. Conclusión.}
+
+La forma cuadrática original, restringida a los vectores que cumplen las restricciones, queda reducida a
+\[
+\psi(y)=2y^2
+\]
+
+Como
+\[
+2y^2>0
+\quad \text{para todo } y\neq 0
+\]
+concluimos que la forma cuadrática \(\varphi\) es \emph{positiva definida} sobre las direcciones permitidas por las restricciones.
 
 
+
+
+
+
+
+
+
+\subsection*{Otro ejemplo}
+\[
+\varphi(x_1,x_2,x_3)=x_1^2+2x_2^2-x_3^2
+\]
+sujeta a la restricción lineal
+\[
+x_3=0
+\]
+
+\subsubsection*{Método matricial con matriz de direcciones permitidas}
+
+La forma cuadrática puede escribirse como
+\[
+\varphi(x)=x^T A x
+\]
+donde
+\[
+A=
+\begin{pmatrix}
+1 & 0 & 0\\[4pt]
+0 & 2 & 0\\[4pt]
+0 & 0 & -1
+\end{pmatrix}
+\]
+
+La restricción es
+\[
+x_3=0
+\]
+
+Entonces todo vector que cumple la restricción tiene la forma
+\[
+x=
+\begin{pmatrix}
+x_1\\
+x_2\\
+0
+\end{pmatrix}
+\]
+
+Si llamamos
+\[
+y_1=x_1,
+\qquad
+y_2=x_2
+\]
+entonces podemos escribir
+\[
+x=
+y_1
+\begin{pmatrix}
+1\\
+0\\
+0
+\end{pmatrix}
++
+y_2
+\begin{pmatrix}
+0\\
+1\\
+0
+\end{pmatrix}
+\]
+
+Por lo tanto, la matriz de direcciones permitidas es
+\[
+B=
+\begin{pmatrix}
+1 & 0\\[4pt]
+0 & 1\\[4pt]
+0 & 0
+\end{pmatrix}
+\]
+
+Así,
+\[
+x=By
+\]
+donde
+\[
+y=
+\begin{pmatrix}
+y_1\\
+y_2
+\end{pmatrix}
+\]
+
+Ahora sustituimos en la forma cuadrática:
+\[
+\varphi(x)=x^T A x
+\]
+\[
+\varphi(By)=(By)^T A(By)
+\]
+\[
+\varphi(By)=y^T B^T A B y
+\]
+
+Por lo tanto, la matriz restringida es
+\[
+M=B^T A B
+\]
+
+Calculamos:
+\[
+M=
+\begin{pmatrix}
+1 & 0 & 0\\[4pt]
+0 & 1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0\\[4pt]
+0 & 2 & 0\\[4pt]
+0 & 0 & -1
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0\\[4pt]
+0 & 1\\[4pt]
+0 & 0
+\end{pmatrix}
+\]
+
+Primero:
+\[
+A B=
+\begin{pmatrix}
+1 & 0 & 0\\[4pt]
+0 & 2 & 0\\[4pt]
+0 & 0 & -1
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0\\[4pt]
+0 & 1\\[4pt]
+0 & 0
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0\\[4pt]
+0 & 2\\[4pt]
+0 & 0
+\end{pmatrix}
+\]
+
+Luego:
+\[
+B^T A B=
+\begin{pmatrix}
+1 & 0 & 0\\[4pt]
+0 & 1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0\\[4pt]
+0 & 2\\[4pt]
+0 & 0
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0\\[4pt]
+0 & 2
+\end{pmatrix}
+\]
+
+Entonces
+\[
+M=
+\begin{pmatrix}
+1 & 0\\[4pt]
+0 & 2
+\end{pmatrix}
+\]
+
+La forma restringida queda
+\[
+\psi(y)=y^T M y
+\]
+\[
+\psi(y_1,y_2)=y_1^2+2y_2^2
+\]
+
+Los autovalores de \(M\) son
+\[
+\lambda_1=1,
+\qquad
+\lambda_2=2
+\]
+
+Como ambos autovalores son positivos, la forma restringida es definida positiva.
+
+{\color{teal}
+\textbf{Conclusión:} la forma cuadrática \(\varphi\) es definida positiva sobre las direcciones permitidas por la restricción \(x_3=0\)}
 \newpage
 
 \section{Menores}
