@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.15)  6 MAY 2026 03:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.15)  14 MAY 2026 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -786,6 +786,22 @@ ikzlibrarydecorations.softclip.code.tex
 gflibraryfillbetween.code.tex)))
 (C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlib
 rarypgfplots.decorations.softclip.code.tex))
+(C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
+aryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowinset=\dimen293
+\pgfarrowlength=\dimen294
+\pgfarrowwidth=\dimen295
+\pgfarrowlinewidth=\dimen296
+)
+(C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibraryfit.code.tex
+File: tikzlibraryfit.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
 (C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
 
@@ -843,7 +859,7 @@ ty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen293
+\@linkdim=\dimen297
 \Hy@linkcounter=\count359
 \Hy@pagecounter=\count360
  (C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
@@ -873,7 +889,7 @@ Package hyperref Info: Bookmarks ON on input line 4462.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4801.
-\XeTeXLinkMargin=\dimen294
+\XeTeXLinkMargin=\dimen298
 
 (C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -884,8 +900,8 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 \Fld@menulength=\count363
-\Field@Width=\dimen295
-\Fld@charsize=\dimen296
+\Field@Width=\dimen299
+\Fld@charsize=\dimen300
 Package hyperref Info: Hyper figures OFF on input line 6078.
 Package hyperref Info: Link nesting OFF on input line 6083.
 Package hyperref Info: Hyper index ON on input line 6086.
@@ -917,7 +933,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip59
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 38.
+Package hyperref Info: Option `colorlinks' set `true' on input line 39.
 
 (C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.sty
 Package: csquotes 2024-04-04 v5.2o context-sensitive quotations (JAW)
@@ -1183,11 +1199,11 @@ Package: xparse 2024-08-16 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2025/07/10 v3.21 expl3 case changing code for biblatex
 ))
-Package biblatex Info: Redefining '\cite' on input line 48.
-Package biblatex Info: Redefining '\parencite' on input line 60.
-Package biblatex Info: Redefining '\footcite' on input line 72.
-Package biblatex Info: Redefining '\footcitetext' on input line 78.
-Package biblatex Info: Redefining '\textcite' on input line 84.
+Package biblatex Info: Redefining '\cite' on input line 49.
+Package biblatex Info: Redefining '\parencite' on input line 61.
+Package biblatex Info: Redefining '\footcite' on input line 73.
+Package biblatex Info: Redefining '\footcitetext' on input line 79.
+Package biblatex Info: Redefining '\textcite' on input line 85.
 
 (C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
@@ -1216,24 +1232,24 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
 (matematica aplicada 1.aux)
 \openout1 = `"matematica aplicada 1.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1274,13 +1290,13 @@ LaTeX Font Info:    ... okay on input line 142.
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count502
-\scratchdimen=\dimen297
+\scratchdimen=\dimen301
 \scratchbox=\box74
 \nofMPsegments=\count503
 \nofMParguments=\count504
 \everyMPshowfont=\toks54
 \MPscratchCnt=\count505
-\MPscratchDim=\dimen298
+\MPscratchDim=\dimen302
 \MPnumerator=\count506
 \makeMPintoPDFobject=\count507
 \everyMPtoPDFconversion=\toks55
@@ -1298,7 +1314,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-Package hyperref Info: Link coloring ON on input line 142.
+Package hyperref Info: Link coloring ON on input line 143.
 (matematica aplicada 1.out) (matematica aplicada 1.out)
 \@outlinefile=\write5
 \openout5 = `"matematica aplicada 1.out"'.
@@ -1318,20 +1334,20 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file '"matematica aplicada 1".bbl' found.
  (matematica aplicada 1.bbl)
-Package biblatex Info: Reference section=0 on input line 142.
-Package biblatex Info: Reference segment=0 on input line 142.
+Package biblatex Info: Reference section=0 on input line 143.
+Package biblatex Info: Reference segment=0 on input line 143.
 
 
 [1
 
 {C:/Users/juanc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 160
+LaTeX Font Info:    Trying to load font information for U+msa on input line 161
 .
 
 (C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 160
+LaTeX Font Info:    Trying to load font information for U+msb on input line 161
 .
 
 (C:\Users\juanc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1343,7 +1359,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.161 \newpage
+l.162 \newpage
                [1] (matematica aplicada 1.toc)
 \tf@toc=\write6
 \openout6 = `"matematica aplicada 1.toc"'.
@@ -1393,7 +1409,7 @@ l.161 \newpage
 [22]
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 1230--1233
+Underfull \hbox (badness 10000) in paragraph at lines 1231--1234
 
  []
 
@@ -1444,15 +1460,15 @@ pdfTeX warning (ext4): destination with the same identifier (name{equation.1})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2520 \]
+l.2521 \]
          
 pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2520 \]
+l.2521 \]
          ]
-Overfull \hbox (1.28403pt too wide) detected at line 2579
+Overfull \hbox (1.28403pt too wide) detected at line 2580
 [][]
  []
 
@@ -1499,7 +1515,7 @@ Overfull \hbox (1.28403pt too wide) detected at line 2579
 [64]
 
 [65]
-Overfull \hbox (14.76361pt too wide) in paragraph at lines 4243--4245
+Overfull \hbox (14.76361pt too wide) in paragraph at lines 4244--4246
 []\OT1/cmr/bx/n/10 Demanda ho-mog^^Senea de grado cero en pre-cios e in-greso: 
 \OT1/cmr/m/n/10 Una funci^^Son de de-manda $\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10
  (\OML/cmm/m/it/10 p[]; [] ; p[]; M\OT1/cmr/m/n/10 )$
@@ -1556,7 +1572,7 @@ Overfull \hbox (14.76361pt too wide) in paragraph at lines 4243--4245
 [89]
 
 [90]
-Package pgfplots info on input line 6369: fill between: activating layered grap
+Package pgfplots info on input line 6370: fill between: activating layered grap
 hics
 \pgf@layerbox@axis background=\box75
 \pgf@layerboxsaved@axis background=\box76
@@ -1574,18 +1590,18 @@ hics
 \pgf@layerboxsaved@axis descriptions=\box88
 \pgf@layerbox@axis foreground=\box89
 \pgf@layerboxsaved@axis foreground=\box90
-Package pgfplots info on input line 6369: Setting layers 'axis background,axis 
+Package pgfplots info on input line 6370: Setting layers 'axis background,axis 
 grid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axi
 s foreground'...
-Package pgfplots info on input line 6401: fill between: activating layered grap
+Package pgfplots info on input line 6402: fill between: activating layered grap
 hics
-Package pgfplots info on input line 6401: Setting layers 'axis background,axis 
+Package pgfplots info on input line 6402: Setting layers 'axis background,axis 
 grid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axi
 s foreground'...
 
 
 [91]
-Underfull \hbox (badness 10000) in paragraph at lines 6435--6436
+Underfull \hbox (badness 10000) in paragraph at lines 6436--6437
 
  []
 
@@ -1594,7 +1610,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6435--6436
 [92]
 
 [93]
-Underfull \hbox (badness 10000) in paragraph at lines 6648--6649
+Underfull \hbox (badness 10000) in paragraph at lines 6649--6650
 
  []
 
@@ -1609,19 +1625,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 6648--6649
 [97]
 
 [98]
-Underfull \hbox (badness 10000) in paragraph at lines 7135--7136
+Underfull \hbox (badness 10000) in paragraph at lines 7136--7137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7167--7168
+Underfull \hbox (badness 10000) in paragraph at lines 7168--7169
 
  []
 
 
 
 [99]
-Underfull \hbox (badness 10000) in paragraph at lines 7276--7277
+Underfull \hbox (badness 10000) in paragraph at lines 7277--7278
 
  []
 
@@ -1638,32 +1654,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 7276--7277
 [104]
 
 [105]
-pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.7651 \begin{equation}
-                       \label{FOC}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.7651 \begin{equation}
-                       \label{FOC}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.7651 \begin{equation}
-                       \label{FOC}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.7651 \begin{equation}
-                       \label{FOC}
 
 [106]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7745 \begin{equation}
+                       \label{FOC}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7745 \begin{equation}
+                       \label{FOC}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7745 \begin{equation}
+                       \label{FOC}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7745 \begin{equation}
+                       \label{FOC}
 
 [107]
 
@@ -1684,14 +1700,14 @@ l.7651 \begin{equation}
 [115]
 
 [116]
-Underfull \hbox (badness 10000) in paragraph at lines 8471--8474
+Underfull \hbox (badness 10000) in paragraph at lines 8479--8482
 
  []
 
 
 
 [117]
-Overfull \hbox (9.08223pt too wide) detected at line 8616
+Overfull \hbox (9.08223pt too wide) detected at line 8624
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; y[]; z[]; ^^U[]; ^^U[]\OT1/cmr/m/n/10 
 ) = []
  []
@@ -1721,13 +1737,13 @@ Overfull \hbox (9.08223pt too wide) detected at line 8616
 [128]
 
 [129]
-Underfull \hbox (badness 10000) in paragraph at lines 9510--9511
+
+[130]
+Underfull \hbox (badness 10000) in paragraph at lines 9611--9612
 
  []
 
 
-
-[130]
 
 [131]
 
@@ -1740,36 +1756,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 9510--9511
 [135]
 
 [136]
-Overfull \hbox (5.8367pt too wide) in paragraph at lines 10111--10114
-[]\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
-m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
-10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
-\OML/cmm/m/it/10 g[]; [] ; g[]$
- []
-
-
 
 [137]
-Overfull \hbox (5.8367pt too wide) in paragraph at lines 10159--10162
+Overfull \hbox (5.8367pt too wide) in paragraph at lines 10212--10215
 []\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
 m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
 10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
 \OML/cmm/m/it/10 g[]; [] ; g[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10195--10196
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10246--10247
-
  []
 
 
 
 [138]
+Overfull \hbox (5.8367pt too wide) in paragraph at lines 10260--10263
+[]\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
+m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
+10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
+\OML/cmm/m/it/10 g[]; [] ; g[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10296--10297
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10347--10348
+
+ []
+
+
 
 [139]
 
@@ -1779,7 +1795,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 10246--10247
 
 [142]
 
-[143] (matematica aplicada 1.aux)
+[143]
+
+[144] (matematica aplicada 1.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
@@ -1792,11 +1810,11 @@ Package logreq Info: Writing requests to '"matematica aplicada 1".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49781 strings out of 468133
- 1148832 string characters out of 5430712
- 2051711 words of memory out of 5000000
- 77040 multiletter control sequences out of 15000+600000
- 641254 words of font info for 94 fonts, out of 8000000 for 9000
+ 50265 strings out of 468133
+ 1161368 string characters out of 5430712
+ 2063671 words of memory out of 5000000
+ 77513 multiletter control sequences out of 15000+600000
+ 641599 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,26n,91p,1100b,2221s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\juanc\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
@@ -1804,41 +1822,62 @@ Here is how much of TeX's memory you used:
 ts/cm/cmbx10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmbx12.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/t
 ype1/public/amsfonts/cm/cmbx8.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/juanc/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/juanc/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/ju
-anc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb
+/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/juanc/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/juanc/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/juanc/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/
+Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/c
+mex8.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmmi12.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/juanc/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/juanc/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/juanc/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/ju
+anc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/
+Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.
+pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr5.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr6.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/juanc/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/juanc/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/juanc/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/juanc
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Use
+rs/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 ><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmmi12.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmmi5.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/juanc/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/juanc/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/juanc/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ju
-anc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
-Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.p
-fb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmr6.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr7.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr9.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/juanc/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/juanc/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/juanc/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/juanc
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Use
-rs/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pf
-b><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmti8.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmtt10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/symbols/msam10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/juanc/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "matematica aplicada 1.pdf" (144 pages, 1128515 bytes).
+msy9.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmti10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmti8.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmti9.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/juanc/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/juanc/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/User
+s/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7
+.pfb>
+Output written on "matematica aplicada 1.pdf" (145 pages, 1169554 bytes).
 PDF statistics:
- 1810 PDF objects out of 2073 (max. 8388607)
+ 1831 PDF objects out of 2073 (max. 8388607)
  711 named destinations out of 1000 (max. 500000)
  213 words of extra memory for PDF output out of 10000 (max. 10000000)
+
+pfb
+><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+msy9.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmti10.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmti8.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmti9.pfb><C:/Users/juanc/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/juanc/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/juanc/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/User
+s/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7
+.pfb>
+Output written on "matematica aplicada 1.pdf" (146 pages, 1162916 bytes).
+PDF statistics:
+ 1801 PDF objects out of 2073 (max. 8388607)
+ 711 named destinations out of 1000 (max. 500000)
+ 189 words of extra memory for PDF output out of 10000 (max. 10000000)
 

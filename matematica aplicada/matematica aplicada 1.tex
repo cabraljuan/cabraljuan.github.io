@@ -26,7 +26,8 @@
 \usepackage{pgfplots}
 \usepgfplotslibrary{polar,fillbetween}
 \pgfplotsset{compat=1.18} % usa 1.17 si tu TeX es más viejo
-
+\usetikzlibrary{arrows.meta, positioning, fit, shapes.geometric, calc}
+% \definecolor{teal}{RGB}{0,128,128}
 % === Colores & enlaces ===
 \usepackage{xcolor} % mejor que 'color'
 \usepackage{hyperref}
@@ -137,7 +138,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%
 % --- tu versión ---
-\newcommand{\version}{1.3}
+\newcommand{\version}{1.5}
 
 \begin{document}
 
@@ -6892,7 +6893,7 @@ Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de ni
     width=8cm, height=6cm,
     axis lines=middle,
     xlabel={$x$}, ylabel={$y$},
-    title={Cuasiconvexa y cuasic\'oncava: $g(x,y)=x+y$},
+    title={Cuasiconvexa (no estricta) y cuasic\'oncava (no estricta):  $g(x,y)=x+y$},
     xmin=0, xmax=2.5,
     ymin=0, ymax=2.5,
     domain=0:2,
@@ -7176,12 +7177,12 @@ x & 1 & 0
 \noindent\textbf{Conclusión}\\
 Para cuasiconcavidad en el dominio convexo \(A\) se exige
 \[
-D_1 <0,\quad D_2\ge0
+D_1 <0,\quad D_2>0
 \]
-Como \(x,y>0\) garantizan \(D_1<0\) y \(D_2>0\), concluimos que
+Como \(x,y>0\) garantizan \(D_1<0\) y $D_2 > 0$, concluimos que
 \[
 \color{teal}
-f(x,y)=x\,y\text{ es cuasicóncava en }A
+f(x,y)=x\,y\text{ es estrictamente cuasicóncava en }A 
 \]
 
 
@@ -7206,7 +7207,7 @@ f(x,y)=x\,y\text{ es cuasicóncava en }A
     \begin{itemize}
       \item Suma y combinación lineal (con coeficientes no negativos) de cóncavas/convexas produce una función cóncava/convexa
       \item La suma de funciones cuasicóncavas/cuasiconvexas no siempre es cuasicóncava/cuasiconvexa
-      \item La cuasiconcavidad/cuasiconvexidad se conserva bajo composición con funciones estrictamente crecientes
+      \item La estricta cuasiconcavidad/cuasiconvexidad se conserva bajo composición con funciones estrictamente crecientes
       \item Además, sea
       \[
         h(x) = (g\circ f)(x)
@@ -7287,8 +7288,10 @@ D_1<0,\quad D_2>0
 
 
 
+
 \newpage
 \section{Optimización sin restricciones}
+
 
 
 \section*{Optimización sin restricciones: cálculo univariable}
@@ -7432,6 +7435,23 @@ Análogamente, \(F\) tiene un \emph{máximo global} en \(U\) si la Hessiana \(H\
 La principal diferencia entre óptimos que son locales y óptimos globales es que al momento de realizar el cálculo de segundas derivadas (con la matriz hessiana), para asegurar un óptimo local tenemos que evaluar el hessiano en un punto particular, de tal forma de mostrar la función tiene un comportamiento similar al de una función estrictamente convexa/cóncava en la vecindad inmediata de $x^*$. Por otro lado, para poder confirmar que un óptimo es global es necesario analizar la forma de la función, analizando el hessiano sin evaluar en ningún punto particular y ver si la función es convexa o cóncava.
 
 
+Resumiendo lo anterior tenemos:
+\medskip
+
+
+\textbf{Teorema:} Sea \( f : D \to \mathbb{R} \) con \( D \subseteq \mathbb{R}^n \), abierto y convexo, \( f \in C^1(D) \) y sea \( \mathbf{x}_0 \in D \) un punto crítico de \( f \).
+
+Se verifica:
+\begin{enumerate}
+    \item Si \( f \) es convexa en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un mínimo global.
+    \item Si \( f \) es estrictamente convexa en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un mínimo global único.
+    \item Si \( f \) es cóncava en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un máximo global.
+    \item Si \( f \) es estrictamente cóncava en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un máximo global único.
+\end{enumerate}
+
+
+
+
 
 \section*{Ejemplo: \(F(x,y)=x^3 - y^3 + 9xy\)}
 
@@ -7551,7 +7571,7 @@ Para determinar si los extremos locales son también globales necesitamos ver si
 \end{pmatrix}
 \]
 
-Los menores principales siguen un patrón ya que por ejemplo $6x$, puede ser negativo o positivo. Lo mismo con $-6y$ y $|H|$. No podemos afirmar que tenemos un óptimo global.
+Los menores principales no siguen un patrón ya que por ejemplo $6x$, puede ser negativo o positivo. Lo mismo con $-6y$ y $|H|$. No podemos afirmar que tenemos un óptimo global.
 
 
 \section*{Ejemplo: \(f(x,y)=x^2+y^2\)}
@@ -7595,17 +7615,6 @@ Sus menores principales son
 
 \textbf{\color{teal}Ya que \(\nabla^2f(x,y) \geq0\) en todo \(\R^2\), \(f\) es \emph{convexa} en \(\R^2\). En toda función convexa cualquier mínimo local es también \emph{mínimo global}. }
 
-\section*{Óptimo local y global únicos}
-
-\textbf{Teorema:} Sea \( f : D \to \mathbb{R} \) con \( D \subseteq \mathbb{R}^n \), abierto y convexo, \( f \in C^1(D) \) y sea \( \mathbf{x}_0 \in D \) un punto crítico de \( f \).
-
-Se verifica:
-\begin{enumerate}
-    \item Si \( f \) es convexa en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un mínimo global.
-    \item Si \( f \) es estrictamente convexa en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un mínimo global único.
-    \item Si \( f \) es cóncava en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un máximo global.
-    \item Si \( f \) es estrictamente cóncava en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un máximo global único.
-\end{enumerate}
 
 
 
@@ -7631,6 +7640,91 @@ Entonces:
   \item \(\varphi(t)=t^3\) (con $t\neq0$ ).
   \item \(\varphi(t)=\sqrt{t}\) (en \(t>0\)).
 \end{itemize}
+
+
+\newpage
+
+% --- Pegar en el preámbulo ---
+% \usepackage{xcolor}
+% \usepackage{tikz}
+% \usetikzlibrary{arrows.meta, positioning, fit, shapes.geometric, calc}
+% \definecolor{teal}{RGB}{0,128,128}
+
+% --- Diagrama de flujo: esquema de análisis sin restricciones ---
+\begin{tikzpicture}[
+  node distance = 8mm and 12mm,
+  >=Stealth,
+  font=\small,
+  block/.style      = {draw, rounded corners, align=center, inner sep=6pt, fill=teal!5},
+  outcome/.style    = {draw, rounded corners, align=center, inner sep=6pt},
+  titlebox/.style   = {draw, very thick, rounded corners, fill=teal!10, align=center, inner sep=6pt},
+  arrow/.style      = {-{Stealth[length=2mm,width=2mm]}, thick}
+]
+
+% Título
+\node (title) [titlebox] {\textbf{Esquema de análisis (sin restricciones)}};
+
+% CPO
+\node (cpo) [block, below=of title] {CPO: $\nabla F(x^*)=\mathbf{0}$\\(puntos críticos)};
+
+% CLASIFICACIÓN LOCAL
+\node (local) [block, below=of cpo] {Evaluar Hessiano en $x^*$: $H(x^*)$};
+
+% Resultados locales (solo mínimo y máximo)
+\node (minloc) [outcome, below left=10mm and -4mm of local, xshift=-18mm]
+  {$H(x^*) \succ 0$\\$\Rightarrow$ \textbf{\color{teal}mínimo local}};
+\node (maxloc) [outcome, below right=10mm and -4mm of local, xshift=18mm]
+  {$H(x^*) \prec 0$\\$\Rightarrow$ \textbf{\color{teal}máximo local}};
+
+% Flechas zona local
+\draw[arrow] (cpo) -- (local);
+\draw[arrow] (local) -- (minloc);
+\draw[arrow] (local) -- (maxloc);
+
+% Caja englobando la parte local
+\node[draw, dashed, rounded corners,
+      fit=(local)(minloc)(maxloc),
+      label={[teal,yshift=18mm]above:\strut Clasificación \textit{local}}] (localbox) {};
+
+% ========================
+% CLASIFICACIÓN GLOBAL (centrada y simétrica)
+% ========================
+
+% Nodo de arranque global
+\node (global) [block, below=18mm of localbox.south]
+  {Analizar $H(x)$ en el dominio (sin evaluar en un punto)};
+
+% Punto medio para centrar columnas globales
+\coordinate (globmid) at ($(global.south)+(0,-8mm)$);
+
+% Columna izquierda (mínimos), anclada a la izquierda del punto medio
+\node (minglob) [outcome, text width=42mm, anchor=north east]
+  at ($(globmid)+(-10mm,0)$)
+  {$H(x)\succeq 0\ \forall x$\\$\Rightarrow$ $F$ convexa\\$\Rightarrow$ \textbf{\color{teal}mínimo global}};
+\node (minuniq) [outcome, text width=42mm, below=6mm of minglob]
+  {$H(x)\succ 0\ \forall x$\\$\Rightarrow$ $F$ estrictamente convexa\\$\Rightarrow$ \textbf{\color{teal}mínimo global y único}};
+
+% Columna derecha (máximos), anclada a la derecha del punto medio
+\node (maxglob) [outcome, text width=42mm, anchor=north west]
+  at ($(globmid)+(10mm,0)$)
+  {$H(x)\preceq 0\ \forall x$\\$\Rightarrow$ $F$ cóncava\\$\Rightarrow$ \textbf{\color{teal}máximo global}};
+\node (maxuniq) [outcome, text width=42mm, below=6mm of maxglob]
+  {$H(x)\prec 0\ \forall x$\\$\Rightarrow$ $F$ estrictamente cóncava\\$\Rightarrow$ \textbf{\color{teal}máximo global y único}};
+
+% Flechas zona global
+\draw[arrow] (localbox.south) -- (global);
+\draw[arrow] (global) -- (minglob);
+\draw[arrow] (global) -- (minuniq);
+\draw[arrow] (global) -- (maxglob);
+\draw[arrow] (global) -- (maxuniq);
+
+% Caja englobando la parte global
+\node[draw, dashed, rounded corners,
+      fit=(global)(minglob)(minuniq)(maxglob)(maxuniq),
+      label={[teal,yshift=6mm]above:\strut Clasificación \textit{global}}] (globalbox) {};
+
+\end{tikzpicture}
+
 
 \newpage
 
@@ -7909,94 +8003,6 @@ Verifiquemos la envolvente:
     de oferta \(q^*(p)\). En este caso el resultado nos sugiere que ante un aumento del precio de venta, el beneficio máximo se incrementa.
 \end{itemize}
 
-\subsection*{Otro ejemplo económico: minimización de costes sujeto a restricción.}
-
-Consideremos una empresa cuya tecnología de producción viene dada por la función Cobb–Douglas
-\[
-y = F(L,K) = L^\alpha K^{1-\alpha}
-\qquad \alpha\in(0,1)
-\]
-donde \(L\) y \(K\) son trabajo y capital, y \(y>0\) es el nivel de output  
-
-\subsubsection*{Problema de minimización de costes}
-
-Dados los precios de los factores \(w\) (salario) y \(r\) (renta del capital) y el nivel \(y\), la empresa resuelve
-\[
-\min_{L,K}\;\; C = w\,L \;+\; r\,K
-\quad\text{sujeto a}\quad
-L^\alpha K^{1-\alpha} = y
-\]
-
-\subsubsection*{Demanda condicionada y coste mínimo}
-
-Escribimos el Lagrangiano
-\[
-\mathcal L = wL + rK + \mu\bigl(y - L^\alpha K^{1-\alpha}\bigr)
-\]
-Las condiciones de primer orden son
-\[
-\frac{\partial\mathcal L}{\partial L}
-= w - \mu\,\alpha\,L^{\alpha-1}K^{1-\alpha} = 0
-\qquad
-\frac{\partial\mathcal L}{\partial K}
-= r - \mu\,(1-\alpha)\,L^\alpha K^{-\alpha} = 0
-\]
-junto con la restricción \(L^\alpha K^{1-\alpha}=y\). De las dos primeras:
-\[
-\frac{w}{\alpha}L^{1-\alpha}K^{\alpha-1}
-\;=\;
-\frac{r}{1-\alpha}L^{-\alpha}K^\alpha
-\quad\Longrightarrow\quad
-\frac{L^*}{K^*} = \frac{\alpha}{1-\alpha}\,\frac{r}{w}
-\]
-Sustituyendo en \(L^{\alpha}K^{1-\alpha}=y\) y resolviendo se obtienen las demandas condicionadas
-\[\color{teal}
-L^*(w,r,y)
-= y\;\biggl(\frac{\alpha}{w}\biggr)^{\!\alpha}\!\biggl(\frac{1-\alpha}{r}\biggr)^{\!1-\alpha}\alpha
-\quad
-K^*(w,r,y)
-= y\;\biggl(\frac{\alpha}{w}\biggr)^{\!\alpha}\!\biggl(\frac{1-\alpha}{r}\biggr)^{\!1-\alpha}(1-\alpha)
-\]
-El coste mínimo resultante es
-\[\color{teal}
-C(w,r,y)
-= w\,L^*(w,r,y) + r\,K^*(w,r,y)
-= y\;\Bigl(\tfrac{w}{\alpha}\Bigr)^{\!\alpha}
-        \Bigl(\tfrac{r}{1-\alpha}\Bigr)^{\!1-\alpha}
-\]
-
-\subsubsection*{Lema de Shephard}
-
-La función de coste \(C(w,r,y)\) es la envolvente de la familia de funciones \(wL + rK\) sujeta a \(F(L,K)=y\)  
-Por el teorema de la envolvente, al derivar \(C\) con respecto a \(w\) (tratando \(y,r\) constantes) basta con tomar el efecto directo:
-\[
-\frac{\partial C}{\partial w}
-= L^*(w,r,y)
-\]
-De hecho, si derivamos la expresión encontrada:
-\[\color{teal}
-\frac{\partial}{\partial w}
-\Bigl[y\,(w/\alpha)^\alpha(r/(1-\alpha))^{1-\alpha}\Bigr]
-= y\,\alpha\,(w/\alpha)^{\alpha-1}(r/(1-\alpha))^{1-\alpha}
-= L^*(w,r,y)
-\]
-Análogamente,
-\[\color{teal}
-\frac{\partial C}{\partial r}
-= K^*(w,r,y)
-\]
-
-\subsubsection*{Interpretación}
-
-\begin{itemize}
-  \item \(C(w,r,y)\) es la curva de coste de largo plazo: “envuelve” todas las rectas
-    \(wL + rK\) tangentes a las iso-productivas \(L^\alpha K^{1-\alpha}=y\)  
-  \item La envolvente simplifica el cálculo de las \emph{demandas condicionadas}: no necesitamos
-    derivar \(L^*(w,r,y)\) ni \(K^*(w,r,y)\) respecto a \(w\) o \(r\) para obtener \(\partial C/\partial w\),
-    \(\partial C/\partial r\)  
-  \item \textbf{\color{teal}Este resultado se conoce como el Lema de Shephard}. El cual nos dice que una vez que tenemos la función de costo indirecta basta con derivar esta con respecto a los precios de los insumos para encontrar la demanda de insumos condicionada.
-  \end{itemize}
-
 
 \subsection*{Otro ejemplo: Monopolista multiproducto con dos bienes}
 
@@ -8112,6 +8118,8 @@ Al aplicar el \textbf{teorema de la envolvente} al beneficio máximo \(\Pi(b,d)\
   \item Un aumento de \(b\) (la demanda del bien 1 es más sensible a su propia cantidad) \textbf{reduce el beneficio máximo}, ya que \(\tfrac{d\Pi}{db}=-\,(q_{1}^{*})^{2}<0\).
   \item Un aumento de \(d\) (mayor disposición a pagar por el bien 2) \textbf{incrementa el beneficio máximo}, ya que se asume que la cantidad óptima \(\tfrac{d\Pi}{dd}=q_{2}^{*}\) será positiva.
 \end{itemize}
+
+
 
 
 
@@ -8839,6 +8847,99 @@ C_{\min}=10\cdot 200+40\cdot 50=2000+2000=4000.
 \]
 
 {\color{teal}\(\mu^*=40\) nos indica que al relajar la restricción (es decir si en vez de exigir una producción de 100, exigimos solo 99 unidades), el costo mínimo se reduce aproximadamente en \(40\). Por lo tanto el costo nuevo sería de 3960.}
+
+
+
+
+
+\subsection*{Otro ejemplo económico: minimización de costes sujeto a restricción.}
+
+Consideremos una empresa cuya tecnología de producción viene dada por la función Cobb–Douglas
+\[
+y = F(L,K) = L^\alpha K^{1-\alpha}
+\qquad \alpha\in(0,1)
+\]
+donde \(L\) y \(K\) son trabajo y capital, y \(y>0\) es el nivel de output  
+
+\subsubsection*{Problema de minimización de costes}
+
+Dados los precios de los factores \(w\) (salario) y \(r\) (renta del capital) y el nivel \(y\), la empresa resuelve
+\[
+\min_{L,K}\;\; C = w\,L \;+\; r\,K
+\quad\text{sujeto a}\quad
+L^\alpha K^{1-\alpha} = y
+\]
+
+\subsubsection*{Demanda condicionada y coste mínimo}
+
+Escribimos el Lagrangiano
+\[
+\mathcal L = wL + rK + \mu\bigl(y - L^\alpha K^{1-\alpha}\bigr)
+\]
+Las condiciones de primer orden son
+\[
+\frac{\partial\mathcal L}{\partial L}
+= w - \mu\,\alpha\,L^{\alpha-1}K^{1-\alpha} = 0
+\qquad
+\frac{\partial\mathcal L}{\partial K}
+= r - \mu\,(1-\alpha)\,L^\alpha K^{-\alpha} = 0
+\]
+junto con la restricción \(L^\alpha K^{1-\alpha}=y\). De las dos primeras:
+\[
+\frac{w}{\alpha}L^{1-\alpha}K^{\alpha-1}
+\;=\;
+\frac{r}{1-\alpha}L^{-\alpha}K^\alpha
+\quad\Longrightarrow\quad
+\frac{L^*}{K^*} = \frac{\alpha}{1-\alpha}\,\frac{r}{w}
+\]
+Sustituyendo en \(L^{\alpha}K^{1-\alpha}=y\) y resolviendo se obtienen las demandas condicionadas
+\[\color{teal}
+L^*(w,r,y)
+= y\;\biggl(\frac{\alpha}{w}\biggr)^{\!\alpha}\!\biggl(\frac{1-\alpha}{r}\biggr)^{\!1-\alpha}\alpha
+\quad
+K^*(w,r,y)
+= y\;\biggl(\frac{\alpha}{w}\biggr)^{\!\alpha}\!\biggl(\frac{1-\alpha}{r}\biggr)^{\!1-\alpha}(1-\alpha)
+\]
+El coste mínimo resultante es
+\[\color{teal}
+C(w,r,y)
+= w\,L^*(w,r,y) + r\,K^*(w,r,y)
+= y\;\Bigl(\tfrac{w}{\alpha}\Bigr)^{\!\alpha}
+        \Bigl(\tfrac{r}{1-\alpha}\Bigr)^{\!1-\alpha}
+\]
+
+\subsubsection*{Lema de Shephard}
+
+La función de coste \(C(w,r,y)\) es la envolvente de la familia de funciones \(wL + rK\) sujeta a \(F(L,K)=y\)  
+Por el teorema de la envolvente, al derivar \(C\) con respecto a \(w\) (tratando \(y,r\) constantes) basta con tomar el efecto directo:
+\[
+\frac{\partial C}{\partial w}
+= L^*(w,r,y)
+\]
+De hecho, si derivamos la expresión encontrada:
+\[\color{teal}
+\frac{\partial}{\partial w}
+\Bigl[y\,(w/\alpha)^\alpha(r/(1-\alpha))^{1-\alpha}\Bigr]
+= y\,\alpha\,(w/\alpha)^{\alpha-1}(r/(1-\alpha))^{1-\alpha}
+= L^*(w,r,y)
+\]
+Análogamente,
+\[\color{teal}
+\frac{\partial C}{\partial r}
+= K^*(w,r,y)
+\]
+
+\subsubsection*{Interpretación}
+
+\begin{itemize}
+  \item \(C(w,r,y)\) es la curva de coste de largo plazo: “envuelve” todas las rectas
+    \(wL + rK\) tangentes a las iso-productivas \(L^\alpha K^{1-\alpha}=y\)  
+  \item La envolvente simplifica el cálculo de las \emph{demandas condicionadas}: no necesitamos
+    derivar \(L^*(w,r,y)\) ni \(K^*(w,r,y)\) respecto a \(w\) o \(r\) para obtener \(\partial C/\partial w\),
+    \(\partial C/\partial r\)  
+  \item \textbf{\color{teal}Este resultado se conoce como el Lema de Shephard}. El cual nos dice que una vez que tenemos la función de costo indirecta basta con derivar esta con respecto a los precios de los insumos para encontrar la demanda de insumos condicionada.
+  \end{itemize}
+
 
 
 \newpage
