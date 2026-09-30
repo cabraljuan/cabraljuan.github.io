@@ -1,4 +1,8 @@
 
+
+
+
+
 \documentclass{article}
 
 % === Básico ===
@@ -138,7 +142,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%
 % --- tu versión ---
-\newcommand{\version}{1.5}
+\newcommand{\version}{1.6}
 
 \begin{document}
 
@@ -571,126 +575,346 @@ Cada valor de \(c\) determina una curva en el plano \(xy\) que representa los pu
 En esta sección se analiza la importancia de las {\color{teal}curvas de nivel} en el contexto económico, enfocándonos en su uso para representar y analizar funciones de producción y utilidad.
 
 \begin{itemize}
-    \item {\color{teal}Curvas de Nivel:} Representan conjuntos de puntos en los cuales una función de dos variables mantiene un mismo valor. En economía, se utilizan para identificar {\color{teal}combinaciones de insumos o bienes que generan un mismo nivel de producción o satisfacción}.
-    \item {\color{teal}Isocuantas:} En funciones de producción, las curvas de nivel se denominan isocuantas, que muestran las {\color{teal}combinaciones de factores productivos que producen una cantidad constante de output}.
-    \item {\color{teal}Curvas de Indiferencia:} En el análisis de la utilidad, las curvas de nivel se conocen como curvas de indiferencia y representan {\color{teal}combinaciones de bienes que proporcionan el mismo nivel de satisfacción al consumidor}.
+    \item {\color{teal}Curvas de nivel:} representan conjuntos de puntos en los cuales una función de dos variables mantiene un mismo valor. En economía, se utilizan para identificar {\color{teal}combinaciones de insumos o bienes que generan un mismo nivel de producción o satisfacción}
+    
+    \item {\color{teal}Isocuantas:} en funciones de producción, las curvas de nivel se denominan isocuantas y muestran las {\color{teal}combinaciones de factores productivos que producen una cantidad constante de producto}
+    
+    \item {\color{teal}Curvas de indiferencia:} en el análisis de la utilidad, las curvas de nivel se conocen como curvas de indiferencia y representan {\color{teal}combinaciones de bienes que proporcionan el mismo nivel de satisfacción al consumidor}
 \end{itemize}
 
 
+\section*{Propiedades usuales de las curvas de indiferencia}
 
-\section*{Propiedades Deseables de las Curvas de Nivel en Economía}
+Las curvas de nivel derivadas de funciones de utilidad suelen exhibir ciertas propiedades para reflejar comportamientos económicos razonables. A continuación, se describen las características y la intuición económica asociada a cada una.
+\subsection*{1. No se cortan}
 
-Las curvas de nivel derivadas de funciones de utilidad deben exhibir ciertas propiedades para reflejar comportamientos económicos razonables. A continuación, se describen las características y la intuición económica asociada a cada una:
+Cada curva de indiferencia representa un {\color{teal}nivel único de utilidad}. Si dos curvas correspondientes a niveles distintos se cruzaran, una misma combinación de bienes estaría asociada simultáneamente a {\color{teal}dos niveles diferentes de utilidad}, lo cual no es posible para una función de utilidad.
 
-\subsection*{1. No se Cortan}
-\begin{itemize}
-    \item Intuición Económica: Cada curva de nivel representa un {\color{teal}nivel único de utilidad}. Si dos curvas se cruzaran, implicaría que una misma combinación de bienes podría proporcionar {\color{teal}dos niveles diferentes de satisfacción}, lo cual es inconsistente en el análisis de preferencias.
-\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    \draw[->] (0,0) -- (7.3,0) node[right] {$x_1$};
+    \draw[->] (0,0) -- (0,7) node[above] {$x_2$};
 
-\subsection*{2. Pendiente Negativa}
-\begin{itemize}
-    \item Intuición Económica: Para mantener constante la utilidad, un aumento en la cantidad de un bien debe ir acompañado de una disminución en la cantidad del otro.
-\end{itemize}
+    \draw[teal, thick, domain=1:6.5, samples=100]
+        plot (\x,{6/\x});
 
-\subsection*{3. Monotonicidad}
-\begin{itemize}
-    \item Intuición Económica: La {\color{teal}monotonicidad} implica que al aumentar la cantidad de cualquiera de los bienes (mientras se mantiene la otra constante), la utilidad no disminuye. En la gráfica, esto se traduce en curvas que {\color{teal}crecen hacia arriba y a la derecha}, reflejando la preferencia por más cantidad de bienes.
-\end{itemize}
+    \draw[thick, dashed, domain=1.2:6.5, samples=100]
+        plot (\x,{6*sqrt(2)/(\x^1.5)});
 
+    \fill (2,3) circle (2pt);
+    \node[above right=3pt] at (2,3) {$A$};
+
+    \node[teal, above right] at (6.5,{6/6.5}) {$U_1$};
+    \node[below right]
+        at (6.5,{6*sqrt(2)/(6.5^1.5)}) {$U_2$};
+\end{tikzpicture}
+\end{center}
+
+En el punto \(A\), la misma canasta pertenece simultáneamente a las dos curvas dibujadas. Al cortarse, {\color{teal}no pueden representar niveles distintos de una misma función de utilidad}.
+
+\subsection*{2. Pendiente negativa}
+
+Si ambos bienes son deseables, para mantener constante la utilidad un aumento en la cantidad de un bien debe ir acompañado de una disminución en la cantidad del otro.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    \draw[->] (0,0) -- (7,0) node[right] {$x_1$};
+    \draw[->] (0,0) -- (0,7) node[above] {$x_2$};
+
+    \draw[teal, thick, domain=0.8:6.2, samples=100]
+        plot (\x,{1+0.12*\x^2});
+
+    \node[teal, above left=5pt]
+        at (6.2,{1+0.12*6.2^2}) {$U_0$};
+\end{tikzpicture}
+\end{center}
+
+Este contraejemplo muestra una curva de indiferencia {\color{teal}creciente}. En ella, al aumentar \(x_1\), también debe aumentar \(x_2\) para permanecer sobre la misma curva. 
+
+\subsection*{3. Monotonicidad estricta}
+
+La {\color{teal}monotonicidad estricta} implica que, manteniendo constante la cantidad de un bien, un aumento en la cantidad del otro incrementa estrictamente la utilidad. Más generalmente, si una canasta contiene al menos tanta cantidad de ambos bienes como otra y una cantidad estrictamente mayor de al menos uno de ellos, el consumidor prefiere estrictamente la primera canasta.
+
+Gráficamente, bajo monotonicidad estricta, las curvas de indiferencia asociadas a {\color{teal}niveles de utilidad más elevados} se encuentran hacia arriba y a la derecha.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    \draw[->] (0,0) -- (7,0) node[right] {$x_1$};
+    \draw[->] (0,0) -- (0,7) node[above] {$x_2$};
+
+    \draw[thick]
+        (1.0,5.8)
+        .. controls (1.8,4.4) and (2.8,3.2) .. (4.2,2.2)
+        .. controls (5.2,1.5) and (5.8,1.1) .. (6.2,0.9);
+
+    \draw[teal, thick, dashed]
+        (0.7,4.5)
+        .. controls (1.2,3.5) and (2.0,2.6) .. (3.0,1.8)
+        .. controls (3.8,1.2) and (4.4,0.9) .. (4.8,0.7);
+
+    \node at (1.3,5.5) {$U_1$};
+    \node[teal] at (1.0,4.2) {$U_2$};
+\end{tikzpicture}
+\end{center}
+
+Aquí la curva \(U_2\) queda {\color{teal}más cerca del origen} que \(U_1\). Si se interpretara que \(U_2\) representa un nivel de utilidad mayor, entonces más cantidad de ambos bienes no implicaría necesariamente mayor utilidad.
 \subsection*{4. Continuidad}
+
+La {\color{teal}continuidad} asegura que pequeñas variaciones en las cantidades de bienes generan pequeños cambios en la utilidad. Esto permite representar las preferencias sin {\color{teal}saltos abruptos} en los niveles de satisfacción.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    \draw[->] (0,0) -- (7,0) node[right] {$x_1$};
+    \draw[->] (0,0) -- (0,7) node[above] {$x_2$};
+
+    \draw[teal, thick]
+        (0.9,5.7)
+        .. controls (1.6,4.7) and (2.4,3.8) .. (3.0,3.0);
+
+    \draw[teal, thick]
+        (3.45,3.6)
+        .. controls (4.2,2.8) and (5.0,1.9) .. (6.0,1.1);
+
+    \draw[teal, thick, fill=white] (3.0,3.0) circle (0.08);
+    \node[teal, above right=5pt] at (0.9,5.7) {$U_0$};
+\end{tikzpicture}
+\end{center}
+
+Este gráfico ilustra esquemáticamente una falla de continuidad: el círculo abierto representa una canasta excluida de la curva, aunque existen canastas de esa curva que se aproximan a ella. Si todas las canastas de la curva proporcionan utilidad \(U_0\), pero la canasta excluida pertenece al dominio y tiene una utilidad distinta, entonces {\color{teal}la función de utilidad no es continua en ese punto}. 
+\subsection*{5. Convexidad estricta al origen}
+
+La convexidad estricta refleja una preferencia por {\color{teal}combinaciones relativamente balanceadas de bienes}. Si dos canastas distintas proporcionan el mismo nivel de utilidad, cualquier combinación estrictamente intermedia de ambas proporciona un nivel de utilidad mayor.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    \draw[->] (0,0) -- (7,0) node[right] {$x_1$};
+    \draw[->] (0,0) -- (0,7) node[above] {$x_2$};
+
+    \coordinate (A) at (1.5,{6.2-0.13*1.5^2});
+    \coordinate (B) at (6,{6.2-0.13*6^2});
+
+    \draw[thick, dotted] (A) -- (B);
+
+    \draw[teal, thick, domain=0.8:6.4, samples=100]
+        plot (\x,{6.2-0.13*\x^2});
+
+    \fill (A) circle (2pt);
+    \fill (B) circle (2pt);
+
+    \node[below left=3pt] at (A) {$A$};
+    \node[right=4pt] at (B) {$B$};
+
+    \node[teal, above right=5pt]
+        at (3,{6.2-0.13*3^2}) {$U_0$};
+\end{tikzpicture}
+\end{center}
+
+En lugar de ser convexa al origen, es cóncava al origen. El segmento que une \(A\) y \(B\) queda por debajo de la curva. Si ambos bienes son deseables, sus puntos interiores representan canastas estrictamente menos preferidas que los extremos. 
+
+
+
+
+\section*{Recta presupuestaria y métodos de graficación}
+
+Dados un ingreso \(R\) y los precios \(p_1\) y \(p_2\), el {\color{teal}conjunto presupuestario} está formado por todas las combinaciones de bienes que el consumidor puede adquirir sin superar su ingreso:
+
+\[
+{\color{teal}
+p_1x_1+p_2x_2\leq R
+}
+\]
+
+La {\color{teal}recta presupuestaria} corresponde a las combinaciones en las que el consumidor gasta exactamente todo su ingreso:
+
+\[
+{\color{teal}
+p_1x_1+p_2x_2=R
+}
+\]
+
+Por lo tanto, los puntos ubicados por debajo de la recta representan canastas que el consumidor puede adquirir sin gastar todo su ingreso, mientras que los puntos ubicados por encima representan canastas que no puede adquirir con el ingreso disponible.
+
+\subsection*{Método 1: despejar una variable en función de la otra}
+
+Despejando \(x_2\) en función de \(x_1\):
+
+\[
+{\color{teal}
+x_2=\frac{R}{p_2}-\frac{p_1}{p_2}x_1
+}
+\]
+
 \begin{itemize}
-    \item Intuición Económica: La {\color{teal}continuidad} asegura que pequeñas variaciones en las cantidades de bienes resultan en pequeños cambios en la utilidad. Esto permite predecir el comportamiento del consumidor sin {\color{teal}saltos abruptos} en sus niveles de satisfacción.
+    \item Intuición: la ecuación muestra que, a medida que aumenta la cantidad de \(x_1\), la cantidad de \(x_2\) debe disminuir para mantener constante el gasto total \(R\). La {\color{teal}pendiente} \(-\frac{p_1}{p_2}\) refleja la {\color{teal}tasa a la cual el mercado permite intercambiar un bien por el otro}
+    
+    \item Aplicación: este método permite graficar la recta presupuestaria como una función lineal, facilitando el {\color{teal}análisis algebraico} de las posibilidades de consumo
 \end{itemize}
 
-\subsection*{5. Convexidad al Origen}
+\subsection*{Método 2: utilizar los interceptos}
+
+Si el consumidor dedica todo su ingreso al bien \(1\), entonces
+
+\[
+{\color{teal}
+x_1=\frac{R}{p_1}
+}
+\]
+
+Si dedica todo su ingreso al bien \(2\), entonces
+
+\[
+{\color{teal}
+x_2=\frac{R}{p_2}
+}
+\]
+
 \begin{itemize}
-    \item Intuición Económica: A medida que se dispone de más de un bien, el consumidor está dispuesto a sacrificar cada vez menos del otro para obtener una unidad adicional del primero. Es una manifestación de la preferencia por {\color{teal}combinaciones balanceadas de bienes}, evitando consumir cantidades extremas de uno solo.
+    \item Intuición: estos interceptos representan las {\color{teal}cantidades máximas} que pueden adquirirse de cada bien si todo el ingreso se destina exclusivamente a ese bien
+    
+    \item Aplicación: conociendo ambos interceptos, puede trazarse la recta que los une. El área comprendida entre la recta y los ejes representa las {\color{teal}combinaciones de bienes que resultan accesibles} para el consumidor
 \end{itemize}
 
-\section*{Recta Presupuestaria y Métodos de Graficación}
 
-La {\color{teal}recta presupuestaria} representa las combinaciones de dos bienes que un consumidor puede adquirir gastando todo su ingreso, dados los precios de dichos bienes.
+\section*{Isocuantas}
 
-\subsection*{Método 1: Despejar una Variable en Función de la Otra}
-Ecuación general de la restricción presupuestaria:
-\begin{equation*}
-{\color{teal}p_1 q_1 + p_2 q_2 = R}
-\end{equation*}
-Despejando \( q_2 \) en función de \( q_1 \):
-\begin{equation*}
-{\color{teal}q_2 = \frac{R}{p_2} - \frac{p_1}{p_2} q_1}
-\end{equation*}
+Las {\color{teal}isocuantas} son las curvas de nivel asociadas a una función de producción. Representan todas las combinaciones de factores productivos que permiten obtener un mismo nivel de producción.
+
+Si la función de producción es
+
+\[
+q=F(x_1,x_2)
+\]
+
+una isocuanta correspondiente al nivel de producción \(q_0\) está determinada por
+
+\[
+{\color{teal}
+F(x_1,x_2)=q_0
+}
+\]
+
+Por ejemplo, si \(x_1\) y \(x_2\) representan dos factores productivos, distintos puntos pertenecientes a una misma isocuanta corresponden a distintas combinaciones de esos factores que permiten producir exactamente \(q_0\) unidades.
+
 \begin{itemize}
-    \item Intuición: La ecuación muestra que, a medida que aumenta la cantidad de \( q_1 \), la cantidad de \( q_2 \) debe disminuir para mantener constante el gasto total \( R \). La {\color{teal}pendiente} \( -\frac{p_1}{p_2} \) refleja la {\color{teal}tasa a la cual se puede intercambiar bienes}.
-    \item Aplicación: Este método permite graficar la recta presupuestaria como una función lineal, facilitando el {\color{teal}análisis algebraico} de las decisiones del consumidor.
+    \item Las isocuantas asociadas a {\color{teal}mayores niveles de producción} se encuentran, en general, más alejadas del origen cuando una mayor utilización de los factores permite aumentar la producción
+    
+    \item Dos isocuantas correspondientes a niveles de producción diferentes {\color{teal}no pueden cruzarse}, ya que una misma combinación de factores no puede generar simultáneamente dos niveles distintos de producción bajo una misma función de producción
+    
+    \item Al igual que otras curvas de nivel, pueden graficarse fijando un nivel de producción y despejando uno de los factores en función del otro cuando esto sea posible
 \end{itemize}
 
-\subsection*{Método 2: Utilizar los Interceptos}
-\begin{itemize}
-    \item Intercepto en el eje \( q_1 \):
-    \begin{equation*}
-    {\color{teal}q_1 = \frac{R}{p_1}}
-    \end{equation*}
-    \item Intercepto en el eje \( q_2 \):
-    \begin{equation*}
-    {\color{teal}q_2 = \frac{R}{p_2}}
-    \end{equation*}
-\end{itemize}
-\begin{itemize}
-    \item Intuición: Estos interceptos representan las {\color{teal}cantidades máximas} de cada bien si el consumidor gasta todo su ingreso en uno solo.
-    \item Aplicación: Conociendo ambos puntos, se traza la recta que los une. Esta gráfica ilustra de manera clara las {\color{teal}opciones de combinación} de bienes disponibles.
-\end{itemize}
 
-\section*{Curva de Costo para el Productor}
+\section*{Curva de isocosto}
 
-La {\color{teal}curva de isocosto} representa las combinaciones de insumos que se pueden adquirir para un {\color{teal}costo total fijo}:
-\begin{equation*}
-{\color{teal}w_1 x_1 + w_2 x_2 = C}
-\end{equation*}
-donde \(w_1\) y \(w_2\) son los precios de los insumos, \(x_1\) y \(x_2\) sus cantidades. 
+La {\color{teal}curva de isocosto} representa las combinaciones de insumos que generan un mismo {\color{teal}costo total}. Si \(w_1\) y \(w_2\) son los precios de los insumos \(x_1\) y \(x_2\), respectivamente, una curva de isocosto correspondiente al costo total \(C\) está dada por
+
+\[
+{\color{teal}
+w_1x_1+w_2x_2=C
+}
+\]
+
+Despejando \(x_2\) en función de \(x_1\):
+
+\[
+{\color{teal}
+x_2=\frac{C}{w_2}-\frac{w_1}{w_2}x_1
+}
+\]
+
+Por lo tanto, su pendiente es
+
+\[
+{\color{teal}
+-\frac{w_1}{w_2}
+}
+\]
+
+Los interceptos con los ejes son
+
+\[
+{\color{teal}
+x_1=\frac{C}{w_1}
+\qquad
+x_2=\frac{C}{w_2}
+}
+\]
+
+\begin{itemize}
+    \item Intuición: los interceptos representan las cantidades máximas de cada insumo que pueden adquirirse si todo el costo se destina exclusivamente a uno de ellos
+    
+    \item La pendiente depende de los {\color{teal}precios relativos de los factores} y determina cómo debe modificarse la cantidad de un insumo cuando cambia la del otro para mantener constante el costo total
+    
+    \item Para precios de los factores dados, un aumento del costo total \(C\) desplaza la curva de isocosto hacia afuera de forma paralela
+\end{itemize}
 
 
 \section*{Isoingreso}
 
 La {\color{teal}línea de isoingreso} representa las combinaciones de productos o bienes que generan un {\color{teal}ingreso total constante}:
-\begin{equation*}
-{\color{teal}p_1 q_1 + p_2 q_2 = I}
-\end{equation*}
+
+\[
+{\color{teal}
+p_1q_1+p_2q_2=I
+}
+\]
 
 
+\section*{Curvas de indiferencia Cobb-Douglas}
 
-\section*{Curvas de Indiferencia Cobb-Douglas}
+Las {\color{teal}curvas de indiferencia} derivadas de una función de utilidad Cobb-Douglas representan combinaciones de bienes que otorgan un {\color{teal}nivel constante de utilidad}. Una forma general de esta función es
 
-Las {\color{teal}curvas de indiferencia} derivadas de una función de utilidad Cobb-Douglas representan combinaciones de bienes que otorgan un {\color{teal}nivel constante de utilidad}. Una forma general de esta función es:
-\begin{equation*}
-{\color{teal}U(x_1, x_2) = x_1^\alpha x_2^\beta}
-\end{equation*}
-donde \( \alpha, \beta > 0 \).
+\[
+{\color{teal}
+U(x_1,x_2)=x_1^\alpha x_2^\beta
+}
+\]
 
-\subsection*{Graficando}
+donde \(\alpha,\beta>0\).
+
+\subsection*{Graficación}
+
+Para representar la curva de indiferencia correspondiente a un nivel de utilidad fijo \(U_0>0\), partimos de
+
+\[
+U_0=x_1^\alpha x_2^\beta
+\]
+
+y despejamos \(x_2\):
+
+\[
+{\color{teal}
+x_2=
+\left(
+\frac{U_0}{x_1^\alpha}
+\right)^{\frac{1}{\beta}}
+}
+\]
+
+o, equivalentemente,
+
+\[
+{\color{teal}
+x_2=
+\frac{U_0^{1/\beta}}{x_1^{\alpha/\beta}}
+}
+\]
+
+Esto permite graficar la curva de indiferencia para un nivel dado de utilidad \(U_0\), considerando distintos valores positivos de \(x_1\).
+
 \begin{itemize}
-    \item Despejar una Variable:
-    \begin{equation*}
-    {\color{teal}x_2 = \left( \frac{U_0}{x_1^\alpha} \right)^{\frac{1}{\beta}}}
-    \end{equation*}
-    o, equivalentemente,
-    \begin{equation*}
-    {\color{teal}x_2 = \frac{U^{1/\beta}}{x_1^{\alpha/\beta}}}
-    \end{equation*}
-    Esto permite graficar la curva de indiferencia para un nivel dado de utilidad \( U \), considerando distintos valores de \( x_1 \).
-
-    \item Observaciones:
-    \begin{itemize}
-        \item Las curvas son {\color{teal}convexas al origen}, lo que refleja una {\color{teal}tasa marginal de sustitución decreciente}.
-        \item {\color{teal}Nunca tocan los ejes}, ya que si \( x_1 = 0 \) o \( x_2 = 0 \), entonces la utilidad total es cero.
-        \item Las curvas se ubican en el primer cuadrante, ya que se supone que el consumidor sólo considera {\color{teal}cantidades positivas de bienes}.
-    \end{itemize}
+    \item Las curvas son {\color{teal}decrecientes y convexas al origen}, reflejando que distintas combinaciones de ambos bienes pueden proporcionar un mismo nivel de utilidad
+    
+    \item Para un nivel de utilidad {\color{teal}\(U_0>0\)}, las curvas {\color{teal}no tocan los ejes}, ya que si \(x_1=0\) o \(x_2=0\), la utilidad es igual a cero
+    
+    \item Las curvas correspondientes a niveles positivos de utilidad se encuentran en el primer cuadrante, dado que se consideran {\color{teal}cantidades positivas de ambos bienes}
 \end{itemize}
 
-Cada curva representa un {\color{teal}nivel fijo de utilidad}, y al aumentar dicho nivel, las curvas se desplazan hacia arriba y a la derecha, reflejando {\color{teal}preferencias monótonas}.
+Cada curva representa un {\color{teal}nivel fijo de utilidad}. Dado que \(\alpha,\beta>0\), mayores cantidades de los bienes generan mayores niveles de utilidad, por lo que las curvas correspondientes a niveles de utilidad más altos se encuentran hacia arriba y a la derecha.
 
 \vspace{0.5em}
-{\color{teal}Nota:} {\color{teal}Las funciones de producción también suelen tener forma Cobb-Douglas}, en cuyo caso las curvas de nivel se denominan {\color{teal}isocuantas} y reflejan {\color{teal}combinaciones de factores productivos} que permiten obtener una misma cantidad de producto.
+
+{\color{teal}Nota:} {\color{teal}Las funciones de producción también suelen tener forma Cobb-Douglas}. En ese caso, sus curvas de nivel se denominan {\color{teal}isocuantas} y representan {\color{teal}combinaciones de factores productivos que permiten obtener un mismo nivel de producción}.
 
 
 
@@ -1850,14 +2074,17 @@ f_{xy}(x,y)=f_{yx}(x,y)
 
 
 
+
+
 \section*{Recordatorio: cálculo univariable}
 
 Sea \(f:\mathbb{R}\to\mathbb{R}\) diferenciable en \(x_0\). La \emph{aproximación lineal} (o \emph{linealización}) alrededor de \(x_0\) es
 \[
 \color{teal}
-f(x_0+h) \;\approx\; f(x_0) + f'(x_0)\,h
+f(x_0+h) \;\approx\; f(x_0) + f'(x_0)\,h,
 \quad \text{con } h=x-x_0
 \]
+
 El \emph{diferencial} de \(f\) en \(x_0\) se define como
 \[
 \color{teal}
@@ -1865,8 +2092,9 @@ El \emph{diferencial} de \(f\) en \(x_0\) se define como
 \]
 
 \paragraph*{Intuición:}
-Al “hacer zoom” sobre la gráfica de \(f\) alrededor de \(x_0\), la curva se vuelve casi recta: la \emph{recta tangente} con pendiente \(f'(x_0)\) es la mejor aproximación local de \(f\).
-Dar un pasito \(\mathrm{d}x\) en \(x\) provoca un cambio real
+Al “hacer zoom” sobre la gráfica de \(f\) alrededor de \(x_0\), la curva se vuelve casi recta: la \emph{recta tangente}, con pendiente \(f'(x_0)\), es la mejor aproximación local de \(f\).
+
+Dar un pequeño paso \(\mathrm{d}x\) en \(x\) provoca un cambio real
 \[
 \Delta f \;=\; f(x_0+\mathrm{d}x)-f(x_0)
 \]
@@ -1874,57 +2102,84 @@ que es \emph{aproximadamente igual} al diferencial:
 \[
 \Delta f \;\approx\; \mathrm{d}f \;=\; f'(x_0)\,\mathrm{d}x
 \]
-es decir, {\color{teal}\emph{pendiente \(\times\) paso}}
+es decir, {\color{teal}\emph{pendiente \(\times\) paso}}.
 
-También se puede ver como
+También se puede expresar como
 \[
-f(x_0+h)=f(x_0)+f'(x_0)h+o(h)\quad \text{cuando } h\to 0
+f(x_0+h)=f(x_0)+f'(x_0)h+o(h)
+\quad \text{cuando } h\to 0
 \]
-donde \(o(h)\) denota un término tal que \(\displaystyle \lim_{h\to 0}\frac{o(h)}{h}=0\);
-es decir, el error entre la aproximación lineal y el valor real es despreciable frente a \(|h|\) cuando \(h\to 0\)
+donde \(o(h)\) denota un término tal que
+\[
+\lim_{h\to 0}\frac{o(h)}{h}=0
+\]
+Es decir, el error entre la aproximación lineal y el valor real es despreciable frente a \(|h|\) cuando \(h\to 0\).
+
 
 \section*{Definición en dos variables independientes}
 
 Sea \(f:\mathbb{R}^2\to\mathbb{R}\) diferenciable en \((a,b)\). El \emph{diferencial} de \(f\) en \((a,b)\) es
 \[
 \color{teal}
-\mathrm{d}f \;=\; f_x(a,b)\,\mathrm{d}x \;+\; f_y(a,b)\,\mathrm{d}y
-\]
-Equivalente:
-\[
-\color{teal}
-f(a+\mathrm{d}x,\,b+\mathrm{d}y)\;\approx\; f(a,b) \;+\; f_x(a,b)\,\mathrm{d}x \;+\; f_y(a,b)\,\mathrm{d}y
+\mathrm{d}f \;=\; f_x'(a,b)\,\mathrm{d}x \;+\; f_y'(a,b)\,\mathrm{d}y
 \]
 
-\noindent\textit{Geometría:} en dos variables, la aproximación \emph{no es una recta} sino un \emph{plano tangente} al gráfico \(z=f(x,y)\) en \((a,b)\):
+Equivalentemente,
 \[
 \color{teal}
-z \;\approx\; f(a,b) \;+\; f_x(a,b)\,(x-a) \;+\; f_y(a,b)\,(y-b)
+f(a+\mathrm{d}x,\,b+\mathrm{d}y)
+\;\approx\;
+f(a,b)
++
+f_x'(a,b)\,\mathrm{d}x
++
+f_y'(a,b)\,\mathrm{d}y
+\]
+
+\noindent\textit{Geometría:} en dos variables, la aproximación \emph{no es una recta}, sino un \emph{plano tangente} a la gráfica \(z=f(x,y)\) en \((a,b)\):
+\[
+\color{teal}
+z
+\;\approx\;
+f(a,b)
++
+f_x'(a,b)\,(x-a)
++
+f_y'(a,b)\,(y-b)
 \]
 
 \paragraph*{Intuición:}
 Lo que buscamos es aproximar el cambio de \(z\) a partir de cambios pequeños en \(x\) e \(y\).
-Cada derivada parcial \(f_x(a,b)\) y \(f_y(a,b)\) mide cuán sensible es \(z\) a \(x\) o a \(y\) por separado.
+Cada derivada parcial \(f_x'(a,b)\) y \(f_y'(a,b)\) mide cuán sensible es \(z\) a cambios en \(x\) o en \(y\), respectivamente.
+
 Si nos movemos \(\mathrm{d}x\) en \(x\) y \(\mathrm{d}y\) en \(y\), el cambio total se aproxima sumando ambos aportes:
 \[
-\Delta z \;\approx\; \mathrm{d}f \;=\; f_x(a,b)\,\mathrm{d}x \;+\; f_y(a,b)\,\mathrm{d}y
+\Delta z
+\;\approx\;
+\mathrm{d}f
+\;=\;
+f_x'(a,b)\,\mathrm{d}x
++
+f_y'(a,b)\,\mathrm{d}y
 \]
-es decir, \emph{\color{teal}“pendiente en \(x\)” \(\times\) “paso en \(x\)”} + \emph{\color{teal}“pendiente en \(y\)” \(\times\) “paso en \(y\)”}
-
+es decir,
+\emph{\color{teal}“pendiente en \(x\)” \(\times\) “paso en \(x\)”}
++
+\emph{\color{teal}“pendiente en \(y\)” \(\times\) “paso en \(y\)”}.
 
 
 \subsection*{Condiciones suficientes}
-Si \(f_x\) y \(f_y\) existen en un entorno de \((a,b)\) y son continuas en \((a,b)\), entonces \(f\) es diferenciable en \((a,b)\) y la aproximación lineal anterior es válida.
+
+Si \(f_x'\) y \(f_y'\) existen en un entorno de \((a,b)\) y son continuas en \((a,b)\), entonces \(f\) es diferenciable en \((a,b)\) y la aproximación lineal anterior es válida.
 
 \paragraph*{Intuición:}
-Exigir que \(f_x\) y \(f_y\) sean continuas cerca de \((a,b)\) garantiza que las pendientes en \(x\) y en \(y\) no cambien bruscamente.
-Si las pendientes varían de forma suave, entonces la superficie de \(f\) cerca de \((a,b)\) se parece mucho a su plano tangente, y la aproximación lineal con el diferencial describe bien los cambios pequeños en \(z\)
+Exigir que \(f_x'\) y \(f_y'\) sean continuas cerca de \((a,b)\) garantiza que las pendientes en \(x\) y en \(y\) no cambien bruscamente.
+Si las pendientes varían de forma suave, entonces la superficie de \(f\) cerca de \((a,b)\) se parece mucho a su plano tangente, y la aproximación lineal mediante el diferencial describe bien los cambios pequeños en \(z\).
 
 
 \section*{Caso general \(\mathbb{R}^n\to\mathbb{R}\)}
+
 Para \(f:\mathbb{R}^n\to\mathbb{R}\) diferenciable en \(\mathbf{a}\in\mathbb{R}^n\),
-
-
 \[
 \color{teal}
 \mathrm{d}f
@@ -1937,106 +2192,339 @@ Para \(f:\mathbb{R}^n\to\mathbb{R}\) diferenciable en \(\mathbf{a}\in\mathbb{R}^
 \;+\;
 \frac{\partial f}{\partial x_n}(\mathbf{a})\,\mathrm{d}x_n
 \]
-Es decir:
+
+Es decir,
 \[
 \color{teal}
-\mathrm{d}f \;=\; \nabla f(\mathbf{a})\cdot \mathrm{d}\mathbf{x}
-\;=\; \sum_{i=1}^{n} \frac{\partial f}{\partial x_i}(\mathbf{a})\,\mathrm{d}x_i
+\mathrm{d}f
+\;=\;
+\nabla f(\mathbf{a})\cdot \mathrm{d}\mathbf{x}
+\;=\;
+\sum_{i=1}^{n}
+\frac{\partial f}{\partial x_i}(\mathbf{a})\,\mathrm{d}x_i
 \]
-y de forma aproximada:
+
+De forma aproximada,
 \[
 \color{teal}
 f(a_1+\mathrm{d}x_1,\dots,a_n+\mathrm{d}x_n)
 \;\approx\;
-f(a_1,\dots,a_n) \;+\; \mathrm{d}f
+f(a_1,\dots,a_n)
++
+\mathrm{d}f
 \]
 
 
+\subsection*{Ejemplo}
 
-\subsection*{Ejemplos}
 Sea \(f(x,y)=x^{2}y + e^{xy}\). Entonces
 \[
-f_x=2xy + y\,e^{xy}\qquad f_y=x^2 + x\,e^{xy}
+f_x'=2xy + y\,e^{xy},
+\qquad
+f_y'=x^2 + x\,e^{xy}
 \]
+
 En \((a,b)=(1,1)\),
 \[
 \color{teal}
-\mathrm{d}f \;=\; \bigl(2\cdot1\cdot1 + 1\cdot e\bigr)\,\mathrm{d}x \;+\; \bigl(1^2 + 1\cdot e\bigr)\,\mathrm{d}y
-\;=\; (2+e)\,\mathrm{d}x + (1+e)\,\mathrm{d}y
+\mathrm{d}f
+\;=\;
+\bigl(2\cdot1\cdot1 + 1\cdot e\bigr)\,\mathrm{d}x
++
+\bigl(1^2 + 1\cdot e\bigr)\,\mathrm{d}y
+\;=\;
+(2+e)\,\mathrm{d}x
++
+(1+e)\,\mathrm{d}y
 \]
-Para \(\mathrm{d}x=0.01\) y \(\mathrm{d}y=-0.02\),
-\[ \color{teal}
-\Delta f \approx \mathrm{d}f = (2+e)(0.01) + (1+e)(-0.02) \approx -0.0272
-\]
-El resultado negativo indica que, con un incremento pequeño en \(x\) y una disminución en \(y\), el valor de la función \(f\) tiende a reducirse levemente.
-En otras palabras, el efecto de disminuir \(y\) en un 0.02 pesa más que el incremento positivo que produce aumentar \(x\) en 0.01, de modo que el cambio neto es una pequeña disminución en \(f\).
 
-Si calculamos la variación real tenemos lo siguiente:
+Para \(\mathrm{d}x=0.01\) y \(\mathrm{d}y=-0.02\),
+\[
+\color{teal}
+\Delta f
+\approx
+\mathrm{d}f
+=
+(2+e)(0.01)
++
+(1+e)(-0.02)
+\approx
+-0.0272
+\]
+
+El resultado negativo indica que, con un pequeño incremento en \(x\) y una disminución en \(y\), el valor de la función \(f\) tiende a reducirse levemente.
+En otras palabras, el efecto de disminuir \(y\) en \(0.02\) supera el incremento positivo producido al aumentar \(x\) en \(0.01\), de modo que el cambio neto es una pequeña disminución en \(f\).
+
+Si calculamos la variación real, obtenemos
 \[
 \begin{aligned}
-\Delta f &= f(1.01,\,0.98)-f(1,1) \;=\; (1.01)^2\cdot 0.98 + e^{\,0.9898} - (1+e) \\
-         &= 3.6903942793 - 3.7182818285 \;=\; \color{teal}{-0.0278875492}
+\Delta f
+&=
+f(1.01,\,0.98)-f(1,1) \\
+&=
+(1.01)^2\cdot 0.98 + e^{\,0.9898} - (1+e) \\
+&=
+3.6903942793 - 3.7182818285 \\
+&=
+\color{teal}{-0.0278875492}
 \end{aligned}
 \]
 
-Lo cual es similar al resultado anterior pero con diferencias a partir del cuarto decimal.
-
+Este valor es cercano al obtenido mediante el diferencial. La pequeña diferencia se debe a que el diferencial proporciona una aproximación lineal del cambio real de la función.
 
 
 \section*{Diferencial de segundo orden}
-Sea \(f:\mathbb{R}^2\to\mathbb{R}\) con derivadas parciales primeras y segundas existentes en un entorno de \((a,b)\), y cuyas segundas derivadas parciales son continuas en ese entorno. Su \emph{diferencial de segundo orden} en \((a,b)\) es
 
+Sea \(f:\mathbb{R}^2\to\mathbb{R}\) con derivadas parciales primeras y segundas existentes en un entorno de \((a,b)\), y cuyas derivadas parciales de segundo orden son continuas en ese entorno. Su \emph{diferencial de segundo orden} en \((a,b)\) es
 \[
 \color{teal}
-\mathrm{d}^2 f
+\mathrm{d}^2f
 \;=\;
-f_{xx}(a,b)\,(\mathrm{d}x)^2
-\;+\; f_{xy}(a,b)\,\mathrm{d}x\,\mathrm{d}y
-\;+\; f_{yx}(a,b)\,\mathrm{d}y\,\mathrm{d}x
-\;+\; f_{yy}(a,b)\,(\mathrm{d}y)^2 
+f_{xx}''(a,b)\,(\mathrm{d}x)^2
++
+f_{xy}''(a,b)\,\mathrm{d}x\,\mathrm{d}y
++
+f_{yx}''(a,b)\,\mathrm{d}y\,\mathrm{d}x
++
+f_{yy}''(a,b)\,(\mathrm{d}y)^2
 \]
 
-El diferencial segundo mide \emph{cómo cambia la pendiente} cuando ocurre un movimiento nuevo de x e y. Este diferencial segundo se puede utilizar para generar aproximaciones como el polinomio de Taylor. La aproximación de Taylor de segundo orden alrededor de \((a,b)\) es
+El diferencial de segundo orden incorpora información sobre la \emph{curvatura local} de la función y describe la contribución de segundo orden a su variación. En particular, puede utilizarse para construir aproximaciones más precisas, como el polinomio de Taylor de segundo orden.
+
+
+\subsection*{Polinomio de Taylor}
+
+El polinomio de Taylor permite aproximar una función alrededor de un punto utilizando información sobre sus derivadas en ese punto.
+La idea es extender la aproximación lineal: en lugar de utilizar solamente la pendiente, incorporamos también información sobre la curvatura y, si fuera necesario, derivadas de órdenes superiores.
+
+
+\subsubsection*{Caso univariable}
+
+Sea \(f:\mathbb{R}\to\mathbb{R}\) una función con suficientes derivadas alrededor de \(x=a\).
+Recordemos que la aproximación lineal viene dada por
 \[
 \color{teal}
-f(a+\mathrm{d}x,\,b+\mathrm{d}y)
-\;\approx\;
-f(a,b)
-\;+\; \underbrace{f_x(a,b)\,\mathrm{d}x + f_y(a,b)\,\mathrm{d}y}_{\mathrm{d}f}
-\;+\; \tfrac{1}{2}\,\underbrace{\mathrm{d}^2 f}_{\text{término cuadrático}}.
+f(a+h)
+\approx
+f(a)+f'(a)h
 \]
 
-De esta misma forma podemos seguir añadiendo términos para que la aproximación sea más exacta (con diferenciales terceros, cuartos, etc.)
+Esta aproximación utiliza solamente el valor de la función y su pendiente en \(a\).
+Si además queremos incorporar información sobre la curvatura de \(f\), podemos agregar un término que involucra la segunda derivada:
+\[
+\color{teal}
+f(a+h)
+\approx
+f(a)
++
+f'(a)h
++
+\frac{1}{2}f''(a)h^2
+\]
 
+El lado derecho de esta expresión es el \emph{polinomio de Taylor de segundo orden} de \(f\) alrededor de \(a\).
+
+Utilizando diferenciales, si \(h=\mathrm{d}x\), podemos escribir
+\[
+\color{teal}
+f(a+\mathrm{d}x)
+\approx
+f(a)
++
+\underbrace{f'(a)\,\mathrm{d}x}_{\mathrm{d}f}
++
+\frac{1}{2}
+\underbrace{f''(a)(\mathrm{d}x)^2}_{\mathrm{d}^2f}
+\]
+
+Por lo tanto,
+\[
+\color{teal}
+f(a+\mathrm{d}x)
+\approx
+f(a)
++
+\mathrm{d}f
++
+\frac{1}{2}\mathrm{d}^2f
+\]
+
+\paragraph*{Intuición:}
+El término de primer orden describe el cambio lineal predicho por la pendiente de la función.
+El término de segundo orden corrige esa aproximación teniendo en cuenta su \emph{curvatura local}.\footnote{El factor \(\tfrac{1}{2}\) que aparece en el término de segundo orden puede escribirse como \(\tfrac{1}{2!}\). En general, para el término de orden \(n\) aparece el factor \(\tfrac{1}{n!}\), ya que al derivar \(n\) veces el término \((x-a)^n\) se obtiene \(n!\). Dividir por \(n!\) permite que la derivada de orden \(n\) del polinomio de Taylor, evaluada en \(x=a\), coincida exactamente con la derivada de orden \(n\) de la función original evaluada en \(a\).}
+
+Si utilizamos derivadas de órdenes superiores, obtenemos aproximaciones que incorporan cada vez más información local sobre la función.
+El polinomio de Taylor de orden \(n\) alrededor de \(a\) es
+\[
+\color{teal}
+P_n(x)
+=
+f(a)
++
+f'(a)(x-a)
++
+\frac{f''(a)}{2!}(x-a)^2
++
+\cdots
++
+\frac{f^{(n)}(a)}{n!}(x-a)^n
+\]
+
+De manera compacta,
+\[
+\color{teal}
+P_n(x)
+=
+\sum_{k=0}^{n}
+\frac{f^{(k)}(a)}{k!}(x-a)^k
+\]
+
+Así, para valores de \(x\) suficientemente cercanos a \(a\),
+\[
+f(x)\approx P_n(x)
+\]
+
+En general, al aumentar el orden del polinomio incorporamos más información local sobre la función y, bajo condiciones apropiadas, podemos obtener una mejor aproximación cerca del punto \(a\).
+
+
+\subsubsection*{Caso multivariable}
+
+La misma idea puede extenderse a funciones de varias variables.
+
+Sea \(f:\mathbb{R}^2\to\mathbb{R}\) una función con suficientes derivadas parciales alrededor de \((a,b)\).
+La aproximación de Taylor de primer orden es precisamente la aproximación lineal estudiada anteriormente:
+\[
+\color{teal}
+f(a+\mathrm{d}x,b+\mathrm{d}y)
+\approx
+f(a,b)
++
+f_x'(a,b)\,\mathrm{d}x
++
+f_y'(a,b)\,\mathrm{d}y
+\]
+
+Es decir,
+\[
+\color{teal}
+f(a+\mathrm{d}x,b+\mathrm{d}y)
+\approx
+f(a,b)
++
+\mathrm{d}f
+\]
+
+Si además incorporamos las derivadas de segundo orden, obtenemos la aproximación de Taylor de segundo orden:
+\[
+\color{teal}
+\begin{aligned}
+f(a+\mathrm{d}x,b+\mathrm{d}y)
+\approx\;&
+f(a,b)
++
+f_x'(a,b)\,\mathrm{d}x
++
+f_y'(a,b)\,\mathrm{d}y
+\\
+&+
+\frac{1}{2}
+\Big[
+f_{xx}''(a,b)(\mathrm{d}x)^2
++
+2f_{xy}''(a,b)\,\mathrm{d}x\,\mathrm{d}y
++
+f_{yy}''(a,b)(\mathrm{d}y)^2
+\Big]
+\end{aligned}
+\]
+donde hemos supuesto que las derivadas parciales mixtas son continuas, de modo que
+\[
+f_{xy}''(a,b)=f_{yx}''(a,b)
+\]
+
+Utilizando los diferenciales de primer y segundo orden, esta expresión puede escribirse de forma más compacta como
+\[
+\color{teal}
+f(a+\mathrm{d}x,b+\mathrm{d}y)
+\approx
+f(a,b)
++
+\mathrm{d}f
++
+\frac{1}{2}\mathrm{d}^2f
+\]
+
+\paragraph*{Intuición:}
+En varias variables ocurre algo similar al caso univariable.
+El diferencial de primer orden describe el comportamiento local de la función mediante su plano tangente, mientras que el diferencial de segundo orden incorpora información sobre su curvatura en las distintas direcciones.
+
+Los términos
+\[
+f_{xx}''(\mathrm{d}x)^2
+\qquad\text{y}\qquad
+f_{yy}''(\mathrm{d}y)^2
+\]
+describen las contribuciones de segundo orden asociadas a cada variable por separado, mientras que el término
+\[
+2f_{xy}''\,\mathrm{d}x\,\mathrm{d}y
+\]
+describe la interacción entre los cambios en \(x\) e \(y\).
 
 
 \section*{Plano tangente}
 
+En una variable, al “hacer zoom” alrededor de \(x=a\), la gráfica se vuelve casi recta y la \emph{recta tangente}, con pendiente \(f'(a)\), constituye la mejor aproximación lineal local.
 
+En dos variables, el análogo es el plano tangente a la superficie \(z=f(x,y)\).
 
-En una variable, al “hacer zoom” en \(x=a\) la gráfica se vuelve casi recta y la \emph{recta tangente} con pendiente \(f'(a)\) es la mejor aproximación local.  
-En dos variables, el análogo es el plano tangente que pasa por un punto de la función. 
-
-Sea \(f:\mathbb{R}^2\to\mathbb{R}\) diferenciable en \((a,b)\). El \emph{plano tangente} al gráfico \(z=f(x,y)\) en \((a,b,f(a,b))\) es
+Sea \(f:\mathbb{R}^2\to\mathbb{R}\) diferenciable en \((a,b)\). El \emph{plano tangente} a la gráfica \(z=f(x,y)\) en el punto \((a,b,f(a,b))\) es
 \[
 \color{teal}
-z \;=\; f(a,b) \;+\; f_x(a,b)\,(x-a) \;+\; f_y(a,b)\,(y-b)
+z
+=
+f(a,b)
++
+f_x'(a,b)\,(x-a)
++
+f_y'(a,b)\,(y-b)
 \]
 
 
 \paragraph*{Ejemplo}
-Tomemos \(f(x,y)=\ln(x+y)+x^{2}y\) (dominio: \(x+y>0\)). Entonces
+
+Tomemos \(f(x,y)=\ln(x+y)+x^{2}y\), cuyo dominio está dado por \(x+y>0\). Entonces
 \[
-f_x=\frac{1}{x+y}+2xy, \qquad f_y=\frac{1}{x+y}+x^2.
+f_x'
+=
+\frac{1}{x+y}+2xy,
+\qquad
+f_y'
+=
+\frac{1}{x+y}+x^2
 \]
-En \((a,b)=(2,1)\): \(f(2,1)=\ln 3+4\), \(f_x(2,1)=\tfrac{1}{3}+4=\tfrac{13}{3}\), \(f_y(2,1)=\tfrac{1}{3}+4=\tfrac{13}{3}\).
+
+En \((a,b)=(2,1)\),
+\[
+f(2,1)=\ln 3+4,
+\qquad
+f_x'(2,1)=\frac{1}{3}+4=\frac{13}{3},
+\qquad
+f_y'(2,1)=\frac{1}{3}+4=\frac{13}{3}
+\]
+
 Por lo tanto, el plano tangente es
 \[
 \color{teal}
-z \;=\; \ln 3 + 4 \;+\; \frac{13}{3}\,(x-2) \;+\; \frac{13}{3}\,(y-1).
+z
+=
+\ln 3 + 4
++
+\frac{13}{3}\,(x-2)
++
+\frac{13}{3}\,(y-1)
 \]
 
-Esta función se comporta similar a la función original siempre y cuando nos mantegamos en un entorno cercano al punto analizado.
+El plano tangente proporciona una buena aproximación de la superficie original siempre que nos mantengamos en un entorno suficientemente cercano al punto analizado.
 
 
 
