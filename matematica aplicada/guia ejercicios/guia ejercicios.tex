@@ -1,0 +1,306 @@
+\documentclass[a4paper,11pt]{article}
+
+% --- Idioma y codificación ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% --- Matemática ---
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{breqn}
+
+% --- Listas y tablas ---
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{array}
+
+% --- Gráficos y colores ---
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{tikz}
+
+\usetikzlibrary{datavisualization.formats.functions}
+\usetikzlibrary{calc}
+\usepgfplotslibrary{polar}
+\usepgflibrary{shapes.geometric}
+
+\pgfplotsset{compat=1.18}
+
+% --- Márgenes ---
+\usepackage[
+    left=2.50cm,
+    right=2.50cm,
+    top=2.30cm,
+    bottom=2.20cm,
+    headheight=15pt,
+    headsep=0.45cm,
+    footskip=0.90cm
+]{geometry}
+
+% --- Otros paquetes ---
+\usepackage{natbib}
+\usepackage{float}
+\usepackage{chngcntr}
+\usepackage{blindtext}
+\usepackage{verbatim}
+\usepackage{ifoddpage}
+\usepackage{needspace}
+
+% --- Colores ---
+\colorlet{colormarco}{teal}
+\colorlet{fondoseccion}{teal!12}
+% --- Hipervínculos ---
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=teal,
+    urlcolor=teal,
+    citecolor=green,
+    pdftitle={Trabajo práctico 1: Matemática Aplicada 1},
+    pdfauthor={Juan Andrés Cabral}
+}
+
+% --- Encabezados y pies de página ---
+\usepackage{fancyhdr}
+
+\newcommand{\encabezadoguia}{%
+    \fancyhf{}
+    \fancyhead[L]{%
+        \small
+        \href{https://cabraljuan.github.io}{Juan Andrés Cabral}%
+    }
+    \fancyhead[R]{\small\itshape Trabajo práctico 1}
+    \fancyfoot[R]{\small\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\encabezadoguia
+
+\fancypagestyle{plain}{%
+    \encabezadoguia
+}
+
+% --- Marco alrededor de todas las páginas ---
+% Modificar 0.75cm para acercar o alejar el marco del borde.
+\AddToHook{shipout/background}{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \draw[
+            draw=colormarco,
+            line width=0.6pt
+        ]
+        ([xshift=0.75cm,yshift=-0.75cm]current page.north west)
+        rectangle
+        ([xshift=-0.75cm,yshift=0.75cm]current page.south east);
+    \end{tikzpicture}%
+}
+
+% --- Párrafos ---
+\setlength{\parindent}{24pt}
+
+% --- Títulos de los apartados ---
+\newcommand{\seccionguia}[1]{%
+    \par\addvspace{0.45cm}
+    \Needspace{4\baselineskip}
+    \noindent
+    \colorbox{fondoseccion}{%
+        \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+            \raggedright
+            \strut\textbf{#1}\strut
+        }%
+    }%
+    \par\nobreak\vspace{0.15cm}
+}
+
+% --- Ejercicios ---
+\newlist{ejercicios}{enumerate}{1}
+
+\setlist[ejercicios]{
+    label=\arabic*.,
+    ref=\arabic*,
+    leftmargin=*,
+    labelsep=0.5em,
+    itemsep=0.45cm,
+    topsep=0.15cm,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+% --- Incisos ---
+\newlist{incisos}{enumerate}{1}
+
+\setlist[incisos]{
+    label=\alph*),
+    ref=\alph*,
+    leftmargin=*,
+    labelsep=0.5em,
+    itemsep=0.10cm,
+    topsep=0.12cm,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+% --- Respuestas ---
+% Numeración independiente de la lista de ejercicios.
+\newlist{respuestas}{enumerate}{1}
+
+\setlist[respuestas]{
+    label=\arabic*.,
+    ref=\arabic*,
+    leftmargin=*,
+    labelsep=0.5em,
+    itemsep=0.35cm,
+    topsep=0.15cm,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+% --- Datos del documento ---
+\title{Trabajo práctico 1: Matemática Aplicada 1}
+\author{Cátedra: García Venturini - Profesor: Juan Andrés Cabral}
+\date{}
+
+\begin{document}
+
+% ==================================================
+% Título de la primera página
+% ==================================================
+
+{\centering
+    {\Large\bfseries Matemática Aplicada 1\par}
+    \vspace{0.12cm}
+    {\normalsize Cátedra: García Venturini\par}
+    \vspace{0.05cm}
+    {\normalsize Profesor: Juan Andrés Cabral\par}
+    \vspace{0.20cm}
+    {\large\bfseries Trabajo práctico 1\par}
+}
+
+\vspace{0.20cm}
+{\color{colormarco}\hrule height 0.6pt}
+
+% ==================================================
+% 1. Funciones de varias variables y curvas de nivel
+% ==================================================
+
+\seccionguia{Funciones de varias variables y curvas de nivel}
+
+% Quitar los signos % del bloque al agregar los ejercicios.
+% La opción series=guia inicia la numeración continua.
+%
+% \begin{ejercicios}[series=guia]
+%
+%     \item Escribir aquí la consigna del primer ejercicio
+%
+%     \begin{incisos}
+%         \item Escribir aquí el primer inciso
+%         \item Escribir aquí el segundo inciso
+%     \end{incisos}
+%
+%     \item Escribir aquí la consigna del segundo ejercicio
+%
+% \end{ejercicios}
+
+% ==================================================
+% 2. Aplicaciones económicas
+% ==================================================
+
+\seccionguia{Aplicaciones económicas de las funciones y sus curvas de nivel}
+\begin{ejercicios}[resume=guia]
+
+    \item Considere la siguiente función de utilidad, donde \(x\) e \(y\)
+    representan las cantidades consumidas de dos bienes:
+    \[
+    u(x,y)=x^{1/2}y^{1/2},
+    \qquad x>0,\quad y>0
+    \]
+
+    \begin{incisos}
+        \item Graficar las curvas de indiferencia para los niveles
+        \(u=1\), \(u=2\) y \(u=3\).
+
+        \item ¿Las curvas de indiferencia cumplen las condiciones
+        deseables discutidas en clase? Justificar la respuesta.
+    \end{incisos}
+
+\end{ejercicios}
+
+% La opción resume=guia continúa la numeración anterior.
+%
+% \begin{ejercicios}[resume=guia]
+%
+%     \item Escribir aquí la consigna del siguiente ejercicio
+%
+%     \begin{incisos}
+%         \item Escribir aquí el primer inciso
+%         \item Escribir aquí el segundo inciso
+%     \end{incisos}
+%
+% \end{ejercicios}
+
+% ==================================================
+% 3. Derivadas parciales y diferencial
+% ==================================================
+
+\seccionguia{Derivadas parciales y diferencial}
+
+% \begin{ejercicios}[resume=guia]
+%
+%     \item Escribir aquí la consigna del siguiente ejercicio
+%
+%     \begin{incisos}
+%         \item Escribir aquí el primer inciso
+%         \item Escribir aquí el segundo inciso
+%     \end{incisos}
+%
+% \end{ejercicios}
+
+% ==================================================
+% 4. Aplicaciones económicas de las derivadas
+% ==================================================
+
+\seccionguia{Aplicaciones económicas de las derivadas y diferencial}
+
+% \begin{ejercicios}[resume=guia]
+%
+%     \item Escribir aquí la consigna del siguiente ejercicio
+%
+%     \begin{incisos}
+%         \item Escribir aquí el primer inciso
+%         \item Escribir aquí el segundo inciso
+%     \end{incisos}
+%
+% \end{ejercicios}
+
+% ==================================================
+% Respuestas
+% ==================================================
+
+\newpage
+\section*{Respuestas}
+\addcontentsline{toc}{section}{Respuestas}
+
+% Las respuestas comienzan nuevamente desde el número 1.
+% Usar un \item por ejercicio, respetando el orden de la guía.
+%
+% \begin{respuestas}
+%
+%     \item
+%     \begin{incisos}
+%         \item {\color{teal}Respuesta al primer inciso}
+%         \item {\color{teal}Respuesta al segundo inciso}
+%     \end{incisos}
+%
+%     \item
+%     {\color{teal}
+%         Respuesta al segundo ejercicio
+%     }
+%
+% \end{respuestas}
+
+\end{document}
