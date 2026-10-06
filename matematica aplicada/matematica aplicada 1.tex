@@ -142,7 +142,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%
 % --- tu versión ---
-\newcommand{\version}{1.6}
+\newcommand{\version}{1.7}
 
 \begin{document}
 
@@ -4771,7 +4771,7 @@ En economía, la homogeneidad y el Teorema de Euler tienen aplicaciones directas
 
 \section*{Definición de autovalor y autovector}
 
-Sea \(A\in\mathbb{R}^{n\times n}\)
+Sea \(A\in\mathbb{R}^{n\times n}\). En todo el capítulo, los vectores de \(\mathbb{R}^n\) son vectores columna; cuando los escribimos en una línea usamos la notación \((x_1,\dots,x_n)^T\).
 
 Un escalar \(\lambda\in\mathbb{R}\) es autovalor de \(A\) si existe un vector \(v\in\mathbb{R}^n\setminus\{0\}\) tal que
 \[ \color{teal}
@@ -4780,10 +4780,20 @@ A\,v = \lambda\,v
 
 El vector \(v\) que satisface esta igualdad se llama autovector asociado al autovalor \(\lambda\).
 
-Una breve intuición de qué significa esto es la siguiente. Primero pensemos a la matriz A como una transformación (de la misma manera que una función al insertarle un input, cambia este input, una matriz al premultiplicar por un vector lo gira, estira, encoge, etc. En este sentido un autovector es un vector que mantiene la dirección, no gira, solamente se agranda o achica o cambia de sentido. El autovalor es la escala en la cual se agranda o achica dicho autovector. En el siguiente gráfico se puede ver la naturaleza de un autovector, en este caso sería un vector tal que tiene la dirección del vector $(1,1)$ y que la matriz al premultiplicarlo no lo gira, solamente lo achica o agranda. Dependiendo del autovalor que tenga puede achicarse o agrandarse.
+Una breve intuición de qué significa esto es la siguiente. Pensemos la matriz \(A\) como una transformación: así como una función toma un valor de entrada y lo cambia, la matriz \(A\), al multiplicar por la izquierda a un vector \(v\) (es decir, al calcular \(A\,v\)), puede girarlo, estirarlo, encogerlo, etc.
+
+En este sentido, un autovector es un vector que, después de la transformación, queda sobre la misma recta por el origen: \(A\) no lo gira hacia otra dirección, solamente lo estira o lo encoge y, a veces, le invierte el sentido. El autovalor \(\lambda\) es el factor de escala de ese cambio:
+\begin{itemize}
+  \item si \(\lambda>1\), el autovector se agranda, y si \(0<\lambda<1\), se achica;
+  \item si \(\lambda=1\), queda exactamente igual;
+  \item si \(\lambda<0\), cambia de sentido (y además se agranda si \(|\lambda|>1\) o se achica si \(|\lambda|<1\));
+  \item si \(\lambda=0\), es enviado al vector nulo, es decir, \(A\,v=0\) (lo que no puede ser nulo es el autovector, no el autovalor).
+\end{itemize}
+
+En el siguiente gráfico se puede ver la naturaleza de un autovector: en este caso, un vector \(v\) con la dirección de \((1,1)^T\) (en el dibujo, \(v=(2,2)^T\), que corresponde a \(\lambda=1\)). Al multiplicarlo por \(A\), el resultado \(A\,v=\lambda\,v\) queda siempre sobre la recta punteada: solamente puede agrandarse, achicarse o cambiar de sentido, según el valor de \(\lambda\). Cada vector del gráfico muestra uno de esos resultados posibles (cada valor de \(\lambda\) corresponde a una matriz distinta, ya que para una matriz fija un autovector tiene un único autovalor).
 
 \begin{center}
-\begin{tikzpicture}[scale=0.7]
+\begin{tikzpicture}[scale=0.7, >=latex]
 
   % Ejes
   \draw[->] (-5.5,0) -- (5.5,0) node[right] {$x_1$};
@@ -4792,30 +4802,77 @@ Una breve intuición de qué significa esto es la siguiente. Primero pensemos a 
   % Dirección del autovector (recta y = x)
   \draw[densely dashed, gray] (-5,-5) -- (5,5) node[above right] {dirección de $v$};
 
-  % Autovector base v = (2,2)
-  \draw[ultra thick] (0,0) -- (2,2);
-  \fill (2,2) circle (1.2pt);
-  \node[anchor=south east, xshift=-4pt, yshift=4pt] at (2,2) {$v=(2,2)$};
+  % Los vectores se dibujan del más largo al más corto para que no se tapen entre sí
 
-  % Escalados que mantienen la dirección (λ>0)
-  \draw[very thick, teal]   (0,0) -- (1,1);
-  \node[teal, anchor=west, xshift=8pt, yshift=-8pt] at (1,1) {$\lambda=0.5$};
-
-  \draw[very thick, blue]   (0,0) -- (3,3);
-  \node[blue, anchor=west, xshift=10pt, yshift=-10pt] at (3,3) {$\lambda=1.5$};
-
-  \draw[very thick, purple] (0,0) -- (4,4);
+  % Escalados que mantienen el sentido (λ>0)
+  \draw[->, very thick, purple] (0,0) -- (4,4);
   \node[purple, anchor=west, xshift=12pt, yshift=-12pt] at (4,4) {$\lambda=2$};
 
-  % Escalados con inversión de sentido (λ<0)
-  \draw[very thick, orange] (0,0) -- (-1,-1);
-  \node[orange, anchor=east, xshift=-8pt, yshift=8pt] at (-1,-1) {$\lambda=-0.5$};
+  \draw[->, very thick, blue]   (0,0) -- (3,3);
+  \node[blue, anchor=west, xshift=10pt, yshift=-10pt] at (3,3) {$\lambda=1{,}5$};
 
-  \draw[very thick, red]    (0,0) -- (-2,-2);
+  % Autovector base v = (2,2), que corresponde a λ=1
+  \draw[->, ultra thick] (0,0) -- (2,2);
+  \node[anchor=south east, xshift=-4pt, yshift=4pt] at (2,2) {$v=(2,2)$};
+  \node[anchor=west, xshift=8pt, yshift=-8pt] at (2,2) {$\lambda=1$};
+
+  \draw[->, very thick, teal]   (0,0) -- (1,1);
+  \node[teal, anchor=west, xshift=8pt, yshift=-8pt] at (1,1) {$\lambda=0{,}5$};
+
+  % Escalados con inversión de sentido (λ<0)
+  \draw[->, very thick, brown]  (0,0) -- (-3,-3);
+  \node[brown, anchor=east, xshift=-12pt, yshift=12pt] at (-3,-3) {$\lambda=-1{,}5$};
+
+  \draw[->, very thick, red]    (0,0) -- (-2,-2);
   \node[red, anchor=east, xshift=-10pt, yshift=10pt] at (-2,-2) {$\lambda=-1$};
 
-  \draw[very thick, brown]  (0,0) -- (-3,-3);
-  \node[brown, anchor=east, xshift=-12pt, yshift=12pt] at (-3,-3) {$\lambda=-1.5$};
+  \draw[->, very thick, orange] (0,0) -- (-1,-1);
+  \node[orange, anchor=east, xshift=-8pt, yshift=8pt] at (-1,-1) {$\lambda=-0{,}5$};
+
+\end{tikzpicture}
+\end{center}
+
+Veamos ahora un ejemplo concreto. Sea
+\[
+A=\begin{pmatrix}2&1\\1&2\end{pmatrix}
+\]
+Al multiplicarla por tres vectores se obtiene
+\[
+\begin{aligned}
+A\begin{pmatrix}1\\1\end{pmatrix}&=\begin{pmatrix}3\\3\end{pmatrix}=3\begin{pmatrix}1\\1\end{pmatrix}\\[6pt]
+A\begin{pmatrix}1\\-1\end{pmatrix}&=\begin{pmatrix}1\\-1\end{pmatrix}=1\begin{pmatrix}1\\-1\end{pmatrix}\\[6pt]
+A\begin{pmatrix}1\\0\end{pmatrix}&=\begin{pmatrix}2\\1\end{pmatrix}
+\end{aligned}
+\]
+Los dos primeros vectores son autovectores (con autovalores \(3\) y \(1\)): después de multiplicar por \(A\) siguen sobre la misma recta. El tercero, en cambio, no es autovector: \((2,1)^T\) no es un múltiplo de \((1,0)^T\), así que \(A\) lo hizo cambiar de dirección. En el gráfico, las rectas punteadas son las direcciones de los autovectores. Los vectores \(v_2=(1,1)^T\) y \(w=(1,0)^T\) se dibujan en un tono claro y sus imágenes por \(A\), en el mismo color pero más oscuro; para \(v_1=(1,-1)^T\) la imagen coincide con el propio vector.
+
+\begin{center}
+\begin{tikzpicture}[>=latex]
+
+  % Ejes
+  \draw[->] (-2.2,0) -- (4.4,0) node[right] {$x_1$};
+  \draw[->] (0,-2.2) -- (0,4.2) node[above] {$x_2$};
+
+  % Rectas de los autovectores
+  \draw[densely dashed, gray] (-1.5,-1.5) -- (3.9,3.9);
+  \draw[densely dashed, gray] (-1.5,1.5) -- (2.4,-2.4);
+
+  % Autovector v_2 = (1,1):  A v_2 = 3 v_2 = (3,3)
+  % (cada vector en un tono claro y su imagen en el mismo color, más oscuro)
+  \draw[->, very thick, blue] (0,0) -- (3,3);
+  \draw[->, very thick, blue!60] (0,0) -- (1,1);
+  \node[blue!60, anchor=south east] at (1,1) {$v_2$};
+  \node[blue, anchor=south east] at (3,3) {$A\,v_2=3\,v_2$};
+
+  % Autovector v_1 = (1,-1):  A v_1 = v_1
+  \draw[->, very thick, teal] (0,0) -- (1,-1);
+  \node[teal, anchor=south west] at (1,-1) {$A\,v_1=v_1$};
+
+  % Vector que no es autovector, w = (1,0):  A w = (2,1)
+  \draw[->, very thick, red] (0,0) -- (2,1);
+  \draw[->, very thick, red!60] (0,0) -- (1,0);
+  \node[red!60, anchor=north] at (1,0) {$w$};
+  \node[red, anchor=west] at (2,1) {$A\,w=(2,1)^T$};
 
 \end{tikzpicture}
 \end{center}
@@ -4825,9 +4882,9 @@ Una breve intuición de qué significa esto es la siguiente. Primero pensemos a 
 \section*{Polinomio característico}
 
 \subsection*{Definición}
-Sea \(R\in\mathbb{K}^{n\times n}\). El \emph{polinomio característico} de \(A\) se define como
+Sea \(A\in\mathbb{R}^{n\times n}\). El \emph{polinomio característico}\footnote{Se usa \(\lambda I-A\) (y no \(A-\lambda I\)) para que \(\chi_A\) sea un polinomio \emph{mónico}, es decir, con coeficiente principal \(1\): \(\chi_A(\lambda)=\lambda^n+c_{n-1}\lambda^{n-1}+\cdots+c_1\lambda+c_0\). Con \(A-\lambda I\) el coeficiente principal sería \((-1)^n\). Para \(n\) par las dos definiciones dan el mismo polinomio, y para \(n\) impar difieren solamente en el signo, lo que no cambia las raíces.} de \(A\) se define como
 \[ \color{teal}
-\chi_A(\lambda)=\det\bigl(A - \lambda I\bigr)
+\chi_A(\lambda)=\det\bigl(\lambda I - A\bigr)
 \]
 El polinomio característico proviene de la siguiente deducción, dado:
 \[
@@ -4839,28 +4896,23 @@ Reordenando
 (A-\lambda I)v=0
 \]
 
-Este es un sistema homogéneo con solución no trivial \(v\neq 0\) \emph{si y solo si} la matriz \(A-\lambda I\) es \textbf{singular}  
+Este es un sistema homogéneo con solución no trivial \(v\neq 0\) \emph{si y solo si} la matriz \(A-\lambda I\) es \textbf{singular}.
 Una matriz cuadrada es singular \(\Leftrightarrow\) su determinante es cero, entonces
 \[
 \det(A-\lambda I)=0
 \]
 
-Los \(\lambda\) que hacen nula esa determinante son exactamente los \textbf{autovalores} de \(A\)  
+Como \(\lambda I-A=-(A-\lambda I)\), se cumple \(\det(\lambda I-A)=(-1)^n\det(A-\lambda I)\) (se cambia el signo de las \(n\) filas). Por lo tanto, \(\det(\lambda I-A)\) y \(\det(A-\lambda I)\) se anulan exactamente para los mismos valores de \(\lambda\), y la condición anterior equivale a
+\[
+\det(\lambda I-A)=0
+\]
+
+Los \(\lambda\) que anulan \(\det(\lambda I-A)\) son exactamente los \textbf{autovalores} de \(A\).
 Por eso se define el \emph{polinomio característico}
 \[
-\chi_A(\lambda)=\det(A-\lambda I)
+\chi_A(\lambda)=\det(\lambda I-A)
 \]
-y los autovalores son las raíces de \(\chi_A\)
-
-
-
-
-\subsection*{Cómo hallarlo}
-\begin{enumerate}
-  \item Formar la matriz \(A - \lambda I\)
-  \item Calcular \(\det(A - \lambda I)\) como función de \(\lambda\)
-  \item Simplificar el determinante para obtener un polinomio en \(\lambda\)
-\end{enumerate}
+y los autovalores son las raíces de \(\chi_A\).\footnote{Un polinomio con coeficientes reales no siempre tiene todas sus raíces reales (por ejemplo, \(\lambda^2+1\) no tiene ninguna). En este capítulo trabajamos con matrices cuyo polinomio característico tiene todas sus raíces reales, contadas con su multiplicidad; es decir, \(\chi_A(\lambda)=(\lambda-\lambda_1)\cdots(\lambda-\lambda_n)\).}
 
 \subsection*{Ejemplo para matriz \(2\times2\)}
 Sea
@@ -4872,30 +4924,34 @@ A = \begin{pmatrix}
 \]
 Entonces
 \[
-A - \lambda I = \begin{pmatrix}
- a - \lambda & b\\
- c & d - \lambda
+\lambda I - A = \begin{pmatrix}
+ \lambda - a & -b\\
+ -c & \lambda - d
 \end{pmatrix}
 \]
 y
 \[\color{teal}
 \chi_A(\lambda)
 = \det\begin{pmatrix}
- a - \lambda & b\\
- c & d - \lambda
+ \lambda - a & -b\\
+ -c & \lambda - d
 \end{pmatrix}
-= (a - \lambda)\,(d - \lambda) - b\,c
+= (\lambda - a)\,(\lambda - d) - b\,c
+= \lambda^2-\underbrace{(a+d)}_{\operatorname{tr}(A)}\,\lambda+\underbrace{(ad-bc)}_{\det(A)}
 \]
 
 \section*{Cálculo de autovalores y autovectores}
 
 \subsection*{Procedimiento}
 \begin{enumerate}
-  \item Resolver \(\chi_A(\lambda)=0\) para obtener los autovalores \(\lambda_1,\lambda_2, \lambda_3,...\)
+  \item Formar la matriz \(\lambda I - A\)
+  \item Calcular \(\chi_A(\lambda)=\det(\lambda I - A)\) y simplificarlo hasta obtener un polinomio en \(\lambda\)
+  \item Resolver \(\chi_A(\lambda)=0\) para obtener los autovalores \(\lambda_1,\lambda_2, \lambda_3,\dots\)
   \item Para cada \(\lambda_i\), resolver
-  \( (A - \lambda_i I)\,v = 0 \)
+  \( (A - \lambda_i I)\,v = 0 \) (equivalente a \( (\lambda_i I - A)\,v = 0 \))
   buscando vectores no nulos
 \end{enumerate}
+
 \subsection*{Ejemplo numérico para matriz \(2\times2\)}
 Sea
 \[
@@ -4906,29 +4962,29 @@ A = \begin{pmatrix}
 \]
 Entonces
 \[
-A - \lambda I
+\lambda I - A
 = \begin{pmatrix}
- 2 & 1\\
- 1 & 2
-\end{pmatrix}
-- \begin{pmatrix}
  \lambda & 0\\
  0 & \lambda
 \end{pmatrix}
+- \begin{pmatrix}
+ 2 & 1\\
+ 1 & 2
+\end{pmatrix}
 = \begin{pmatrix}
- 2-\lambda & 1\\
- 1 & 2-\lambda
+ \lambda-2 & -1\\
+ -1 & \lambda-2
 \end{pmatrix}
 \]
 por lo que
 \[
 \chi_A(\lambda)
-= \det\bigl(A - \lambda I\bigr)
+= \det\bigl(\lambda I - A\bigr)
 = \det\begin{pmatrix}
- 2-\lambda & 1\\
- 1 & 2-\lambda
+ \lambda-2 & -1\\
+ -1 & \lambda-2
 \end{pmatrix}
-= (2-\lambda)^2 - 1
+= (\lambda-2)^2 - 1
 = \lambda^2 - 4\lambda + 3
 \]
 Resolvemos
@@ -4941,6 +4997,13 @@ obteniendo
 \quad
 \lambda_2 = 3
 \]
+Chequeo: como \(\chi_A(\lambda)=\lambda^2-\operatorname{tr}(A)\,\lambda+\det(A)\), la suma de las raíces debe ser \(\operatorname{tr}(A)\) y su producto \(\det(A)\):
+\[
+\lambda_1+\lambda_2=1+3=4=\operatorname{tr}(A),
+\qquad
+\lambda_1\lambda_2=1\cdot3=3=\det(A)
+\]
+
 \subsection*{Cálculo paso a paso de los autovectores}
 
 \paragraph*{Para \(\lambda_1 = 1\)}
@@ -4972,12 +5035,14 @@ Lo que equivale a la ecuación única
 \[
 x + y = 0
 \]
-De aquí \(y = -x\), por lo que un autovector es
+De aquí \(y = -x\), por lo que los autovectores asociados a \(\lambda_1=1\) son todos los de la forma
 \[ \color{teal}
-v_1 = \begin{pmatrix}x\\y\end{pmatrix}
+\begin{pmatrix}x\\y\end{pmatrix}
 = x\begin{pmatrix}1\\-1\end{pmatrix},
 \quad x\neq 0
 \]
+
+Tomamos \(x=1\) y elegimos \(\color{teal}v_1 = (1,-1)^T\).\footnote{Los autovectores asociados a un mismo autovalor no son únicos: cualquier múltiplo no nulo de un autovector es también un autovector del mismo autovalor. En efecto, si \(A\,v=\lambda\,v\) y \(c\neq 0\), entonces \(A\,(c\,v)=c\,A\,v=c\,\lambda\,v=\lambda\,(c\,v)\). Es decir, se pueden tomar cualquiera de los siguientes vectores como autovectores del autovalor \(\lambda=1\): \((1,-1)^T\), \((2,-2)^T\), \((-3,3)^T\), etcétera; todos representan la misma dirección y son autovectores válidos del mismo autovalor.}
 
 \paragraph*{Para \(\lambda_2 = 3\)}
 Calculamos
@@ -5007,36 +5072,44 @@ Resolvemos el sistema
 Equivalente a
 \[
 -x + y = 0
-\]\[
-y = x\]
-Por lo tanto,
+\quad\Longrightarrow\quad
+y = x
+\]
+Por lo tanto, los autovectores asociados a \(\lambda_2=3\) son todos los de la forma
 \[\color{teal}
-v_2 = \begin{pmatrix}x\\y\end{pmatrix}
+\begin{pmatrix}x\\y\end{pmatrix}
 = x\begin{pmatrix}1\\1\end{pmatrix},
 \quad x\neq 0
 \]
-Tomamos \(\color{teal}v_2 = (1,1)^T\)
+Tomamos \(x=1\) y elegimos \(\color{teal}v_2 = (1,1)^T\).
 
-En conclusión los autovectores asociados son
+En conclusión, tomando \(x=1\) en cada caso, obtenemos como autovectores representativos
 \(
 v_1 = \begin{pmatrix}1\\-1\end{pmatrix}
 \) para \(\lambda=1\)
- y 
+ y
 \(
 v_2 = \begin{pmatrix}1\\1\end{pmatrix}
-\) para \(\lambda=3\).
- \paragraph*{Observación sobre la no unicidad de los autovectores}
-Los autovectores asociados a un mismo autovalor no son únicos. Es decir se pueden tomar cualquiera de los siguientes vectores como autovectores del autovalor $\lambda=1$: \((1,-1)\), \((2,-2)\), \((-3,3)\), etcétera, todos representan la misma dirección y son autovectores válidos del mismo autovalor
+\) para \(\lambda=3\) (y todos sus múltiplos no nulos). Son los dos autovectores del segundo gráfico.
 
-\section*{Relación entre coeficientes del polinomio característico, traza y determinante}
+\paragraph*{Verificación}
+Comprobamos que se cumple \(A\,v=\lambda\,v\):
+\[
+\begin{aligned}
+A\,v_1&=\begin{pmatrix}2&1\\1&2\end{pmatrix}\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}1\\-1\end{pmatrix}=1\cdot v_1\\[6pt]
+A\,v_2&=\begin{pmatrix}2&1\\1&2\end{pmatrix}\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}3\\3\end{pmatrix}=3\cdot v_2
+\end{aligned}
+\]
+
+\section*{Propiedades de los autovalores}
 
 Sea el polinomio característico de \(A\) de grado \(n\):
 \[
-\chi_A(\lambda)=\det(A-\lambda I)=\lambda^n + c_{n-1}\lambda^{n-1}+\cdots + c_1\lambda + c_0
+\chi_A(\lambda)=\det(\lambda I-A)=\lambda^n + c_{n-1}\lambda^{n-1}+\cdots + c_1\lambda + c_0
 \]
 
 \subsection*{Coeficientes y autovalores}
-Si \(\lambda_1,\dots,\lambda_n\) son las raíces de \(\chi_A\):
+Si \(\lambda_1,\dots,\lambda_n\) son las raíces de \(\chi_A\) (cada una repetida tantas veces como indique su multiplicidad, concepto que se formaliza en la sección siguiente), entonces \(\chi_A(\lambda)=(\lambda-\lambda_1)\cdots(\lambda-\lambda_n)\) y, al desarrollar el producto,
 \[\color{teal}
 c_{n-1} = -\sum_{i=1}^n \lambda_i,
 \quad
@@ -5047,46 +5120,61 @@ En palabras: el coeficiente \(c_{n-1}\) representa el negativo de la suma de tod
 \subsection*{Traza y determinante}
 Recordando que:
 \[
-\operatorname{tr}(A) = \sum_{i=1}^n a_{ii},
+\operatorname{tr}(A) = \sum_{i=1}^n a_{ii}
 \]
-Existe una relación entre autovalores y traza y determinante:
+Existe una relación entre autovalores y traza y determinante (con las raíces contadas con su multiplicidad):
 \[\color{teal}
 \sum_{i=1}^n \lambda_i = \operatorname{tr}(A),
 \qquad
 \prod_{i=1}^n \lambda_i = \det(A)
 \]
 
-En particular, para \(n=2\) y \(A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\):
-\[
-\chi_A(\lambda)=\lambda^2 - (a+d)\lambda + (ad-bc),
-\]
-por lo que
-\[
-\operatorname{tr}(A)=a+d,
-\quad
-\det(A)=ad-bc
-\]
+El caso \(n=2\) corresponde al ejemplo general \(2\times2\) de la sección \emph{Polinomio característico}.
 
 \subsection*{Ejemplo numérico}
 Para la matriz
 \[
 A = \begin{pmatrix}2 & 1\\1 & 2\end{pmatrix}
 \]
-sus autovalores son \(\lambda_1=1\) y \(\lambda_2=3\). En este caso,
+sus autovalores son \(\lambda_1=1\) y \(\lambda_2=3\) (los calculamos en la sección anterior). En este caso,
 \[
 \operatorname{tr}(A)=2+2=4=\lambda_1+\lambda_2=1+3,
 \quad
 \det(A)=2\cdot2-1\cdot1=3=\lambda_1\lambda_2=1\cdot3
 \]
-Además, el polinomio característico calculado fue
-\[
-\chi_A(\lambda)=\lambda^2 - 4\lambda + 3
+
+\subsection*{Matrices triangulares y diagonales}
+Si \(A\) es triangular (superior o inferior), en particular si es diagonal, sus autovalores son los elementos de su diagonal principal.
+
+En efecto, \(\lambda I-A\) también es triangular, con \(\lambda-a_{11},\dots,\lambda-a_{nn}\) en la diagonal, y el determinante de una matriz triangular es el producto de los elementos de su diagonal:
+\[\color{teal}
+\chi_A(\lambda)=(\lambda-a_{11})(\lambda-a_{22})\cdots(\lambda-a_{nn})
 \]
-De donde se observa que:
-\begin{itemize}
-  \item El coeficiente de \(\lambda\) es \(-4\), que coincide con \(-\bigl(\lambda_1 + \lambda_2\bigr)=-(1+3)\).
-  \item El término constante es \(3\), que coincide con el producto \(\lambda_1 \cdot \lambda_2 = 1 \cdot 3\).
-\end{itemize}
+Cada autovalor se repite tantas veces como aparece en la diagonal. Por ejemplo, las matrices \(B\), \(C\) y \(D\) de la sección siguiente son triangulares, y sus autovalores se leen directamente de la diagonal.
+
+\subsection*{Autovalor cero y matrices singulares}
+\(\lambda=0\) es autovalor de \(A\) si y solo si \(A\) es singular (es decir, \(\det(A)=0\)).
+
+En efecto, \(0\) es autovalor \(\Leftrightarrow\) existe \(v\neq 0\) tal que \(A\,v=0\cdot v=0\) \(\Leftrightarrow\) \(A\) es singular. Esto también se ve a partir de \(\prod_{i=1}^n \lambda_i=\det(A)\): el producto es cero si y solo si algún factor es cero.
+
+\subsection*{Autovectores de autovalores distintos}
+Autovectores asociados a autovalores distintos son linealmente independientes.
+
+Veamos el caso de dos autovectores. Sean \(A\,v_1=\lambda_1 v_1\) y \(A\,v_2=\lambda_2 v_2\), con \(\lambda_1\neq\lambda_2\), y supongamos que
+\[
+\alpha_1 v_1+\alpha_2 v_2=0
+\]
+Multiplicando por \(A\) se obtiene
+\[
+\alpha_1\lambda_1 v_1+\alpha_2\lambda_2 v_2=0
+\]
+y restando \(\lambda_1\) veces la primera igualdad queda
+\[
+\alpha_2(\lambda_2-\lambda_1)\,v_2=0
+\]
+Como \(v_2\neq 0\) y \(\lambda_2\neq\lambda_1\), resulta \(\alpha_2=0\). Entonces \(\alpha_1 v_1=0\) y, como \(v_1\neq 0\), también \(\alpha_1=0\). El caso general se demuestra de la misma manera, por inducción.
+
+En particular, si \(A\in\mathbb{R}^{n\times n}\) tiene \(n\) autovalores distintos, tiene \(n\) autovectores linealmente independientes.
 
 
 
@@ -5094,43 +5182,52 @@ De donde se observa que:
 
 
 \subsection*{Multiplicidad algebraica}
-Sea \(A\in\mathbb{R}^{n\times n}\) y \(\lambda\) un autovalor de \(A\).  
+Sea \(A\in\mathbb{R}^{n\times n}\) y sean \(\lambda_1,\dots,\lambda_k\) los autovalores \emph{distintos} de \(A\) (ahora sin repetir).
 \begin{itemize}
-  \item La \emph{multiplicidad algebraica} de \(\lambda\), denotada \(\mathrm{mult}_{\mathrm{alg}}(\lambda)\), es el grado con que \(\lambda\) aparece como raíz del polinomio característico \(\chi_A(\lambda)\). Puede pensarse como la cantidad de veces que se repite el autovalor. 
+  \item La \emph{multiplicidad algebraica} de \(\lambda_i\), denotada \(\mathrm{mult}_{\mathrm{alg}}(\lambda_i)\), es el grado con que \(\lambda_i\) aparece como raíz del polinomio característico \(\chi_A(\lambda)\). Puede pensarse como la cantidad de veces que se repite el autovalor.
   \[
     \chi_A(\lambda) = (\lambda - \lambda_1)^{m_1}\cdots(\lambda - \lambda_k)^{m_k},
     \quad
-    \mathrm{mult}_{\mathrm{alg}}(\lambda_i)=m_i.
+    \mathrm{mult}_{\mathrm{alg}}(\lambda_i)=m_i
   \]
 
   \item Obsérvese que
   \(\sum_{i=1}^k m_i = n\),
-  es decir, la suma de todas las multiplicidades algebraicas es el grado del polinomio característico.
+  es decir, la suma de todas las multiplicidades algebraicas es el grado del polinomio característico (recordemos que estamos suponiendo que todas las raíces de \(\chi_A\) son reales).
 \end{itemize}
 
+\subsection*{Espacio propio}
+
+Antes de definir la multiplicidad geométrica conviene mirar \emph{todos} los autovectores de un mismo autovalor a la vez. Ya vimos que si \(v\) es un autovector de \(\lambda\), cualquier múltiplo no nulo de \(v\) también lo es: todos esos vectores están sobre una misma recta por el origen. Y si \(u\) y \(w\) son autovectores de \(\lambda\) que no son múltiplos entre sí, cualquier combinación lineal de ellos sigue siendo un autovector de \(\lambda\) (o el vector nulo), porque
+\[
+A\,(\alpha u+\beta w)=\alpha\,A\,u+\beta\,A\,w=\alpha\lambda\,u+\beta\lambda\,w=\lambda\,(\alpha u+\beta w)
+\]
+Es decir, los vectores que \(A\) multiplica exactamente por \(\lambda\) forman una recta, un plano, etc., que pasa por el origen. A ese conjunto se lo llama \emph{espacio propio} (o autoespacio) de \(\lambda\):
+\[ \color{teal}
+E_\lambda=\{\,v\in\mathbb{R}^n : A\,v=\lambda\,v\,\}=\ker(A-\lambda I)
+\]
+Recordemos que \(\ker(M)=\{\,v : M\,v=0\,\}\) es el núcleo (o espacio nulo) de una matriz \(M\); la igualdad anterior sale de \(A\,v=\lambda\,v\Leftrightarrow(A-\lambda I)\,v=0\).
+
+El espacio propio \(E_\lambda\) contiene a todos los autovectores de \(\lambda\) y, además, al vector nulo (que no es un autovector, pero cumple \(A\,0=\lambda\,0\)). Con el vector nulo incluido, \(E_\lambda\) es un subespacio vectorial de \(\mathbb{R}^n\): contiene al \(0\) y es cerrado por sumas y por múltiplos escalares, como muestra la cuenta de arriba. Recordemos que la \emph{dimensión} de un subespacio es la cantidad de vectores de una base suya; por ejemplo, en \(\mathbb{R}^3\) los subespacios son el origen (dimensión 0), las rectas por el origen (dimensión 1), los planos por el origen (dimensión 2) y todo \(\mathbb{R}^3\) (dimensión 3).
+
+\paragraph*{Ejemplo.} Para \(A=\begin{pmatrix}2&1\\1&2\end{pmatrix}\), \(E_3\) es la recta generada por \((1,1)^T\) y \(E_1\) es la recta generada por \((1,-1)^T\): son las dos rectas punteadas del segundo gráfico.
+
 \subsection*{Multiplicidad geométrica}
-Para cada autovalor \(\lambda\), definimos su \emph{multiplicidad geométrica} como
+Para cada autovalor \(\lambda\), definimos su \emph{multiplicidad geométrica} como la dimensión de su espacio propio:
 \[
   \mathrm{mult}_{\mathrm{geom}}(\lambda)
+  = \dim\bigl(E_\lambda\bigr)
   = \dim\bigl(\ker(A - \lambda I)\bigr)
 \]
-Donde $\ker()$ es el conjunto de todos los vectores que se envían al vector cero (espacio nulo).
-\textbf{\color{teal}Es el número de vectores linealmente independientes que generan el espacio propio asociado a \(\lambda\).}
+\textbf{\color{teal}Es el número de vectores de una base del espacio propio asociado a \(\lambda\), es decir, la cantidad de autovectores linealmente independientes que se pueden conseguir para \(\lambda\).}
 
-Para un autovalor \(\lambda\), el espacio propio asociado a \(\lambda\) es el conjunto de todos los vectores que cumplen
-\[
-(A-\lambda I)v=0
-\]
-
-Ese conjunto es un subespacio vectorial. Entonces podemos preguntarnos:
+Entonces podemos preguntarnos:
 
 \begin{center}
 \emph{¿Cuántos vectores necesito para formar una base de ese espacio propio?}
 \end{center}
 
-Esa cantidad es la multiplicidad geométrica.
-
-
+Esa cantidad es la multiplicidad geométrica. En términos geométricos: \(\mathrm{mult}_{\mathrm{geom}}(\lambda)=1\) significa que los autovectores de \(\lambda\) llenan una recta, \(\mathrm{mult}_{\mathrm{geom}}(\lambda)=2\) que llenan un plano, y así sucesivamente.
 
 \subsection*{Relación entre ambas multiplicidades}
 Para todo autovalor \(\lambda\) de \(A\) se tiene siempre:
@@ -5138,6 +5235,7 @@ Para todo autovalor \(\lambda\) de \(A\) se tiene siempre:
   1 \le \mathrm{mult}_{\mathrm{geom}}(\lambda)
   \le \mathrm{mult}_{\mathrm{alg}}(\lambda)
 \]
+En particular, si \(\mathrm{mult}_{\mathrm{alg}}(\lambda)=1\) (raíz simple), entonces necesariamente \(\mathrm{mult}_{\mathrm{geom}}(\lambda)=1\): el espacio propio es una recta.
 
 \subsection*{Ejemplo numérico}
 Considérese
@@ -5149,9 +5247,14 @@ Considérese
 \]
 Su polinomio característico es
 \[
-  \chi_B(\lambda) = (2-\lambda)^2
+  \chi_B(\lambda) = \det(\lambda I - B)
+  = \begin{vmatrix}
+  \lambda-2 & -1\\
+  0 & \lambda-2
+  \end{vmatrix}
+  = (\lambda-2)^2
 \]
-luego \(\lambda=2\) tiene \(\mathrm{mult}_{\mathrm{alg}}(2)=2\).  
+luego \(\lambda=2\) tiene \(\mathrm{mult}_{\mathrm{alg}}(2)=2\).
 
 \paragraph*{Cálculo de los autovectores para \(\lambda=2\)}
 
@@ -5189,7 +5292,7 @@ Por ejemplo, para \(x=1\) podemos tomar como autovector base
 \color{teal}
 v = \begin{pmatrix}1\\0\end{pmatrix}
 \]
-Y por lo tanto tenemos multiplicidad geométrica igual a 1, porque solamente hay un vector linealmente independiente.
+Y por lo tanto tenemos multiplicidad geométrica igual a 1, porque el espacio propio es una recta (solamente hay un vector linealmente independiente).
 
 
 \paragraph*{Otro ejemplo numérico}
@@ -5205,12 +5308,12 @@ Y por lo tanto tenemos multiplicidad geométrica igual a 1, porque solamente hay
 \paragraph*{Polinomio característico}
 
 \[
-\chi_C(\lambda) = \det(C - \lambda I)
+\chi_C(\lambda) = \det(\lambda I - C)
 = \begin{vmatrix}
-2-\lambda & 0\\
-0 & 2-\lambda
+\lambda-2 & 0\\
+0 & \lambda-2
 \end{vmatrix}
-= (2 - \lambda)^2
+= (\lambda - 2)^2
 \]
 Entonces,
 \[
@@ -5229,13 +5332,13 @@ C - 2I = \begin{pmatrix}
 (C - 2I)v = 0 \quad \text{para todo } v\in\mathbb{R}^2
 \]
 
-Por lo tanto, todos los vectores no nulos son autovectores y el espacio propio tiene dimensión 2:
+Por lo tanto, todos los vectores no nulos son autovectores y el espacio propio es todo \(\mathbb{R}^2\), que tiene dimensión 2:
 \[
 \color{teal}
 \mathrm{mult}_{\mathrm{geom}}(2) = 2
 \]
 
-\paragraph*{Conclusión:}  
+\paragraph*{Conclusión:}
 En este caso,
 \[
 \color{teal}
@@ -5248,181 +5351,151 @@ v_1 = \begin{pmatrix}1\\0\end{pmatrix},
 v_2 = \begin{pmatrix}0\\1\end{pmatrix}
 \]
 
-
-
-
-
-
 \paragraph*{Un tercer ejemplo}
+Sea \(D=\bigl(\begin{smallmatrix}2&0\\0&3\end{smallmatrix}\bigr)\). Por ser diagonal, sus autovalores son \(\color{teal}\lambda_1=2\) y \(\color{teal}\lambda_2=3\), ambos raíces simples; luego, por la relación \(1\le\mathrm{mult}_{\mathrm{geom}}(\lambda)\le\mathrm{mult}_{\mathrm{alg}}(\lambda)\), se tiene \(\color{teal}\mathrm{mult}_{\mathrm{alg}}=\mathrm{mult}_{\mathrm{geom}}=1\) para cada uno, con autovectores \((1,0)^T\) y \((0,1)^T\), respectivamente.
 
-Considérese ahora
+\paragraph*{Resumen}
+Los tres ejemplos juntos (una fila por autovalor):
+\begin{center}
+\begin{tabular}{c c c c c c}
+\hline
+Matriz & \(\chi(\lambda)\) & \(\lambda\) & \(\mathrm{mult}_{\mathrm{alg}}\) & \(\mathrm{mult}_{\mathrm{geom}}\) & ¿\(\mathrm{mult}_{\mathrm{geom}}=\mathrm{mult}_{\mathrm{alg}}\)? \\
+\hline
+\(B=\begin{pmatrix}2&1\\0&2\end{pmatrix}\) & \((\lambda-2)^2\) & \(2\) & \(2\) & \(1\) & No \\
+\(C=\begin{pmatrix}2&0\\0&2\end{pmatrix}\) & \((\lambda-2)^2\) & \(2\) & \(2\) & \(2\) & Sí \\
+\(D=\begin{pmatrix}2&0\\0&3\end{pmatrix}\) & \((\lambda-2)(\lambda-3)\) & \(2\) & \(1\) & \(1\) & Sí \\
+ & & \(3\) & \(1\) & \(1\) & Sí \\
+\hline
+\end{tabular}
+\end{center}
+Observemos que \(B\) y \(C\) tienen el mismo polinomio característico pero distinta multiplicidad geométrica: el polinomio característico determina \(\mathrm{mult}_{\mathrm{alg}}\), pero no \(\mathrm{mult}_{\mathrm{geom}}\).
+
+
+\section*{Ejemplo con una matriz \(3\times3\)}
+
+Sea
 \[
-  D = \begin{pmatrix}
-    2 & 0\\
-    0 & 3
-  \end{pmatrix}
+A=\begin{pmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{pmatrix}
 \]
+Seguimos los cuatro pasos del procedimiento.
 
-\paragraph*{Polinomio característico}
-
+\paragraph*{Pasos 1 y 2: polinomio característico}
+Formamos \(\lambda I-A\):
 \[
-\chi_D(\lambda) = \det(D - \lambda I)
-= \begin{vmatrix}
-2-\lambda & 0\\
-0 & 3-\lambda
-\end{vmatrix}
-= (2-\lambda)(3-\lambda)
+\lambda I-A=\begin{pmatrix}
+\lambda-2&-1&-1\\
+-1&\lambda-2&-1\\
+-1&-1&\lambda-2
+\end{pmatrix}
 \]
-
-Por lo tanto, los autovalores son
+y calculamos su determinante con la regla de Sarrus (las diagonales dan \((\lambda-2)^3\), \(-1\) y \(-1\); las antidiagonales dan \(\lambda-2\) tres veces):
+\[
+\chi_A(\lambda)=(\lambda-2)^3+(-1)+(-1)-\bigl[(\lambda-2)+(\lambda-2)+(\lambda-2)\bigr]
+=(\lambda-2)^3-3(\lambda-2)-2
+\]
+Desarrollando,
 \[\color{teal}
-\lambda_1 = 2,
-\qquad
-\lambda_2 = 3
+\chi_A(\lambda)=\lambda^3-6\lambda^2+9\lambda-4
 \]
 
-Como cada raíz aparece una sola vez en el polinomio característico, se tiene que
+\paragraph*{Paso 3: autovalores}
+Buscamos las raíces de \(\lambda^3-6\lambda^2+9\lambda-4=0\). Como el polinomio es mónico y tiene coeficientes enteros, sus raíces enteras (si las hay) son divisores del término independiente \(-4\), es decir, \(\pm1,\pm2,\pm4\). Probando, \(\lambda=1\) es raíz, porque \(1-6+9-4=0\). Dividimos por \(\lambda-1\) con la regla de Ruffini:
+\[
+\begin{array}{r|rrrr}
+   & 1 & -6 & 9 & -4\\
+ 1 &   &  1 & -5 & 4\\ \hline
+   & 1 & -5 & 4 & 0
+\end{array}
+\]
+de donde
+\[
+\chi_A(\lambda)=(\lambda-1)(\lambda^2-5\lambda+4)=(\lambda-1)(\lambda-1)(\lambda-4)=(\lambda-1)^2(\lambda-4)
+\]
+Por lo tanto
 \[\color{teal}
-\mathrm{mult}_{\mathrm{alg}}(2)=1,
+\lambda_1=1\quad(\mathrm{mult}_{\mathrm{alg}}(1)=2),
 \qquad
-\mathrm{mult}_{\mathrm{alg}}(3)=1
+\lambda_2=4\quad(\mathrm{mult}_{\mathrm{alg}}(4)=1)
 \]
 
-\paragraph*{Autovectores para \(\lambda=2\)}
+\paragraph*{Chequeo con traza y determinante}
+Tenemos \(\operatorname{tr}(A)=2+2+2=6\) y \(\det(A)=4\) (por Sarrus, \(8+1+1-2-2-2=4\)). Contando cada autovalor tantas veces como su multiplicidad algebraica:
+\[
+1+1+4=6=\operatorname{tr}(A),
+\qquad
+1\cdot1\cdot4=4=\det(A)
+\]
+También se ve en los coeficientes de \(\chi_A(\lambda)=\lambda^3-6\lambda^2+9\lambda-4\): \(c_2=-6=-\operatorname{tr}(A)\) y \(c_0=-4=(-1)^3\det(A)\). Aquí, con \(n=3\), el factor \((-1)^n\) sí se nota.
 
+\paragraph*{Paso 4: autovectores}
+Para cada autovalor resolvemos \((A-\lambda I)v=0\), con \(v=(x,y,z)^T\).
+
+\paragraph*{Para \(\lambda=4\)}
 Calculamos
 \[
-D - 2I =
-\begin{pmatrix}
-0 & 0\\
-0 & 1
+A-4I=\begin{pmatrix}
+-2&1&1\\
+1&-2&1\\
+1&1&-2
 \end{pmatrix}
 \]
-
-Buscamos todos los vectores \(v=(x,y)^T\) tales que
+y resolvemos \((A-4I)v=0\):
 \[
-(D-2I)v = 0
+\begin{cases}
+-2x+y+z=0\\
+x-2y+z=0\\
+x+y-2z=0
+\end{cases}
 \]
-
-Es decir,
+Restando la segunda ecuación de la primera se obtiene \(-3x+3y=0\), o sea \(y=x\); restando la tercera de la segunda, \(-3y+3z=0\), o sea \(z=y\). Luego \(x=y=z\) y
 \[
-\begin{pmatrix}
-0 & 0\\
-0 & 1
-\end{pmatrix}
-\begin{pmatrix}
-x\\
-y
-\end{pmatrix}
-=
-\begin{pmatrix}
-0\\
-y
-\end{pmatrix}
-=
-\begin{pmatrix}
-0\\
-0
-\end{pmatrix}
+v=x\begin{pmatrix}1\\1\\1\end{pmatrix},
+\quad x\neq0
 \]
+El espacio propio \(E_4\) es la recta generada por \(v_1=(1,1,1)^T\), y \(\mathrm{mult}_{\mathrm{geom}}(4)=1\).
 
-De aquí obtenemos
-\[
-y=0
-\]
-
-Entonces \(x\) es libre, y los autovectores asociados a \(\lambda=2\) son
-\[
-v =
-\begin{pmatrix}
-x\\
-0
-\end{pmatrix},
-\quad x\neq 0
-\]
-
-Por ejemplo, podemos tomar
-\[
-v_1 =
-\begin{pmatrix}
-1\\
-0
-\end{pmatrix}
-\]
-
-\paragraph*{Autovectores para \(\lambda=3\)}
-
+\paragraph*{Para \(\lambda=1\)}
 Calculamos
 \[
-D - 3I =
-\begin{pmatrix}
--1 & 0\\
-0 & 0
+A-I=\begin{pmatrix}
+1&1&1\\
+1&1&1\\
+1&1&1
 \end{pmatrix}
 \]
-
-Buscamos todos los vectores \(v=(x,y)^T\) tales que
+Las tres ecuaciones de \((A-I)v=0\) son la misma:
 \[
-(D-3I)v = 0
+x+y+z=0
 \]
-
-Es decir,
+Hay dos variables libres (\(z=-x-y\)), de modo que
 \[
-\begin{pmatrix}
--1 & 0\\
-0 & 0
-\end{pmatrix}
-\begin{pmatrix}
-x\\
-y
-\end{pmatrix}
-=
-\begin{pmatrix}
--x\\
-0
-\end{pmatrix}
-=
-\begin{pmatrix}
-0\\
-0
-\end{pmatrix}
+v=\begin{pmatrix}x\\y\\-x-y\end{pmatrix}
+=x\begin{pmatrix}1\\0\\-1\end{pmatrix}+y\begin{pmatrix}0\\1\\-1\end{pmatrix}
 \]
-
-De aquí obtenemos
+Tomamos \(v_2=(1,0,-1)^T\) y \(v_3=(0,1,-1)^T\), que son linealmente independientes. El espacio propio \(E_1\) es el plano \(x+y+z=0\) y \(\mathrm{mult}_{\mathrm{geom}}(1)=2\).
+\paragraph*{Verificación}
 \[
-x=0
-\]
-
-Entonces \(y\) es libre, y los autovectores asociados a \(\lambda=3\) son
-\[
-v =
-\begin{pmatrix}
-0\\
-y
-\end{pmatrix},
-\quad y\neq 0
-\]
-
-Por ejemplo, podemos tomar
-\[
-v_2 =
-\begin{pmatrix}
-0\\
-1
-\end{pmatrix}
-\]
-
-
-
-En este caso hay dos autovalores distintos. Cada uno tiene multiplicidad algebraica igual a 1 y multiplicidad geométrica igual a 1.
-
-{\color{teal}
-\[
-\mathrm{mult}_{\mathrm{alg}}(2)=1,
+A\,v_1=\begin{pmatrix}4\\4\\4\end{pmatrix}=4\,v_1,
 \qquad
-\mathrm{mult}_{\mathrm{geom}}(2)=1
+A\,v_2=\begin{pmatrix}1\\0\\-1\end{pmatrix}=1\cdot v_2,
+\qquad
+A\,v_3=\begin{pmatrix}0\\1\\-1\end{pmatrix}=1\cdot v_3
 \]
-}
+
+\paragraph*{Conclusión:}
+\[\color{teal}
+\mathrm{mult}_{\mathrm{alg}}(1)=\mathrm{mult}_{\mathrm{geom}}(1)=2,
+\qquad
+\mathrm{mult}_{\mathrm{alg}}(4)=\mathrm{mult}_{\mathrm{geom}}(4)=1
+\]
+Aunque \(\lambda=1\) es raíz doble, tiene dos autovectores linealmente independientes: su espacio propio es un plano, no una recta.
+
+
+
 
 \newpage
 
@@ -6224,419 +6297,312 @@ Como ambos autovalores son positivos, la forma restringida es definida positiva.
 
 \section{Menores}
 
-\section*{Definiciones de Menores}
 
-Sea $A = \bigl(a_{ij}\bigr)_{i,j=1}^n \in \mathbb{K}^{n\times n}$ una matriz simétrica (aunque las definiciones de menores se aplican a cualquier matriz cuadrada, el contexto de formas cuadráticas usualmente implica simetría).
 
-\paragraph{Menor (general) de orden $k$.}
-Un \emph{menor (general) de orden $k$} de $A$ es el determinante de una submatriz $k \times k$ de $A$. Esta submatriz se forma seleccionando un conjunto $I = \{i_1, \dots, i_k\}$ de $k$ índices de filas (con $i_1 < i_2 < \dots < i_k$) y un conjunto $J = \{j_1, \dots, j_k\}$ de $k$ índices de columnas (con $j_1 < j_2 < \dots < j_k$). Si $A[I,J]$ denota la submatriz formada por las filas en $I$ y las columnas en $J$, es decir, $A[I,J] = \bigl(a_{i_p j_q}\bigr)_{p,q=1}^k$, entonces el menor es $\det(A[I,J])$.
+\section*{Definiciones de menores}
 
-\paragraph{Menor principal de orden $k$.}
-Un \emph{menor principal de orden $k$} es un menor de orden $k$ donde el conjunto de índices de las filas seleccionadas es el mismo que el conjunto de índices de las columnas seleccionadas.
-Es decir, si $I = \{i_1, \dots, i_k\} \subset \{1, 2, \dots, n\}$ con $i_1 < i_2 < \dots < i_k$, el menor principal asociado a $I$ (a veces denotado $M_I$ o $\Delta_I$) es:
+Sea \(A=\bigl(a_{ij}\bigr)_{i,j=1}^n\in\mathbb{R}^{n\times n}\) una matriz simétrica (aunque las definiciones de menores se aplican a cualquier matriz cuadrada, el contexto de formas cuadráticas usualmente implica simetría).
+
+\paragraph{Notación.}
+En todo el capítulo, el supraíndice entre paréntesis indica el \emph{orden} del menor (el tamaño de la submatriz) y el subíndice indica las filas y columnas que se toman para calcularlo. En el subíndice, los índices de cada conjunto se escriben seguidos y sin llaves, como en \(a_{13}\). El paréntesis evita confundir el orden con una potencia: \(\Delta^{(2)}\) es un menor de orden 2, no \(\Delta\) al cuadrado.
+
+\paragraph{Menor (general) de orden \(k\).}
+Un \emph{menor (general) de orden \(k\)} de \(A\) es el determinante de una submatriz \(k\times k\) de \(A\). Esta submatriz se forma seleccionando un conjunto \(I=\{i_1,\dots,i_k\}\) de \(k\) índices de filas (con \(i_1<i_2<\dots<i_k\)) y un conjunto \(J=\{j_1,\dots,j_k\}\) de \(k\) índices de columnas (con \(j_1<j_2<\dots<j_k\)). Si \(A[I,J]\) denota la submatriz formada por las filas en \(I\) y las columnas en \(J\), es decir, \(A[I,J]=\bigl(a_{i_pj_q}\bigr)_{p,q=1}^k\), el menor es
 \[
-\Delta_I = \det(A[I,I]),
+M^{(k)}_{I,J}=\det\bigl(A[I,J]\bigr)
 \]
-donde $A[I,I] = \bigl(a_{i_p i_q}\bigr)_{p,q=1}^k$. Estos son los determinantes de las submatrices principales de $A$.
-
-\paragraph{Menor principal inicial (o dominante) de orden $k$.}
-Un \emph{menor principal inicial} o  \emph{menor principal líder} de orden $k$ (usualmente denotado $\Delta_k$) es el menor principal obtenido al seleccionar las primeras $k$ filas y las primeras $k$ columnas de $A$. Es decir, corresponde a tomar $I = \{1, 2, \dots, k\}$:
+En el subíndice van primero las filas y después, separadas por una coma, las columnas. Por ejemplo, con las filas 1 y 3 y las columnas 2 y 3:
 \[
-\Delta_k = \det\begin{pmatrix}
-a_{11} & a_{12} & \cdots & a_{1k}\\
-a_{21} & a_{22} & \cdots & a_{2k}\\
-\vdots & \vdots & \ddots & \vdots\\
-a_{k1} & a_{k2} & \cdots & a_{kk}
-\end{pmatrix}.
+M^{(2)}_{13,23}=\det\begin{pmatrix}a_{12}&a_{13}\\a_{32}&a_{33}\end{pmatrix}
 \]
+
+\paragraph{Menor principal de orden \(k\).}
+Un \emph{menor principal de orden \(k\)} es un menor de orden \(k\) donde el conjunto de índices de las filas seleccionadas es el mismo que el conjunto de índices de las columnas seleccionadas. Como las filas y las columnas coinciden, en el subíndice alcanza con escribir un solo conjunto: si \(I=\{i_1,\dots,i_k\}\subseteq\{1,2,\dots,n\}\) con \(i_1<i_2<\dots<i_k\), el menor principal asociado a \(I\) es
+\[
+\Delta^{(k)}_I=M^{(k)}_{I,I}=\det\bigl(A[I,I]\bigr)
+\]
+donde \(A[I,I]=\bigl(a_{i_pi_q}\bigr)_{p,q=1}^k\). Estos son los determinantes de las submatrices principales de \(A\). Por ejemplo, con las filas y columnas 1 y 3:
+\[
+\Delta^{(2)}_{13}=\det\begin{pmatrix}a_{11}&a_{13}\\a_{31}&a_{33}\end{pmatrix}
+\]
+
+\paragraph{Menor principal líder de orden \(k\).}
+Un \emph{menor principal líder} de orden \(k\) (también llamado \emph{inicial} o \emph{dominante}) es el menor principal obtenido al seleccionar las primeras \(k\) filas y las primeras \(k\) columnas de \(A\), es decir, \(I=\{1,2,\dots,k\}\). Como ese conjunto queda determinado por el orden, alcanza con el supraíndice\footnote{En otros libros se escribe \(|A_k|\) en lugar de \(\Delta^{(k)}\), donde \(A_k\) es la submatriz \(k\times k\) superior izquierda de \(A\).}:
+\[
+\Delta^{(k)}=\Delta^{(k)}_{12\cdots k}=\det\begin{pmatrix}
+a_{11}&a_{12}&\cdots&a_{1k}\\
+a_{21}&a_{22}&\cdots&a_{2k}\\
+\vdots&\vdots&\ddots&\vdots\\
+a_{k1}&a_{k2}&\cdots&a_{kk}
+\end{pmatrix}
+\]
+Para \(k=n\) hay un único menor principal, que coincide con el líder: \(\Delta^{(n)}=\det A\). En general, una matriz \(n\times n\) tiene \(\binom{n}{k}^2\) menores de orden \(k\), \(\binom{n}{k}\) menores principales de orden \(k\) y un único menor principal líder de orden \(k\). En total tiene \(2^n-1\) menores principales: 7 si \(n=3\) y 15 si \(n=4\).
 
 \medskip
 
-\noindent\textbf{En resumen, para una matriz $A$}
-\begin{itemize}
-  \item \color{teal}\emph{Menor (general) de orden $k$}: Determinante de cualquier submatriz $k \times k$ (los índices de las $k$ filas elegidas pueden ser distintos de los índices de las $k$ columnas elegidas).
-  \item \emph{Menor principal de orden $k$} ($\Delta_I$): Determinante de una submatriz $k \times k$ formada tomando el mismo conjunto de $k$ índices para las filas y para las columnas.
-  \item \emph{Menor principal líder (o de orden inicial) de orden $k$} ($\Delta_k$): Determinante de la submatriz $k \times k$ superior izquierda de $A$. Es un caso particular de menor principal.
+\noindent\textbf{En resumen, para una matriz \(A\)}
+\begin{itemize}\color{teal}
+  \item \emph{Menor (general) de orden \(k\)}, \(M^{(k)}_{I,J}\): determinante de cualquier submatriz \(k\times k\) (los índices de las \(k\) filas elegidas pueden ser distintos de los índices de las \(k\) columnas elegidas). Ejemplo: \(M^{(2)}_{13,23}\).
+  \item \emph{Menor principal de orden \(k\)}, \(\Delta^{(k)}_I\): determinante de una submatriz \(k\times k\) formada tomando el mismo conjunto \(I\) de \(k\) índices para las filas y para las columnas. Ejemplo: \(\Delta^{(2)}_{13}=M^{(2)}_{13,13}\).
+  \item \emph{Menor principal líder de orden \(k\)}, \(\Delta^{(k)}\): determinante de la submatriz \(k\times k\) superior izquierda de \(A\). Es un caso particular de menor principal. Ejemplo: \(\Delta^{(2)}=\Delta^{(2)}_{12}\).
 \end{itemize}
 
-\subsection*{Ejemplo: menores de una matriz $3\times3$}
+\subsection*{Ejemplo: menores de una matriz \(3\times3\)}
 
 Sea
 \[
-A = \begin{pmatrix}
-2 & -1 & 0\\[4pt]
--1 & 3 & 1\\[4pt]
-0 & 1 & 2
-\end{pmatrix}.
+A=\begin{pmatrix}
+2&-1&0\\[4pt]
+-1&3&1\\[4pt]
+0&1&2
+\end{pmatrix}
 \]
 
-\paragraph*{1. Menores de orden 1 (todos los elementos de \(A\)):}
+\paragraph*{1. Menores de orden 1 (todos los elementos de \(A\), \(M^{(1)}_{i,j}=a_{ij}\)):}
 \[
-\begin{array}{ccc}
-M_{11}=2, & M_{12}=-1, & M_{13}=0,\\[4pt]
-M_{21}=-1,& M_{22}=3,  & M_{23}=1,\\[4pt]
-M_{31}=0, & M_{32}=1,  & M_{33}=2.
+\begin{array}{l@{\qquad}l@{\qquad}l}
+M^{(1)}_{1,1}=2 & M^{(1)}_{1,2}=-1 & M^{(1)}_{1,3}=0\\[4pt]
+M^{(1)}_{2,1}=-1 & M^{(1)}_{2,2}=3 & M^{(1)}_{2,3}=1\\[4pt]
+M^{(1)}_{3,1}=0 & M^{(1)}_{3,2}=1 & M^{(1)}_{3,3}=2
 \end{array}
 \]
 
 \paragraph*{2. Menores principales de orden 1:}
+Son los elementos de la diagonal, \(\Delta^{(1)}_i=M^{(1)}_{i,i}\):
 \[
-M_{11}=2,\quad M_{22}=3,\quad M_{33}=2.
+\Delta^{(1)}_1=2\qquad\Delta^{(1)}_2=3\qquad\Delta^{(1)}_3=2
 \]
 
 \paragraph*{3. Menores de orden 2 (todas las submatrices \(2\times2\)):}
+En la fila \(I\) y la columna \(J\) de la tabla está \(M^{(2)}_{I,J}\), calculado con las filas \(I\) y las columnas \(J\) de \(A\). Por ejemplo, \(M^{(2)}_{12,13}=2\):
 \[
 \begin{array}{c|ccc}
-      & \{1,2\}               & \{1,3\}               & \{2,3\}               \\ \hline
-\{1,2\}& \det\begin{pmatrix}2&-1\\-1&3\end{pmatrix}=5
-       & \det\begin{pmatrix}2&0\\-1&1\end{pmatrix}=2
-       & \det\begin{pmatrix}-1&0\\3&1\end{pmatrix}=-1 \\[10pt]
-\{1,3\}& \det\begin{pmatrix}2&-1\\0&1\end{pmatrix}=2
-       & \det\begin{pmatrix}2&0\\0&2\end{pmatrix}=4
-       & \det\begin{pmatrix}-1&0\\1&2\end{pmatrix}=-2 \\[10pt]
-\{2,3\}& \det\begin{pmatrix}-1&3\\0&1\end{pmatrix}=-1
-       & \det\begin{pmatrix}-1&1\\0&2\end{pmatrix}=-2
-       & \det\begin{pmatrix}3&1\\1&2\end{pmatrix}=5
+ & J=\{1,2\} & J=\{1,3\} & J=\{2,3\}\\ \hline
+I=\{1,2\} & \det\begin{pmatrix}2&-1\\-1&3\end{pmatrix}=5
+ & \det\begin{pmatrix}2&0\\-1&1\end{pmatrix}=2
+ & \det\begin{pmatrix}-1&0\\3&1\end{pmatrix}=-1\\[10pt]
+I=\{1,3\} & \det\begin{pmatrix}2&-1\\0&1\end{pmatrix}=2
+ & \det\begin{pmatrix}2&0\\0&2\end{pmatrix}=4
+ & \det\begin{pmatrix}-1&0\\1&2\end{pmatrix}=-2\\[10pt]
+I=\{2,3\} & \det\begin{pmatrix}-1&3\\0&1\end{pmatrix}=-1
+ & \det\begin{pmatrix}-1&1\\0&2\end{pmatrix}=-2
+ & \det\begin{pmatrix}3&1\\1&2\end{pmatrix}=5
 \end{array}
 \]
+Como \(A\) es simétrica, \(M^{(2)}_{I,J}=M^{(2)}_{J,I}\): la tabla es simétrica respecto de su diagonal.
 
 \paragraph*{4. Menores principales de orden 2:}
-Sólo los subíndices coinciden:
+Son los de la diagonal de la tabla (\(I=J\)):
 \[
-\det A[\{1,2\},\{1,2\}]=5,\quad
-\det A[\{1,3\},\{1,3\}]=4,\quad
-\det A[\{2,3\},\{2,3\}]=5.
+\Delta^{(2)}_{12}=5\qquad\Delta^{(2)}_{13}=4\qquad\Delta^{(2)}_{23}=5
 \]
 
-\paragraph*{5. Menores principales líderes (o menores principales de orden inicial)}:
+\paragraph*{5. Menores principales líderes:}
+Son los menores principales \(\Delta^{(1)}_1\), \(\Delta^{(2)}_{12}\) y \(\Delta^{(3)}_{123}\):
 \[
-\Delta_1 = \det\bigl([2]\bigr)=2,
-\quad
-\Delta_2 = \det\!\begin{pmatrix}2&-1\\-1&3\end{pmatrix}=5,
-\quad
-\Delta_3 = \det A = 8.
-\]
-
-\subsection*{Otro ejemplo}
-Para  
-\[
-A = 
-\begin{pmatrix}
-2 & -1 & 0\\
--1 & 3 & 1\\
-0 & 1 & 4
-\end{pmatrix}
-\]
-los menores principales líderes son  
-\[
-A_1 = (2)
-\quad,\quad
-A_2 = |
-\begin{pmatrix}
-2 & -1\\
--1 & 3
-\end{pmatrix}|
-\quad,\quad
-A_3 = |A|
+\Delta^{(1)}=\det\begin{pmatrix}2\end{pmatrix}=2\qquad
+\Delta^{(2)}=\det\begin{pmatrix}2&-1\\-1&3\end{pmatrix}=5\qquad
+\Delta^{(3)}=\det A=8
 \]
 
 
 \section*{Clasificación de formas cuadráticas mediante menores}
 
-Sea la forma cuadrática  
+Sea la forma cuadrática
 \[
-Q(x) = x^T A\,x
+Q(x)=x^TA\,x
 \]
-con \(A\) simétrica.
-
-\subsection*{Menores principales iniciales}
-Denotamos por \(\Delta_k\) el menor principal inicial de orden \(k\), es decir
-\[
-\Delta_k = \det\bigl(A[\{1,\dots,k\},\{1,\dots,k\}]\bigr),
-\]
-y por \(\Delta_I\) el menor principal cualquiera, correspondiente al subconjunto de índices \(I\subset\{1,\dots,n\}\).\footnote{Para un subconjunto $I\subset\{1,\dots,n\}$, definimos $\Delta_I:=\det\!\big(A[I,I]\big)$ como el \emph{menor principal} asociado a $I$. Por ejemplo, $\Delta_{\{1,3\}}=\det\!\begin{pmatrix}a_{11}&a_{13}\\ a_{31}&a_{33}\end{pmatrix}$. Cuando $I=\{1,\dots,k\}$ escribimos simplemente $\Delta_k$, el \emph{menor principal líder} de orden $k$.}
+con \(A\) simétrica y \(x\in\mathbb{R}^n\). Usamos la notación de la sección anterior: \(\Delta^{(k)}\) es el menor principal líder de orden \(k\) y \(\Delta^{(k)}_I\) es el menor principal de orden \(k\) asociado a un conjunto \(I\subseteq\{1,\dots,n\}\) de \(k\) índices.
 
 
 \subsection*{Criterio de Sylvester (definitud estricta)}
 \begin{itemize}\color{teal}
-  \item \(Q\) es \emph{definida positiva} si y solo si  
+  \item \(Q\) es \emph{definida positiva} si y solo si
   \[
-    \Delta_k > 0
-    \quad\text{para todo }k=1,\dots,n.
+    \Delta^{(k)}>0\quad\text{para todo }k=1,\dots,n
   \]
-  \item \(Q\) es \emph{definida negativa} si y solo si  
+  \item \(Q\) es \emph{definida negativa} si y solo si
   \[
-    (-1)^k\,\Delta_k > 0
-    \quad\text{para todo }k=1,\dots,n.
+    (-1)^k\,\Delta^{(k)}>0\quad\text{para todo }k=1,\dots,n
   \]
 \end{itemize}
 
 \subsection*{Criterio para semidefinitud}
 \begin{itemize}\color{teal}
-  \item \(Q\) es \emph{semidefinida positiva} si y solo si todos los menores principales 
-  \(\Delta_I\ge0\) para todo \(I\subset\{1,\dots,n\}\).
-  \item \(Q\) es \emph{semidefinida negativa} si y solo si 
-  \((-1)^{|I|}\,\Delta_I\ge0\) para todo \(I\subset\{1,\dots,n\}\).
+  \item \(Q\) es \emph{semidefinida positiva} si y solo si todos sus menores principales son no negativos: \(\Delta^{(k)}_I\ge0\) para todo \(k=1,\dots,n\) y todo \(I\subseteq\{1,\dots,n\}\) con \(k\) elementos.
+  \item \(Q\) es \emph{semidefinida negativa} si y solo si \((-1)^k\,\Delta^{(k)}_I\ge0\) para todo \(k=1,\dots,n\) y todo \(I\subseteq\{1,\dots,n\}\) con \(k\) elementos.
 \end{itemize}
 
 
 \subsection*{Criterio para formas cuadráticas indefinidas}
-Si existen índices \(I,J\subset\{1,\dots,n\}\) tales que los menores principales satisfacen \(\Delta_I>0\) y \(\Delta_J<0\), entonces \(Q\) es \emph{indefinida}
+{\color{teal}\(Q\) es \emph{indefinida} si y solo si no es semidefinida positiva ni semidefinida negativa. Por el criterio anterior, esto ocurre si y solo si
+\begin{itemize}
+  \item algún menor principal de orden par es negativo: \(\Delta^{(k)}_I<0\) con \(k\) par, o
+  \item hay dos menores principales de orden impar con signos opuestos: \(\Delta^{(k)}_I>0\) y \(\Delta^{(m)}_J<0\) con \(k\) y \(m\) impares.
+\end{itemize}}
 
 
 \subsection*{Observaciones}
 \begin{itemize}
-  \item Las condiciones del criterio de Sylvester son necesarias y suficientes para la \emph{definitud} de \(Q\), pero para la \emph{semidefinitud} son solo necesarias.
-  \item Una matriz que es definida positiva es semidefinida positiva y si es negativa también es semidefinida negativa.
+  \item El criterio de Sylvester da condiciones necesarias y suficientes para la \emph{definitud} de \(Q\). Para la \emph{semidefinitud}, en cambio, pedir lo mismo a los menores líderes con desigualdad débil (\(\Delta^{(k)}\ge0\), o \((-1)^k\Delta^{(k)}\ge0\)) es necesario pero no suficiente: hay que revisar todos los menores principales \(\Delta^{(k)}_I\).
+  \item Toda matriz definida positiva es también semidefinida positiva, y toda matriz definida negativa es también semidefinida negativa.
 \end{itemize}
 
 
-\subsection*{Algunos casos posibles con una matriz simétrica 4x4}
-Sea $|A_i|$ el menor principal líder de orden $i$.\footnote{En esta sección, $A_i$ denota la \emph{submatriz principal líder} de orden $i$, obtenida tomando las primeras $i$ filas y columnas de $A$. En consecuencia, $|A_i|=\det\!\big(A[\{1,\dots,i\},\{1,\dots,i\}]\big)$, que también denotamos por $\Delta_i$.}
-
+\subsection*{Algunos casos posibles con una matriz simétrica \(4\times4\)}
+Sea \(A\) una matriz simétrica \(4\times4\) y sean \(\Delta^{(1)},\Delta^{(2)},\Delta^{(3)},\Delta^{(4)}\) sus menores principales líderes. En la práctica conviene empezar por ellos: si cumplen alguna de las dos condiciones del criterio de Sylvester, \(A\) es definida; si alguno de orden par es negativo, o dos de orden impar tienen signos opuestos, \(A\) es indefinida; si no ocurre nada de esto, hay que revisar todos los menores principales.
 
 \begin{enumerate}
-  \item[(a)] Si \(\lvert A_1\rvert>0\), \(\lvert A_2\rvert>0\), \(\lvert A_3\rvert>0\) y \(\lvert A_4\rvert>0\), entonces \(A\) es definida positiva.
-  \item[(b)] Si \(\lvert A_1\rvert<0\), \(\lvert A_2\rvert>0\), \(\lvert A_3\rvert<0\) y \(\lvert A_4\rvert>0\), entonces \(A\) es definida negativa.
-  \item[(c)] Si \(\lvert A_1\rvert>0\), \(\lvert A_2\rvert>0\), \(\lvert A_3\rvert=0\) y \(\lvert A_4\rvert<0\), entonces \(A\) es indefinida debido al cuarto menor principal.
-  \item[(d)] Si \(\lvert A_1\rvert<0\), \(\lvert A_2\rvert<0\), \(\lvert A_3\rvert<0\) y \(\lvert A_4\rvert<0\), entonces \(A\) es indefinida debido al segundo y cuarto menor principal.
-  \item[(e)] Si \(\lvert A_1\rvert=0\), \(\lvert A_2\rvert<0\), \(\lvert A_3\rvert>0\) y \(\lvert A_4\rvert=0\), entonces \(A\) es indefinida debido al segundo menor principal.
-  \item[(f)] Si \(\lvert A_1\rvert>0\), \(\lvert A_2\rvert=0\), \(\lvert A_3\rvert>0\) y \(\lvert A_4\rvert>0\), entonces \(A\) no es definida. No es semidefinida negativa, pero puede ser semidefinida positiva. Para comprobar la semidefinitud positiva, es necesario verificar los 15 menores principales de \(A\), no sólo los cuatro primeros. Si ninguno es negativo, \(A\) es semidefinida positiva; si al menos uno es negativo, \(A\) es indefinida.
-  \item[(g)] Si \(\lvert A_1\rvert=0\), \(\lvert A_2\rvert>0\), \(\lvert A_3\rvert=0\) y \(\lvert A_4\rvert>0\), entonces \(A\) no es definida, pero puede ser semidefinida positiva o semidefinida negativa. Para decidirlo, es necesario comprobar nuevamente los 15 menores principales de \(A\).
+  \item[(a)] Si \(\Delta^{(1)}>0\), \(\Delta^{(2)}>0\), \(\Delta^{(3)}>0\) y \(\Delta^{(4)}>0\), entonces \(A\) es definida positiva.
+  \item[(b)] Si \(\Delta^{(1)}<0\), \(\Delta^{(2)}>0\), \(\Delta^{(3)}<0\) y \(\Delta^{(4)}>0\), entonces \(A\) es definida negativa.
+  \item[(c)] Si \(\Delta^{(1)}>0\), \(\Delta^{(2)}>0\), \(\Delta^{(3)}=0\) y \(\Delta^{(4)}<0\), entonces \(A\) es indefinida debido a \(\Delta^{(4)}<0\).
+  \item[(d)] Si \(\Delta^{(1)}<0\), \(\Delta^{(2)}<0\), \(\Delta^{(3)}<0\) y \(\Delta^{(4)}<0\), entonces \(A\) es indefinida debido a \(\Delta^{(2)}<0\) y \(\Delta^{(4)}<0\).
+  \item[(e)] Si \(\Delta^{(1)}=0\), \(\Delta^{(2)}<0\), \(\Delta^{(3)}>0\) y \(\Delta^{(4)}=0\), entonces \(A\) es indefinida debido a \(\Delta^{(2)}<0\).
+  \item[(f)] Si \(\Delta^{(1)}>0\), \(\Delta^{(2)}=0\), \(\Delta^{(3)}=0\) y \(\Delta^{(4)}=0\), entonces \(A\) no es definida. No es semidefinida negativa, pero puede ser semidefinida positiva. Para comprobar la semidefinitud positiva, es necesario verificar los 15 menores principales de \(A\), no solo los cuatro líderes. Si ninguno es negativo, \(A\) es semidefinida positiva; si al menos uno es negativo, \(A\) es indefinida. En \(3\times3\), las matrices \(C\) y \(E\) de los ejemplos de más abajo muestran las dos posibilidades.
+  \item[(g)] Si \(\Delta^{(1)}=0\), \(\Delta^{(2)}=0\), \(\Delta^{(3)}=0\) y \(\Delta^{(4)}=0\), entonces \(A\) no es definida, pero puede ser semidefinida positiva o semidefinida negativa (o indefinida). Para decidirlo, es necesario comprobar nuevamente los 15 menores principales de \(A\).
 \end{enumerate}
 
 
 \subsection*{Ejemplo}
 
-Sea  
+Sea
 \[
-E = \begin{pmatrix}
--4 & 1 & 0\\
-1 & -3 & 1\\
-0 & 1 & -2
+B=\begin{pmatrix}
+-4&1&0\\
+1&-3&1\\
+0&1&-2
 \end{pmatrix}
 \]
 
-\paragraph*{Menor principal líder de orden 1}  
+\paragraph*{Menor principal líder de orden 1}
 \[
-\Delta_1 = \det\bigl(E[\{1\},\{1\}]\bigr) = \det\bigl([-4]\bigr) = -4
+\Delta^{(1)}=\det\begin{pmatrix}-4\end{pmatrix}=-4
 \]
 
-\paragraph*{Menor principal líder de orden 2}  
+\paragraph*{Menor principal líder de orden 2}
 \[
-\Delta_2 = \det\begin{pmatrix}
--4 & 1\\
-1 & -3
-\end{pmatrix}
-= (-4)\,(-3) - 1\cdot1
-= 12 - 1
-= 11
+\Delta^{(2)}=\det\begin{pmatrix}-4&1\\1&-3\end{pmatrix}=(-4)(-3)-1\cdot1=12-1=11
 \]
 
-\paragraph*{Menor principal líder de orden 3}  
+\paragraph*{Menor principal líder de orden 3}
 \[
-\Delta_3 = \det(E)
-= -4\det\begin{pmatrix}-3 & 1\\1 & -2\end{pmatrix}
-- 1\det\begin{pmatrix}1 & 1\\0 & -2\end{pmatrix}
-+ 0\det\begin{pmatrix}1 & -3\\0 & 1\end{pmatrix}
-\]
-\[
-\phantom{\Delta_3}
-= -4\bigl((-3)(-2) - 1\cdot1\bigr)
-- 1\bigl(1\cdot(-2) - 1\cdot0\bigr)
-\]
-\[
-\phantom{\Delta_3}
-= -4(6 - 1) - 1(-2)
-= -20 + 2
-= -18
+\begin{aligned}
+\Delta^{(3)}=\det B&=-4\det\begin{pmatrix}-3&1\\1&-2\end{pmatrix}-1\det\begin{pmatrix}1&1\\0&-2\end{pmatrix}+0\det\begin{pmatrix}1&-3\\0&1\end{pmatrix}\\
+&=-4\bigl((-3)(-2)-1\cdot1\bigr)-1\bigl(1\cdot(-2)-1\cdot0\bigr)\\
+&=-4(6-1)-1(-2)=-20+2=-18
+\end{aligned}
 \]
 
-\paragraph*{Verificación del criterio de Sylvester}  
+\paragraph*{Verificación del criterio de Sylvester}
 \[
-(-1)^1\,\Delta_1 = -(-4) = 4 > 0
+\begin{gathered}
+(-1)^1\Delta^{(1)}=-(-4)=4>0\qquad(-1)^2\Delta^{(2)}=11>0\\
+(-1)^3\Delta^{(3)}=-(-18)=18>0
+\end{gathered}
 \]
-\[
-(-1)^2\,\Delta_2 = 11 > 0
-\]
-\[
-(-1)^3\,\Delta_3 = -(-18) = 18 > 0
-\]
-\textbf{\color{teal}Por tanto \(E\) es definida negativa  
-}
-\subsection*{Otro ejemplo}
-
-Sea  
-\[
-C = \begin{pmatrix}
-1 & 1 & 0\\
-1 & 1 & 0\\
-0 & 0 & 0
-\end{pmatrix}
-\]
-
-\paragraph*{Menores principales de orden 1}  
-\[
-\det\bigl(C[\{1\},\{1\}]\bigr)=1
-\quad
-\det\bigl(C[\{2\},\{2\}]\bigr)=1
-\quad
-\det\bigl(C[\{3\},\{3\}]\bigr)=0
-\]
-
-\paragraph*{Menores principales de orden 2}  
-\[
-\det\bigl(C[\{1,2\},\{1,2\}]\bigr)
-=\det\begin{pmatrix}1 & 1\\1 & 1\end{pmatrix}
-=0
-\]
-\[
-\det\bigl(C[\{1,3\},\{1,3\}]\bigr)
-=\det\begin{pmatrix}1 & 0\\0 & 0\end{pmatrix}
-=0
-\]
-\[
-\det\bigl(C[\{2,3\},\{2,3\}]\bigr)
-=\det\begin{pmatrix}1 & 0\\0 & 0\end{pmatrix}
-=0
-\]
-
-\paragraph*{Menor principal de orden 3}  
-\[
-\det(C)
-=0
-\]
-
-\textbf{\color{teal}Como todos los menores principales son \(\ge 0\), \(C\) es semidefinida positiva según el criterio completo de semidefinitud positiva  }
-
+\textbf{\color{teal}Por tanto \(B\) es definida negativa.}
 
 \subsection*{Otro ejemplo}
 
-Sea  
+Sea
 \[
-D = \begin{pmatrix}
-4 & 2 & 0\\
-2 & 1 & 0\\
-0 & 0 & 0
+C=\begin{pmatrix}
+1&1&0\\
+1&1&0\\
+0&0&0
 \end{pmatrix}
 \]
 
-\paragraph*{Menores principales de orden 1}  
+\paragraph*{Menores principales de orden 1}
 \[
-\det\bigl(D[\{1\},\{1\}]\bigr) = 4
-\]
-\[
-\det\bigl(D[\{2\},\{2\}]\bigr) = 1
-\]
-\[
-\det\bigl(D[\{3\},\{3\}]\bigr) = 0
+\Delta^{(1)}_1=1\qquad\Delta^{(1)}_2=1\qquad\Delta^{(1)}_3=0
 \]
 
-\paragraph*{Menores principales de orden 2}  
+\paragraph*{Menores principales de orden 2}
 \[
-\det\bigl(D[\{1,2\},\{1,2\}]\bigr)
-= \det\begin{pmatrix}4 & 2\\2 & 1\end{pmatrix}
-= 4\cdot1 - 2\cdot2
-= 0
-\]
-\[
-\det\bigl(D[\{1,3\},\{1,3\}]\bigr)
-= \det\begin{pmatrix}4 & 0\\0 & 0\end{pmatrix}
-= 4\cdot0 - 0\cdot0
-= 0
-\]
-\[
-\det\bigl(D[\{2,3\},\{2,3\}]\bigr)
-= \det\begin{pmatrix}1 & 0\\0 & 0\end{pmatrix}
-= 1\cdot0 - 0\cdot0
-= 0
+\Delta^{(2)}_{12}=\det\begin{pmatrix}1&1\\1&1\end{pmatrix}=0\quad
+\Delta^{(2)}_{13}=\det\begin{pmatrix}1&0\\0&0\end{pmatrix}=0\quad
+\Delta^{(2)}_{23}=\det\begin{pmatrix}1&0\\0&0\end{pmatrix}=0
 \]
 
-\paragraph*{Menores principales de orden 3}  
+\paragraph*{Menor principal de orden 3}
 \[
-\det(D) = 0
+\Delta^{(3)}=\det C=0
 \]
+\textbf{\color{teal}Como todos los menores principales son \(\ge0\), \(C\) es semidefinida positiva según el criterio completo de semidefinitud positiva. No es definida positiva, porque \(\Delta^{(2)}=\Delta^{(2)}_{12}=0\) y el criterio de Sylvester pide \(\Delta^{(k)}>0\) para todo \(k\).}
 
-\textbf{\color{teal}Como todos los menores principales son \(\ge 0\) la matriz es semidefinida positiva.  }
 \subsection*{Otro ejemplo}
 
-Sea  
+Sea
 \[
-F = \begin{pmatrix}
--1 & 0 & 0\\
-0 & -2 & 0\\
-0 & 0 & 0
+D=\begin{pmatrix}
+-1&0&0\\
+0&-2&0\\
+0&0&0
 \end{pmatrix}
 \]
 
-\paragraph*{Menores principales de orden 1}  
+\paragraph*{Menores principales de orden 1}
 \[
-\det\bigl(F[\{1\},\{1\}]\bigr) = -1
-\]
-\[
-\det\bigl(F[\{2\},\{2\}]\bigr) = -2
-\]
-\[
-\det\bigl(F[\{3\},\{3\}]\bigr) = 0
+\Delta^{(1)}_1=-1\qquad\Delta^{(1)}_2=-2\qquad\Delta^{(1)}_3=0
 \]
 
-\paragraph*{Menores principales de orden 2}  
+\paragraph*{Menores principales de orden 2}
 \[
-\det\bigl(F[\{1,2\},\{1,2\}]\bigr)
-= \det\begin{pmatrix}-1 & 0\\0 & -2\end{pmatrix}
-= (-1)\cdot(-2) - 0\cdot0
-= 2
-\]
-\[
-\det\bigl(F[\{1,3\},\{1,3\}]\bigr)
-= \det\begin{pmatrix}-1 & 0\\0 & 0\end{pmatrix}
-= (-1)\cdot0 - 0\cdot0
-= 0
-\]
-\[
-\det\bigl(F[\{2,3\},\{2,3\}]\bigr)
-= \det\begin{pmatrix}-2 & 0\\0 & 0\end{pmatrix}
-= (-2)\cdot0 - 0\cdot0
-= 0
+\begin{gathered}
+\Delta^{(2)}_{12}=\det\begin{pmatrix}-1&0\\0&-2\end{pmatrix}=(-1)(-2)-0\cdot0=2\\
+\Delta^{(2)}_{13}=\det\begin{pmatrix}-1&0\\0&0\end{pmatrix}=(-1)\cdot0-0\cdot0=0\\
+\Delta^{(2)}_{23}=\det\begin{pmatrix}-2&0\\0&0\end{pmatrix}=(-2)\cdot0-0\cdot0=0
+\end{gathered}
 \]
 
-\paragraph*{Menor principal de orden 3}  
+\paragraph*{Menor principal de orden 3}
 \[
-\det(F) = 0
+\Delta^{(3)}=\det D=0
 \]
 
-\paragraph*{Verificación del criterio de semidefinitud negativa}  
+\paragraph*{Verificación del criterio de semidefinitud negativa}
 \[
-(-1)^1\,\Delta_1:\;
-(-1)\cdot(-1) = 1 \ge 0
+\begin{array}{l@{\qquad}l}
+(-1)^1\Delta^{(1)}_1=(-1)(-1)=1\ge0 & (-1)^1\Delta^{(1)}_2=(-1)(-2)=2\ge0\\[4pt]
+(-1)^1\Delta^{(1)}_3=(-1)\cdot0=0\ge0 & (-1)^2\Delta^{(2)}_{12}=2\ge0\\[4pt]
+(-1)^2\Delta^{(2)}_{13}=0\ge0 & (-1)^2\Delta^{(2)}_{23}=0\ge0\\[4pt]
+(-1)^3\Delta^{(3)}=(-1)\cdot0=0\ge0 &
+\end{array}
 \]
+\textbf{\color{teal}Por tanto \(D\) es semidefinida negativa. No es definida negativa, porque \((-1)^3\Delta^{(3)}=0\) y el criterio de Sylvester pide \((-1)^k\Delta^{(k)}>0\) para todo \(k\).}
+
+\subsection*{Otro ejemplo}
+
+Sea
 \[
-(-1)^1\,\Delta_1^{(2,2)}:\;
-(-1)\cdot(-2) = 2 \ge 0
-\]
-\[
-(-1)^1\,\Delta_1^{(3,3)}:\;
-(-1)\cdot0 = 0 \ge 0
-\]
-\[
-(-1)^2\,\Delta_2^{\{1,2\}}:\;
-2 \ge 0
-\]
-\[
-(-1)^2\,\Delta_2^{\{1,3\}}:\;
-0 \ge 0
-\]
-\[
-(-1)^2\,\Delta_2^{\{2,3\}}:\;
-0 \ge 0
-\]
-\[
-(-1)^3\,\Delta_3:\;
-(-1)\cdot0 = 0 \ge 0
+E=\begin{pmatrix}
+1&0&0\\
+0&0&0\\
+0&0&-1
+\end{pmatrix}
 \]
 
-\textbf{\color{teal}Por tanto \(F\) es semidefinida negativa. 
-}
+\paragraph*{Menores principales líderes}
+\[
+\Delta^{(1)}=1\qquad\Delta^{(2)}=\det\begin{pmatrix}1&0\\0&0\end{pmatrix}=0\qquad\Delta^{(3)}=\det E=0
+\]
+Son los mismos que los de \(C\). Como \(\Delta^{(2)}=0\), \(E\) no es definida, y como \(\Delta^{(1)}>0\), tampoco es semidefinida negativa. Que los tres sean \(\ge0\) no alcanza para concluir que sea semidefinida positiva: hay que revisar todos los menores principales.
+
+\paragraph*{Menores principales de orden 1}
+\[
+\Delta^{(1)}_1=1\qquad\Delta^{(1)}_2=0\qquad\Delta^{(1)}_3=-1
+\]
+
+\paragraph*{Menores principales de orden 2}
+\[
+\begin{gathered}
+\Delta^{(2)}_{12}=\det\begin{pmatrix}1&0\\0&0\end{pmatrix}=0\qquad
+\Delta^{(2)}_{13}=\det\begin{pmatrix}1&0\\0&-1\end{pmatrix}=-1\\
+\Delta^{(2)}_{23}=\det\begin{pmatrix}0&0\\0&-1\end{pmatrix}=0
+\end{gathered}
+\]
+\textbf{\color{teal}Como \(\Delta^{(2)}_{13}=-1<0\) es un menor principal de orden par negativo, \(E\) es indefinida. También alcanza con \(\Delta^{(1)}_1=1>0\) y \(\Delta^{(1)}_3=-1<0\), dos menores principales de orden impar con signos opuestos.}
 
 \newpage
 \section{Concavidad y convexidad}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.15)  30 SEP 2026 02:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.15)  6 OCT 2026 18:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1582,7 +1582,13 @@ Overfull \hbox (14.76361pt too wide) in paragraph at lines 4732--4734
 [94]
 
 [95]
-Package pgfplots info on input line 6858: fill between: activating layered grap
+
+[96]
+
+[97]
+
+[98]
+Package pgfplots info on input line 6824: fill between: activating layered grap
 hics
 \pgf@layerbox@axis background=\box75
 \pgf@layerboxsaved@axis background=\box76
@@ -1600,64 +1606,58 @@ hics
 \pgf@layerboxsaved@axis descriptions=\box88
 \pgf@layerbox@axis foreground=\box89
 \pgf@layerboxsaved@axis foreground=\box90
-Package pgfplots info on input line 6858: Setting layers 'axis background,axis 
+Package pgfplots info on input line 6824: Setting layers 'axis background,axis 
 grid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axi
 s foreground'...
-Package pgfplots info on input line 6890: fill between: activating layered grap
+Package pgfplots info on input line 6856: fill between: activating layered grap
 hics
-Package pgfplots info on input line 6890: Setting layers 'axis background,axis 
+Package pgfplots info on input line 6856: Setting layers 'axis background,axis 
 grid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axi
 s foreground'...
-
-
-[96]
-Underfull \hbox (badness 10000) in paragraph at lines 6924--6925
-
- []
-
-
-
-[97]
-
-[98]
-Underfull \hbox (badness 10000) in paragraph at lines 7137--7138
-
- []
-
 
 
 [99]
+Underfull \hbox (badness 10000) in paragraph at lines 6890--6891
+
+ []
+
+
 
 [100]
 
 [101]
+Underfull \hbox (badness 10000) in paragraph at lines 7103--7104
+
+ []
+
+
 
 [102]
 
 [103]
-Underfull \hbox (badness 10000) in paragraph at lines 7624--7625
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7656--7657
-
- []
-
-
 
 [104]
-Underfull \hbox (badness 10000) in paragraph at lines 7765--7766
-
- []
-
-
 
 [105]
 
 [106]
+Underfull \hbox (badness 10000) in paragraph at lines 7590--7591
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7622--7623
+
+ []
+
+
 
 [107]
+Underfull \hbox (badness 10000) in paragraph at lines 7731--7732
+
+ []
+
+
 
 [108]
 
@@ -1666,36 +1666,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 7765--7766
 [110]
 
 [111]
-pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.8233 \begin{equation}
-                       \label{FOC}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.8233 \begin{equation}
-                       \label{FOC}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.8233 \begin{equation}
-                       \label{FOC}
-pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.8233 \begin{equation}
-                       \label{FOC}
 
 [112]
 
 [113]
 
 [114]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8199 \begin{equation}
+                       \label{FOC}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8199 \begin{equation}
+                       \label{FOC}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8199 \begin{equation}
+                       \label{FOC}
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8199 \begin{equation}
+                       \label{FOC}
 
 [115]
 
@@ -1710,25 +1710,25 @@ l.8233 \begin{equation}
 [120]
 
 [121]
-Underfull \hbox (badness 10000) in paragraph at lines 8967--8970
+
+[122]
+
+[123]
+
+[124]
+Underfull \hbox (badness 10000) in paragraph at lines 8933--8936
 
  []
 
 
 
-[122]
-Overfull \hbox (9.08223pt too wide) detected at line 9112
+[125]
+Overfull \hbox (9.08223pt too wide) detected at line 9078
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; y[]; z[]; ^^U[]; ^^U[]\OT1/cmr/m/n/10 
 ) = []
  []
 
 
-
-[123]
-
-[124]
-
-[125]
 
 [126]
 
@@ -1749,17 +1749,17 @@ Overfull \hbox (9.08223pt too wide) detected at line 9112
 [134]
 
 [135]
-Underfull \hbox (badness 10000) in paragraph at lines 10099--10100
-
- []
-
-
 
 [136]
 
 [137]
 
 [138]
+Underfull \hbox (badness 10000) in paragraph at lines 10065--10066
+
+ []
+
+
 
 [139]
 
@@ -1768,62 +1768,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 10099--10100
 [141]
 
 [142]
-Overfull \hbox (5.8367pt too wide) in paragraph at lines 10700--10703
-[]\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
-m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
-10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
-\OML/cmm/m/it/10 g[]; [] ; g[]$
- []
-
-
 
 [143]
-Overfull \hbox (5.8367pt too wide) in paragraph at lines 10748--10751
-[]\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
-m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
-10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
-\OML/cmm/m/it/10 g[]; [] ; g[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10784--10785
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10835--10836
-
- []
-
-
 
 [144]
 
 [145]
+Overfull \hbox (5.8367pt too wide) in paragraph at lines 10666--10669
+[]\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
+m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
+10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
+\OML/cmm/m/it/10 g[]; [] ; g[]$
+ []
+
+
 
 [146]
+Overfull \hbox (5.8367pt too wide) in paragraph at lines 10714--10717
+[]\OT1/cmr/m/n/10 Para sim-pli-ficar la no-taci^^Son, sup^^Songase que $\OML/cm
+m/m/it/10 g[]; [] ; g[]$ \OT1/cmr/m/n/10 son las re-stric-ciones \OT1/cmr/m/it/
+10 ac-ti-vas \OT1/cmr/m/n/10 en $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 , y que $
+\OML/cmm/m/it/10 g[]; [] ; g[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10750--10751
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10801--10802
+
+ []
+
+
 
 [147]
 
 [148]
 
-[149] (matematica aplicada 1.aux)
+[149]
+
+[150]
+
+[151]
+
+[152] (matematica aplicada 1.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
 Package rerunfilecheck Info: File `"matematica aplicada 1".out' has not changed
 .
-(rerunfilecheck)             Checksum: 95BADF7318999E92F07B401C79D2BEA3;4769.
+(rerunfilecheck)             Checksum: 341CE0027D85538723DFDE6DD6184BBA;4802.
 Package logreq Info: Writing requests to '"matematica aplicada 1".run.xml'.
 \openout1 = `"matematica aplicada 1.run.xml"'.
 
  ) 
 Here is how much of TeX's memory you used:
- 50742 strings out of 468133
- 1171098 string characters out of 5430712
- 2063696 words of memory out of 5000000
- 77978 multiletter control sequences out of 15000+600000
+ 50782 strings out of 468133
+ 1171739 string characters out of 5430712
+ 2063697 words of memory out of 5000000
+ 78004 multiletter control sequences out of 15000+600000
  641599 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,26n,91p,1100b,2221s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1868,9 +1874,9 @@ ms/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/juanc/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/User
 s/juanc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7
 .pfb>
-Output written on "matematica aplicada 1.pdf" (150 pages, 1193298 bytes).
+Output written on "matematica aplicada 1.pdf" (153 pages, 1212753 bytes).
 PDF statistics:
- 1867 PDF objects out of 2073 (max. 8388607)
- 723 named destinations out of 1000 (max. 500000)
+ 1898 PDF objects out of 2073 (max. 8388607)
+ 737 named destinations out of 1000 (max. 500000)
  213 words of extra memory for PDF output out of 10000 (max. 10000000)
 
