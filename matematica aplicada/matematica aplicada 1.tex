@@ -142,7 +142,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%
 % --- tu versión ---
-\newcommand{\version}{1.8}
+\newcommand{\version}{1.9}
+
+
+
+
+
+
+% para vectores despues esto se puede quitar si no gusta mas la notacion
+\newcommand{\vect}[1]{\vec{#1}}
 
 \begin{document}
 
@@ -6785,10 +6793,9 @@ Son los mismos que los de \(C\). Como \(\Delta^{(2)}=0\), \(E\) no es definida, 
 
 \newpage
 \section{Concavidad y convexidad}
-
 \section*{Definición de convexidad y concavidad para funciones de una variable}
 
-Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo convexo. Decimos que:
+Sea \(f\colon I\subseteq\R\to\R\), donde \(I\) es un intervalo. Decimos que:
 \begin{itemize}
   \item \(f\) es \emph{convexa} si para todo \(x_{1},x_{2}\in I\) y todo \(t\in[0,1]\) se cumple
     \[
@@ -6800,16 +6807,15 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
     \[
       (1-t)f(x_{1}) + t\,f(x_{2})
     \]
-    coincide con el valor que adopta la recta secante en la posición intermedia 
-    \((1-t)x_{1}+t\,x_{2}\).  
-    Por tanto, la desigualdad
+    coincide con el valor que adopta la recta secante en la posición intermedia
+    \((1-t)x_{1}+t\,x_{2}\). Por tanto, la desigualdad
     \[
       \color{teal}
       f\bigl((1-t)x_{1} + t\,x_{2}\bigr)
       \;\le\;
       (1-t)f(x_{1}) + t\,f(x_{2})
     \]
-    expresa que, en cada punto entre \(x_1\) y \(x_2\), la curva de \(f\) permanece siempre por debajo de esa secante
+    expresa que, en cada punto entre \(x_1\) y \(x_2\), la curva de \(f\) nunca queda por encima de esa secante.
 
   \item \(f\) es \emph{cóncava} si para todo \(x_{1},x_{2}\in I\) y todo \(t\in[0,1]\) se cumple
     \[
@@ -6818,10 +6824,10 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
       \;\ge\;
       (1-t)f(x_{1}) + t\,f(x_{2})
     \]
-    \noindent\textbf{Intuición geométrica:} Aquí la desigualdad se invierte: el gráfico de \(f\) “queda por encima” de la recta secante entre los puntos dados
+    \noindent\textbf{Intuición geométrica:} Aquí la desigualdad se invierte: entre los puntos dados, el gráfico de \(f\) nunca queda por debajo de la recta secante.
 \end{itemize}
 
-
+En los gráficos siguientes, el punto del medio corresponde a \(t=\tfrac12\).
 
 \begin{center}
 \begin{tikzpicture}
@@ -6829,7 +6835,7 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
     width=8cm, height=6cm,
     axis lines=middle,
     xlabel=$x$, ylabel=$y$,
-    title={Ejemplo Convexo: $f(x)=x^2$},
+    title={Ejemplo convexo: $f(x)=x^2$},
     xmin=-1, xmax=1, ymin=-0.2, ymax=1.1,
     domain=-1:1, samples=100,
     clip=false
@@ -6844,7 +6850,7 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
     \fill[teal] (P2) circle (2pt) node[below right] {$\bigl(x_2,f(x_2)\bigr)$};
 
     % Recta secante
-    \draw[teal, thick] (P1) -- (P2) node[midway, above] {recta secante};
+    \draw[teal, thick] (P1) -- (P2) node[pos=0.75, above] {recta secante};
 
     % Punto medio en x = (x1+x2)/2
     \coordinate (Pm) at (axis cs:0,0);
@@ -6855,8 +6861,6 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
 \end{tikzpicture}
 \end{center}
 
-
-
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[
@@ -6864,7 +6868,7 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
     width=8cm, height=6cm,
     axis lines=middle,
     xlabel=$x$, ylabel=$y$,
-    title={Ejemplo Cóncavo: $f(x)=-x^2$},
+    title={Ejemplo cóncavo: $f(x)=-x^2$},
     xmin=-1, xmax=1, ymin=-1.1, ymax=0.2,
     domain=-1:1, samples=100,
     clip=false
@@ -6879,7 +6883,7 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
     \fill[teal] (Q2) circle (2pt) node[above right] {$\bigl(x_2,f(x_2)\bigr)$};
 
     % Recta secante
-    \draw[teal, thick] (Q1) -- (Q2) node[midway, below] {recta secante};
+    \draw[teal, thick] (Q1) -- (Q2) node[pos=0.75, below] {recta secante};
 
     % Punto medio en x = (x1+x2)/2
     \coordinate (Qm) at (axis cs:0,0);
@@ -6890,12 +6894,17 @@ Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\), donde \(I\) es un intervalo c
 \end{tikzpicture}
 \end{center}
 
+Los dos casos anteriores son de convexidad y concavidad \textbf{\color{teal}estrictas}: para cualquier par de puntos distintos, en el interior del segmento la curva queda estrictamente por debajo (o por encima) de la secante. Formalmente, \(f\) es \emph{estrictamente convexa} si
+\[
+  \color{teal}
+  f\bigl((1-t)x_{1} + t\,x_{2}\bigr)
+  \;<\;
+  (1-t)f(x_{1}) + t\,f(x_{2})
+  \qquad\text{para todo } x_1\neq x_2 \text{ en } I \text{ y todo } t\in(0,1),
+\]
+y es \emph{estrictamente cóncava} si vale lo mismo con la desigualdad \(>\).
 
-
-
-De hecho los dos casos anteriores corresponden a \textbf{\color{teal}convexidad estricta} ya que la recta secante pasa por arriba o por debajo de cualquier punto. También puede suceder que la recta secante esté justo por arriba de la función. Lo que implicaría convexidad no estricta:
-
-
+También puede ocurrir que, para algunos pares de puntos, la secante coincida con la gráfica en un tramo. Ahí la desigualdad se cumple con igualdad y la función es convexa (o cóncava), pero no estrictamente. Es lo que pasa en los dos gráficos siguientes, que tienen un tramo recto en \([-\tfrac12,\tfrac12]\):
 
 \begin{center}
 \begin{tikzpicture}
@@ -6903,14 +6912,13 @@ De hecho los dos casos anteriores corresponden a \textbf{\color{teal}convexidad 
     width=8cm, height=6cm,
     axis lines=middle,
     xlabel={$x$}, ylabel={$y$},
+    title={Convexa no estricta: $f(x)=\max\{x^2,\tfrac14\}$},
     xmin=-1, xmax=1, ymin=-0.1, ymax=1.1,
     domain=-1:1, samples=300,
     clip=false
   ]
     % f(x) = max(x^2, 1/4)
     \addplot[thick,blue] {max(x^2, 0.25)};
-
-    % Referencias del tramo recto [-0.5, 0.5] (sin texto)
 
     % Dos puntos y la secante (sin etiquetas)
     \coordinate (P1) at (axis cs:-0.3,0.25);
@@ -6927,16 +6935,17 @@ De hecho los dos casos anteriores corresponden a \textbf{\color{teal}convexidad 
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[
+    title style={yshift=1em},
     width=8cm, height=6cm,
     axis lines=middle,
     xlabel={$x$}, ylabel={$y$},
+    title={Cóncava no estricta: $f(x)=\min\{-x^2,-\tfrac14\}$},
     xmin=-1, xmax=1, ymin=-1.1, ymax=0.2,
     domain=-1:1, samples=300,
     clip=false
   ]
     % f(x) = min(-x^2, -1/4): concava con tramo recto en [-0.5, 0.5]
     \addplot[thick,blue] {min(-x^2, -0.25)};
-
 
     % Dos puntos dentro del tramo recto y su secante (coincide con f)
     \coordinate (Q1) at (axis cs:-0.3,-0.25);
@@ -6952,25 +6961,25 @@ De hecho los dos casos anteriores corresponden a \textbf{\color{teal}convexidad 
 \end{center}
 
 
-
-
 \subsection*{Relacionando la concavidad y convexidad con conjuntos convexos}
 
+Un conjunto \(C\subseteq\R^n\) es \emph{convexo} si, para todo par de puntos \(a,b\in C\) y todo \(t\in[0,1]\), el punto \((1-t)a+t\,b\) también pertenece a \(C\). Es decir, el segmento que une dos puntos cualesquiera de \(C\) queda completamente dentro de \(C\).
+
 \begin{itemize}
-  \item \emph{Convexidad:} la región
+  \item \emph{Convexidad:} \(f\) es convexa si y solo si su \emph{epígrafo}, la región
     \[
-      \bigl\{(x,y)\mid y \ge f(x)\bigr\}
+      \bigl\{(x,y)\mid x\in I,\ y \ge f(x)\bigr\}
     \]
-    es un conjunto convexo. Esto significa que si tomas dos puntos
+    es un conjunto convexo. Esto significa que si tomamos dos puntos
     \((x_1,y_1)\) y \((x_2,y_2)\) por encima del gráfico de \(f\),
-    el segmento que los une permanece siempre por encima de la curva
-  \item \emph{Concavidad:} la región
+    el segmento que los une nunca pasa por debajo de la curva.
+  \item \emph{Concavidad:} \(f\) es cóncava si y solo si su \emph{hipógrafo}, la región
     \[
-      \bigl\{(x,y)\mid y \le f(x)\bigr\}
+      \bigl\{(x,y)\mid x\in I,\ y \le f(x)\bigr\}
     \]
     es un conjunto convexo. En este caso, cualquier segmento trazado
     entre dos puntos por debajo del gráfico de \(f\) queda enteramente
-    dentro de esa región
+    dentro de esa región.
 \end{itemize}
 
 \begin{center}
@@ -6979,7 +6988,7 @@ De hecho los dos casos anteriores corresponden a \textbf{\color{teal}convexidad 
     width=8cm, height=6cm,
     axis lines=middle,
     xlabel=$x$, ylabel=$y$,
-    title={Ejemplo Convexo: $f(x)=x^2$},
+    title={Epígrafo de $f(x)=x^2$},
     xmin=-1, xmax=1, ymin=-0.2, ymax=1.1,
     domain=-1:1,
     samples=100,
@@ -7011,7 +7020,7 @@ De hecho los dos casos anteriores corresponden a \textbf{\color{teal}convexidad 
     width=8cm, height=6cm,
     axis lines=middle,
     xlabel=$x$, ylabel=$y$,
-    title={Ejemplo Cóncavo: $f(x)=-x^2$},
+    title={Hipógrafo de $f(x)=-x^2$},
     xmin=-1, xmax=1, ymin=-1.1, ymax=0.2,
     domain=-1:1,
     samples=100,
@@ -7039,24 +7048,25 @@ De hecho los dos casos anteriores corresponden a \textbf{\color{teal}convexidad 
 
 \section*{Concavidad y convexidad en $\R^2$}
 
-\noindent\textbf{Definición:}
+\noindent\textbf{Definición:} Sea \(f\colon D\subseteq\R^2\to\R\), donde \(D\) es un conjunto convexo (así, el segmento entre dos puntos de \(D\) queda dentro del dominio).
 \begin{itemize}
-  \item \(f\) es \emph{convexa} si para todo \((x_1,y_1)\), \((x_2,y_2)\) y todo \(t\in[0,1]\) se cumple
+  \item \(f\) es \emph{convexa} si para todo \((x_1,y_1),(x_2,y_2)\in D\) y todo \(t\in[0,1]\) se cumple
   \[
     \color{teal}
     f\bigl((1-t)(x_1,y_1)+t(x_2,y_2)\bigr)
     \;\le\;
     (1-t)\,f(x_1,y_1) + t\,f(x_2,y_2)
   \]
-  \item \(f\) es \emph{cóncava} si \(-f\) es convexa, es decir la desigualdad se invierte
+  \item \(f\) es \emph{cóncava} si \(-f\) es convexa, es decir, si la desigualdad se invierte.
 \end{itemize}
+Como en una variable, \(f\) es \emph{estrictamente} convexa (o cóncava) si la desigualdad es estricta para todo par de puntos distintos y todo \(t\in(0,1)\). En \(\R^n\) las definiciones son las mismas, con puntos de \(D\subseteq\R^n\).
 
-\noindent\textbf{Intuición geométrica:} La intuición se mantiene, el conjunto que está por debajo de la gráfica de una función cóncava es un conjunto convexo y el conjunto que está por arriba de una función convexa es un conjunto convexo
+\noindent\textbf{Intuición geométrica:} La intuición se mantiene. Ahora la gráfica de \(f\) es una superficie, y la secante es el segmento que une \(\bigl(x_1,y_1,f(x_1,y_1)\bigr)\) con \(\bigl(x_2,y_2,f(x_2,y_2)\bigr)\): si \(f\) es convexa, la superficie nunca queda por encima de ese segmento. Además, el epígrafo de una función convexa y el hipógrafo de una función cóncava siguen siendo conjuntos convexos.
 
-\section*{Regla en base a derivadas segundas}
+\section*{Criterio de las derivadas segundas}
 
 \noindent\textbf{Recordatorio: criterio para funciones de una variable}\\
-Sea \(g\colon I\subset\mathbb{R}\to\mathbb{R}\) de clase \(C^2\) en un intervalo \(I\). Entonces
+Sea \(g\colon I\subseteq\R\to\R\) de clase \(C^2\) en un intervalo \(I\). Entonces
 \[
 \begin{cases}
 g''(t)\ge0\quad\forall\,t\in I
@@ -7065,53 +7075,56 @@ g''(t)\le0\quad\forall\,t\in I
 &\Longrightarrow\;g\text{ es cóncava en }I
 \end{cases}
 \]
+Con desigualdades estrictas, la conclusión también es estricta: si \(g''(t)>0\) para todo \(t\in I\), \(g\) es estrictamente convexa, y si \(g''(t)<0\) para todo \(t\in I\), \(g\) es estrictamente cóncava.
 
-\noindent\textbf{Sea \(f\colon\mathbb{R}^2\to\mathbb{R}\) de clase \(C^2\).}\\
+\subsection*{Funciones de dos variables}
 
-Tomemos dos puntos \((x_1,y_1)\) y \((x_2,y_2)\) en \(\R^2\) y sea
+Sea \(f\colon D\subseteq\R^2\to\R\) de clase \(C^2\), con \(D\) abierto y convexo. La desigualdad que define la convexidad de \(f\) solo involucra puntos de un segmento, así que alcanza con estudiar \(f\) sobre cada segmento. Para eso, dados dos puntos \(a=(x_1,y_1)\) y \(b=(x_2,y_2)\) de \(D\), definimos
 \[
-g(t) \;=\; f\bigl((1-t)x_1 + t\,x_2,\;(1-t)y_1 + t\,y_2\bigr)
+g(t) \;=\; f\bigl((1-t)x_1 + t\,x_2,\;(1-t)y_1 + t\,y_2\bigr),
 \quad t\in[0,1]
 \]
+Vamos a ver que \(g\) es convexa, porque su derivada segunda es la forma cuadrática de la hessiana en la dirección del segmento, y que su convexidad se transmite a \(f\).
 
-\noindent\textbf{Intuición sobre \(g\).}  
-Para entender qué hace \(g\), primero observemos que  
+\medskip
+\noindent\textbf{Intuición sobre \(g\).}
+Para entender qué hace \(g\), primero observemos que
 \[
 (x(t),y(t)) \;=\;\bigl((1-t)x_1 + t\,x_2,\;(1-t)y_1 + t\,y_2\bigr)
 \]
-es la parametrización del segmento rectilíneo que une los puntos \((x_1,y_1)\) y \((x_2,y_2)\) en el plano  
-Por tanto,
+es la parametrización del segmento rectilíneo que une los puntos \((x_1,y_1)\) y \((x_2,y_2)\) en el plano. Por tanto,
 \[
 g(t) \;=\; f\bigl(x(t),y(t)\bigr)
 \]
-No es más que el valor de \(f\) al desplazarnos a lo largo de ese segmento  
+no es más que el valor de \(f\) al desplazarnos a lo largo de ese segmento:
 \begin{itemize}
-    \item Cuando \(t=0\) estamos en \((x_1,y_1)\)  
-    \item Cuando \(t=1\) estamos en \((x_2,y_2)\)  
-    \item Para \(t\in(0,1)\) recorremos los puntos intermedios  
+    \item Cuando \(t=0\) estamos en \((x_1,y_1)\).
+    \item Cuando \(t=1\) estamos en \((x_2,y_2)\).
+    \item Para \(t\in(0,1)\) recorremos los puntos intermedios.
 \end{itemize}
 
-Por la regla de la cadena aplicada a dos variables:
+\medskip
+\noindent\textbf{Paso 1: cálculo de \(g''\).} Por la regla de la cadena aplicada a dos variables:
 \[
 \begin{aligned}
 g'(t)
-&= f_x\bigl(x(t),y(t)\bigr)\,\frac{d}{dt}\bigl((1-t)x_1 + t\,x_2\bigr)
- + f_y\bigl(x(t),y(t)\bigr)\,\frac{d}{dt}\bigl((1-t)y_1 + t\,y_2\bigr)\\[4pt]
-&= f_x(x(t),y(t))\,(x_2 - x_1)
- + f_y(x(t),y(t))\,(y_2 - y_1)
+&= f'_x\bigl(x(t),y(t)\bigr)\,\frac{d}{dt}\bigl((1-t)x_1 + t\,x_2\bigr)
+ + f'_y\bigl(x(t),y(t)\bigr)\,\frac{d}{dt}\bigl((1-t)y_1 + t\,y_2\bigr)\\[4pt]
+&= f'_x(x(t),y(t))\,(x_2 - x_1)
+ + f'_y(x(t),y(t))\,(y_2 - y_1)
 \end{aligned}
 \]
 
 \[
 \begin{aligned}
 g''(t)
-&= \frac{d}{dt}\bigl[f_x(x(t),y(t))\bigr]\,(x_2 - x_1)
- + \frac{d}{dt}\bigl[f_y(x(t),y(t))\bigr]\,(y_2 - y_1)\\[6pt]
-&= \bigl[f_{xx}(x(t),y(t))\,x'(t)
-        + f_{xy}(x(t),y(t))\,y'(t)\bigr]\,(x_2 - x_1)\\
+&= \frac{d}{dt}\bigl[f'_x(x(t),y(t))\bigr]\,(x_2 - x_1)
+ + \frac{d}{dt}\bigl[f'_y(x(t),y(t))\bigr]\,(y_2 - y_1)\\[6pt]
+&= \bigl[f''_{xx}(x(t),y(t))\,x'(t)
+        + f''_{xy}(x(t),y(t))\,y'(t)\bigr]\,(x_2 - x_1)\\
 &\quad
- + \bigl[f_{yx}(x(t),y(t))\,x'(t)
-        + f_{yy}(x(t),y(t))\,y'(t)\bigr]\,(y_2 - y_1)
+ + \bigl[f''_{yx}(x(t),y(t))\,x'(t)
+        + f''_{yy}(x(t),y(t))\,y'(t)\bigr]\,(y_2 - y_1)
 \end{aligned}
 \]
 
@@ -7119,20 +7132,20 @@ Sabiendo que \(x'(t)=x_2-x_1\) y \(y'(t)=y_2-y_1\):
 \[
 \begin{aligned}
 g''(t)
-&= f_{xx}(x(t),y(t))\,(x_2 - x_1)\,(x_2 - x_1)
-+ f_{xy}(x(t),y(t))\,(y_2 - y_1)\,(x_2 - x_1)\\
+&= f''_{xx}(x(t),y(t))\,(x_2 - x_1)\,(x_2 - x_1)
++ f''_{xy}(x(t),y(t))\,(y_2 - y_1)\,(x_2 - x_1)\\
 &\quad
-+ f_{yx}(x(t),y(t))\,(x_2 - x_1)\,(y_2 - y_1)
-+ f_{yy}(x(t),y(t))\,(y_2 - y_1)\,(y_2 - y_1)
++ f''_{yx}(x(t),y(t))\,(x_2 - x_1)\,(y_2 - y_1)
++ f''_{yy}(x(t),y(t))\,(y_2 - y_1)\,(y_2 - y_1)
 \end{aligned}
 \]
 
-Usando \(f_{xy}=f_{yx}\), se agrupan los términos mixtos:
+Como \(f\) es de clase \(C^2\), por el teorema de Schwarz \(f''_{xy}=f''_{yx}\), y se agrupan los términos mixtos:
 \[
 g''(t)
-= f_{xx}(x(t),y(t))\,(x_2 - x_1)^2
-+ 2\,f_{xy}(x(t),y(t))\,(x_2 - x_1)(y_2 - y_1)
-+ f_{yy}(x(t),y(t))\,(y_2 - y_1)^2
+= f''_{xx}(x(t),y(t))\,(x_2 - x_1)^2
++ 2\,f''_{xy}(x(t),y(t))\,(x_2 - x_1)(y_2 - y_1)
++ f''_{yy}(x(t),y(t))\,(y_2 - y_1)^2
 \]
 
 Redefiniendo para mayor claridad:
@@ -7142,36 +7155,38 @@ w &= x_2 - x_1
 \qquad
 z = y_2 - y_1\\[6pt]
 g''(t)
-&= f_{xx}\bigl(x(t),y(t)\bigr)\,w^2
- + 2\,f_{xy}\bigl(x(t),y(t)\bigr)\,w\,z
- + f_{yy}\bigl(x(t),y(t)\bigr)\,z^2\\[6pt]
+&= f''_{xx}\bigl(x(t),y(t)\bigr)\,w^2
+ + 2\,f''_{xy}\bigl(x(t),y(t)\bigr)\,w\,z
+ + f''_{yy}\bigl(x(t),y(t)\bigr)\,z^2\\[6pt]
 &= \color{teal}
 \begin{pmatrix}w & z\end{pmatrix}
 \begin{pmatrix}
-f_{xx}\bigl(x(t),y(t)\bigr) & f_{xy}\bigl(x(t),y(t)\bigr)\\[4pt]
-f_{xy}\bigl(x(t),y(t)\bigr) & f_{yy}\bigl(x(t),y(t)\bigr)
+f''_{xx}\bigl(x(t),y(t)\bigr) & f''_{xy}\bigl(x(t),y(t)\bigr)\\[4pt]
+f''_{xy}\bigl(x(t),y(t)\bigr) & f''_{yy}\bigl(x(t),y(t)\bigr)
 \end{pmatrix}
 \begin{pmatrix}w\\[4pt]z\end{pmatrix}
 \end{aligned}
 \]
 
-\noindent Ahora, si la matriz Hessiana
-\(\;H_f(x,y)=\bigl[f_{ij}(x,y)\bigr]\)
+\medskip
+\noindent\textbf{Paso 2: \(g\) es convexa.} Si la matriz hessiana
+\(\;H_f(x,y)=\bigl[f''_{ij}(x,y)\bigr]\)
 es semidefinida positiva en todo punto, entonces para cada \(t\in[0,1]\)
 \[
-g''(t)\;\ge\;0
+g''(t)\;\ge\;0,
 \]
-Lo cual implica que \(g\) es convexa  
+y, por el criterio de una variable, \(g\) es convexa en \([0,1]\).
 
-Definamos la \emph{recta secante} entre \((0,g(0))\) y \((1,g(1))\):
+\medskip
+\noindent\textbf{Paso 3: la convexidad de \(g\) pasa a \(f\).} Definamos la \emph{recta secante} entre \((0,g(0))\) y \((1,g(1))\):
 \[
 L(t) \;=\; g(0)\;+\;t\bigl(g(1)-g(0)\bigr)
 \;=\;(1-t)\,g(0) \;+\; t\,g(1)
 \]
 
-Si la Hessiana \(H_f(x,y)\) es semidefinida positiva, entonces \(g''(t)\ge0\) en \([0,1]\), lo que por teoría de funciones de una variable implica
+Como \(g\) es convexa en \([0,1]\), la definición de convexidad aplicada a los puntos \(0\) y \(1\) da
 \[
-g(t)\;\le\;L(t)\;=\;(1-t)\,g(0) + t\,g(1)
+g(t)=g\bigl((1-t)\cdot0+t\cdot1\bigr)\;\le\;(1-t)\,g(0)+t\,g(1)=L(t)
 \]
 
 Finalmente, usando \(g(0)=f(x_1,y_1)\) y \(g(1)=f(x_2,y_2)\), concluimos
@@ -7182,7 +7197,7 @@ f\bigl((1-t)(x_1,y_1)+t\,(x_2,y_2)\bigr)
 \;\le\;
 (1-t)\,f(x_1,y_1) \;+\; t\,f(x_2,y_2)
 \]
-\textbf{\color{teal}que es precisamente la condición de convexidad de \(f\) en \(\mathbb{R}^2\)}
+\textbf{\color{teal}Como los puntos y \(t\) son arbitrarios, esta es precisamente la condición de convexidad de \(f\) en \(\R^2\).}
 
 De forma análoga, si \(H_f\) es semidefinida \emph{negativa}, entonces
 \[
@@ -7191,41 +7206,46 @@ g''(t)\le0
 \quad\Longrightarrow\quad
 g(t)\ge(1-t)\,g(0)+t\,g(1)
 \]
-\textbf{\color{teal}y por tanto \(f\) es \emph{cóncava}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{\color{teal}y por tanto \(f\) es \emph{cóncava}.}
 
 \subsection*{Extensión a $\R^n$}
-El mismo argumento—considerar la función unidimensional  
-\(\;g(t)=f\bigl((1-t)x + t\,y\bigr)\)—se aplica en \(\R^n\). Si la matriz de derivadas segundas (matriz hessiana) es semidefinida positiva para todo \(x\), entonces en cada dirección \(y-x\)  
-la derivada segunda \(g''(t)\ge0\), lo que implica la convexidad de \(g\)  
-y, por tanto, la convexidad de \(f\). Análogamente, semidefinida negativa  
-da concavidad de \(f\) en \(\R^n\)
+El mismo argumento se aplica en \(\R^n\). Dados dos puntos \(a,b\in D\subseteq\R^n\), la función \(g(t)=f\bigl((1-t)a+t\,b\bigr)\) tiene derivada segunda
+\[
+g''(t)=(b-a)^{T}\,H_f\bigl((1-t)a+t\,b\bigr)\,(b-a)
+\]
+Si la matriz hessiana es semidefinida positiva en todo punto, entonces \(g''(t)\ge0\), \(g\) es convexa y, por tanto, \(f\) es convexa. Análogamente, si la hessiana es semidefinida negativa en todo punto, \(f\) es cóncava.
 
-\noindent Además, si la Hessiana \(H_f(x)\) es \emph{definida positiva} en todo punto, entonces \(f\) es \emph{estrictamente convexa}; y si \(H_f(x)\) es \emph{definida negativa} en todo punto, entonces \(f\) es \emph{estrictamente cóncava}
+\noindent Además, si la hessiana \(H_f(x)\) es \emph{definida positiva} en todo punto, entonces \(f\) es \emph{estrictamente convexa} (para \(a\neq b\) resulta \(g''(t)>0\), y por el caso estricto del criterio de una variable \(g\) es estrictamente convexa); y si \(H_f(x)\) es \emph{definida negativa} en todo punto, entonces \(f\) es \emph{estrictamente cóncava}.
 
+\medskip
 \noindent\textbf{En resumen}
 \[
 \renewcommand{\arraystretch}{1.25}
-\begin{array}{|c|l|c|}
+\begin{array}{|c|l|c|c|}
 \hline
 \textbf{\color{teal}Hessiana } H_f(x)
-  & \textbf{\color{teal}Condición }(\forall x\in D\ \text{convexo},\ \forall h\in\mathbb{R}^n\textbf{)}
-  & \textbf{\color{teal}Función \(f\)} \\ \hline
+  & \textbf{\color{teal}Condición para todo } x\in D,\ h\in\R^n
+  &
+  & \textbf{\color{teal}Función } f \\ \hline
 \text{Semidefinida positiva}
   & h^{T} H_f(x)\, h \;\ge\; 0
+  & \Longleftrightarrow
   & \text{Convexa} \\ \hline
 \text{Definida positiva}
-  & h^{T} H_f(x)\, h \;>\; 0 \quad \text{para todo } h\neq 0
+  & h^{T} H_f(x)\, h \;>\; 0 \quad \text{si } h\neq 0
+  & \Longrightarrow
   & \text{Estr. convexa} \\ \hline
 \text{Semidefinida negativa}
   & h^{T} H_f(x)\, h \;\le\; 0
+  & \Longleftrightarrow
   & \text{Cóncava} \\ \hline
 \text{Definida negativa}
-  & h^{T} H_f(x)\, h \;<\; 0 \quad \text{para todo } h\neq 0
+  & h^{T} H_f(x)\, h \;<\; 0 \quad \text{si } h\neq 0
+  & \Longrightarrow
   & \text{Estr. cóncava} \\ \hline
 \end{array}
 \]
-{\small (Aquí \(D\) denota el dominio de \(f\).)}
+{\small (Aquí \(D\), el dominio de \(f\), es abierto y convexo. Las implicaciones \(\Longrightarrow\) no valen al revés.\footnote{\label{nota:reciprocas-convexidad}Si \(D\) es abierto, las implicaciones para la convexidad y la concavidad valen también al revés. Si \(f\) es convexa, para cada \(x\in D\) y cada dirección \(h\) la función \(t\mapsto f(x+t\,h)\) es convexa cerca de \(t=0\), así que su derivada segunda en \(t=0\), que es \(h^{T}H_f(x)\,h\), es mayor o igual que cero: \(H_f(x)\) es semidefinida positiva. Para las versiones estrictas, en cambio, la recíproca es falsa: \(f(x)=x^4\) es estrictamente convexa y \(f''(0)=0\). En dos variables, \(x^4+y^4\) es estrictamente convexa y su hessiana en el origen es la matriz nula.})}
 
 
 \subsection*{Ejemplo}
@@ -7238,14 +7258,18 @@ f(x,y) \;=\; x^2 \;+\; 2\,x\,y \;+\; 3\,y^2
 
 \medskip
 
-\noindent\textbf{Cálculo del Hessiano}\\
-Las segundas derivadas parciales son
+\noindent\textbf{Cálculo de la hessiana}\\
+Las derivadas parciales primeras son
 \[
-f_{xx} = 2,\quad
-f_{xy} = 2,\quad
-f_{yy} = 6
+f'_x = 2x + 2y,\qquad f'_y = 2x + 6y
 \]
-Por tanto la matriz Hessiana es
+y las segundas son
+\[
+f''_{xx} = 2,\quad
+f''_{xy} = 2,\quad
+f''_{yy} = 6
+\]
+Por tanto la matriz hessiana es
 \[
 H_f(x,y)
 =\begin{pmatrix}
@@ -7257,109 +7281,151 @@ H_f(x,y)
 \medskip
 
 \noindent\textbf{Comprobación de definitud (criterio de Sylvester).}\\
-Calculamos los menores principales iniciales:
+Calculamos los menores principales líderes:
 \[
-\Delta_1 = f_{xx} = 2 > 0
+\Delta^{(1)} = f''_{xx} = 2 > 0
 \qquad
-\Delta_2 = \det H_f = (2)(6) - (2)^2 = 12 - 4 = 8 > 0
+\Delta^{(2)} = \det H_f = (2)(6) - (2)^2 = 12 - 4 = 8 > 0
 \]
-Como \(\Delta_1>0\) y \(\Delta_2>0\), \(H_f\) es \emph{definida positiva} en todo \(\R^2\)
+Como \(\Delta^{(1)}>0\) y \(\Delta^{(2)}>0\), \(H_f\) es \emph{definida positiva} en todo \(\R^2\).
 
 \medskip
 
-\noindent\textbf{Conclusión:}\\
-{\color{teal}Al ser su Hessiana definida positiva para todo \((x,y)\), la función \(f\) es \emph{estrictamente convexa} en \(\R^2\)}
+\noindent{\color{teal}\textbf{Conclusión:} al ser su hessiana definida positiva para todo \((x,y)\), la función \(f\) es \emph{estrictamente convexa} en \(\R^2\).}
 
 \subsection*{Otro ejemplo}
 
-Consideremos 
+Consideremos
 \[
-f(x,y) = -\,x^2
+f(x,y) = -x^2 + 2\,x\,y - y^2
 \qquad (x,y)\in\R^2
 \]
 
 \medskip
-\noindent\textbf{Cálculo del Hessiano}\\
+\noindent\textbf{Cálculo de la hessiana}\\
+Las derivadas parciales primeras son
 \[
-f_{xx} = -2,\quad
-f_{xy} = 0,\quad
-f_{yy} = 0
+f'_x = -2x + 2y,\qquad f'_y = 2x - 2y
 \]
-Por tanto la matriz Hessiana es
+y las segundas son
 \[
-H_f(x,y) = 
+f''_{xx} = -2,\quad
+f''_{xy} = 2,\quad
+f''_{yy} = -2
+\]
+Por tanto la matriz hessiana es
+\[
+H_f(x,y) =
 \begin{pmatrix}
--2 & 0\\[4pt]
-0  & 0
+-2 & 2\\[4pt]
+2  & -2
 \end{pmatrix}
 \]
 
 \medskip
-\noindent\textbf{Comprobación de semidefinición.}\\
-Los menores principales iniciales son
+\noindent\textbf{Comprobación de semidefinitud.}\\
+Los menores principales líderes son
 \[
-\Delta_1 = f_{xx} = -2 < 0
+\Delta^{(1)} = f''_{xx} = -2 < 0
 \qquad
-\Delta_2 = \det H_f = (-2)\cdot0 - 0^2 = 0
+\Delta^{(2)} = \det H_f = (-2)(-2) - 2^2 = 4 - 4 = 0
 \]
-Como \(\Delta_1<0\) y \(\Delta_2=0\), debemos analizar un menor principal más: \(\Delta_1^{2,2}=0\leq0\), entonces \(H_f\) es \emph{semidefinida negativa} (pero no definida negativa)
+Como \(\Delta^{(2)}=0\), \(H_f\) no es definida negativa: el criterio de Sylvester pediría \((-1)^2\Delta^{(2)}>0\). Para ver si es semidefinida negativa hay que revisar todos los menores principales, como en el criterio de semidefinitud del capítulo de menores:
+\[
+(-1)^1\Delta^{(1)}_1 = 2 \ge 0
+\qquad
+(-1)^1\Delta^{(1)}_2 = 2 \ge 0
+\qquad
+(-1)^2\Delta^{(2)}_{12} = 0 \ge 0
+\]
+Entonces \(H_f\) es \emph{semidefinida negativa} en todo \(\R^2\), pero no definida negativa, y \(f\) es cóncava.
 
 \medskip
-\noindent\textbf{Conclusión.}\\
-\textbf{\color{teal}Al ser su Hessiana semidefinida negativa en todo \(\R^2\), \(f\) es \emph{cóncava}.  
-Además, \(f\) no es convexa, ni estrictamente cóncava, ni estrictamente convexa}
+\noindent\textbf{¿Es estrictamente cóncava?}\\
+Que la hessiana no sea definida negativa no alcanza para responder, porque esa condición es suficiente pero no necesaria (ver la nota~\ref{nota:reciprocas-convexidad}). Lo comprobamos con la definición. Como \(f(x,y)=-(x-y)^2\), la función vale \(0\) en todos los puntos de la recta \(y=x\). Con \(a=(0,0)\), \(b=(1,1)\) y \(t=\tfrac12\),
+\[
+f\bigl(\tfrac12 a+\tfrac12 b\bigr)=f\bigl(\tfrac12,\tfrac12\bigr)=0=\tfrac12 f(a)+\tfrac12 f(b)
+\]
+La desigualdad se cumple con igualdad, así que \(f\) no es estrictamente cóncava.
+
+Lo mismo pasa sobre cualquier recta paralela a \(y=x\): como \(f\) solo depende de la diferencia \(x-y\), es constante a lo largo de cada una. Su gráfico es una canaleta dada vuelta, con la parte más alta sobre la recta \(y=x\). Esa es justamente la dirección en la que se anula la forma cuadrática de la hessiana, y por eso la hessiana no es definida: con \(h=(1,1)^{T}\),
+\[
+h^{T}H_f\,h=
+\begin{pmatrix}1 & 1\end{pmatrix}
+\begin{pmatrix}-2 & 2\\ 2 & -2\end{pmatrix}
+\begin{pmatrix}1\\ 1\end{pmatrix}
+=\begin{pmatrix}1 & 1\end{pmatrix}
+\begin{pmatrix}0\\ 0\end{pmatrix}
+=0
+\]
+
+\medskip
+\noindent{\color{teal}\textbf{Conclusión:} la hessiana de \(f\) es semidefinida negativa, pero no definida negativa: \(f\) es \emph{cóncava}, pero no estrictamente cóncava.}
 
 \section*{Cuasiconcavidad y cuasiconvexidad}
 
-\noindent Primero, observemos que:
-\begin{itemize}
-  \item Toda función \emph{cóncava} es \emph{cuasicóncava}
-  \item Toda función \emph{convexa} es \emph{cuasiconvexa}
-\end{itemize}
+En economía, de una función de utilidad interesa menos su concavidad que la forma de sus curvas de indiferencia: lo importante es que el conjunto de canastas al menos tan buenas como una dada sea convexo. Esa propiedad es la cuasiconcavidad. En particular, la convexidad estricta al origen de las curvas de indiferencia, que vimos en el capítulo \emph{Curvas de nivel en Economía}, corresponde a una función de utilidad estrictamente cuasicóncava.
 
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
-
-
-\noindent\textbf{Caracterización de cuasiconvexidad y cuasiconcavidad}
-\begin{itemize}
-  \item \color{teal}\(f\) es \emph{cuasiconvexa} si y solo si todos sus \emph{subniveles} \(L_\alpha(f)\) son conjuntos convexos
-  \item \color{teal}\(f\) es \emph{cuasicóncava} si y solo si todos sus \emph{superniveles} \(U^\alpha(f)\) son conjuntos convexos
-\end{itemize}
-
-\noindent\textbf{Interpretación en curvas de nivel}\\
-Recordemos que las \emph{curvas de nivel} de \(f\) para un valor \(\alpha\) son los conjuntos
+\medskip
+\noindent\textbf{Conjuntos de nivel}\\
+Sea \(f\colon D\subseteq\R^n\to\R\), con \(D\) convexo. Recordemos que la \emph{curva de nivel} de \(f\) para un valor \(\alpha\) es el conjunto
 \[
-\{\,x\in\R^n : f(x)=\alpha\}
+\{\,x\in D : f(x)=\alpha\}
 \]
 Los conjuntos de nivel (subniveles y superniveles) son las regiones delimitadas por esas curvas:
 \[
 \begin{aligned}
-L_\alpha(f) &= \{\,x\in\R^n : f(x)\le \alpha\}\\[4pt]
-U^\alpha(f) &= \{\,x\in\R^n : f(x)\ge \alpha\}
+L_\alpha(f) &= \{\,x\in D : f(x)\le \alpha\}\\[4pt]
+U^\alpha(f) &= \{\,x\in D : f(x)\ge \alpha\}
 \end{aligned}
 \]
 
+\noindent\textbf{Definición}
+\begin{itemize}
+  \item \color{teal}\(f\) es \emph{cuasiconvexa} si todos sus \emph{subniveles} \(L_\alpha(f)\) son conjuntos convexos.
+  \item \color{teal}\(f\) es \emph{cuasicóncava} si todos sus \emph{superniveles} \(U^\alpha(f)\) son conjuntos convexos.
+\end{itemize}
 
-\noindent\textbf{Versión estricta (interpretación geométrica pura)}\\[2pt]
-- \(f\) es \textbf{estrictamente cuasiconvexa} si, para todo \(\alpha\), cada subnivel \(L_\alpha(f)\) es un \emph{conjunto estrictamente convexo}.  
-  Es decir: no sólo \(L_\alpha(f)\) es convexo, sino que además sus fronteras no contienen tramos lineales.
-\noindent- \(f\) es \textbf{estrictamente cuasicóncava} si, para todo \(\alpha\), cada supernivel \(U^\alpha(f)\) es un \emph{conjunto estrictamente convexo}.  
+\noindent Equivalentemente, \(f\) es cuasiconvexa si y solo si, para todo \(a,b\in D\) y todo \(t\in[0,1]\),
+\[
+f\bigl((1-t)a+t\,b\bigr)\le\max\{f(a),f(b)\},
+\]
+y es cuasicóncava si y solo si
+\[
+f\bigl((1-t)a+t\,b\bigr)\ge\min\{f(a),f(b)\}.
+\]
+En palabras: a lo largo de cualquier segmento, una función cuasicóncava nunca baja del menor de sus dos valores en los extremos, y una cuasiconvexa nunca supera el mayor.
 
+\noindent Con esta forma se ve enseguida que:
+\begin{itemize}
+  \item Toda función \emph{cóncava} es \emph{cuasicóncava}, porque \((1-t)f(a)+t\,f(b)\) es un promedio de \(f(a)\) y \(f(b)\), y un promedio nunca es menor que el mínimo:
+  \[
+  f\bigl((1-t)a+t\,b\bigr)\ge(1-t)f(a)+t\,f(b)\ge\min\{f(a),f(b)\}
+  \]
+  \item Toda función \emph{convexa} es \emph{cuasiconvexa}, por el argumento análogo con el máximo.
+\end{itemize}
+
+\noindent\textbf{Versión estricta}\\
+Un conjunto \(C\) es \emph{estrictamente convexo} si, para todo par de puntos distintos \(a,b\in C\) y todo \(t\in(0,1)\), el punto \((1-t)a+t\,b\) es un punto interior de \(C\). Es decir: no solo \(C\) es convexo, sino que además su borde no tiene tramos rectos. Para \(f\) continua en un dominio abierto:
+\begin{itemize}
+  \item \(f\) es \textbf{estrictamente cuasiconvexa} si cada subnivel \(L_\alpha(f)\) es un conjunto estrictamente convexo y \(f\) no tiene mesetas.
+  \item \(f\) es \textbf{estrictamente cuasicóncava} si cada supernivel \(U^\alpha(f)\) es un conjunto estrictamente convexo y \(f\) no tiene mesetas.
+\end{itemize}
+Que \(f\) no tenga \emph{mesetas} significa que no hay ningún disco, por chico que sea, en el que \(f\) tome el mismo valor en todos los puntos.\footnote{El disco de centro \(c\) y radio \(r>0\) es el conjunto de los puntos que están a distancia menor que \(r\) de \(c\): la región encerrada por una circunferencia. En más de dos variables se llama bola, y en una variable es el intervalo \((c-r,\,c+r)\). Que \(f\) tome el mismo valor en muchos puntos cercanos entre sí no es una meseta: eso pasa a lo largo de cualquier curva de nivel. En una meseta, \(f\) toma el mismo valor en todos los puntos alrededor de uno dado, en todas las direcciones. En una variable, la condición dice que el gráfico de \(f\) no tiene tramos horizontales.
+
+La condición no se puede omitir. Una función constante tiene como superniveles a todo su dominio o al conjunto vacío, que son estrictamente convexos, y sin embargo no es estrictamente cuasicóncava: al maximizarla, todos los puntos son óptimos. Un ejemplo menos trivial es \(f(x,y)=\min\{0,\,1-\sqrt{x^2+y^2}\}\): todos sus superniveles son discos, pero vale \(0\) en todo el disco unitario, como una curva de indiferencia ``gruesa''. Sin esta condición fallaría la unicidad del óptimo de las funciones estrictamente cuasicóncavas que usaremos en optimización con restricciones.} Equivalentemente, las desigualdades de la definición son estrictas: para todo \(a\neq b\) en \(D\) y todo \(t\in(0,1)\),
+\[
+f\bigl((1-t)a+t\,b\bigr)<\max\{f(a),f(b)\}
+\quad\text{(estrictamente cuasiconvexa)}
+\]
+\[
+f\bigl((1-t)a+t\,b\bigr)>\min\{f(a),f(b)\}
+\quad\text{(estrictamente cuasicóncava)}
+\]
 
 
 \subsubsection*{Ejemplos gráficos}
-Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de nivel para analizar el conjunto que está por arriba o por debajo de esas curvas: 
+En los siguientes ejemplos graficamos una curva de nivel de cada función y sombreamos el supernivel o el subnivel correspondiente. Cada gráfico muestra un solo nivel \(\alpha\), pero la definición pide que los superniveles (o subniveles) sean convexos para \emph{todo} \(\alpha\); en estas funciones, los demás niveles tienen la misma forma que el dibujado. Para mostrar que una función \emph{no} es cuasicóncava (o cuasiconvexa), en cambio, alcanza con un solo nivel cuyo supernivel (o subnivel) no sea convexo, como en el último gráfico de los casos univariables.
 
 \begin{center}
 \begin{tikzpicture}
@@ -7367,7 +7433,7 @@ Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de ni
     width=8cm, height=6cm,
     axis lines=middle,
     xlabel={$x$}, ylabel={$y$},
-    title={Estrictamente cuasic\'oncava: $u(x,y)=\sqrt{xy}$, $x>0$, $y>0$},
+    title={Estrictamente cuasic\'oncava, pero no c\'oncava: $u(x,y)=xy$, $x>0$, $y>0$},
     xmin=0.4, xmax=3.0,
     ymin=0,   ymax=3.2,
     domain=0.4:3.0,
@@ -7376,27 +7442,15 @@ Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de ni
   ]
 
     % Región sombreada: u(x,y) >= 1  <=>  y >= 1/x
-    % Polígono hecho a mano: borde superior horizontal y=3.2,
-    % luego seguimos la curva y=1/x de vuelta.
-    \path[fill=teal, fill opacity=0.3]
-      (axis cs:0.4,3.2) --
-      (axis cs:3.0,3.2) --
-      (axis cs:3.0,0.3333) --
-      (axis cs:2.5,0.4) --
-      (axis cs:2.0,0.5) --
-      (axis cs:1.5,0.6667) --
-      (axis cs:1.2,0.8333) --
-      (axis cs:1.0,1.0) --
-      (axis cs:0.8,1.25) --
-      (axis cs:0.6,1.6667) --
-      (axis cs:0.5,2.0) --
-      (axis cs:0.4,2.5) -- cycle;
+    \addplot[draw=none, name path=hiperbola, domain=0.4:3.0, samples=100] {1/x};
+    \addplot[draw=none, name path=techo, domain=0.4:3.0, samples=2] {3.2};
+    \addplot[teal, fill opacity=0.3] fill between[of=hiperbola and techo];
 
     % Curva de indiferencia u(x,y)=1  <=> y = 1/x
     \addplot[thick,blue,domain=0.4:3.0,samples=200] {1/x};
 
     % Etiquetas cortas (sin saltos de línea)
-    \node[blue] at (axis cs:1,1) {$u(x,y)=1$};
+    \node[blue] at (axis cs:1.75,0.2) {$u(x,y)=1$};
     \node[teal!60!black] at (axis cs:2.1,2.4) {$u(x,y)\ge 1$};
 
   \end{axis}
@@ -7417,34 +7471,16 @@ Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de ni
   ]
 
     % Región sombreada: v(x,y) <= 1  <=>  x^2 + y^2 <= 1
-    % Aproximamos el círculo con un polígono de muchos puntos
-    \path[fill=teal, fill opacity=0.3]
-      (axis cs: 1.0000,  0.0000) --
-      (axis cs: 0.9397,  0.3420) --
-      (axis cs: 0.7660,  0.6428) --
-      (axis cs: 0.5000,  0.8660) --
-      (axis cs: 0.1736,  0.9848) --
-      (axis cs:-0.1736,  0.9848) --
-      (axis cs:-0.5000,  0.8660) --
-      (axis cs:-0.7660,  0.6428) --
-      (axis cs:-0.9397,  0.3420) --
-      (axis cs:-1.0000,  0.0000) --
-      (axis cs:-0.9397, -0.3420) --
-      (axis cs:-0.7660, -0.6428) --
-      (axis cs:-0.5000, -0.8660) --
-      (axis cs:-0.1736, -0.9848) --
-      (axis cs: 0.1736, -0.9848) --
-      (axis cs: 0.5000, -0.8660) --
-      (axis cs: 0.7660, -0.6428) --
-      (axis cs: 0.9397, -0.3420) -- cycle;
+    \addplot[draw=none, fill=teal, fill opacity=0.3, domain=0:360, samples=100]
+      ({cos(x)},{sin(x)});
 
     % Frontera del subnivel: x^2 + y^2 = 1 (círculo de radio 1)
     \addplot[thick,blue,domain=0:360,samples=200]
       ({cos(x)},{sin(x)});
 
     % Etiquetas cortas
-    \node[blue] at (axis cs:0.8,0.6) {$x^2+y^2=1$};
-    \node[teal!60!black] at (axis cs:0,0) {$v(x,y)\le 1$};
+    \node[blue, anchor=south west] at (axis cs:0.72,0.72) {$x^2+y^2=1$};
+    \node[teal!60!black] at (axis cs:-0.45,0.45) {$v\le 1$};
 
   \end{axis}
 \end{tikzpicture}
@@ -7480,7 +7516,7 @@ Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de ni
     \addplot[thick,blue,domain=1:3,samples=2] ({1},{x});
 
     % Etiquetas
-    \node[blue] at (axis cs:1.3,1.1) {$u=1$};
+    \node[blue] at (axis cs:2.0,0.75) {$u=1$};
     \node[teal!60!black] at (axis cs:2.2,2.2) {$u\ge 1$};
 
   \end{axis}
@@ -7526,7 +7562,7 @@ Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de ni
     width=8cm, height=6cm,
     axis lines=middle,
     xlabel={$x$}, ylabel={$y$},
-    title={Cuasiconvexa (no estricta) y cuasic\'oncava (no estricta):  $g(x,y)=x+y$},
+    title={Cuasiconvexa (no estricta) y cuasic\'oncava (no estricta):  $u(x,y)=x+y$},
     xmin=0, xmax=2.5,
     ymin=0, ymax=2.5,
     domain=0:2,
@@ -7534,13 +7570,13 @@ Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de ni
     clip=false
   ]
 
-    % Subnivel: g(x,y) <= 2  (cuasiconvexa)  --> triángulo inferior-izquierdo
+    % Subnivel: u(x,y) <= 2  (cuasiconvexa)  --> triángulo inferior-izquierdo
     \path[fill=teal, fill opacity=0.30]
       (axis cs:0,0) --
       (axis cs:2,0) --
       (axis cs:0,2) -- cycle;
 
-    % Supernivel: g(x,y) >= 2 (cuasicóncava) --> región superior-derecha en el cuadro
+    % Supernivel: u(x,y) >= 2 (cuasicóncava) --> región superior-derecha en el cuadro
     \path[fill=blue, fill opacity=0.18]
       (axis cs:2,0) --
       (axis cs:2.5,0) --
@@ -7552,9 +7588,9 @@ Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de ni
     \addplot[thick,blue,domain=0:2] {2 - x};
 
     % Etiquetas cortas
-    \node[blue] at (axis cs:1,1) {$x+y=2$};
-    \node[teal!60!black]    at (axis cs:0.6,0.6)  {cuasiconvexa};
-    \node[blue!60!black] at (axis cs:1.8,2.1)  {cuasic\'oncava};
+    \node[blue, anchor=south west] at (axis cs:1.05,0.95) {$x+y=2$};
+    \node[teal!60!black] at (axis cs:0.6,0.6)  {$u\le 2$};
+    \node[blue!60!black] at (axis cs:1.8,2.1)  {$u\ge 2$};
 
   \end{axis}
 \end{tikzpicture}
@@ -7562,7 +7598,7 @@ Para los siguientes ejemplos vamos a tomar funciones y graficar sus curvas de ni
 
 
 \subsubsection*{Casos univariables}
-Para los casos de funciones de una sola variable el análisis gráfico es análogo, solamente que ahora los conjuntos de supernivel y subnivel son lineas rectas, que son convexas cuando no están cortadas y son convexos cuando se cortan.
+Para funciones de una sola variable el análisis gráfico es análogo. Los subniveles y superniveles son ahora subconjuntos de la recta: son convexos cuando forman un solo intervalo y no lo son cuando quedan cortados en varios pedazos.
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[
@@ -7591,8 +7627,51 @@ Para los casos de funciones de una sola variable el análisis gráfico es análo
       (axis cs:0.2929,0) -- (axis cs:1.7071,0);
 
     % Etiquetas
-    \node[blue] at (axis cs:1,2.2) {f(x)};
+    \node[blue] at (axis cs:1,2.2) {$f$};
     \node[teal!60!black] at (axis cs:2.0,1.7) {nivel $\alpha$};
+    \node[teal!60!black] at (axis cs:1.0,0.3) {supernivel};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+La función del gráfico anterior es cóncava. La campana \(\varphi(x)=e^{-(x-1)^2}\) muestra que la cuasiconcavidad es más débil: es cuasicóncava, porque crece hasta \(x=1\) y después decrece, así que sus superniveles son intervalos; pero no es cóncava, porque en las colas se curva hacia arriba (\(\varphi''(x)>0\) cuando \(|x-1|>1/\sqrt2\)) y ahí la curva queda por debajo de sus secantes.
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$\varphi(x)$},
+    title={Cuasic\'oncava, pero no c\'oncava},
+    xmin=-1.1, xmax=3.3,
+    ymin=0,   ymax=1.25,
+    domain=-1:3.2,
+    samples=200,
+    clip=false
+  ]
+
+    % phi(x) = exp(-(x-1)^2)
+    \addplot[thick,blue]
+      {exp(-(x-1)^2)};
+
+    % recta horizontal phi = alpha = 0.6
+    \addplot[teal,thick,dashed,domain=-1:3.2,samples=2]
+      {0.6};
+
+    % supernivel { x : phi(x) >= 0.6 } = [1 - sqrt(-ln 0.6), 1 + sqrt(-ln 0.6)]
+    \draw[teal, line width=2pt]
+      (axis cs:0.2853,0) -- (axis cs:1.7147,0);
+
+    % secante en la cola derecha (convexa desde x = 1.7071): la curva queda por debajo
+    \draw[black!60] (axis cs:1.75,0.5698) -- (axis cs:3.0,0.0183);
+    \fill[black!60] (axis cs:1.75,0.5698) circle (1.5pt);
+    \fill[black!60] (axis cs:3.0,0.0183) circle (1.5pt);
+    \node[black!70, font=\footnotesize] at (axis cs:2.7,0.36) {secante};
+
+    % Etiquetas
+    \node[blue] at (axis cs:1,1.12) {$\varphi$};
+    \node[teal!60!black] at (axis cs:-0.6,0.7) {nivel $\alpha$};
     \node[teal!60!black] at (axis cs:1.0,0.3) {supernivel};
 
   \end{axis}
@@ -7606,7 +7685,7 @@ Para los casos de funciones de una sola variable el análisis gráfico es análo
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
-    xlabel={$x$}, ylabel={$g(x)$},
+    xlabel={$x$}, ylabel={$p(x)$},
     title={Cuasiconvexa},
     xmin=-0.2, xmax=2.2,
     ymin=0,   ymax=2.0,
@@ -7615,7 +7694,7 @@ Para los casos de funciones de una sola variable el análisis gráfico es análo
     clip=false
   ]
 
-    % g(x) = (x-1)^2
+    % p(x) = (x-1)^2
     \addplot[thick,blue]
       {(x-1)^2};
 
@@ -7623,13 +7702,13 @@ Para los casos de funciones de una sola variable el análisis gráfico es análo
     \addplot[teal,thick,dashed,domain=-0.2:2.2,samples=2]
       {0.7};
 
-    % segmento grueso sobre el eje x representando el subnivel { x : g(x) <= alpha }
+    % segmento grueso sobre el eje x representando el subnivel { x : p(x) <= alpha }
     % intervalo aproximado [0.1633 , 1.8367]
     \draw[teal, line width=2pt]
       (axis cs:0.1633,0) -- (axis cs:1.8367,0);
 
     % Etiquetas
-    \node[blue] at (axis cs:1,1.4) {g(x)};
+    \node[blue] at (axis cs:1,1.4) {$p$};
     \node[teal!60!black] at (axis cs:2.1,0.82) {nivel $\alpha$};
     \node[teal!60!black] at (axis cs:1.0,0.3) {subnivel};
 
@@ -7643,7 +7722,7 @@ Para los casos de funciones de una sola variable el análisis gráfico es análo
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
-    xlabel={$x$}, ylabel={$h(x)$},
+    xlabel={$x$}, ylabel={$q(x)$},
     title={No cuasiconvexa},
     xmin=-1.5, xmax=1.5,
     ymin=0,   ymax=2.0,
@@ -7652,15 +7731,15 @@ Para los casos de funciones de una sola variable el análisis gráfico es análo
     clip=false
   ]
 
-    % h(x) = (x+1)^2 (x-1)^2 + 0.2
+    % q(x) = (x+1)^2 (x-1)^2 + 0.2
     \addplot[thick,blue]
       {((x+1)^2*(x-1)^2)+0.2};
 
-    % Recta horizontal h = alpha = 0.6
+    % Recta horizontal q = alpha = 0.6
     \addplot[teal,thick,dashed,domain=-1.5:1.5,samples=2]
       {0.6};
 
-    % Subnivel { x : h(x) <= 0.6 }
+    % Subnivel { x : q(x) <= 0.6 }
     % Cortes aproximados dentro de [-1.5,1.5]:
     % x ≈ -1.2777, -0.6063, 0.6063, 1.2777
     \draw[teal, line width=2pt]
@@ -7669,41 +7748,24 @@ Para los casos de funciones de una sola variable el análisis gráfico es análo
       (axis cs:0.6063,0) -- (axis cs:1.2777,0);
 
     % Etiquetas
-    \node[blue]          at (axis cs:0,1.7)        {$h(x)$};
+    \node[blue]          at (axis cs:-1.15,1.5)    {$q$};
     \node[teal!60!black] at (axis cs:1.2,0.8)      {nivel $\alpha$};
-    \node[teal!60!black] at (axis cs:-0.85,0.3)    {subnivel};
-    \node[teal!60!black] at (axis cs:0.95,0.3)     {subnivel};
+    \node[teal!60!black, font=\footnotesize] at (axis cs:-0.94,0.09) {subnivel};
+    \node[teal!60!black, font=\footnotesize] at (axis cs:0.94,0.09)  {subnivel};
 
   \end{axis}
 \end{tikzpicture}
 \end{center}
 
 
-Existe un teorema asociado a la cuasiconcavidad y cuasiconvexidad de funciones de una variable.
-Si una función es creciente o decreciente, entonces es simultáneamente cuasiconvexa y cuasicóncava.
+\noindent\textbf{Teorema (monotonicidad, cuasiconcavidad y cuasiconvexidad en una variable).}
+Sea \(f\colon I\to\R\), con \(I\subseteq\R\) un intervalo. Si \(f\) es creciente o decreciente en \(I\), entonces es cuasicóncava y cuasiconvexa en \(I\). Si \(f\) es derivable, alcanza con que \(f'(x)\ge0\) para todo \(x\in I\), o \(f'(x)\le0\) para todo \(x\in I\).
 
-\noindent\textbf{Teorema (monotonicidad y cuasiconvexidad/cuasiconcavidad en una variable).}
-Sea $f:\mathbb{R}\to\mathbb{R}$ una función diferenciable en un intervalo $I\subseteq\mathbb{R}$.
-
-Si
-\[
-f'(x)\ge 0 \quad \text{para todo } x\in I
-\]
-o bien
-\[
-f'(x)\le 0 \quad \text{para todo } x\in I
-\]
-entonces $f$ es simultáneamente
-\begin{itemize}
-  \item cuasiconvexa en $I$, y
-  \item cuasicóncava en $I$.
-\end{itemize}
-
+La razón es que los subniveles y los superniveles de una función monótona son siempre intervalos. En una variable vale además una caracterización completa: una función continua es cuasicóncava si y solo si es monótona o primero crece y después decrece (tiene un solo pico), y es cuasiconvexa si y solo si es monótona o primero decrece y después crece.
 
 
 \section*{Criterio de hessiano orlado para cuasiconvexidad y cuasiconcavidad}
-Las siguientes condiciones son válidas cuando evaluamos las funciones en números positivos (es decir en el ortante no negativo):\\
-Sea \(f\colon U\subseteq\mathbb{R}^n\to\mathbb{R}\) de clase \(C^2\) en un dominio convexo \(U\), y supongamos \(\nabla f(x)\neq0\) para todo \(x\in U\). Definimos la \emph{matriz hessiano orlado} en \(x\) como
+Sea \(f\colon D\subseteq\R^n\to\R\) de clase \(C^2\) en un conjunto \(D\) abierto y convexo. Definimos el \emph{hessiano orlado} de \(f\) en \(x\) como la matriz
 \[
 B(x)
 =\begin{pmatrix}
@@ -7711,51 +7773,39 @@ B(x)
 \nabla f(x) & H_f(x)
 \end{pmatrix}
 \]
-donde \(H_f(x)\) es la Hessiana usual de \(f\)
-
-\noindent Entonces se tiene la caracterización siguiente:
-
-Condiciones necesarias:
-\begin{itemize}
-  \item {\color{teal}\(f\) es cuasiconvexa en \(U\) solo si los menores principales líderes (sin contar el 0) son todos menores o iguales a 0}
-  \item {\color{teal}\(f\) es cuasicóncava en \(U\) solo si los menores principales líderes (sin contar el 0) alternan de signo (o son iguales a 0) empezando por el negativo}
-\end{itemize}
-
-Condiciones suficientes y que además aseguran cuasiconcavidad y cuasiconvexidad estricta:
-\begin{itemize}
-  \item {\color{teal}\(f\) es cuasiconvexa en \(U\) si los menores principales de líderes (sin contar el 0) son todos menores a 0}
-  \item {\color{teal}\(f\) es cuasicóncava en \(U\) si los menores principales de líderes (sin contar el 0) alternan de signo empezando por el negativo}
-\end{itemize}
-
-Para que \(z = f(x_1,\dots,x_n)\) sea cuasicóncava en el \(n\)-ortante no negativo, es necesario que
+donde \(H_f(x)\) es la hessiana usual de \(f\). Para \(k=1,\dots,n\) llamamos \(B_k\) a la submatriz formada por el borde y las primeras \(k\) variables, y \(|B_k|\) a su determinante:
 \[
-\color{teal}
-|B_1| \le 0,\quad
-|B_2| \ge 0,\quad
-\dots,\quad
-|B_n|
-\begin{cases}
-\le 0 & n\text{ impar}\\
-\ge 0 & n\text{ par}
-\end{cases}
+B_k=\begin{pmatrix}
+0 & f'_1 & \cdots & f'_k\\
+f'_1 & f''_{11} & \cdots & f''_{1k}\\
+\vdots & \vdots & \ddots & \vdots\\
+f'_k & f''_{k1} & \cdots & f''_{kk}
+\end{pmatrix}
 \]
+Es el menor principal líder de orden \(k+1\) de \(B\): con la notación del capítulo de menores, \(|B_k|=\Delta^{(k+1)}\) de \(B\). El menor de orden \(1\) es siempre \(0\) y no interviene.
 
-Una condición suficiente para que \(f\) sea \emph{cuasicóncava} en el \(n\)-ortante no negativo es que
+\noindent Las condiciones se evalúan en todo \(x\in D\) y para \(k=1,\dots,n\):
 \[
-\color{teal}
-|B_1| < 0,\quad
-|B_2| > 0,\quad
-\dots,\quad
-|B_n|
-\begin{cases}
-< 0 & n\text{ impar}\\[4pt]
-> 0 & n\text{ par}
-\end{cases}
+\renewcommand{\arraystretch}{1.3}
+\begin{array}{|l|c|c|}
+\hline
+ & \textbf{\color{teal}Condición necesaria} & \textbf{\color{teal}Condición suficiente (y estricta)}\\ \hline
+\text{Cuasicóncava} & (-1)^k|B_k|\ge 0 & (-1)^k|B_k|> 0\\ \hline
+\text{Cuasiconvexa} & |B_k|\le 0 & |B_k|< 0\\ \hline
+\end{array}
 \]
+En palabras: para la cuasiconcavidad, \(|B_1|,|B_2|,\dots,|B_n|\) alternan de signo empezando por el negativo; para la cuasiconvexidad, son todos negativos. La condición necesaria admite ceros y se cumple siempre que \(f\) tenga la propiedad. La suficiente pide desigualdades estrictas y, cuando se cumple, asegura además la versión estricta.
+
+\medskip
+\noindent\textbf{Observación.} Siempre vale
+\[
+|B_1|=\det\begin{pmatrix}0&f'_1\\ f'_1&f''_{11}\end{pmatrix}=-(f'_1)^2\le 0
+\]
+Por eso las dos condiciones necesarias empiezan igual, y la condición suficiente pide \(|B_1|<0\), es decir, \(f'_1\neq0\). Por ejemplo, para \(v(x,y)=x^2+y^2\) resulta \(|B_1|=-4x^2\) y \(|B_2|=-8(x^2+y^2)\): en el semiplano \(x>0\) se cumple la condición suficiente de cuasiconvexidad estricta, pero sobre el eje \(x=0\) el criterio no concluye, aunque \(v\) es estrictamente cuasiconvexa en todo \(\R^2\). Las condiciones suficientes no son necesarias.
 
 \subsection*{Ejemplo}
 
-Sea 
+Sea
 \[
 f\colon A\to\R,
 \qquad
@@ -7766,9 +7816,9 @@ f(x,y)=x\,y
 
 \medskip
 
-\noindent\textbf{Derivadas parciales y Hessiano}\\
+\noindent\textbf{Derivadas parciales y hessiana}
 \[
-f_x = y,\quad f_y = x,
+f'_x = y,\quad f'_y = x,
 \qquad
 H_f(x,y)
 = \begin{pmatrix}
@@ -7782,7 +7832,7 @@ H_f(x,y)
 \noindent\textbf{Hessiano orlado}\\
 Definimos las siguientes matrices:
 \[
-B_1 = 
+B_1 =
 \begin{pmatrix}
 0 & y\\[4pt]
 y & 0
@@ -7798,29 +7848,22 @@ x & 1 & 0
 
 \medskip
 
-\noindent\textbf{Cálculo de determinantes}\\
+\noindent\textbf{Cálculo de determinantes}
 \[
-\det B_1 = -\,y^2<0
+|B_1| = -\,y^2
 \qquad
-\det B_2 = 2\,x\,y \;>\;0
+|B_2| = 2\,x\,y
 \]
 
 \medskip
 
-\noindent\textbf{Conclusión}\\
-Para cuasiconcavidad en el dominio convexo \(A\) se exige
-\[
-D_1 <0,\quad D_2>0
-\]
-Como \(x,y>0\) garantizan \(D_1<0\) y $D_2 > 0$, concluimos que
-\[
-\color{teal}
-f(x,y)=x\,y\text{ es estrictamente cuasicóncava en }A 
-\]
+Para probar que \(f\) es estrictamente cuasicóncava usamos directamente la condición suficiente: alcanza con que \(|B_1|<0\) y \(|B_2|>0\) en todo \(A\). Como \(x,y>0\), ambas se cumplen.
 
+\noindent{\color{teal}\textbf{Conclusión:} \(f(x,y)=x\,y\) es estrictamente cuasicóncava en \(A\).}
 
+\medskip
 
-
+\noindent\textbf{Observación.} En cambio, \(xy\) no es cóncava: su hessiana tiene \(\Delta^{(2)}=\det H_f=-1<0\), así que es indefinida. Es el ejemplo típico de una función cuasicóncava que no es cóncava.
 
 
 \section*{Relación y diferencias entre cuasiconcavidad y concavidad (o cuasiconvexidad y convexidad)}
@@ -7828,72 +7871,74 @@ f(x,y)=x\,y\text{ es estrictamente cuasicóncava en }A
 \begin{itemize}
   \item \textbf{Relación entre ambas:}
     \begin{itemize}
-      \item Toda función \emph{cóncava} es \emph{cuasicóncava}
-      \item La recíproca no es cierta: hay funciones cuasicóncavas que no son cóncavas
-      \item Toda función \emph{convexa} es \emph{cuasiconvexa}
-      \item La recíproca no es cierta: hay funciones cuasiconvexas que no son convexas
-        \item Toda función \emph{estrictamente cóncava} es \emph{estrictamente cuasicóncava}
-            \item Toda función \emph{estrictamente convexa} es \emph{estrictamente cuasiconvexa}
+      \item Toda función \emph{cóncava} es \emph{cuasicóncava}, pero la recíproca no es cierta: \(xy\) es cuasicóncava en \(A\) y no es cóncava (ver el ejemplo anterior).
+      \item Toda función \emph{convexa} es \emph{cuasiconvexa}, pero la recíproca no es cierta: \(x^3\) es creciente, y por lo tanto cuasiconvexa, pero no es convexa, porque su derivada segunda \(6x\) es negativa para \(x<0\).
+      \item Toda función \emph{estrictamente cóncava} es \emph{estrictamente cuasicóncava}. La recíproca tampoco vale: \(\sqrt{xy}\) es estrictamente cuasicóncava en \(A\) (\(|B_1|=-\tfrac{y}{4x}<0\) y \(|B_2|=\tfrac{1}{4\sqrt{xy}}>0\)), pero no es estrictamente cóncava: sobre cada rayo que sale del origen es lineal, porque \(\sqrt{(\lambda x)(\lambda y)}=\lambda\sqrt{xy}\) para \(\lambda>0\), así que ahí la desigualdad de concavidad se cumple con igualdad. Por ejemplo, en \((1,1)\) y \((2,2)\) vale \(1\) y \(2\), y en el punto medio, \(\tfrac32\).
+      \item Toda función \emph{estrictamente convexa} es \emph{estrictamente cuasiconvexa}. La recíproca tampoco vale: \(x^3\) es estrictamente creciente, y por lo tanto estrictamente cuasiconvexa, pero no es convexa.
     \end{itemize}
 
   \item \textbf{Operaciones y composición:}
     \begin{itemize}
-      \item Suma y combinación lineal (con coeficientes no negativos) de cóncavas/convexas produce una función cóncava/convexa
-      \item La suma de funciones cuasicóncavas/cuasiconvexas no siempre es cuasicóncava/cuasiconvexa
-      \item La estricta cuasiconcavidad/cuasiconvexidad se conserva bajo composición con funciones estrictamente crecientes
-      \item Además, sea
+      \item Una combinación lineal con coeficientes no negativos de funciones cóncavas (convexas) es cóncava (convexa).
+      \item La suma de funciones cuasicóncavas no siempre es cuasicóncava, y lo mismo pasa con las cuasiconvexas. Por ejemplo, \(x^3\) y \(-3x\) son monótonas, y por lo tanto cuasicóncavas y cuasiconvexas, pero su suma no es ninguna de las dos: \(x^3-3x\ge0\) en \([-\sqrt3,0]\cup[\sqrt3,\infty)\) y \(x^3-3x\le0\) en \((-\infty,-\sqrt3]\cup[0,\sqrt3]\), y ninguno de esos conjuntos es convexo.
+      \item La cuasiconcavidad se conserva bajo transformaciones crecientes: si \(f\) es cuasicóncava y \(g\) es creciente, \(g\circ f\) es cuasicóncava. Si además \(f\) es estrictamente cuasicóncava y \(g\) es estrictamente creciente, \(g\circ f\) es estrictamente cuasicóncava. Lo mismo vale para la cuasiconvexidad. Por eso la cuasiconcavidad es una propiedad \emph{ordinal}: no depende de la escala con la que se mida la utilidad.
+      \item Para la concavidad y la convexidad, en cambio, hace falta más. Sea
       \[
         h(x) = (g\circ f)(x)
       \]
       con
       \[
-        f\colon M\subseteq\mathbb{R}^n\to\mathbb{R},
+        f\colon M\subseteq\R^n\to\R,
         \quad
-        g\colon I\subseteq\mathbb{R}\to\mathbb{R}
+        g\colon I\subseteq\R\to\R
       \]
       donde \(M\) es convexo e \(I\) es un intervalo. Entonces:
       \begin{enumerate}
-        \item Si \(f\) es convexa y \(g\) es creciente y convexa, entonces \(h\) es convexa
-        \item Si \(f\) es cóncava y \(g\) es creciente y cóncava, entonces \(h\) es cóncava
+        \item Si \(f\) es convexa y \(g\) es creciente y convexa, entonces \(h\) es convexa.
+        \item Si \(f\) es cóncava y \(g\) es creciente y cóncava, entonces \(h\) es cóncava.
       \end{enumerate}
     \end{itemize}
 \end{itemize}
 
 \subsection*{Ejemplo}
 
-Anteriormente probamos que \(f(x,y)=xy\) es cuasicóncava. Veamos una transformación de dicha función: sea
+Anteriormente probamos que \(f(x,y)=xy\) es estrictamente cuasicóncava en \(A\). Veamos la transformación
 \[
-g(x,y)=\ln(xy)=\ln x+\ln y
+h(x,y)=\ln(xy)=\ln x+\ln y,\qquad (x,y)\in A
 \]
+
+\noindent\textbf{Por composición.} \(h=g\circ f\) con \(g(s)=\ln s\), que es estrictamente creciente en \((0,\infty)\). Como \(f\) es estrictamente cuasicóncava, \(h\) también lo es.
+
+\medskip
+
+\noindent\textbf{Con el hessiano orlado.} Lo verificamos con el criterio:
 \[
-g_x=\frac1x,\quad g_y=\frac1y,
+h'_x=\frac1x,\quad h'_y=\frac1y,
 \qquad
-g_{xx}=-\frac1{x^2},\;g_{xy}=0,\;g_{yy}=-\frac1{y^2}
+h''_{xx}=-\frac1{x^2},\;h''_{xy}=0,\;h''_{yy}=-\frac1{y^2}
 \]
 
 \[
 B_1(x,y)
 =\begin{pmatrix}
-0 & g_x\\[4pt]
-g_x & g_{xx}
+0 & h'_x\\[4pt]
+h'_x & h''_{xx}
 \end{pmatrix}
 =
 \begin{pmatrix}
 0 & \tfrac1x\\[4pt]
 \tfrac1x & -\tfrac1{x^2}
 \end{pmatrix}
-\]
-
-\[
-D_1(x,y)=\det B_1=-\frac1{x^2}<0
+\qquad
+|B_1|=-\frac1{x^2}<0
 \]
 
 \[
 B_2(x,y)
 =\begin{pmatrix}
-0      & g_x       & g_y\\[4pt]
-g_x    & g_{xx}    & g_{xy}\\[4pt]
-g_y    & g_{xy}    & g_{yy}
+0      & h'_x       & h'_y\\[4pt]
+h'_x    & h''_{xx}    & h''_{xy}\\[4pt]
+h'_y    & h''_{xy}    & h''_{yy}
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -7901,188 +7946,274 @@ g_y    & g_{xy}    & g_{yy}
 \tfrac1x & -\tfrac1{x^2} & 0\\[4pt]
 \tfrac1y & 0             & -\tfrac1{y^2}
 \end{pmatrix}
+\qquad
+|B_2|=\frac{2}{x^2\,y^2}>0
 \]
+Se cumple la condición suficiente, como esperábamos.
 
+\medskip
+
+\noindent\textbf{Más aún, \(h\) es cóncava.} Su hessiana
 \[
-D_2(x,y)=\det B_2=\frac{2}{x^2\,y^2}>0
+H_h(x,y)=\begin{pmatrix}-\tfrac1{x^2}&0\\[4pt]0&-\tfrac1{y^2}\end{pmatrix}
 \]
+tiene \(\Delta^{(1)}=-\tfrac1{x^2}<0\) y \(\Delta^{(2)}=\tfrac1{x^2y^2}>0\): es definida negativa en todo \(A\), así que \(h\) es estrictamente cóncava. La transformación creciente \(\ln\) volvió estrictamente cóncava a una función que no era cóncava: la concavidad depende de la escala, y la cuasiconcavidad, no.
 
-\noindent\textbf{Conclusión}\\
-\[
-D_1<0,\quad D_2>0
-\]
-\textbf{\color{teal}Por tanto \(g(x,y)=\ln(xy)\) es \emph{cuasicóncava} en \(A\)}
+\medskip
 
+\noindent{\color{teal}\textbf{Conclusión:} \(h(x,y)=\ln(xy)\) es estrictamente cuasicóncava en \(A\); de hecho, es estrictamente cóncava.}
 
+\subsection*{Nota final: otras condiciones suficientes}
 
-
-
-
+La condición suficiente del hessiano orlado prueba la versión estricta, y con ella también la no estricta. Pero si falla en algún punto, el criterio no concluye, y las condiciones débiles no sirven para probar nada porque son solo necesarias. Por ejemplo:
+\begin{itemize}
+  \item \(x+y\) es cuasicóncava y cuasiconvexa, pero \(|B_2|=0\) en todo punto, así que la condición suficiente nunca se cumple.
+  \item \(q(x)=(x^2-1)^2+0.2\), la función del gráfico ``No cuasiconvexa'', cumple las condiciones débiles, porque \(|B_1|=-q'(x)^2\le0\), y sin embargo no es cuasicóncava ni cuasiconvexa.
+\end{itemize}
+Para esos casos hay otras condiciones suficientes que también usan derivadas:
+\begin{itemize}
+  \item \textbf{Concavidad.} Si la hessiana de \(f\) es semidefinida negativa en todo \(D\), \(f\) es cóncava y, por lo tanto, cuasicóncava. Así se prueba para \(x+y\) y para \(\sqrt{xy}\).
+  \item \textbf{Una transformación creciente que la vuelva cóncava.} Si \(g\) es estrictamente creciente y la hessiana de \(g\circ f\) es semidefinida negativa en todo \(D\), entonces \(f\) es cuasicóncava, porque \(f=g^{-1}\circ(g\circ f)\) y las transformaciones crecientes conservan la cuasiconcavidad. Si la hessiana de \(g\circ f\) es definida negativa, \(f\) es estrictamente cuasicóncava. Es lo que vimos con \(xy\) y \(\ln\). Lo mismo vale para cualquier Cobb-Douglas \(x^a y^b\) con \(a,b>0\): \(\ln(x^a y^b)=a\ln x+b\ln y\) es estrictamente cóncava, aunque \(x^a y^b\) no sea cóncava cuando \(a+b>1\).
+  \item \textbf{En una variable, el signo de \(f'\).} Si \(f\) es monótona, o si \(f'\ge0\) hasta un punto y \(f'\le0\) después, \(f\) es cuasicóncava, porque sus superniveles son intervalos.
+\end{itemize}
+Para la cuasiconvexidad valen las mismas condiciones, cambiando semidefinida negativa por semidefinida positiva, cóncava por convexa, y \(f'\ge0\) seguido de \(f'\le0\) por \(f'\le0\) seguido de \(f'\ge0\).
 
 
 
 
 \newpage
-\section{Optimización sin restricciones}
+\section{Optimización sin restricciones: cálculo univariable}
 
+Sea \(f\colon I\to\R\) una función de clase \(C^2\), donde \(I\subseteq\R\) es un intervalo abierto.\footnote{Pedimos \(I\) abierto para que alrededor de cada punto haya lugar a ambos lados. Si \(x^*\) es un mínimo, \(f\) no baja al movernos hacia la derecha ni hacia la izquierda: los cocientes incrementales son \(\ge0\) de un lado y \(\le0\) del otro, y en el límite eso obliga a que \(f'(x^*)=0\). En el borde de un intervalo cerrado hay un solo lado, y un extremo puede tener \(f'\neq0\): \(f(x)=x\) en \([0,1]\) tiene su mínimo en \(0\), donde \(f'(0)=1\). Esos casos se estudian con restricciones de desigualdad; por la misma razón, en \(n\) variables pedimos \(U\) abierto.}
 
+\medskip
 
-\section*{Optimización sin restricciones: cálculo univariable}
+\noindent\textbf{Definiciones:} Un punto \(x^*\in I\) es un \emph{mínimo local} de \(f\) si existe \(r>0\) tal que \(f(x^*)\le f(x)\) para todo \(x\in I\) con \(|x-x^*|<r\), es decir, si ningún punto cercano a \(x^*\) da un valor menor. Es un \emph{mínimo global} si \(f(x^*)\le f(x)\) para todo \(x\in I\). Cuando la desigualdad es estricta para todo \(x\neq x^*\), el mínimo es \emph{estricto}; un mínimo global estricto es el único mínimo global de \(f\). Los máximos se definen igual, invirtiendo la desigualdad, y a los máximos y mínimos los llamamos \emph{extremos} u \emph{óptimos}.
 
-Sea \(f\colon I\subseteq\mathbb{R}\to\mathbb{R}\) una función de clase \(C^2\).  
 Para encontrar extremos locales de \(f\) aplicamos el siguiente procedimiento:
 
 \begin{enumerate}
-  \item \textbf{Condición de primer orden:}  
+  \item \textbf{Condición de primer orden:}
     Calcular la derivada primera y resolver
     \[
       f'(x^*) = 0
     \]
-    Los puntos \(x^*\) que satisfacen esta ecuación son los \emph{puntos críticos}.
+    Los puntos \(x^*\) que satisfacen esta ecuación son los \emph{puntos críticos}. Es una condición necesaria: como \(I\) es abierto, todo extremo local de \(f\) es un punto crítico. No es suficiente: más abajo veremos que \(x^3\) tiene un punto crítico en \(0\) que no es un extremo.
 
-  \item \textbf{Condición de segundo orden:}  
+  \item \textbf{Condición de segundo orden:}
     Evaluar la derivada segunda en cada \(x^*\):
     \[\color{teal}
       f''(x^*) \begin{cases}
         >0 & \Rightarrow\;x^*\text{ es un mínimo local}\\[4pt]
         <0 & \Rightarrow\;x^*\text{ es un máximo local}\\[4pt]
-        =0 & \Rightarrow\;\text{criterio inconcluso (punto de inflexión posible)}
+        =0 & \Rightarrow\;\text{el criterio no nos permite concluir nada}
       \end{cases}
     \]
+    Cuando \(f''(x^*)=0\), \(x^*\) puede ser un mínimo, un máximo o ninguno de los dos: \(x^4\), \(-x^4\) y \(x^3\) cumplen \(f'(0)=f''(0)=0\), y en \(0\) tienen, respectivamente, un mínimo, un máximo y un punto de inflexión.
 \end{enumerate}
 
 \medskip
 
-\noindent\emph{Ejemplo rápido:}  
+\noindent\emph{Ejemplo rápido:}
 Para \(f(x)=x^3-3x\):
 \[
 f'(x)=3x^2-3,\;f'(x)=0\Rightarrow x=\pm1;
 \quad
 f''(x)=6x.
 \]
-\[
+\[\color{teal}
 f''(1)=6>0\;\Rightarrow\;x=1\text{ mínimo local},\qquad
-\color{teal} f''(-1)=-6<0\;\Rightarrow\;x=-1\text{ máximo local}.
+f''(-1)=-6<0\;\Rightarrow\;x=-1\text{ máximo local}.
 \]
 
 \section*{Pasando a \(n\) variables}
 
 % Definición previa de x como vector
-Denotemos 
+Denotemos
 \[
-x = (x_{1}, x_{2}, \dots, x_{n}) \in \mathbb{R}^n
+\vect{x} = (x_{1}, x_{2}, \dots, x_{n}) \in \R^n
 \]
-y sea 
+y sea
 \[
-x^* = (x^*_{1}, x^*_{2}, \dots, x^*_{n})
+F\colon U\subseteq\R^n\;\to\;\R
 \]
-un punto crítico en \(\mathbb{R}^n\).
-
+una función de clase \(C^2\), con \(U\) abierto. Las definiciones de extremo local y global son las del caso univariable, cambiando \(|x-x^*|\) por la distancia entre \(\vect{x}\) y \(\vect{x}^*\),
 \[
-F\colon A\subseteq\mathbb{R}^n\;\to\;\mathbb{R}
+\|\vect{x}-\vect{x}^*\|=\sqrt{(x_1-x_1^*)^2+\dots+(x_n-x_n^*)^2}
 \]
-la \emph{condición de primer orden} generaliza a  
+Por ejemplo, \(\vect{x}^*\) es un mínimo local de \(F\) si existe \(r>0\) tal que \(F(\vect{x}^*)\le F(\vect{x})\) para todo \(\vect{x}\in U\) con \(\|\vect{x}-\vect{x}^*\|<r\), es decir, en un entorno de \(\vect{x}^*\).
+
+La \emph{condición de primer orden} se generaliza a
 \[
-\nabla F(x^*) = \mathbf{0}
+\nabla F(\vect{x}^*) = \vect{0}
 \]
-es decir, todas las derivadas parciales en \(x^*\) deben anularse.  
+es decir, todas las derivadas parciales de \(F\) deben anularse en \(\vect{x}^* = (x^*_{1}, x^*_{2}, \dots, x^*_{n})\). Los puntos que cumplen esta condición son los \emph{puntos críticos} de \(F\). Como en una variable, la condición es necesaria pero no suficiente: todo extremo local de \(F\) es un punto crítico, pero un punto crítico puede no ser un extremo. Un punto crítico que no es ni mínimo ni máximo local se llama \emph{punto silla}: en cualquier entorno de \(\vect{x}^*\) hay puntos donde \(F\) es mayor que \(F(\vect{x}^*)\) y puntos donde es menor. (En una variable, un caso así, como el de \(x^3\) en \(0\), suele llamarse punto de inflexión.)
 
-La \emph{condición de segundo orden} se extrae de la matriz Hessiana  
-\(H=\nabla^2 F(x)\), que reúne todas las derivadas segundas de \(F\).  
-De la misma manera que \(f''(x^*)\) en una variable nos indica concavidad o convexidad,  
-la semidefinición positiva o negativa de  $H$ nos permitirá determinar si \(F\) tiene un mínimo o máximo local en \(x^*\).
+La \emph{condición de segundo orden} se extrae de la matriz hessiana
+\(H(\vect{x})=\nabla^2 F(\vect{x})\), que reúne todas las derivadas segundas de \(F\). Como \(F\) es de clase \(C^2\), por el teorema de Schwarz las derivadas cruzadas coinciden, \(F_{x_ix_j}=F_{x_jx_i}\), así que \(H(\vect{x})\) es simétrica y le podemos aplicar los criterios de los capítulos de formas cuadráticas y de menores.
+De la misma manera que \(f''(x^*)\) en una variable nos indica concavidad o convexidad,
+saber si \(H(\vect{x}^*)\) es definida positiva, definida negativa o indefinida nos permitirá determinar si \(F\) tiene en \(\vect{x}^*\) un mínimo local, un máximo local o un punto silla.\footnote{Una forma de verlo es con el polinomio de Taylor de segundo orden del capítulo del diferencial: como \(\nabla F(\vect{x}^*)=\vect{0}\), cerca de \(\vect{x}^*\) vale \(F(\vect{x}^*+\vect{h})-F(\vect{x}^*)\approx\tfrac12\,\vect{h}^{T}H(\vect{x}^*)\,\vect{h}\), así que, para \(\vect{h}\) chico, el signo de la diferencia lo da la forma cuadrática asociada a \(H(\vect{x}^*)\).}
+
+Para abreviar, escribimos \(H\succ 0\) si \(H\) es definida positiva, \(H\succeq 0\) si es semidefinida positiva, \(H\prec 0\) si es definida negativa y \(H\preceq 0\) si es semidefinida negativa.
 
 
-\subsection*{Condiciones suficientes y criterio de la matriz Hessiana}
+\subsection*{Condiciones suficientes y criterio de la matriz hessiana}
 
-Sea 
+Sea
 \[
-F\colon U\subseteq\mathbb{R}^n\;\longrightarrow\;\mathbb{R}
+F\colon U\subseteq\R^n\;\longrightarrow\;\R
 \]
-de clase \(C^2\) y sea \(x^*\in U\) un punto crítico, es decir,
+de clase \(C^2\), con \(U\) abierto, y sea \(\vect{x}^*\in U\) un punto crítico, es decir,
 \[
-\nabla F(x^*) = \mathbf{0}.
+\nabla F(\vect{x}^*) = \vect{0}.
 \]
 
 \begin{itemize}
 
-  \item \textbf{Óptimo local (criterio de la Hessiana).}
+  \item \textbf{Óptimo local (criterio de la hessiana).}
     \begin{itemize} \color{teal}
-      \item \color{teal}Si \(H(x^*)\) es \emph{definida negativa}, entonces \(x^*\) es \emph{máximo local}.
-      \item Si \(H(x^*)\) es \emph{definida positiva}, entonces \(x^*\) es \emph{mínimo local}.
-      \item Si \(H(x^*)\) es \emph{indefinida}, entonces \(x^*\) no es ni mínimo ni máximo local (punto silla).
+      \item Si \(H(\vect{x}^*)\) es \emph{definida negativa}, entonces \(\vect{x}^*\) es \emph{máximo local}.
+      \item Si \(H(\vect{x}^*)\) es \emph{definida positiva}, entonces \(\vect{x}^*\) es \emph{mínimo local}.
+      \item Si \(H(\vect{x}^*)\) es \emph{indefinida}, entonces \(\vect{x}^*\) no es ni mínimo ni máximo local (punto silla).
     \end{itemize}
-      \item \textbf{Óptimo global (funciones convexas o cóncavas).}
-    \begin{itemize}
-      \item \color{teal} Si \(F\) es convexa en \(U\) y \(\nabla F(x^*)=0\), entonces \(x^*\) es \emph{mínimo global}.
-      \item Si \(F\) es cóncava en \(U\) y \(\nabla F(x^*)=0\), entonces \(x^*\) es \emph{máximo global}.
+  \item \textbf{Óptimo global (funciones convexas o cóncavas).} Si además \(U\) es convexo:
+    \begin{itemize} \color{teal}
+      \item Si \(F\) es convexa en \(U\) y \(\nabla F(\vect{x}^*)=\vect{0}\), entonces \(\vect{x}^*\) es \emph{mínimo global}.
+      \item Si \(F\) es cóncava en \(U\) y \(\nabla F(\vect{x}^*)=\vect{0}\), entonces \(\vect{x}^*\) es \emph{máximo global}.
     \end{itemize}
 \end{itemize}
 
-\subsection*{Criterio de los menores principales para óptimo local.}
+\subsection*{Criterio de los menores principales para óptimo local}
 
-Sea 
+Sea
 \[
-F\colon U\subseteq\mathbb{R}^n\;\longrightarrow\;\mathbb{R}
+F\colon U\subseteq\R^n\;\longrightarrow\;\R
 \]
-de clase \(C^2\) y supongamos que \(x^*\in U\) es un punto crítico:
+de clase \(C^2\), con \(U\) abierto, y supongamos que \(\vect{x}^*\in U\) es un punto crítico:
 \[
-\nabla F(x^*) = \mathbf{0}
+\nabla F(\vect{x}^*) = \vect{0}
 \]
-Denotemos $\Delta_k$ por el menor principal inicial de orden \(k\) de la matriz Hessiana evaluada en el punto crítico.
+Denotemos por \(\Delta^{(k)}\) el menor principal líder de orden \(k\) de la matriz hessiana evaluada en el punto crítico, como en el capítulo de menores.
 
 \medskip
 
-\noindent\textbf{Condición para máximo local.}  
-Si los menores principales alternan de signo comenzando negativo:
+\noindent\textbf{Condición para máximo local.}
+Si los menores principales líderes alternan de signo, empezando por el negativo:
 \[\color{teal}
-\Delta_1 < 0,\quad \Delta_2 > 0,\quad \Delta_3 < 0,\;\dots,\;(-1)^n\,\Delta_n > 0
+\Delta^{(1)} < 0,\quad \Delta^{(2)} > 0,\quad \Delta^{(3)} < 0,\;\dots,\;(-1)^n\,\Delta^{(n)} > 0
 \]
-entonces \(x^*\) es un \emph{máximo local } de \(F\).
+entonces \(\vect{x}^*\) es un \emph{máximo local} de \(F\).
 
 \medskip
 
-\noindent\textbf{Condición para mínimo local .}  
-Si todos los menores principales son positivos:
+\noindent\textbf{Condición para mínimo local.}
+Si todos los menores principales líderes son positivos:
 \[\color{teal}
-\Delta_1 > 0,\quad \Delta_2 > 0,\quad \Delta_3 > 0,\;\dots,\;\Delta_n > 0
+\Delta^{(1)} > 0,\quad \Delta^{(2)} > 0,\quad \Delta^{(3)} > 0,\;\dots,\;\Delta^{(n)} > 0
 \]
-entonces \(x^*\) es un \emph{mínimo local } de \(F\).
+entonces \(\vect{x}^*\) es un \emph{mínimo local} de \(F\).
 
+\medskip
+
+\noindent\textbf{Condición para punto silla.}
+Si \(H(\vect{x}^*)\) es indefinida, \(\vect{x}^*\) es un \emph{punto silla}. Por el criterio para formas cuadráticas indefinidas del capítulo de menores, esto ocurre si algún menor principal de orden par es negativo, o si hay dos menores principales de orden impar con signos opuestos. En dos variables alcanza con que
+\[\color{teal}
+\Delta^{(2)}=\det H(\vect{x}^*)<0
+\]
+
+\subsection*{Condición necesaria de segundo orden y casos no concluyentes}
+
+Los criterios anteriores dan condiciones suficientes. También hay una condición necesaria: si \(\vect{x}^*\) es un mínimo local de \(F\), entonces \(H(\vect{x}^*)\) es semidefinida positiva, y si es un máximo local, \(H(\vect{x}^*)\) es semidefinida negativa. Por eso, cuando \(H(\vect{x}^*)\) es indefinida, \(\vect{x}^*\) no puede ser ni mínimo ni máximo.
+
+Si \(H(\vect{x}^*)\) es semidefinida pero no definida, el criterio no nos permite concluir nada. Si \(H(\vect{x}^*)\succeq 0\) y no es la matriz nula, la condición necesaria descarta que \(\vect{x}^*\) sea un máximo, pero puede ser un mínimo o un punto silla. Por ejemplo, \(x^2+y^4\) y \(x^2-y^4\) tienen la misma hessiana en el origen,
+\[
+H(0,0)=\begin{pmatrix}2&0\\[4pt]0&0\end{pmatrix}
+\]
+y la primera tiene ahí un mínimo y la segunda, un punto silla. Con \(H(\vect{x}^*)\preceq 0\) pasa lo análogo: puede haber un máximo o un punto silla. Si \(H(\vect{x}^*)\) es la matriz nula, puede pasar cualquiera de las tres cosas: las funciones
+\[
+x^4+y^4,\qquad -x^4-y^4,\qquad x^4-y^4
+\]
+tienen un punto crítico en el origen con hessiana nula, y ahí tienen, respectivamente, un mínimo, un máximo y un punto silla.
 
 
 \subsection*{Criterio de los menores principales para óptimo global}
 
-
-\noindent\textbf{Mínimo global.}  
-Para que \(F\) tenga un \emph{mínimo global} en \(U\), es suficiente que la matriz Hessiana \(H\) sea semidefinida positiva en \emph{todos} los puntos \(x\in U\). \textbf{\color{teal}En términos de menores principales, esto equivale a que para \emph{cualquier} submatriz principal (es decir, para cualquier selección de filas y columnas con los mismos índices) el determinante sea mayor o igual a cero}. Cuando esto se cumple, \(F\) es convexa y cualquier punto crítico es automáticamente un mínimo global.
+En esta sección \(U\) es, además, convexo.
 
 \medskip
 
-\noindent\textbf{Máximo global.}  
-Análogamente, \(F\) tiene un \emph{máximo global} en \(U\) si la Hessiana \(H\) es semidefinida negativa en todo \(U\). \textbf{\color{teal}En lenguaje de menores principales, esto significa que para cada submatriz principal de orden \(k\), el determinante de dicha submatriz multiplicado por \((-1)^k\) es mayor o igual a cero.} Bajo esta condición, \(F\) es cóncava y cada punto crítico será un máximo global.
+\noindent\textbf{Mínimo global.}
+Supongamos que la matriz hessiana \(H(\vect{x})\) es semidefinida positiva en \emph{todos} los puntos \(\vect{x}\in U\). \textbf{\color{teal}En términos de menores principales, esto equivale a que para \emph{cualquier} submatriz principal (es decir, para cualquier selección de filas y columnas con los mismos índices) el determinante sea mayor o igual a cero}, como en el criterio de semidefinitud del capítulo de menores. Cuando esto se cumple, \(F\) es convexa y cualquier punto crítico es automáticamente un mínimo global. La condición no asegura que \(F\) \emph{tenga} un mínimo: en una variable, \(F(x)=\mathrm{e}^{x}\) es convexa y no tiene ningún punto crítico, porque \(F'(x)=\mathrm{e}^{x}\) nunca se anula.
+
+\medskip
+
+\noindent\textbf{Máximo global.}
+Análogamente, supongamos que \(H(\vect{x})\) es semidefinida negativa en todo \(U\). \textbf{\color{teal}En lenguaje de menores principales, esto significa que para cada submatriz principal de orden \(k\), el determinante de dicha submatriz multiplicado por \((-1)^k\) es mayor o igual a cero.} Bajo esta condición, \(F\) es cóncava y cada punto crítico será un máximo global. Tampoco aquí está asegurada la existencia: \(-\mathrm{e}^{x}\) es cóncava y no tiene máximo.
 
 
 
 \subsection*{Diferencia entre óptimos locales y globales}
-La principal diferencia entre óptimos que son locales y óptimos globales es que al momento de realizar el cálculo de segundas derivadas (con la matriz hessiana), para asegurar un óptimo local tenemos que evaluar el hessiano en un punto particular, de tal forma de mostrar la función tiene un comportamiento similar al de una función estrictamente convexa/cóncava en la vecindad inmediata de $x^*$. Por otro lado, para poder confirmar que un óptimo es global es necesario analizar la forma de la función, analizando el hessiano sin evaluar en ningún punto particular y ver si la función es convexa o cóncava.
+La principal diferencia entre óptimos que son locales y óptimos globales es que, al momento de realizar el cálculo de segundas derivadas (con la matriz hessiana), para asegurar un óptimo local tenemos que evaluar la hessiana en un punto particular, de modo de mostrar que la función tiene un comportamiento similar al de una función estrictamente convexa/cóncava en un entorno de \(\vect{x}^*\). Por otro lado, para confirmar con este criterio que un óptimo es global, hay que analizar la forma de la función: estudiar la hessiana sin evaluarla en ningún punto particular y ver si la función es convexa o cóncava.
+
+La convexidad (o la concavidad) es una condición suficiente para que un óptimo sea global, pero no necesaria: \(h(x)=1-\mathrm{e}^{-x^2}\) tiene un mínimo global en \(x=0\), porque \(h(x)\ge0=h(0)\), y no es convexa, porque \(h''(x)=2(1-2x^2)\,\mathrm{e}^{-x^2}\) es negativa para \(|x|>1/\sqrt2\).
 
 
 Resumiendo lo anterior tenemos:
+
 \medskip
 
-
-\textbf{Teorema:} Sea \( f : D \to \mathbb{R} \) con \( D \subseteq \mathbb{R}^n \), abierto y convexo, \( f \in C^1(D) \) y sea \( \mathbf{x}_0 \in D \) un punto crítico de \( f \).
-
-Se verifica:
+\noindent\textbf{Teorema (convexidad y óptimos globales).} Sea \(F\colon U\to\R\), con \(U\subseteq\R^n\) abierto y convexo, \(F\in C^1(U)\), y sea \(\vect{x}^*\in U\) un punto crítico de \(F\). Se verifica:
 \begin{enumerate}
-    \item Si \( f \) es convexa en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un mínimo global.
-    \item Si \( f \) es estrictamente convexa en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un mínimo global único.
-    \item Si \( f \) es cóncava en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un máximo global.
-    \item Si \( f \) es estrictamente cóncava en \( D \) entonces \( f \) presenta en \( \mathbf{x}_0 \) un máximo global único.
+    \item Si \(F\) es convexa en \(U\), entonces \(F\) presenta en \(\vect{x}^*\) un mínimo global.
+    \item Si \(F\) es estrictamente convexa en \(U\), entonces \(F\) presenta en \(\vect{x}^*\) un mínimo global único.
+    \item Si \(F\) es cóncava en \(U\), entonces \(F\) presenta en \(\vect{x}^*\) un máximo global.
+    \item Si \(F\) es estrictamente cóncava en \(U\), entonces \(F\) presenta en \(\vect{x}^*\) un máximo global único.
 \end{enumerate}
 
 
+
+
+
+\section*{Ejemplo: \(f(x,y)=x^2+y^2\)}
+
+\subsection*{1. Derivadas parciales y punto crítico}
+
+Sea
+\[
+f(x,y)=x^2+y^2,\qquad (x,y)\in\R^2
+\]
+Calculamos las derivadas parciales:
+\[
+f_x=2x,\quad f_y=2y
+\]
+El único punto crítico se obtiene resolviendo
+\[ \color{teal}
+2x=0,\quad 2y=0
+\;\Longrightarrow\;
+(x,y)=(0,0)
+\]
+
+\subsection*{2. Hessiana y clasificación de extremos locales}
+
+La hessiana es constante:
+\[
+H(x,y)
+=
+\begin{pmatrix}
+2 & 0\\[4pt]
+0 & 2
+\end{pmatrix}
+\]
+Sus menores principales líderes son
+\[
+\Delta^{(1)}=2>0,\qquad
+\Delta^{(2)}=\det H=4>0
+\]
+\textbf{\color{teal}de modo que la matriz es \emph{definida positiva} en todo \(\R^2\). Por el criterio de segundo orden, \((0,0)\) es un \emph{mínimo local}.}
+
+\subsection*{3. Convexidad global y mínimo global}
+
+\textbf{\color{teal}Como \(H(x,y)\succ 0\) en todo \(\R^2\) (en particular, \(H(x,y)\succeq 0\)), \(f\) es \emph{convexa} en \(\R^2\), y en toda función convexa cualquier mínimo local es también \emph{mínimo global}. Más aún, \(f\) es \emph{estrictamente convexa}, así que \((0,0)\) es el \emph{único} mínimo global.}
 
 
 
@@ -8115,15 +8246,17 @@ y = -\frac{x^2}{3}
 \]
 Sustituyendo en la segunda:
 \[
+\begin{aligned}
 -3\Bigl(-\tfrac{x^2}{3}\Bigr)^2 + 9x = 0
-\;\Longrightarrow\;
+&\;\Longrightarrow\;
 -3\;\frac{x^4}{9} + 9x = 0
 \;\Longrightarrow\;
--\tfrac{x^4}{3} + 9x = 0
-\;\Longrightarrow\;
+-\tfrac{x^4}{3} + 9x = 0\\
+&\;\Longrightarrow\;
 -x^4 + 27x = 0
 \;\Longrightarrow\;
 x\,( -x^3 + 27 ) = 0
+\end{aligned}
 \]
 De aquí obtenemos
 \[
@@ -8145,11 +8278,11 @@ Por tanto, los puntos críticos son
 (3,-3)
 \]
 
-\subsection*{2. Hessiano y clasificación de extremos}
+\subsection*{2. Hessiana y clasificación de extremos}
 
-El Hessiano es
+La hessiana es
 \[
-\nabla^2 F(x,y)
+H(x,y)
 =
 \begin{pmatrix}
 F_{xx} & F_{xy}\\[4pt]
@@ -8165,38 +8298,87 @@ F_{yx} & F_{yy}
 \begin{enumerate}
   \item \textbf{En \((0,0)\):}
   \[
-  \nabla^2 F(0,0)
+  H(0,0)
   = \begin{pmatrix}0 & 9\\[4pt]9 & 0\end{pmatrix},
-  \quad \Delta_1 = 0,\quad
-  \Delta_2  = -81 < 0
+  \quad \Delta^{(1)} = 0,\quad
+  \Delta^{(2)}  = -81 < 0
   \]
-  Como \(\Delta_2<0\), es un punto silla (saddle point).
+  Como \(\Delta^{(2)}<0\), la hessiana es indefinida y \((0,0)\) es un punto silla (saddle point).
 
   \item \textbf{En \((3,-3)\):}
   \[
-  \nabla^2 F(3,-3)
+  H(3,-3)
   = \begin{pmatrix}18 & 9\\[4pt]9 & 18\end{pmatrix},
-  \quad \Delta_1 = 18 > 0,\quad
-  \Delta_2 = 18\cdot18 - 9\cdot9 = 243 > 0
+  \quad \Delta^{(1)} = 18 > 0,\quad
+  \Delta^{(2)} = 18\cdot18 - 9\cdot9 = 243 > 0
   \]
-  Aquí la Hessiana es definida positiva, por lo que \((3,-3)\) es un mínimo local.
+  Aquí la hessiana es definida positiva, por lo que \((3,-3)\) es un mínimo local.
 \end{enumerate}
 
 \medskip
 
-\noindent\textbf{Conclusión:}
-\begin{itemize}
-  \item \color{teal} \((0,0)\) es un punto silla.
-  \item \color{teal} \((3,-3)\) es un mínimo local de \(F\).
-  \item \color{teal} No hay máximos locales.
-\end{itemize}
+\noindent{\color{teal}\textbf{Conclusión:} \((0,0)\) es un punto silla y \((3,-3)\) es un mínimo local de \(F\). No hay máximos locales.}
+
+\medskip
+
+En el gráfico de curvas de nivel se ven los dos casos. Alrededor del mínimo local las curvas de nivel son cerradas, y \(F\) crece a medida que nos alejamos de \((3,-3)\). En el punto silla, en cambio, se cruzan dos ramas de la curva de nivel \(F=0\): en dos de los cuatro sectores que forman, \(F\) es positiva, y en los otros dos, negativa. En el gráfico, cada curva está rotulada con su nivel, y las punteadas corresponden a niveles negativos.
+
+% Curvas de nivel (usa pgfplots, como los gráficos del capítulo de concavidad y convexidad)
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=10cm, height=10cm,
+    axis lines=middle,
+    xlabel={$x$}, ylabel={$y$},
+    y label style={at={(axis description cs:0.333,1)}, anchor=south east},
+    title={Curvas de nivel de $F(x,y)=x^3-y^3+9xy$},
+    xmin=-3, xmax=6, ymin=-6, ymax=3,
+    axis equal image,
+    xtick={-2,2,4,6}, ytick={-6,-4,-2,2},
+    tick label style={font=\scriptsize},
+    clip=true
+  ]
+    % F = 0 (exacta): un lazo alrededor del mínimo y dos ramas que se cruzan en el punto silla
+    \addplot[teal, very thick, domain=0:90, samples=200, variable=\t]
+      ({9*sin(\t)*cos(\t)^2/(sin(\t)^3+cos(\t)^3)}, {-9*sin(\t)^2*cos(\t)/(sin(\t)^3+cos(\t)^3)});
+    \addplot[teal, very thick, domain=0:0.33, samples=60, variable=\s]
+      ({-9*\s/(1-\s^3)}, {-9*\s^2/(1-\s^3)});
+    \addplot[teal, very thick, domain=0:0.33, samples=60, variable=\s]
+      ({9*\s^2/(1-\s^3)}, {9*\s/(1-\s^3)});
+    % F = -20
+    \addplot[blue, thin, dashed, smooth] coordinates {(0.26,3.00) (0.15,2.88) (0.04,2.76) (-0.07,2.64) (-0.18,2.52) (-0.28,2.40) (-0.39,2.28) (-0.50,2.16) (-0.61,2.04) (-0.73,1.92) (-0.84,1.80) (-0.95,1.68) (-1.07,1.56) (-1.18,1.44) (-1.29,1.33) (-1.41,1.21) (-1.53,1.10) (-1.65,0.98) (-1.77,0.87) (-1.88,0.76) (-2.00,0.65) (-2.12,0.54) (-2.24,0.43) (-2.36,0.32) (-2.48,0.21) (-2.60,0.10) (-2.72,-0.01) (-2.84,-0.11) (-2.96,-0.22) (-3.00,-0.26)};
+    % F = -20
+    \addplot[blue, thin, dashed, smooth] coordinates {(3.34,-3.94) (3.18,-3.91) (3.02,-3.85) (2.87,-3.78) (2.73,-3.69) (2.60,-3.60) (2.47,-3.49) (2.35,-3.37) (2.24,-3.25) (2.15,-3.12) (2.06,-2.98) (1.98,-2.83) (1.92,-2.68) (1.88,-2.52) (1.87,-2.36) (1.89,-2.20) (1.96,-2.05) (2.08,-1.94) (2.23,-1.88) (2.39,-1.87) (2.55,-1.89) (2.71,-1.93) (2.86,-1.99) (3.00,-2.07) (3.14,-2.16) (3.27,-2.26) (3.39,-2.37) (3.51,-2.49) (3.62,-2.62) (3.71,-2.75) (3.80,-2.90) (3.86,-3.05) (3.92,-3.21) (3.94,-3.37) (3.94,-3.53) (3.90,-3.69) (3.80,-3.82) (3.66,-3.91) (3.50,-3.94) (3.34,-3.94)};
+    % F = -10
+    \addplot[blue, thin, dashed, smooth] coordinates {(0.62,3.00) (0.52,2.87) (0.43,2.74) (0.33,2.61) (0.23,2.48) (0.14,2.35) (0.05,2.22) (-0.05,2.09) (-0.14,1.96) (-0.23,1.83) (-0.33,1.70) (-0.43,1.57) (-0.53,1.44) (-0.64,1.31) (-0.74,1.19) (-0.85,1.07) (-0.96,0.95) (-1.08,0.84) (-1.20,0.73) (-1.33,0.62) (-1.46,0.51) (-1.59,0.41) (-1.72,0.32) (-1.85,0.22) (-1.98,0.13) (-2.11,0.03) (-2.24,-0.06) (-2.37,-0.16) (-2.50,-0.25) (-2.63,-0.34) (-2.76,-0.44) (-2.89,-0.54) (-3.00,-0.62)};
+    % F = -10
+    \addplot[blue, thin, dashed, smooth] coordinates {(3.50,-4.42) (3.34,-4.39) (3.18,-4.35) (3.02,-4.29) (2.87,-4.23) (2.72,-4.15) (2.58,-4.07) (2.44,-3.97) (2.31,-3.88) (2.18,-3.77) (2.06,-3.66) (1.94,-3.55) (1.83,-3.43) (1.72,-3.30) (1.62,-3.18) (1.52,-3.04) (1.43,-2.90) (1.35,-2.76) (1.27,-2.61) (1.20,-2.46) (1.15,-2.31) (1.10,-2.15) (1.07,-1.99) (1.05,-1.83) (1.05,-1.67) (1.08,-1.51) (1.15,-1.36) (1.25,-1.23) (1.38,-1.13) (1.53,-1.08) (1.69,-1.05) (1.85,-1.05) (2.01,-1.07) (2.17,-1.10) (2.33,-1.15) (2.48,-1.21) (2.63,-1.28) (2.78,-1.36) (2.92,-1.44) (3.06,-1.53) (3.19,-1.63) (3.32,-1.73) (3.44,-1.84) (3.56,-1.95) (3.67,-2.07) (3.78,-2.19) (3.88,-2.32) (3.98,-2.45) (4.07,-2.59) (4.16,-2.73) (4.23,-2.87) (4.30,-3.03) (4.35,-3.19) (4.40,-3.35) (4.42,-3.51) (4.43,-3.67) (4.41,-3.83) (4.37,-3.98) (4.29,-4.13) (4.19,-4.25) (4.05,-4.34) (3.90,-4.40) (3.74,-4.42) (3.58,-4.43) (3.50,-4.42)};
+    % F = 10
+    \addplot[blue, thin, smooth] coordinates {(1.29,3.00) (1.22,2.85) (1.16,2.70) (1.10,2.55) (1.05,2.39) (1.00,2.23) (0.96,2.07) (0.94,1.91) (0.92,1.75) (0.92,1.59) (0.94,1.43) (0.97,1.27) (1.03,1.11) (1.10,0.96) (1.20,0.82) (1.30,0.70) (1.41,0.58) (1.53,0.47) (1.66,0.37) (1.79,0.27) (1.92,0.17) (2.05,0.08) (2.18,-0.02) (2.31,-0.11) (2.44,-0.21) (2.57,-0.30) (2.70,-0.40) (2.83,-0.50) (2.96,-0.61) (3.08,-0.71) (3.21,-0.82) (3.33,-0.92) (3.45,-1.04) (3.57,-1.15) (3.69,-1.27) (3.80,-1.39) (3.91,-1.51) (4.02,-1.64) (4.12,-1.76) (4.22,-1.89) (4.32,-2.03) (4.41,-2.16) (4.50,-2.30) (4.58,-2.44) (4.66,-2.59) (4.74,-2.74) (4.80,-2.89) (4.86,-3.04) (4.92,-3.20) (4.96,-3.36) (5.00,-3.52) (5.02,-3.68) (5.03,-3.84) (5.03,-4.00) (5.01,-4.16) (4.97,-4.32) (4.91,-4.47) (4.82,-4.61) (4.71,-4.74) (4.58,-4.84) (4.44,-4.92) (4.28,-4.98) (4.12,-5.01) (3.96,-5.03) (3.80,-5.03) (3.64,-5.01) (3.48,-4.99) (3.32,-4.95) (3.16,-4.90) (3.01,-4.85) (2.85,-4.79) (2.70,-4.72) (2.55,-4.64) (2.41,-4.56) (2.27,-4.48) (2.13,-4.39) (2.00,-4.30) (1.87,-4.20) (1.74,-4.10) (1.61,-3.99) (1.48,-3.88) (1.36,-3.77) (1.24,-3.66) (1.12,-3.54) (1.01,-3.42) (0.90,-3.30) (0.79,-3.18) (0.68,-3.05) (0.57,-2.92) (0.47,-2.79) (0.37,-2.66) (0.27,-2.53) (0.18,-2.40) (0.08,-2.27) (-0.01,-2.14) (-0.10,-2.01) (-0.20,-1.88) (-0.30,-1.75) (-0.40,-1.62) (-0.51,-1.49) (-0.62,-1.37) (-0.74,-1.26) (-0.87,-1.16) (-1.01,-1.08) (-1.16,-1.01) (-1.32,-0.96) (-1.48,-0.93) (-1.64,-0.92) (-1.80,-0.93) (-1.96,-0.95) (-2.12,-0.97) (-2.28,-1.01) (-2.44,-1.06) (-2.60,-1.12) (-2.75,-1.18) (-2.90,-1.24) (-3.00,-1.29)};
+    % Etiquetas de los niveles (sobre cada curva)
+    \node[blue, font=\scriptsize, fill=white, inner sep=1pt] at (axis cs:2,-2) {$F=-20$};
+    \node[blue, font=\scriptsize, fill=white, inner sep=1pt] at (axis cs:1.24,-1.24) {$F=-10$};
+    \node[blue, font=\scriptsize, fill=white, inner sep=1pt] at (axis cs:-1.6,1.03) {$F=-20$};
+    \node[blue, font=\scriptsize, fill=white, inner sep=1pt] at (axis cs:-1.6,0.41) {$F=-10$};
+    \node[teal, font=\scriptsize, fill=white, inner sep=1pt] at (axis cs:-2.5,-0.68) {$F=0$};
+    \node[blue, font=\scriptsize, fill=white, inner sep=1pt] at (axis cs:2.8,-0.48) {$F=10$};
+    % Puntos críticos
+    \fill (axis cs:0,0) circle (2pt);
+    \fill (axis cs:3,-3) circle (2pt);
+    \draw[-{Stealth[length=1.5mm]}] (axis cs:-1.55,2.2) -- (axis cs:-0.12,0.12);
+    \node[font=\footnotesize, fill=white, inner sep=1pt] at (axis cs:-1.9,2.5) {punto silla};
+    \draw[-{Stealth[length=1.5mm]}] (axis cs:1.6,-4.6) -- (axis cs:2.88,-3.12);
+    \node[font=\footnotesize, fill=white, inner sep=1pt] at (axis cs:1.15,-4.9) {mínimo local};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
 
 \subsection*{3. Concavidad/convexidad global de \(F\)}
 
-Para determinar si los extremos locales son también globales necesitamos ver si \(F\) es convexa o cóncava en todo \(\R^2\). Calculamos de nuevo el Hessiano general:
+Para determinar si los extremos locales son también globales, intentamos aplicar el teorema anterior, que pide que \(F\) sea convexa o cóncava en todo \(\R^2\). Volvemos a la hessiana general:
 
 \[
-\nabla^2 F(x,y)
+H(x,y)
 =
 \begin{pmatrix}
 6x & 9\\[4pt]
@@ -8204,63 +8386,98 @@ Para determinar si los extremos locales son también globales necesitamos ver si
 \end{pmatrix}
 \]
 
-Los menores principales no siguen un patrón ya que por ejemplo $6x$, puede ser negativo o positivo. Lo mismo con $-6y$ y $|H|$. No podemos afirmar que tenemos un óptimo global.
+Los menores principales no siguen un patrón ya que, por ejemplo, \(6x\) puede ser negativo o positivo. Lo mismo con \(-6y\) y \(|H|\). Con este criterio, no podemos afirmar que tenemos un óptimo global.
+
+De hecho, \(F\) no es convexa ni cóncava, y para verlo alcanza con el punto silla. Si \(F\) fuera convexa, por el teorema todo punto crítico sería un mínimo global, y \((0,0)\) no lo es. Si fuera cóncava, \((0,0)\) sería un máximo global, y tampoco lo es.
+
+Que el teorema no se aplique no deja la pregunta sin respuesta: podemos comprobar directamente que \((3,-3)\) no es un mínimo global. Por ejemplo, \(F(3,-3)=-27\) y \(F(-4,0)=-64<-27\). Más aún, sobre el eje \(x\) la función queda \(F(x,0)=x^3\), que tiende a \(-\infty\) cuando \(x\to-\infty\), así que \(F\) no tiene mínimo global. Del mismo modo, \(F(0,y)=-y^3\) tiende a \(+\infty\) cuando \(y\to-\infty\), así que tampoco tiene máximo global.
+
+\medskip
+
+\noindent{\color{teal}\textbf{Conclusión:} \((3,-3)\) es un mínimo local de \(F\), pero no global, y \(F\) no tiene mínimo ni máximo global.}
 
 
-\section*{Ejemplo: \(f(x,y)=x^2+y^2\)}
 
-\subsection*{1. Derivadas parciales y punto crítico}
+\section*{Ejemplo: \(F(x,y)=(x+y)^2\)}
 
-Sea 
+En este ejemplo pasa lo contrario que en el anterior: el criterio local no nos permite concluir nada, pero el global sí.
+
+\subsection*{1. Derivadas parciales y puntos críticos}
+
 \[
-f(x,y)=x^2+y^2,\qquad (x,y)\in\R^2
+F_x=2(x+y),\qquad F_y=2(x+y)
 \]
-Calculamos las derivadas parciales:
-\[
-f_x=2x,\quad f_y=2y
-\]
-El único punto crítico se obtiene resolviendo
-\[ \color{teal}
-2x=0,\quad 2y=0
-\;\Longrightarrow\;
-(x,y)=(0,0)
+Las dos se anulan si y solo si \(x+y=0\), así que los puntos críticos son todos los puntos de la recta
+\[\color{teal}
+y=-x
 \]
 
-\subsection*{2. Hessiano y clasificación de extremos locales}
+\subsection*{2. Hessiana y clasificación de extremos locales}
 
-El Hessiano es constante:
+La hessiana es constante:
 \[
-\nabla^2 f(x,y)
-=
-\begin{pmatrix}
-2 & 0\\[4pt]
-0 & 2
-\end{pmatrix}
+H(x,y)=\begin{pmatrix}2&2\\[4pt]2&2\end{pmatrix},
+\qquad
+\Delta^{(1)}=2>0,\qquad
+\Delta^{(2)}=\det H=0
 \]
-Sus menores principales son
-\[
-\Delta_1^{1,1}=2>0,\qquad \Delta_1^{2,2}=2>0,\qquad
-\Delta_2=\det\nabla^2f=4>0
-\]
-\textbf{\color{teal}de modo que la matriz es \emph{definida positiva} en todo \(\R^2\). Por el criterio de segundo orden, \((0,0)\) es un \emph{mínimo local}.
-}
+Como \(\Delta^{(2)}=0\), la hessiana no es definida, y el criterio de los menores para óptimos locales no nos permite concluir nada en ninguno de los puntos críticos.
+
 \subsection*{3. Convexidad global y mínimo global}
 
-\textbf{\color{teal}Ya que \(\nabla^2f(x,y) \geq0\) en todo \(\R^2\), \(f\) es \emph{convexa} en \(\R^2\). En toda función convexa cualquier mínimo local es también \emph{mínimo global}. }
+Para el criterio global hay que revisar todos los menores principales, no solo los líderes:
+\[
+\Delta^{(1)}_1=2\ge0,\qquad
+\Delta^{(1)}_2=2\ge0,\qquad
+\Delta^{(2)}_{12}=\det H=0\ge0
+\]
+Entonces \(H(x,y)\succeq 0\) en todo \(\R^2\), \(F\) es convexa y, por el teorema, todo punto crítico es un mínimo global. Lo confirma la función misma: \(F(x,y)=(x+y)^2\ge0\), y vale \(0\) sobre toda la recta \(y=-x\). El mínimo no es único porque \(F\) es convexa, pero no estrictamente convexa: es constante a lo largo de esa recta.
+
+\medskip
+
+\noindent{\color{teal}\textbf{Conclusión:} el mínimo global de \(F\) se alcanza en todos los puntos de la recta \(y=-x\), así que no es único. Con el criterio global podemos concluir, aunque con el local no.}
 
 
 
+\section*{Preservación de máximos y mínimos bajo transformaciones crecientes}
 
-\section*{Preservación de máximos y mínimos locales en dos variables}
+Sea \(F\colon U\subseteq\R^n\to\R\) y sea \(\varphi\) una función estrictamente creciente, definida en un conjunto que contiene a la imagen de \(F\). Entonces \(F\) y \(\varphi\circ F\) alcanzan sus máximos y mínimos, locales y globales, en los mismos puntos, porque
+\[
+F(\vect{x}^*)\ge F(\vect{x})\iff\varphi\bigl(F(\vect{x}^*)\bigr)\ge\varphi\bigl(F(\vect{x})\bigr)
+\]
+Para esto no hace falta que \(\varphi\) sea derivable. Por eso, en microeconomía, en la teoría del consumidor, podemos aplicarle a la función de utilidad cualquier transformación estrictamente creciente antes de maximizarla, por ejemplo maximizar \(\ln u\) en lugar de \(u\): cambia la función objetivo, pero no la canasta óptima. Es la misma razón por la que la cuasiconcavidad, a diferencia de la concavidad, es una propiedad ordinal.
 
-
-Sea $D \subseteq \mathbb{R}$ un conjunto abierto. Sea $\varphi: D \to \mathbb{R}$ una función de clase $C^2$ tal que $\varphi'(t)>0$ para todo $t \in D$. Sea $f:\mathbb{R}^2 \to \mathbb{R}$ una función de clase $C^2$ tal que su imagen está contenida en $D$ (es decir, $f(x,y) \in D$ para todo $(x,y)$ en el dominio de $f$ o en la región de interés).
+Con derivadas se puede decir algo más: el criterio de la hessiana sigue funcionando después de transformar. Sea \(D\subseteq\R\) un conjunto abierto y sea \(\varphi\colon D\to\R\) una función de clase \(C^2\) tal que \(\varphi'(t)>0\) para todo \(t\in D\). Sea \(F\colon U\subseteq\R^n\to\R\) de clase \(C^2\), con \(U\) abierto, tal que \(F(\vect{x})\in D\) para todo \(\vect{x}\in U\).
 Entonces:
 
 \begin{enumerate}
-  \item \((x_0,y_0)\) es punto crítico de \(f\) entonces \((x_0,y_0)\) es punto crítico de \(\varphi\circ f\).
-  \item Si la matriz Hessiana \(D^2f(x_0,y_0)\) es definida negativa (máximo local) o definida positiva (mínimo local), la Hessiana de \(\varphi\circ f\) en \((x_0,y_0)\) mantiene la misma definitud.
+  \item \(\vect{x}^*\) es punto crítico de \(F\) si y solo si es punto crítico de \(\varphi\circ F\).
+  \item Si \(\vect{x}^*\) es punto crítico de \(F\), la hessiana de \(\varphi\circ F\) en \(\vect{x}^*\) tiene la misma clasificación que \(H_F(\vect{x}^*)\): si una es definida negativa (máximo local), definida positiva (mínimo local), indefinida (punto silla) o semidefinida, la otra también.
 \end{enumerate}
+
+\noindent\textbf{Demostración.} Por la regla de la cadena,
+\[
+\nabla(\varphi\circ F)(\vect{x})=\varphi'\bigl(F(\vect{x})\bigr)\,\nabla F(\vect{x})
+\]
+y como \(\varphi'>0\), un gradiente se anula si y solo si se anula el otro. Derivando otra vez,
+\[
+H_{\varphi\circ F}(\vect{x})=\varphi''\bigl(F(\vect{x})\bigr)\,\nabla F(\vect{x})\,\nabla F(\vect{x})^{T}+\varphi'\bigl(F(\vect{x})\bigr)\,H_F(\vect{x})
+\]
+En un punto crítico el primer término se anula, y queda
+\[
+H_{\varphi\circ F}(\vect{x}^*)=\varphi'\bigl(F(\vect{x}^*)\bigr)\,H_F(\vect{x}^*)
+\]
+La hessiana queda multiplicada por un número positivo, y eso no cambia el signo de \(\vect{h}^{T}H\,\vect{h}\) para ningún \(\vect{h}\): la clasificación es la misma.
+
+\medskip
+
+\noindent\textbf{Observación.} Fuera de los puntos críticos, la definitud sí puede cambiar. Con \(F(x,y)=3x-x^2-y^2\) y \(\varphi(t)=\mathrm{e}^t\), en el origen
+\[
+H_F(0,0)=\begin{pmatrix}-2&0\\[4pt]0&-2\end{pmatrix}
+\qquad
+H_{\varphi\circ F}(0,0)=\begin{pmatrix}7&0\\[4pt]0&-2\end{pmatrix}
+\]
+La primera es definida negativa y la segunda es indefinida. Por eso el ítem 2 pide que \(\vect{x}^*\) sea un punto crítico.
 
 \medskip
 
@@ -8269,14 +8486,56 @@ Entonces:
 \begin{itemize}
   \item \(\varphi(t)=a\,t + b\), con \(a>0\).
   \item \(\varphi(t)=\mathrm{e}^t\).
-  \item \(\varphi(t)=\log(t + c)\), con \(c>0\) (dominio \(t>-c\)).
-  \item \(\varphi(t)=t^3\) (con $t\neq0$ ).
+  \item \(\varphi(t)=\ln(t + c)\), con \(c\in\R\) (dominio \(t>-c\)). Con \(c=0\) queda \(\ln t\), que es la que lleva \(xy\) a \(\ln(xy)\).
+  \item \(\varphi(t)=t^3\) (con \(t\neq0\)).
   \item \(\varphi(t)=\sqrt{t}\) (en \(t>0\)).
 \end{itemize}
 
+\noindent El caso \(\varphi(t)=t^3\) muestra la diferencia entre conservar los óptimos y conservar el criterio. Como \(t^3\) es estrictamente creciente en todo \(\R\), siempre conserva los óptimos. Pero \(\varphi'(0)=0\), y por eso se excluye \(t=0\): \(F(x,y)=x^2+y^2\) tiene un mínimo en el origen, donde vale \(0\), y la hessiana de \((x^2+y^2)^3\) en el origen es la matriz nula. El mínimo sigue estando, pero el criterio de la hessiana ya no lo detecta.
+
+\subsection*{Ejemplo}
+
+Busquemos los extremos de
+\[
+F(x,y)=x\,y\,\mathrm{e}^{-x-y},\qquad (x,y)\in U=\{(x,y)\in\R^2: x>0,\ y>0\}
+\]
+Se puede derivar \(F\) directamente, pero como \(F>0\) en \(U\) es más simple trabajar con \(G=\ln F\), porque \(\ln\) es estrictamente creciente:
+\[
+G(x,y)=\ln x+\ln y-x-y
+\]
+
+\medskip
+
+\noindent\textbf{Puntos críticos.}
+\[
+G_x=\frac1x-1=0,\qquad G_y=\frac1y-1=0\quad\Longrightarrow\quad(x,y)=(1,1)
+\]
+Por el ítem 1, \((1,1)\) es también el único punto crítico de \(F\) en \(U\).
+
+\medskip
+
+\noindent\textbf{Hessiana.}
+\[
+H_G(x,y)=\begin{pmatrix}-\tfrac1{x^2}&0\\[4pt]0&-\tfrac1{y^2}\end{pmatrix},
+\qquad
+\Delta^{(1)}=-\frac1{x^2}<0,\qquad
+\Delta^{(2)}=\frac1{x^2y^2}>0
+\]
+La hessiana de \(G\) es definida negativa en todo \(U\), que es abierto y convexo, así que \(G\) es estrictamente cóncava y \((1,1)\) es su único máximo global. Por el primer resultado de esta sección, \((1,1)\) es también el único máximo global de \(F\), con \(F(1,1)=\mathrm{e}^{-2}\).
+
+\medskip
+
+\noindent\textbf{Observación.} \(F\) no es cóncava. Por ejemplo,
+\[
+H_F(2,2)=\mathrm{e}^{-4}\begin{pmatrix}0&1\\[4pt]1&0\end{pmatrix}
+\]
+es indefinida. El teorema de óptimos globales no se aplica a \(F\), pero sí a \(G=\ln F\): la transformación creciente es la que permite concluir.
+
+\medskip
+
+\noindent{\color{teal}\textbf{Conclusión:} \((1,1)\) es el único máximo global de \(F\) en \(U\).}
 
 \newpage
-
 % --- Pegar en el preámbulo ---
 % \usepackage{xcolor}
 % \usepackage{tikz}
@@ -8284,6 +8543,7 @@ Entonces:
 % \definecolor{teal}{RGB}{0,128,128}
 
 % --- Diagrama de flujo: esquema de análisis sin restricciones ---
+\begin{center}
 \begin{tikzpicture}[
   node distance = 8mm and 12mm,
   >=Stealth,
@@ -8291,72 +8551,85 @@ Entonces:
   block/.style      = {draw, rounded corners, align=center, inner sep=6pt, fill=teal!5},
   outcome/.style    = {draw, rounded corners, align=center, inner sep=6pt},
   titlebox/.style   = {draw, very thick, rounded corners, fill=teal!10, align=center, inner sep=6pt},
-  arrow/.style      = {-{Stealth[length=2mm,width=2mm]}, thick}
+  arrow/.style      = {-{Stealth[length=2mm,width=2mm]}, thick},
+  zona/.style       = {draw, dashed, rounded corners, inner sep=8pt}
 ]
 
 % Título
 \node (title) [titlebox] {\textbf{Esquema de análisis (sin restricciones)}};
 
 % CPO
-\node (cpo) [block, below=of title] {CPO: $\nabla F(x^*)=\mathbf{0}$\\(puntos críticos)};
+\node (cpo) [block, below=of title] {CPO: $\nabla F(\vect{x}^*)=\vect{0}$\\(puntos críticos)};
 
 % CLASIFICACIÓN LOCAL
-\node (local) [block, below=of cpo] {Evaluar Hessiano en $x^*$: $H(x^*)$};
+\node (local) [block, below=10mm of cpo] {Evaluar la hessiana en $\vect{x}^*$: $H(\vect{x}^*)$};
 
-% Resultados locales (solo mínimo y máximo)
-\node (minloc) [outcome, below left=10mm and -4mm of local, xshift=-18mm]
-  {$H(x^*) \succ 0$\\$\Rightarrow$ \textbf{\color{teal}mínimo local}};
-\node (maxloc) [outcome, below right=10mm and -4mm of local, xshift=18mm]
-  {$H(x^*) \prec 0$\\$\Rightarrow$ \textbf{\color{teal}máximo local}};
+% Resultados locales: mínimo, silla y máximo
+\node (silla) [outcome, below=10mm of local]
+  {$H(\vect{x}^*)$ indefinida\\$\Rightarrow$ \textbf{\color{teal}punto silla}};
+\node (minloc) [outcome, left=10mm of silla]
+  {$H(\vect{x}^*) \succ 0$\\$\Rightarrow$ \textbf{\color{teal}mínimo local}};
+\node (maxloc) [outcome, right=10mm of silla]
+  {$H(\vect{x}^*) \prec 0$\\$\Rightarrow$ \textbf{\color{teal}máximo local}};
+\node (nocon) [below=3mm of silla, font=\footnotesize, text=black!70, align=center]
+  {Si $H(\vect{x}^*)$ es solo semidefinida, el criterio no nos permite concluir nada};
 
 % Flechas zona local
 \draw[arrow] (cpo) -- (local);
 \draw[arrow] (local) -- (minloc);
+\draw[arrow] (local) -- (silla);
 \draw[arrow] (local) -- (maxloc);
 
-% Caja englobando la parte local
-\node[draw, dashed, rounded corners,
-      fit=(local)(minloc)(maxloc),
-      label={[teal,yshift=18mm]above:\strut Clasificación \textit{local}}] (localbox) {};
+% Caja englobando la parte local (etiqueta en la esquina, lejos de las flechas)
+\node[zona, fit=(local)(minloc)(silla)(maxloc)(nocon),
+      label={[teal, anchor=south west]north west:Clasificación \textit{local}}] (localbox) {};
 
 % ========================
-% CLASIFICACIÓN GLOBAL (centrada y simétrica)
+% CLASIFICACIÓN GLOBAL
 % ========================
 
 % Nodo de arranque global
-\node (global) [block, below=18mm of localbox.south]
-  {Analizar $H(x)$ en el dominio (sin evaluar en un punto)};
+\node (global) [block, below=16mm of localbox.south]
+  {Analizar $H(\vect{x})$ en todo el dominio (sin evaluar en un punto)};
 
 % Punto medio para centrar columnas globales
 \coordinate (globmid) at ($(global.south)+(0,-8mm)$);
 
-% Columna izquierda (mínimos), anclada a la izquierda del punto medio
-\node (minglob) [outcome, text width=42mm, anchor=north east]
-  at ($(globmid)+(-10mm,0)$)
-  {$H(x)\succeq 0\ \forall x$\\$\Rightarrow$ $F$ convexa\\$\Rightarrow$ \textbf{\color{teal}mínimo global}};
-\node (minuniq) [outcome, text width=42mm, below=6mm of minglob]
-  {$H(x)\succ 0\ \forall x$\\$\Rightarrow$ $F$ estrictamente convexa\\$\Rightarrow$ \textbf{\color{teal}mínimo global y único}};
+% Columna izquierda (mínimos)
+\node (minglob) [outcome, minimum width=50mm, anchor=north east]
+  at ($(globmid)+(-6mm,0)$)
+  {$H(\vect{x})\succeq 0\ \forall \vect{x}$\\$\Rightarrow$ $F$ convexa\\$\Rightarrow$ \textbf{\color{teal}$\vect{x}^*$ es mínimo global}};
+\node (minuniq) [outcome, minimum width=50mm, below=10mm of minglob]
+  {$\Rightarrow$ $F$ estrictamente convexa\\$\Rightarrow$ \textbf{\color{teal}mínimo global único}};
 
-% Columna derecha (máximos), anclada a la derecha del punto medio
-\node (maxglob) [outcome, text width=42mm, anchor=north west]
-  at ($(globmid)+(10mm,0)$)
-  {$H(x)\preceq 0\ \forall x$\\$\Rightarrow$ $F$ cóncava\\$\Rightarrow$ \textbf{\color{teal}máximo global}};
-\node (maxuniq) [outcome, text width=42mm, below=6mm of maxglob]
-  {$H(x)\prec 0\ \forall x$\\$\Rightarrow$ $F$ estrictamente cóncava\\$\Rightarrow$ \textbf{\color{teal}máximo global y único}};
+% Columna derecha (máximos)
+\node (maxglob) [outcome, minimum width=50mm, anchor=north west]
+  at ($(globmid)+(6mm,0)$)
+  {$H(\vect{x})\preceq 0\ \forall \vect{x}$\\$\Rightarrow$ $F$ cóncava\\$\Rightarrow$ \textbf{\color{teal}$\vect{x}^*$ es máximo global}};
+\node (maxuniq) [outcome, minimum width=50mm, below=10mm of maxglob]
+  {$\Rightarrow$ $F$ estrictamente cóncava\\$\Rightarrow$ \textbf{\color{teal}máximo global único}};
 
-% Flechas zona global
+% Flechas zona global: el caso estricto se desprende de cada caja
 \draw[arrow] (localbox.south) -- (global);
 \draw[arrow] (global) -- (minglob);
-\draw[arrow] (global) -- (minuniq);
 \draw[arrow] (global) -- (maxglob);
-\draw[arrow] (global) -- (maxuniq);
+\draw[arrow] (minglob) -- node[right, font=\footnotesize, align=left] {si además\\$H(\vect{x})\succ 0\ \forall \vect{x}$} (minuniq);
+\draw[arrow] (maxglob) -- node[right, font=\footnotesize, align=left] {si además\\$H(\vect{x})\prec 0\ \forall \vect{x}$} (maxuniq);
 
 % Caja englobando la parte global
-\node[draw, dashed, rounded corners,
-      fit=(global)(minglob)(minuniq)(maxglob)(maxuniq),
-      label={[teal,yshift=6mm]above:\strut Clasificación \textit{global}}] (globalbox) {};
+\node[zona, fit=(global)(minglob)(minuniq)(maxglob)(maxuniq),
+      label={[teal, anchor=south west]north west:Clasificación \textit{global}}] (globalbox) {};
 
 \end{tikzpicture}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
 
 
 \newpage
