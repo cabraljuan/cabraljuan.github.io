@@ -40,7 +40,7 @@
 \contentsline {paragraph}{Menor principal de orden \(k\).}{95}{section*.267}%
 \contentsline {paragraph}{Menor principal líder de orden \(k\).}{95}{section*.268}%
 \contentsline {section}{\numberline {18}Concavidad y convexidad}{101}{section.18}%
-\contentsline {section}{\numberline {19}Optimización sin restricciones: cálculo univariable}{116}{section.19}%
+\contentsline {section}{\numberline {19}Optimización sin restricciones}{116}{section.19}%
 \contentsline {section}{\numberline {20}Aplicaciones económicas de optimización libre}{126}{section.20}%
 \contentsline {paragraph}{Interpretación}{131}{section*.358}%
 \contentsline {section}{\numberline {21}Optimización con restricciones de igualdad}{132}{section.21}%

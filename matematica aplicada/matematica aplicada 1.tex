@@ -1,8 +1,6 @@
-
-
-
-
-
+% Preámbulo del libro entero (se compila local, con biblatex y biber).
+% El de los capítulos sueltos en Overleaf es igual, salvo la bibliografía,
+% \version y \numcapitulo: si cambiás algo acá, cambialo también allá.
 \documentclass{article}
 
 % === Básico ===
@@ -30,7 +28,7 @@
 \usepackage{pgfplots}
 \usepgfplotslibrary{polar,fillbetween}
 \pgfplotsset{compat=1.18} % usa 1.17 si tu TeX es más viejo
-\usetikzlibrary{arrows.meta, positioning, fit, shapes.geometric, calc}
+\usetikzlibrary{arrows.meta, positioning, fit, shapes.geometric, calc, backgrounds} % backgrounds: mapa de dependencias
 % \definecolor{teal}{RGB}{0,128,128}
 % === Colores & enlaces ===
 \usepackage{xcolor} % mejor que 'color'
@@ -41,6 +39,31 @@
   urlcolor=teal,
   citecolor=teal
 }
+
+% === Paleta del libro: teal + óxido + pizarra ===
+\colorlet{principal}{teal}           % teal #008080: resultados y Métodos; en gráficos, el objeto principal
+\definecolor{oxido}{HTML}{A8483A}    % óxido: errores frecuentes; en gráficos, restricciones y niveles negativos
+\definecolor{pizarra}{HTML}{334447}  % pizarra: en gráficos, ejes, direcciones y anotaciones
+
+% === Recuadro Método ===
+\usepackage[skins,breakable]{tcolorbox}
+% Rótulos dentro del recuadro: Cuándo usarlo., Pasos., Chequeo., Cuidado.
+% Salen en teal; con \rotulo[oxido]{Cuidado.} salen en óxido.
+\newcommand{\rotulo}[2][principal]{\textsf{\bfseries\color{#1}#2}\enspace}
+% Lista de pasos con los números en teal
+\newlist{pasos}{enumerate}{1}
+\setlist[pasos]{label=\textsf{\bfseries\color{principal}\arabic*.}, leftmargin=*, nosep}
+% Uso: \begin{metodo}[label=met:...]{Título} ... \end{metodo}
+% Se numera por capítulo (Método 4.1, 4.2, ...) y se cita con \ref{met:...}
+% La barra del título va en modo matemático ($|$): con \textbar, si no está
+% \usepackage[T1]{fontenc}, LaTeX avisa "Font shape OMS/cmss/bx/n undefined".
+\newtcolorbox[auto counter, number within=section]{metodo}[2][]{%
+  enhanced, breakable,
+  colback=white, colframe=principal, boxrule=0.8pt, arc=1.5mm,
+  colbacktitle=principal, coltitle=white, fonttitle=\sffamily\bfseries,
+  title={Método~\thetcbcounter\enspace$|$\enspace #2},
+  before upper={\setlength{\parskip}{4pt}},
+  #1}
 
 % === Bibliografía (biber) ===
 \usepackage{csquotes}
@@ -142,15 +165,24 @@
 
 %%%%%%%%%%%%%%%%%%%%%
 % --- tu versión ---
-\newcommand{\version}{1.9}
+\newcommand{\version}{2}
 
-
-
-
-
-
-% para vectores despues esto se puede quitar si no gusta mas la notacion
+% Vectores con flecha (regla 1 de notación): \vect{x}, \vect{v}_1, \vect{0}
 \newcommand{\vect}[1]{\vec{#1}}
+
+% === Tipografía decidida (Utopia con títulos en sans) ===
+% Está comentada, igual que en el de capítulo: si la activás, activala en los dos.
+% \usepackage[T1]{fontenc}
+% \usepackage[scaled=.98]{erewhon}        % Utopia
+% \usepackage[utopia,vvarbb]{newtxmath}   % matemática a juego
+% \usepackage[scaled=0.9]{helvet}         % sans para títulos y rótulos
+% \usepackage{sectsty}
+% \allsectionsfont{\sffamily\bfseries}    % títulos en sans
+
+
+
+
+
 
 \begin{document}
 
@@ -7982,7 +8014,7 @@ Para la cuasiconvexidad valen las mismas condiciones, cambiando semidefinida neg
 
 
 \newpage
-\section{Optimización sin restricciones: cálculo univariable}
+\section{Optimización sin restricciones}
 
 Sea \(f\colon I\to\R\) una función de clase \(C^2\), donde \(I\subseteq\R\) es un intervalo abierto.\footnote{Pedimos \(I\) abierto para que alrededor de cada punto haya lugar a ambos lados. Si \(x^*\) es un mínimo, \(f\) no baja al movernos hacia la derecha ni hacia la izquierda: los cocientes incrementales son \(\ge0\) de un lado y \(\le0\) del otro, y en el límite eso obliga a que \(f'(x^*)=0\). En el borde de un intervalo cerrado hay un solo lado, y un extremo puede tener \(f'\neq0\): \(f(x)=x\) en \([0,1]\) tiene su mínimo en \(0\), donde \(f'(0)=1\). Esos casos se estudian con restricciones de desigualdad; por la misma razón, en \(n\) variables pedimos \(U\) abierto.}
 
