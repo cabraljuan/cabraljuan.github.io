@@ -165,7 +165,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%
 % --- tu versión ---
-\newcommand{\version}{2}
+\newcommand{\version}{2.1}
 
 % Vectores con flecha (regla 1 de notación): \vect{x}, \vect{v}_1, \vect{0}
 \newcommand{\vect}[1]{\vec{#1}}
@@ -6824,30 +6824,99 @@ Son los mismos que los de \(C\). Como \(\Delta^{(2)}=0\), \(E\) no es definida, 
 \textbf{\color{teal}Como \(\Delta^{(2)}_{13}=-1<0\) es un menor principal de orden par negativo, \(E\) es indefinida. También alcanza con \(\Delta^{(1)}_1=1>0\) y \(\Delta^{(1)}_3=-1<0\), dos menores principales de orden impar con signos opuestos.}
 
 \newpage
-\section{Concavidad y convexidad}
+
+\section{Concavidad y convexidad}\label{cap:concavidad}
+
+\section*{Conjuntos convexos y no convexos}
+
+Un conjunto \(C\subseteq\R^n\) es \emph{convexo} si, para todo par de puntos \(\vect{a},\vect{b}\in C\) y todo \(t\in[0,1]\), el punto
+\[
+(1-t)\,\vect{a}+t\,\vect{b}
+\]
+también pertenece a \(C\). Es decir, el segmento que une dos puntos cualesquiera de \(C\) queda completamente dentro de \(C\). Si para algún par de puntos el segmento se sale de \(C\), el conjunto no es convexo.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9, baseline={(0,-2.05)}]
+  % Conjunto convexo: un triángulo; el segmento entre dos puntos queda adentro
+  \path[fill=principal, fill opacity=0.3, draw=principal, thick, line join=round]
+    (-1.8,-1.3) -- (1.8,-1.3) -- (0.25,1.5) -- cycle;
+  \node[principal] at (0.2,0.7) {$C$};
+  \coordinate (a) at (-0.8,-0.75);
+  \coordinate (b) at (0.6,-0.2);
+  \draw[pizarra, thick] (a) -- (b);
+  \fill[pizarra] (a) circle (2pt) node[left] {$\vect{a}$};
+  \fill[pizarra] (b) circle (2pt) node[above] {$\vect{b}$};
+  \node at (0,-2.05) {Conjunto convexo};
+\end{tikzpicture}
+\hspace{1.2cm}
+\begin{tikzpicture}[scale=0.9, baseline={(0,-2.05)}]
+  % Conjunto no convexo: una media luna (el círculo de radio 1.5 centrado en el
+  % origen menos el de radio 1.2 centrado en (0.8,0)); el segmento se sale por el hueco
+  \path[fill=principal, fill opacity=0.3, draw=principal, thick]
+    (52.83:1.5) arc[start angle=52.83, end angle=307.17, radius=1.5]
+    arc[start angle=275.08, end angle=84.92, radius=1.2] -- cycle;
+  \node[principal] at (-0.95,0.35) {$C$};
+  \coordinate (a) at (0.2,1.25);
+  \coordinate (b) at (0.2,-1.25);
+  \draw[oxido, thick] (a) -- (b);
+  \fill[pizarra] (a) circle (2pt) node[left] {$\vect{a}$};
+  \fill[pizarra] (b) circle (2pt) node[left] {$\vect{b}$};
+  \draw[oxido, fill=white] (0.2,0) circle (2pt) node[right, oxido, font=\small] {fuera de $C$};
+  \node at (0,-2.05) {Conjunto no convexo};
+\end{tikzpicture}
+\end{center}
+
+En \(\R\), los conjuntos convexos son exactamente los intervalos. En \(\R^2\), un triángulo como el de la figura, un rectángulo, un círculo y un semiplano son convexos; una media luna, como la de la figura, no lo es. La intersección de conjuntos convexos es convexa, porque un segmento que queda dentro de cada uno de ellos queda dentro de la intersección.
+
+\subsection*{Conjuntos estrictamente convexos}
+
+Un conjunto convexo \(C\) es \emph{estrictamente convexo} si, para todo par de puntos distintos \(\vect{a},\vect{b}\in C\) y todo \(t\in(0,1)\), el punto \((1-t)\vect{a}+t\,\vect{b}\) es un punto interior de \(C\), es decir, no está en el borde. Dicho de otro modo: el segmento que une dos puntos del conjunto, salvo en sus extremos, no toca el borde. Un círculo es estrictamente convexo: aunque \(\vect{a}\) y \(\vect{b}\) estén sobre la circunferencia, el resto del segmento queda adentro. Un cuadrado es convexo, pero no estrictamente: dos puntos de un mismo lado se unen por un segmento que queda sobre el borde. Entonces, un conjunto estrictamente convexo es un conjunto que, además de ser convexo, no tiene tramos rectos en el borde.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9, baseline={(0,-1.85)}]
+  % Círculo: estrictamente convexo; el segmento entre dos puntos del borde queda adentro
+  \fill[principal, fill opacity=0.3] (0,0) circle (1.3);
+  \draw[principal, thick] (0,0) circle (1.3);
+  \node[principal] at (-0.35,-0.75) {$C$};
+  \coordinate (a) at (150:1.3);
+  \coordinate (b) at (20:1.3);
+  \draw[pizarra, thick] (a) -- (b);
+  \fill[pizarra] (a) circle (2pt) node[above left] {$\vect{a}$};
+  \fill[pizarra] (b) circle (2pt) node[right] {$\vect{b}$};
+  \node at (0,-1.85) {Estrictamente convexo};
+\end{tikzpicture}
+\hspace{1.2cm}
+\begin{tikzpicture}[scale=0.9, baseline={(0,-1.85)}]
+  % Cuadrado: convexo, pero no estrictamente; dos puntos de un lado se unen por el borde
+  \fill[principal, fill opacity=0.3] (-1.3,-1.3) rectangle (1.3,1.3);
+  \draw[principal, thick] (-1.3,-1.3) rectangle (1.3,1.3);
+  \node[principal] at (-0.35,-0.75) {$C$};
+  \coordinate (a) at (-0.7,1.3);
+  \coordinate (b) at (0.8,1.3);
+  \draw[oxido, line width=1.6pt] (a) -- (b) node[midway, above, oxido, font=\small] {sobre el borde};
+  \fill[pizarra] (a) circle (2pt) node[below] {$\vect{a}$};
+  \fill[pizarra] (b) circle (2pt) node[below] {$\vect{b}$};
+  \node at (0,-1.85) {Convexo, pero no estrictamente};
+\end{tikzpicture}
+\end{center}
+
 \section*{Definición de convexidad y concavidad para funciones de una variable}
 
 Sea \(f\colon I\subseteq\R\to\R\), donde \(I\) es un intervalo. Decimos que:
 \begin{itemize}
   \item \(f\) es \emph{convexa} si para todo \(x_{1},x_{2}\in I\) y todo \(t\in[0,1]\) se cumple
     \[
-      f\bigl((1-t)x_{1} + t\,x_{2}\bigr)
-      \;\le\;
-      (1-t)f(x_{1}) + t\,f(x_{2})
-    \]
-    \noindent\textbf{Intuición geométrica:} El término
-    \[
-      (1-t)f(x_{1}) + t\,f(x_{2})
-    \]
-    coincide con el valor que adopta la recta secante en la posición intermedia
-    \((1-t)x_{1}+t\,x_{2}\). Por tanto, la desigualdad
-    \[
       \color{teal}
       f\bigl((1-t)x_{1} + t\,x_{2}\bigr)
       \;\le\;
       (1-t)f(x_{1}) + t\,f(x_{2})
     \]
-    expresa que, en cada punto entre \(x_1\) y \(x_2\), la curva de \(f\) nunca queda por encima de esa secante.
+    \noindent\textbf{Intuición geométrica.} El término
+    \[
+      (1-t)f(x_{1}) + t\,f(x_{2})
+    \]
+    coincide con el valor que adopta la recta secante en la posición intermedia
+    \((1-t)x_{1}+t\,x_{2}\). Por lo tanto, la desigualdad de la definición expresa que, en cada punto entre \(x_1\) y \(x_2\), la curva de \(f\) nunca queda por encima de esa secante.
 
   \item \(f\) es \emph{cóncava} si para todo \(x_{1},x_{2}\in I\) y todo \(t\in[0,1]\) se cumple
     \[
@@ -6856,7 +6925,7 @@ Sea \(f\colon I\subseteq\R\to\R\), donde \(I\) es un intervalo. Decimos que:
       \;\ge\;
       (1-t)f(x_{1}) + t\,f(x_{2})
     \]
-    \noindent\textbf{Intuición geométrica:} Aquí la desigualdad se invierte: entre los puntos dados, el gráfico de \(f\) nunca queda por debajo de la recta secante.
+    \noindent\textbf{Intuición geométrica.} Aquí la desigualdad se invierte: entre los puntos dados, el gráfico de \(f\) nunca queda por debajo de la recta secante.
 \end{itemize}
 
 En los gráficos siguientes, el punto del medio corresponde a \(t=\tfrac12\).
@@ -6866,6 +6935,7 @@ En los gráficos siguientes, el punto del medio corresponde a \(t=\tfrac12\).
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel=$x$, ylabel=$y$,
     title={Ejemplo convexo: $f(x)=x^2$},
     xmin=-1, xmax=1, ymin=-0.2, ymax=1.1,
@@ -6873,20 +6943,20 @@ En los gráficos siguientes, el punto del medio corresponde a \(t=\tfrac12\).
     clip=false
   ]
     % Gráfica de f(x)=x^2
-    \addplot[thick,blue] {x^2};
+    \addplot[thick,principal] {x^2};
 
     % Puntos (x1, f(x1)) y (x2, f(x2))
     \coordinate (P1) at (axis cs:-0.8,0.64);
     \coordinate (P2) at (axis cs: 0.8,0.64);
-    \fill[teal] (P1) circle (2pt) node[below left]  {$\bigl(x_1,f(x_1)\bigr)$};
-    \fill[teal] (P2) circle (2pt) node[below right] {$\bigl(x_2,f(x_2)\bigr)$};
+    \fill[pizarra] (P1) circle (2pt) node[below left]  {$\bigl(x_1,f(x_1)\bigr)$};
+    \fill[pizarra] (P2) circle (2pt) node[below right] {$\bigl(x_2,f(x_2)\bigr)$};
 
     % Recta secante
-    \draw[teal, thick] (P1) -- (P2) node[pos=0.75, above] {recta secante};
+    \draw[pizarra, thick] (P1) -- (P2) node[pos=0.75, above] {recta secante};
 
     % Punto medio en x = (x1+x2)/2
     \coordinate (Pm) at (axis cs:0,0);
-    \fill[teal] (Pm) circle (2pt) node[below=11pt] {
+    \fill[pizarra] (Pm) circle (2pt) node[below=11pt] {
       $\bigl(\tfrac{x_1+x_2}{2},\,f(\tfrac{x_1+x_2}{2})\bigr)$
     };
   \end{axis}
@@ -6899,6 +6969,7 @@ En los gráficos siguientes, el punto del medio corresponde a \(t=\tfrac12\).
    title style={yshift=1em},
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel=$x$, ylabel=$y$,
     title={Ejemplo cóncavo: $f(x)=-x^2$},
     xmin=-1, xmax=1, ymin=-1.1, ymax=0.2,
@@ -6906,33 +6977,33 @@ En los gráficos siguientes, el punto del medio corresponde a \(t=\tfrac12\).
     clip=false
   ]
     % Gráfica de f(x) = -x^2
-    \addplot[thick,blue] {-x^2};
+    \addplot[thick,principal] {-x^2};
 
     % Puntos (x1, f(x1)) y (x2, f(x2))
     \coordinate (Q1) at (axis cs:-0.8,-0.64);
     \coordinate (Q2) at (axis cs: 0.8,-0.64);
-    \fill[teal] (Q1) circle (2pt) node[above left]  {$\bigl(x_1,f(x_1)\bigr)$};
-    \fill[teal] (Q2) circle (2pt) node[above right] {$\bigl(x_2,f(x_2)\bigr)$};
+    \fill[pizarra] (Q1) circle (2pt) node[above left]  {$\bigl(x_1,f(x_1)\bigr)$};
+    \fill[pizarra] (Q2) circle (2pt) node[above right] {$\bigl(x_2,f(x_2)\bigr)$};
 
     % Recta secante
-    \draw[teal, thick] (Q1) -- (Q2) node[pos=0.75, below] {recta secante};
+    \draw[pizarra, thick] (Q1) -- (Q2) node[pos=0.75, below] {recta secante};
 
     % Punto medio en x = (x1+x2)/2
     \coordinate (Qm) at (axis cs:0,0);
-    \fill[teal] (Qm) circle (2pt) node[above=14pt] {
+    \fill[pizarra] (Qm) circle (2pt) node[above=14pt] {
       $\bigl(\tfrac{x_1+x_2}{2},\,f(\tfrac{x_1+x_2}{2})\bigr)$
     };
   \end{axis}
 \end{tikzpicture}
 \end{center}
 
-Los dos casos anteriores son de convexidad y concavidad \textbf{\color{teal}estrictas}: para cualquier par de puntos distintos, en el interior del segmento la curva queda estrictamente por debajo (o por encima) de la secante. Formalmente, \(f\) es \emph{estrictamente convexa} si
+Los dos casos anteriores son de convexidad y concavidad \textbf{estrictas}: para cualquier par de puntos distintos, en el interior del segmento la curva queda estrictamente por debajo (o por encima) de la secante. Formalmente, \(f\) es \emph{estrictamente convexa} si
 \[
   \color{teal}
   f\bigl((1-t)x_{1} + t\,x_{2}\bigr)
   \;<\;
   (1-t)f(x_{1}) + t\,f(x_{2})
-  \qquad\text{para todo } x_1\neq x_2 \text{ en } I \text{ y todo } t\in(0,1),
+  \qquad\text{para todo } x_1\neq x_2 \text{ en } I \text{ y todo } t\in(0,1)
 \]
 y es \emph{estrictamente cóncava} si vale lo mismo con la desigualdad \(>\).
 
@@ -6943,6 +7014,7 @@ También puede ocurrir que, para algunos pares de puntos, la secante coincida co
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$y$},
     title={Convexa no estricta: $f(x)=\max\{x^2,\tfrac14\}$},
     xmin=-1, xmax=1, ymin=-0.1, ymax=1.1,
@@ -6950,17 +7022,17 @@ También puede ocurrir que, para algunos pares de puntos, la secante coincida co
     clip=false
   ]
     % f(x) = max(x^2, 1/4)
-    \addplot[thick,blue] {max(x^2, 0.25)};
+    \addplot[thick,principal] {max(x^2, 0.25)};
 
     % Dos puntos y la secante (sin etiquetas)
     \coordinate (P1) at (axis cs:-0.3,0.25);
     \coordinate (P2) at (axis cs: 0.3,0.25);
-    \fill[teal] (P1) circle (2pt);
-    \fill[teal] (P2) circle (2pt);
-    \draw[teal, thick] (P1) -- (P2);
+    \fill[pizarra] (P1) circle (2pt);
+    \fill[pizarra] (P2) circle (2pt);
+    \draw[pizarra, thick] (P1) -- (P2);
 
     % Punto medio (sin etiqueta)
-    \fill[teal] (axis cs:0,0.25) circle (2pt);
+    \fill[pizarra] (axis cs:0,0.25) circle (2pt);
   \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -6970,6 +7042,7 @@ También puede ocurrir que, para algunos pares de puntos, la secante coincida co
     title style={yshift=1em},
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$y$},
     title={Cóncava no estricta: $f(x)=\min\{-x^2,-\tfrac14\}$},
     xmin=-1, xmax=1, ymin=-1.1, ymax=0.2,
@@ -6977,17 +7050,17 @@ También puede ocurrir que, para algunos pares de puntos, la secante coincida co
     clip=false
   ]
     % f(x) = min(-x^2, -1/4): concava con tramo recto en [-0.5, 0.5]
-    \addplot[thick,blue] {min(-x^2, -0.25)};
+    \addplot[thick,principal] {min(-x^2, -0.25)};
 
     % Dos puntos dentro del tramo recto y su secante (coincide con f)
     \coordinate (Q1) at (axis cs:-0.3,-0.25);
     \coordinate (Q2) at (axis cs: 0.3,-0.25);
-    \fill[teal] (Q1) circle (2pt);
-    \fill[teal] (Q2) circle (2pt);
-    \draw[teal, thick] (Q1) -- (Q2);
+    \fill[pizarra] (Q1) circle (2pt);
+    \fill[pizarra] (Q2) circle (2pt);
+    \draw[pizarra, thick] (Q1) -- (Q2);
 
     % Punto medio (sin etiqueta)
-    \fill[teal] (axis cs:0,-0.25) circle (2pt);
+    \fill[pizarra] (axis cs:0,-0.25) circle (2pt);
   \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -6995,7 +7068,7 @@ También puede ocurrir que, para algunos pares de puntos, la secante coincida co
 
 \subsection*{Relacionando la concavidad y convexidad con conjuntos convexos}
 
-Un conjunto \(C\subseteq\R^n\) es \emph{convexo} si, para todo par de puntos \(a,b\in C\) y todo \(t\in[0,1]\), el punto \((1-t)a+t\,b\) también pertenece a \(C\). Es decir, el segmento que une dos puntos cualesquiera de \(C\) queda completamente dentro de \(C\).
+La convexidad y la concavidad de una función se pueden leer como la convexidad de un conjunto del plano:
 
 \begin{itemize}
   \item \emph{Convexidad:} \(f\) es convexa si y solo si su \emph{epígrafo}, la región
@@ -7019,6 +7092,7 @@ Un conjunto \(C\subseteq\R^n\) es \emph{convexo} si, para todo par de puntos \(a
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel=$x$, ylabel=$y$,
     title={Epígrafo de $f(x)=x^2$},
     xmin=-1, xmax=1, ymin=-0.2, ymax=1.1,
@@ -7036,10 +7110,10 @@ Un conjunto \(C\subseteq\R^n\) es \emph{convexo} si, para todo par de puntos \(a
              {\pgfkeysvalueof{/pgfplots/ymax}};
 
     % 3. Rellena el área entre f_curve y top_boundary
-    \addplot[teal, fill opacity=0.3] fill between[of=f_curve and top_boundary];
+    \addplot[principal, fill opacity=0.3] fill between[of=f_curve and top_boundary];
 
     % 4. Dibuja la curva f(x)=x^2 encima del relleno
-    \addplot[thick, blue, domain=-1:1, samples=100] {x^2};
+    \addplot[thick, principal, domain=-1:1, samples=100] {x^2};
 
   \end{axis}
 \end{tikzpicture}
@@ -7051,6 +7125,7 @@ Un conjunto \(C\subseteq\R^n\) es \emph{convexo} si, para todo par de puntos \(a
     title style={yshift=1em},
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel=$x$, ylabel=$y$,
     title={Hipógrafo de $f(x)=-x^2$},
     xmin=-1, xmax=1, ymin=-1.1, ymax=0.2,
@@ -7068,10 +7143,10 @@ Un conjunto \(C\subseteq\R^n\) es \emph{convexo} si, para todo par de puntos \(a
              {\pgfkeysvalueof{/pgfplots/ymin}};
 
     % 3. Rellena el área entre f_curve_concave y bottom_boundary
-    \addplot[teal, fill opacity=0.3] fill between[of=f_curve_concave and bottom_boundary];
+    \addplot[principal, fill opacity=0.3] fill between[of=f_curve_concave and bottom_boundary];
 
     % 4. Dibuja la curva f(x)=-x^2 encima del relleno
-    \addplot[thick, blue, domain=-1:1, samples=100] {-x^2};
+    \addplot[thick, principal, domain=-1:1, samples=100] {-x^2};
 
   \end{axis}
 \end{tikzpicture}
@@ -7080,25 +7155,24 @@ Un conjunto \(C\subseteq\R^n\) es \emph{convexo} si, para todo par de puntos \(a
 
 \section*{Concavidad y convexidad en $\R^2$}
 
-\noindent\textbf{Definición:} Sea \(f\colon D\subseteq\R^2\to\R\), donde \(D\) es un conjunto convexo (así, el segmento entre dos puntos de \(D\) queda dentro del dominio).
+\noindent\textbf{Definición.} Sea \(f\colon D\subseteq\R^2\to\R\), donde \(D\) es un conjunto convexo (así, el segmento entre dos puntos de \(D\) queda dentro del dominio).
 \begin{itemize}
-  \item \(f\) es \emph{convexa} si para todo \((x_1,y_1),(x_2,y_2)\in D\) y todo \(t\in[0,1]\) se cumple
+  \item \(f\) es \emph{convexa} si para todo \(\vect{a},\vect{b}\in D\) y todo \(t\in[0,1]\) se cumple
   \[
     \color{teal}
-    f\bigl((1-t)(x_1,y_1)+t(x_2,y_2)\bigr)
+    f\bigl((1-t)\,\vect{a}+t\,\vect{b}\bigr)
     \;\le\;
-    (1-t)\,f(x_1,y_1) + t\,f(x_2,y_2)
+    (1-t)\,f(\vect{a}) + t\,f(\vect{b})
   \]
   \item \(f\) es \emph{cóncava} si \(-f\) es convexa, es decir, si la desigualdad se invierte.
 \end{itemize}
 Como en una variable, \(f\) es \emph{estrictamente} convexa (o cóncava) si la desigualdad es estricta para todo par de puntos distintos y todo \(t\in(0,1)\). En \(\R^n\) las definiciones son las mismas, con puntos de \(D\subseteq\R^n\).
 
-\noindent\textbf{Intuición geométrica:} La intuición se mantiene. Ahora la gráfica de \(f\) es una superficie, y la secante es el segmento que une \(\bigl(x_1,y_1,f(x_1,y_1)\bigr)\) con \(\bigl(x_2,y_2,f(x_2,y_2)\bigr)\): si \(f\) es convexa, la superficie nunca queda por encima de ese segmento. Además, el epígrafo de una función convexa y el hipógrafo de una función cóncava siguen siendo conjuntos convexos.
+\noindent\textbf{Intuición geométrica.} La intuición se mantiene. Ahora la gráfica de \(f\) es una superficie, y la secante es el segmento que une los puntos de la superficie que están sobre \(\vect{a}\) y sobre \(\vect{b}\): si \(f\) es convexa, la superficie nunca queda por encima de ese segmento. Además, el epígrafo de una función convexa y el hipógrafo de una función cóncava siguen siendo conjuntos convexos.
 
 \section*{Criterio de las derivadas segundas}
 
-\noindent\textbf{Recordatorio: criterio para funciones de una variable}\\
-Sea \(g\colon I\subseteq\R\to\R\) de clase \(C^2\) en un intervalo \(I\). Entonces
+\noindent\textbf{Recordatorio: criterio para funciones de una variable.} Sea \(g\colon I\subseteq\R\to\R\) de clase \(C^2\) en un intervalo \(I\). Entonces
 \[
 \begin{cases}
 g''(t)\ge0\quad\forall\,t\in I
@@ -7111,12 +7185,12 @@ Con desigualdades estrictas, la conclusión también es estricta: si \(g''(t)>0\
 
 \subsection*{Funciones de dos variables}
 
-Sea \(f\colon D\subseteq\R^2\to\R\) de clase \(C^2\), con \(D\) abierto y convexo. La desigualdad que define la convexidad de \(f\) solo involucra puntos de un segmento, así que alcanza con estudiar \(f\) sobre cada segmento. Para eso, dados dos puntos \(a=(x_1,y_1)\) y \(b=(x_2,y_2)\) de \(D\), definimos
+Sea \(f\colon D\subseteq\R^2\to\R\) de clase \(C^2\), con \(D\) abierto y convexo. La desigualdad que define la convexidad de \(f\) solo involucra puntos de un segmento, así que alcanza con estudiar \(f\) sobre cada segmento. Para eso, dados dos puntos \(\vect{a}=(x_1,y_1)^T\) y \(\vect{b}=(x_2,y_2)^T\) de \(D\), definimos
 \[
 g(t) \;=\; f\bigl((1-t)x_1 + t\,x_2,\;(1-t)y_1 + t\,y_2\bigr),
 \quad t\in[0,1]
 \]
-Vamos a ver que \(g\) es convexa, porque su derivada segunda es la forma cuadrática de la hessiana en la dirección del segmento, y que su convexidad se transmite a \(f\).
+Vamos a ver que, si la hessiana es semidefinida positiva en todo \(D\), \(g\) es convexa, porque su derivada segunda es la forma cuadrática de la hessiana en la dirección del segmento, y que su convexidad se transmite a \(f\).
 
 \medskip
 \noindent\textbf{Intuición sobre \(g\).}
@@ -7124,14 +7198,14 @@ Para entender qué hace \(g\), primero observemos que
 \[
 (x(t),y(t)) \;=\;\bigl((1-t)x_1 + t\,x_2,\;(1-t)y_1 + t\,y_2\bigr)
 \]
-es la parametrización del segmento rectilíneo que une los puntos \((x_1,y_1)\) y \((x_2,y_2)\) en el plano. Por tanto,
+es la parametrización del segmento rectilíneo que une \(\vect{a}\) y \(\vect{b}\) en el plano. Por lo tanto,
 \[
 g(t) \;=\; f\bigl(x(t),y(t)\bigr)
 \]
 no es más que el valor de \(f\) al desplazarnos a lo largo de ese segmento:
 \begin{itemize}
-    \item Cuando \(t=0\) estamos en \((x_1,y_1)\).
-    \item Cuando \(t=1\) estamos en \((x_2,y_2)\).
+    \item Cuando \(t=0\) estamos en \(\vect{a}\).
+    \item Cuando \(t=1\) estamos en \(\vect{b}\).
     \item Para \(t\in(0,1)\) recorremos los puntos intermedios.
 \end{itemize}
 
@@ -7201,11 +7275,9 @@ f''_{xy}\bigl(x(t),y(t)\bigr) & f''_{yy}\bigl(x(t),y(t)\bigr)
 \]
 
 \medskip
-\noindent\textbf{Paso 2: \(g\) es convexa.} Si la matriz hessiana
-\(\;H_f(x,y)=\bigl[f''_{ij}(x,y)\bigr]\)
-es semidefinida positiva en todo punto, entonces para cada \(t\in[0,1]\)
+\noindent\textbf{Paso 2: \(g\) es convexa.} Si la matriz hessiana de \(f\), la del paso 1, es semidefinida positiva en todo punto, entonces para cada \(t\in[0,1]\)
 \[
-g''(t)\;\ge\;0,
+g''(t)\;\ge\;0
 \]
 y, por el criterio de una variable, \(g\) es convexa en \([0,1]\).
 
@@ -7221,15 +7293,15 @@ Como \(g\) es convexa en \([0,1]\), la definición de convexidad aplicada a los 
 g(t)=g\bigl((1-t)\cdot0+t\cdot1\bigr)\;\le\;(1-t)\,g(0)+t\,g(1)=L(t)
 \]
 
-Finalmente, usando \(g(0)=f(x_1,y_1)\) y \(g(1)=f(x_2,y_2)\), concluimos
+Finalmente, usando \(g(0)=f(\vect{a})\) y \(g(1)=f(\vect{b})\), concluimos
 \[
 \color{teal}
-f\bigl((1-t)(x_1,y_1)+t\,(x_2,y_2)\bigr)
+f\bigl((1-t)\,\vect{a}+t\,\vect{b}\bigr)
 \;=\;g(t)
 \;\le\;
-(1-t)\,f(x_1,y_1) \;+\; t\,f(x_2,y_2)
+(1-t)\,f(\vect{a}) \;+\; t\,f(\vect{b})
 \]
-\textbf{\color{teal}Como los puntos y \(t\) son arbitrarios, esta es precisamente la condición de convexidad de \(f\) en \(\R^2\).}
+Como los puntos y \(t\) son arbitrarios, esta es precisamente la condición de convexidad de \(f\) en \(\R^2\).
 
 De forma análoga, si \(H_f\) es semidefinida \emph{negativa}, entonces
 \[
@@ -7238,47 +7310,117 @@ g''(t)\le0
 \quad\Longrightarrow\quad
 g(t)\ge(1-t)\,g(0)+t\,g(1)
 \]
-\textbf{\color{teal}y por tanto \(f\) es \emph{cóncava}.}
+y por lo tanto \(f\) es cóncava.
 
 \subsection*{Extensión a $\R^n$}
-El mismo argumento se aplica en \(\R^n\). Dados dos puntos \(a,b\in D\subseteq\R^n\), la función \(g(t)=f\bigl((1-t)a+t\,b\bigr)\) tiene derivada segunda
+El mismo argumento se aplica en \(\R^n\). Dados dos puntos \(\vect{a},\vect{b}\in D\subseteq\R^n\), la función \(g(t)=f\bigl((1-t)\vect{a}+t\,\vect{b}\bigr)\) tiene derivada segunda
 \[
-g''(t)=(b-a)^{T}\,H_f\bigl((1-t)a+t\,b\bigr)\,(b-a)
+g''(t)=(\vect{b}-\vect{a})^{T}\,H_f\bigl((1-t)\vect{a}+t\,\vect{b}\bigr)\,(\vect{b}-\vect{a})
 \]
-Si la matriz hessiana es semidefinida positiva en todo punto, entonces \(g''(t)\ge0\), \(g\) es convexa y, por tanto, \(f\) es convexa. Análogamente, si la hessiana es semidefinida negativa en todo punto, \(f\) es cóncava.
+Si la matriz hessiana es semidefinida positiva en todo punto, entonces \(g''(t)\ge0\), \(g\) es convexa y, por lo tanto, \(f\) es convexa. Análogamente, si la hessiana es semidefinida negativa en todo punto, \(f\) es cóncava.
 
-\noindent Además, si la hessiana \(H_f(x)\) es \emph{definida positiva} en todo punto, entonces \(f\) es \emph{estrictamente convexa} (para \(a\neq b\) resulta \(g''(t)>0\), y por el caso estricto del criterio de una variable \(g\) es estrictamente convexa); y si \(H_f(x)\) es \emph{definida negativa} en todo punto, entonces \(f\) es \emph{estrictamente cóncava}.
+\noindent Además, si la hessiana \(H_f(\vect{x})\) es \emph{definida positiva} en todo punto, entonces \(f\) es \emph{estrictamente convexa} (para \(\vect{a}\neq\vect{b}\) resulta \(g''(t)>0\), y por el caso estricto del criterio de una variable \(g\) es estrictamente convexa); y si \(H_f(\vect{x})\) es \emph{definida negativa} en todo punto, entonces \(f\) es \emph{estrictamente cóncava}.
 
 \medskip
-\noindent\textbf{En resumen}
+\noindent\textbf{En resumen.}
 \[
 \renewcommand{\arraystretch}{1.25}
 \begin{array}{|c|l|c|c|}
 \hline
-\textbf{\color{teal}Hessiana } H_f(x)
-  & \textbf{\color{teal}Condición para todo } x\in D,\ h\in\R^n
+\textbf{\color{teal}Hessiana } H_f(\vect{x})
+  & \textbf{\color{teal}Condición para todo } \vect{x}\in D,\ \vect{h}\in\R^n
   &
   & \textbf{\color{teal}Función } f \\ \hline
 \text{Semidefinida positiva}
-  & h^{T} H_f(x)\, h \;\ge\; 0
+  & \vect{h}^{T} H_f(\vect{x})\, \vect{h} \;\ge\; 0
   & \Longleftrightarrow
   & \text{Convexa} \\ \hline
 \text{Definida positiva}
-  & h^{T} H_f(x)\, h \;>\; 0 \quad \text{si } h\neq 0
+  & \vect{h}^{T} H_f(\vect{x})\, \vect{h} \;>\; 0 \quad \text{si } \vect{h}\neq \vect{0}
   & \Longrightarrow
   & \text{Estr. convexa} \\ \hline
 \text{Semidefinida negativa}
-  & h^{T} H_f(x)\, h \;\le\; 0
+  & \vect{h}^{T} H_f(\vect{x})\, \vect{h} \;\le\; 0
   & \Longleftrightarrow
   & \text{Cóncava} \\ \hline
 \text{Definida negativa}
-  & h^{T} H_f(x)\, h \;<\; 0 \quad \text{si } h\neq 0
+  & \vect{h}^{T} H_f(\vect{x})\, \vect{h} \;<\; 0 \quad \text{si } \vect{h}\neq \vect{0}
   & \Longrightarrow
   & \text{Estr. cóncava} \\ \hline
 \end{array}
 \]
-{\small (Aquí \(D\), el dominio de \(f\), es abierto y convexo. Las implicaciones \(\Longrightarrow\) no valen al revés.\footnote{\label{nota:reciprocas-convexidad}Si \(D\) es abierto, las implicaciones para la convexidad y la concavidad valen también al revés. Si \(f\) es convexa, para cada \(x\in D\) y cada dirección \(h\) la función \(t\mapsto f(x+t\,h)\) es convexa cerca de \(t=0\), así que su derivada segunda en \(t=0\), que es \(h^{T}H_f(x)\,h\), es mayor o igual que cero: \(H_f(x)\) es semidefinida positiva. Para las versiones estrictas, en cambio, la recíproca es falsa: \(f(x)=x^4\) es estrictamente convexa y \(f''(0)=0\). En dos variables, \(x^4+y^4\) es estrictamente convexa y su hessiana en el origen es la matriz nula.})}
+{\small (Aquí \(D\), el dominio de \(f\), es abierto y convexo. Las implicaciones \(\Longrightarrow\) no valen al revés.\footnote{\label{nota:reciprocas-convexidad}Si \(D\) es abierto, las implicaciones para la convexidad y la concavidad valen también al revés. Si \(f\) es convexa, para cada \(\vect{x}\in D\) y cada dirección \(\vect{h}\) la función \(t\mapsto f(\vect{x}+t\,\vect{h})\) es convexa cerca de \(t=0\), así que su derivada segunda en \(t=0\), que es \(\vect{h}^{T}H_f(\vect{x})\,\vect{h}\), es mayor o igual que cero: \(H_f(\vect{x})\) es semidefinida positiva. Para las versiones estrictas, en cambio, la recíproca es falsa: \(f(x)=x^4\) es estrictamente convexa y \(f''(0)=0\). En dos variables, \(x^4+y^4\) es estrictamente convexa y su hessiana en el origen es la matriz nula.})}
 
+\medskip
+\noindent\textbf{Hessiana semidefinida, pero no definida.} En este caso la tabla asegura que \(f\) es cóncava (o convexa), pero no dice si lo es estrictamente. Para decidirlo sirve una propiedad de las funciones cóncavas: si la desigualdad de la definición se cumple con igualdad para dos puntos distintos \(\vect{a},\vect{b}\) y algún \(t\in(0,1)\), se cumple con igualdad en todo el segmento que los une.\footnote{Llamemos \(\vect{p}\) al punto donde vale la igualdad. Si en otro punto \(\vect{c}\) del segmento \(f\) quedara estrictamente por encima de la secante, la secante que une el punto del gráfico sobre \(\vect{c}\) con el del extremo que está del otro lado de \(\vect{p}\) pasaría estrictamente por encima de la original en \(\vect{p}\). Por la concavidad, \(f(\vect{p})\) no puede quedar por debajo de esa secante, así que quedaría estrictamente por encima de la original, y eso contradice que en \(\vect{p}\) valga la igualdad.} Es decir, \(f\) es lineal sobre ese segmento: su gráfico tiene un tramo recto, como los de \(\max\{x^2,\tfrac14\}\) y \(\min\{-x^2,-\tfrac14\}\). Por eso, una función cóncava (o convexa) es estricta si y solo si no es lineal sobre ningún segmento de \(D\). Sobre un segmento así, \(g''(t)=0\) para todo \(t\in[0,1]\), de modo que el segmento va en una dirección \(\vect{h}=\vect{b}-\vect{a}\) con \(\vect{h}^{T}H_f(\vect{x})\,\vect{h}=0\) en todos sus puntos: hay que buscarlo en esas direcciones. En particular, si la hessiana es definida en todo \(D\) salvo en puntos aislados, no hay ningún segmento así y \(f\) es estricta. Así se ve que \(x^4\), el ejemplo de la nota~\ref{nota:reciprocas-convexidad}, es estrictamente convexa: su derivada segunda, \(12x^2\), solo se anula en \(x=0\).
+
+\begin{metodo}[label=met:concavidad]{Decidir si una función es cóncava o convexa, y si lo es estrictamente}
+\rotulo{Cuándo usarlo.} Para decidir si una función \(f\) de clase \(C^2\) en un dominio \(D\) abierto y convexo es cóncava, convexa o ninguna de las dos, y si lo es estrictamente.
+
+\rotulo{Pasos.}
+\begin{pasos}
+  \item Calcular las derivadas segundas y armar la hessiana \(H_f(\vect{x})\) en un punto cualquiera de \(D\), sin evaluarla en ningún punto en particular.
+  \item Calcular los menores principales líderes \(\Delta^{(k)}\), los determinantes de las submatrices formadas por las primeras \(k\) filas y columnas. Si en todo \(D\) vale \(\Delta^{(k)}>0\) para todo \(k\), la hessiana es definida positiva y \(f\) es estrictamente convexa. Si vale \((-1)^k\Delta^{(k)}>0\) para todo \(k\), es definida negativa y \(f\) es estrictamente cóncava.
+  \item Si no es definida en todo \(D\), calcular todos los menores principales \(\Delta^{(k)}_I\), los determinantes de las submatrices que toman las mismas \(k\) filas y columnas, las de un conjunto de índices \(I\). Si en todo \(D\) vale \(\Delta^{(k)}_I\ge0\) para todos ellos, la hessiana es semidefinida positiva y \(f\) es convexa. Si vale \((-1)^k\Delta^{(k)}_I\ge0\), es semidefinida negativa y \(f\) es cóncava. Si en algún punto de \(D\) la hessiana no es semidefinida positiva, \(f\) no es convexa; si no es semidefinida negativa, \(f\) no es cóncava.
+  \item Si la hessiana es semidefinida en todo \(D\), pero no definida en algún punto, \(f\) es cóncava (o convexa) y falta ver si lo es estrictamente: no lo es si y solo si hay un segmento de \(D\) sobre el que \(f\) es lineal. Ese segmento se busca en una dirección \(\vect{h}\) con \(\vect{h}^{T}H_f(\vect{x})\,\vect{h}=0\). Si la hessiana es definida salvo en puntos aislados, no hay ninguno y \(f\) es estricta.
+\end{pasos}
+
+\rotulo{Chequeo.} La hessiana tiene que ser simétrica: \(f''_{xy}=f''_{yx}\). Una forma de chequear es ver dos puntos de \(D\) y su punto medio: si \(f\) es cóncava, el valor de \(f\) en el punto medio no puede ser menor que el promedio de los valores en los extremos (si es convexa, no puede ser mayor).
+
+\rotulo[oxido]{Cuidado.} La condición tiene que valer en todos los puntos de \(D\): evaluar la hessiana en un solo punto no alcanza. Para la semidefinitud no alcanza con los menores principales líderes: hay que revisarlos todos. Y que la hessiana no sea definida en algún punto no quiere decir que \(f\) no sea estricta: \(x^4\) es estrictamente convexa y su derivada segunda se anula en \(x=0\).
+\end{metodo}
+
+\section*{Operaciones que conservan la concavidad y la convexidad}
+
+Muchas veces se puede decidir si una función es cóncava o convexa sin armar su hessiana, viendo cómo está construida a partir de funciones que ya sabemos que lo son. En esta sección, todas las funciones están definidas en un mismo conjunto convexo \(D\). Las funciones lineales, como \(x+y\) o una constante, son cóncavas y convexas a la vez, porque cumplen la definición con igualdad.
+
+\medskip
+\noindent\textbf{Combinaciones con coeficientes no negativos.}
+\[
+\color{teal}
+f_1,\dots,f_m\ \text{cóncavas y}\ \lambda_1,\dots,\lambda_m\ge0
+\;\Longrightarrow\;
+\lambda_1f_1+\dots+\lambda_mf_m\ \text{cóncava}
+\]
+Lo mismo vale con convexas. Para verlo, alcanza con multiplicar por \(\lambda_i\) la desigualdad de la definición de cada \(f_i\) y sumar: como los \(\lambda_i\) no son negativos, ninguna desigualdad cambia de sentido. Por ejemplo, \(3\sqrt{x}+2\ln y\) es cóncava en \(\{(x,y)\mid x>0,\ y>0\}\), porque \(\sqrt{x}\) y \(\ln y\) son cóncavas: cada una depende de una sola variable y tiene derivada segunda negativa, \(-\tfrac14x^{-3/2}\) y \(-1/y^2\). Del mismo modo, \(x^2+4e^{y}\) es convexa en \(\R^2\). En cambio, en \(x^2-y^2\) el coeficiente de \(y^2\) es negativo, y la función no es cóncava ni convexa: sobre el eje \(x\) vale \(x^2\), que no es cóncava, y sobre el eje \(y\) vale \(-y^2\), que no es convexa (si \(f\) fuera cóncava o convexa, también lo sería sobre cada recta).
+
+\medskip
+\noindent\textbf{Composición.} Sea \(h=g\circ f\), donde \(g\) es una función de una variable definida en un intervalo que contiene los valores de \(f\).
+\[
+\color{teal}
+f\ \text{cóncava y}\ g\ \text{creciente y cóncava}
+\;\Longrightarrow\;
+h\ \text{cóncava}
+\]
+Lo mismo vale con convexas: si \(f\) es convexa y \(g\) es creciente y convexa, \(h\) es convexa. En el caso cóncavo,
+\[
+g\Bigl(f\bigl((1-t)\,\vect{a}+t\,\vect{b}\bigr)\Bigr)
+\;\ge\;
+g\bigl((1-t)\,f(\vect{a})+t\,f(\vect{b})\bigr)
+\;\ge\;
+(1-t)\,g\bigl(f(\vect{a})\bigr)+t\,g\bigl(f(\vect{b})\bigr)
+\]
+La primera desigualdad vale porque \(f\) es cóncava y \(g\) es creciente; la segunda, porque \(g\) es cóncava. Por ejemplo, \(e^{x^2+y^2}\) es convexa en \(\R^2\), porque \(x^2+y^2\) es convexa y \(e^{z}\) es creciente y convexa, y \(\ln(x+y)\) es cóncava en \(\{(x,y)\mid x+y>0\}\), porque \(x+y\) es lineal y \(\ln z\) es creciente y cóncava. Que \(g\) sea creciente hace falta: \(x^2\) es convexa y \(g(z)=-z\) también (es lineal), pero \(g(x^2)=-x^2\) no es convexa.
+
+\medskip
+\noindent\textbf{Máximo y mínimo.}
+\[
+\color{teal}
+f_1,f_2\ \text{convexas}\;\Longrightarrow\;\max\{f_1,f_2\}\ \text{convexa}
+\qquad
+f_1,f_2\ \text{cóncavas}\;\Longrightarrow\;\min\{f_1,f_2\}\ \text{cóncava}
+\]
+Si \(f=\max\{f_1,f_2\}\), para cada \(i\) se cumple
+\[
+f_i\bigl((1-t)\,\vect{a}+t\,\vect{b}\bigr)
+\;\le\;
+(1-t)\,f_i(\vect{a})+t\,f_i(\vect{b})
+\;\le\;
+(1-t)\,f(\vect{a})+t\,f(\vect{b})
+\]
+porque \(f_i\le f\). Como vale para las dos, vale para su máximo. Así se ve que \(\max\{x^2,\tfrac14\}\), la de los gráficos de más arriba, es convexa: \(x^2\) y la constante \(\tfrac14\) lo son. Del mismo modo, \(\min\{-x^2,-\tfrac14\}\) es cóncava. Al revés no vale: \(x\) y \(-x\) son cóncavas, pero su máximo, \(|x|\), no lo es.
+
+\section*{Ejemplos}
 
 \subsection*{Ejemplo}
 
@@ -7290,8 +7432,7 @@ f(x,y) \;=\; x^2 \;+\; 2\,x\,y \;+\; 3\,y^2
 
 \medskip
 
-\noindent\textbf{Cálculo de la hessiana}\\
-Las derivadas parciales primeras son
+\noindent\textbf{Cálculo de la hessiana.} Las derivadas parciales primeras son
 \[
 f'_x = 2x + 2y,\qquad f'_y = 2x + 6y
 \]
@@ -7301,7 +7442,7 @@ f''_{xx} = 2,\quad
 f''_{xy} = 2,\quad
 f''_{yy} = 6
 \]
-Por tanto la matriz hessiana es
+Por lo tanto, la matriz hessiana es
 \[
 H_f(x,y)
 =\begin{pmatrix}
@@ -7312,8 +7453,7 @@ H_f(x,y)
 
 \medskip
 
-\noindent\textbf{Comprobación de definitud (criterio de Sylvester).}\\
-Calculamos los menores principales líderes:
+\noindent\textbf{Comprobación de definitud (criterio de Sylvester).} Calculamos los menores principales líderes:
 \[
 \Delta^{(1)} = f''_{xx} = 2 > 0
 \qquad
@@ -7323,7 +7463,7 @@ Como \(\Delta^{(1)}>0\) y \(\Delta^{(2)}>0\), \(H_f\) es \emph{definida positiva
 
 \medskip
 
-\noindent{\color{teal}\textbf{Conclusión:} al ser su hessiana definida positiva para todo \((x,y)\), la función \(f\) es \emph{estrictamente convexa} en \(\R^2\).}
+\noindent{\color{teal}\textbf{Conclusión.} Al ser su hessiana definida positiva para todo \((x,y)\), la función \(f\) es \emph{estrictamente convexa} en \(\R^2\).}
 
 \subsection*{Otro ejemplo}
 
@@ -7334,8 +7474,7 @@ f(x,y) = -x^2 + 2\,x\,y - y^2
 \]
 
 \medskip
-\noindent\textbf{Cálculo de la hessiana}\\
-Las derivadas parciales primeras son
+\noindent\textbf{Cálculo de la hessiana.} Las derivadas parciales primeras son
 \[
 f'_x = -2x + 2y,\qquad f'_y = 2x - 2y
 \]
@@ -7345,7 +7484,7 @@ f''_{xx} = -2,\quad
 f''_{xy} = 2,\quad
 f''_{yy} = -2
 \]
-Por tanto la matriz hessiana es
+Por lo tanto, la matriz hessiana es
 \[
 H_f(x,y) =
 \begin{pmatrix}
@@ -7355,14 +7494,13 @@ H_f(x,y) =
 \]
 
 \medskip
-\noindent\textbf{Comprobación de semidefinitud.}\\
-Los menores principales líderes son
+\noindent\textbf{Comprobación de semidefinitud.} Los menores principales líderes son
 \[
 \Delta^{(1)} = f''_{xx} = -2 < 0
 \qquad
 \Delta^{(2)} = \det H_f = (-2)(-2) - 2^2 = 4 - 4 = 0
 \]
-Como \(\Delta^{(2)}=0\), \(H_f\) no es definida negativa: el criterio de Sylvester pediría \((-1)^2\Delta^{(2)}>0\). Para ver si es semidefinida negativa hay que revisar todos los menores principales, como en el criterio de semidefinitud del capítulo de menores:
+Como \(\Delta^{(2)}=0\), \(H_f\) no es definida negativa: el criterio de Sylvester pediría \((-1)^2\Delta^{(2)}>0\). Para ver si es semidefinida negativa hay que revisar todos los menores principales:
 \[
 (-1)^1\Delta^{(1)}_1 = 2 \ge 0
 \qquad
@@ -7373,16 +7511,44 @@ Como \(\Delta^{(2)}=0\), \(H_f\) no es definida negativa: el criterio de Sylvest
 Entonces \(H_f\) es \emph{semidefinida negativa} en todo \(\R^2\), pero no definida negativa, y \(f\) es cóncava.
 
 \medskip
-\noindent\textbf{¿Es estrictamente cóncava?}\\
-Que la hessiana no sea definida negativa no alcanza para responder, porque esa condición es suficiente pero no necesaria (ver la nota~\ref{nota:reciprocas-convexidad}). Lo comprobamos con la definición. Como \(f(x,y)=-(x-y)^2\), la función vale \(0\) en todos los puntos de la recta \(y=x\). Con \(a=(0,0)\), \(b=(1,1)\) y \(t=\tfrac12\),
+\noindent\textbf{¿Es estrictamente cóncava?} Que la hessiana no sea definida negativa no alcanza para responder, porque esa condición es suficiente pero no necesaria (ver la nota~\ref{nota:reciprocas-convexidad}). Lo comprobamos con la definición. Como \(f(x,y)=-(x-y)^2\), la función vale \(0\) en todos los puntos de la recta \(y=x\). Con \(\vect{a}=(0,0)^T\), \(\vect{b}=(1,1)^T\) y \(t=\tfrac12\),
 \[
-f\bigl(\tfrac12 a+\tfrac12 b\bigr)=f\bigl(\tfrac12,\tfrac12\bigr)=0=\tfrac12 f(a)+\tfrac12 f(b)
+f\bigl(\tfrac12\vect{a}+\tfrac12\vect{b}\bigr)=f\bigl(\tfrac12,\tfrac12\bigr)=0=\tfrac12 f(\vect{a})+\tfrac12 f(\vect{b})
 \]
 La desigualdad se cumple con igualdad, así que \(f\) no es estrictamente cóncava.
 
-Lo mismo pasa sobre cualquier recta paralela a \(y=x\): como \(f\) solo depende de la diferencia \(x-y\), es constante a lo largo de cada una. Su gráfico es una canaleta dada vuelta, con la parte más alta sobre la recta \(y=x\). Esa es justamente la dirección en la que se anula la forma cuadrática de la hessiana, y por eso la hessiana no es definida: con \(h=(1,1)^{T}\),
+Lo mismo pasa sobre cualquier recta paralela a \(y=x\): como \(f\) solo depende de la diferencia \(x-y\), es constante a lo largo de cada una. Su gráfico es una canaleta dada vuelta, con la parte más alta sobre la recta \(y=x\):
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8.5cm, height=7.5cm,
+    view={-20}{25},
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
+    xlabel=$x$, ylabel=$y$, zlabel=$z$,
+    title={$f(x,y)=-(x-y)^2$},
+    xtick={-1,0,1}, ytick={-1,0,1}, ztick={-2,-1,0},
+    zmax=0.3,
+    colormap={canaleta}{color=(principal!18) color=(principal!60)},
+    z buffer=sort,
+    clip=false,
+  ]
+    % Se dibuja como lo que es, un cilindro: u recorre la dirección de y=x y
+    % v la perpendicular, así que x=u+v, y=u-v y f=-(x-y)^2=-4v^2.
+    % Las líneas de la malla son rectas paralelas a y=x y parábolas en el corte.
+    \addplot3[surf, shader=faceted interp, faceted color=principal!70, line width=0.2pt,
+      domain=-1:1, y domain=-0.75:0.75, samples=9, samples y=13]
+      ({x+y}, {x-y}, {-4*y^2});
+    % La recta y=x, donde f vale 0: la parte más alta de la canaleta
+    \addplot3[pizarra, thick, domain=-1:1, samples=2, samples y=1] (x, x, 0);
+    \node[pizarra, font=\small, anchor=south east] at (axis cs:-1,-1,0) {$y=x$};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+Esa dirección, la de la recta \(y=x\), es justamente aquella en la que se anula la forma cuadrática de la hessiana, y por eso la hessiana no es definida: con \(\vect{h}=(1,1)^T\),
 \[
-h^{T}H_f\,h=
+\vect{h}^{T}H_f\,\vect{h}=
 \begin{pmatrix}1 & 1\end{pmatrix}
 \begin{pmatrix}-2 & 2\\ 2 & -2\end{pmatrix}
 \begin{pmatrix}1\\ 1\end{pmatrix}
@@ -7392,78 +7558,136 @@ h^{T}H_f\,h=
 \]
 
 \medskip
-\noindent{\color{teal}\textbf{Conclusión:} la hessiana de \(f\) es semidefinida negativa, pero no definida negativa: \(f\) es \emph{cóncava}, pero no estrictamente cóncava.}
+\noindent{\color{teal}\textbf{Conclusión.} La hessiana de \(f\) es semidefinida negativa, pero no definida negativa: \(f\) es \emph{cóncava}, pero no estrictamente cóncava.}
 
-\section*{Cuasiconcavidad y cuasiconvexidad}
+\subsection*{Un ejemplo en el que importa el dominio}
 
-En economía, de una función de utilidad interesa menos su concavidad que la forma de sus curvas de indiferencia: lo importante es que el conjunto de canastas al menos tan buenas como una dada sea convexo. Esa propiedad es la cuasiconcavidad. En particular, la convexidad estricta al origen de las curvas de indiferencia, que vimos en el capítulo \emph{Curvas de nivel en Economía}, corresponde a una función de utilidad estrictamente cuasicóncava.
+Consideremos
+\[
+f(x,y)=x^3+y^2
+\]
+primero en \(D=\{(x,y)\in\R^2\mid x>0\}\), que es abierto y convexo (es un semiplano), y después en todo \(\R^2\).
 
 \medskip
-\noindent\textbf{Conjuntos de nivel}\\
+\noindent\textbf{Cálculo de la hessiana.} Las derivadas parciales primeras son
+\[
+f'_x=3x^2,\qquad f'_y=2y
+\]
+y las segundas son
+\[
+f''_{xx}=6x,\quad
+f''_{xy}=0,\quad
+f''_{yy}=2
+\]
+Por lo tanto, la matriz hessiana es
+\[
+H_f(x,y)=
+\begin{pmatrix}
+6x & 0\\[4pt]
+0  & 2
+\end{pmatrix}
+\]
+A diferencia de los ejemplos anteriores, la hessiana depende del punto, así que hay que estudiarla en todo el dominio.
+
+\medskip
+\noindent\textbf{En \(D=\{x>0\}\).} Los menores principales líderes son
+\[
+\Delta^{(1)}=6x>0
+\qquad
+\Delta^{(2)}=\det H_f=12x>0
+\]
+porque \(x>0\) en todo \(D\). La hessiana es definida positiva en todo \(D\), así que \(f\) es estrictamente convexa en \(D\).
+
+\medskip
+\noindent\textbf{En \(\R^2\).} Ahora también hay puntos con \(x<0\). En \((-1,0)\), por ejemplo,
+\[
+H_f(-1,0)=
+\begin{pmatrix}
+-6 & 0\\[4pt]
+0  & 2
+\end{pmatrix}
+\]
+y sus menores principales de orden 1 son \(\Delta^{(1)}_1=-6\) y \(\Delta^{(1)}_2=2\). Como uno es negativo, la hessiana no es semidefinida positiva, y como el otro es positivo, tampoco es semidefinida negativa. Por lo tanto, \(f\) no es convexa ni cóncava en \(\R^2\). También se ve sin la hessiana: sobre el eje \(x\), \(f(x,0)=x^3\), que no es convexa ni cóncava.
+
+\medskip
+\noindent{\color{teal}\textbf{Conclusión.} \(f\) es estrictamente convexa en \(D=\{x>0\}\), pero en \(\R^2\) no es convexa ni cóncava: la condición sobre la hessiana tiene que valer en todos los puntos del dominio.}
+
+
+
+\section{Cuasiconcavidad y cuasiconvexidad}\label{cap:cuasi}
+
+En Economía, muchas veces, más allá de la concavidad o convexidad de una función, es importante la concavidad o convexidad de las curvas de nivel de dicha función. Esta propiedad de las curvas de nivel hace referencia a la cuasiconcavidad. Empecemos definiendo lo que es un conjunto de nivel para poder definir la convexidad o concavidad de las curvas de nivel.
+
+\section*{Conjuntos de nivel}
+
 Sea \(f\colon D\subseteq\R^n\to\R\), con \(D\) convexo. Recordemos que la \emph{curva de nivel} de \(f\) para un valor \(\alpha\) es el conjunto
 \[
-\{\,x\in D : f(x)=\alpha\}
+\{\,\vect{x}\in D : f(\vect{x})=\alpha\}
 \]
-Los conjuntos de nivel (subniveles y superniveles) son las regiones delimitadas por esas curvas:
+Los \emph{conjuntos de nivel} son las regiones delimitadas por esas curvas. Hay dos, según de qué lado de la curva queda la región: el \emph{subnivel} es la región donde \(f\) toma valores por debajo de \(\alpha\), y el \emph{supernivel}, la región donde toma valores por arriba de \(\alpha\). En los dos casos la curva de nivel queda incluida:
 \[
 \begin{aligned}
-L_\alpha(f) &= \{\,x\in D : f(x)\le \alpha\}\\[4pt]
-U^\alpha(f) &= \{\,x\in D : f(x)\ge \alpha\}
+L_\alpha(f) &= \{\,\vect{x}\in D : f(\vect{x})\le \alpha\}\\[4pt]
+U^\alpha(f) &= \{\,\vect{x}\in D : f(\vect{x})\ge \alpha\}
 \end{aligned}
 \]
 
-\noindent\textbf{Definición}
+\section*{Definición}
+
+Recordemos que un conjunto es \emph{convexo} si el segmento que une dos puntos cualesquiera del conjunto queda dentro de él.
 \begin{itemize}
-  \item \color{teal}\(f\) es \emph{cuasiconvexa} si todos sus \emph{subniveles} \(L_\alpha(f)\) son conjuntos convexos.
-  \item \color{teal}\(f\) es \emph{cuasicóncava} si todos sus \emph{superniveles} \(U^\alpha(f)\) son conjuntos convexos.
+  \item {\color{teal}\(f\) es \emph{cuasiconvexa} si todos sus \emph{subniveles} \(L_\alpha(f)\) son conjuntos convexos.}
+  \item {\color{teal}\(f\) es \emph{cuasicóncava} si todos sus \emph{superniveles} \(U^\alpha(f)\) son conjuntos convexos.}
 \end{itemize}
 
-\noindent Equivalentemente, \(f\) es cuasiconvexa si y solo si, para todo \(a,b\in D\) y todo \(t\in[0,1]\),
+\noindent Equivalentemente, \(f\) es cuasiconvexa si y solo si, para todo \(\vect{a},\vect{b}\in D\) y todo \(t\in[0,1]\),
 \[
-f\bigl((1-t)a+t\,b\bigr)\le\max\{f(a),f(b)\},
+f\bigl((1-t)\vect{a}+t\,\vect{b}\bigr)\le\max\{f(\vect{a}),f(\vect{b})\}
 \]
 y es cuasicóncava si y solo si
 \[
-f\bigl((1-t)a+t\,b\bigr)\ge\min\{f(a),f(b)\}.
+f\bigl((1-t)\vect{a}+t\,\vect{b}\bigr)\ge\min\{f(\vect{a}),f(\vect{b})\}
 \]
 En palabras: a lo largo de cualquier segmento, una función cuasicóncava nunca baja del menor de sus dos valores en los extremos, y una cuasiconvexa nunca supera el mayor.
 
 \noindent Con esta forma se ve enseguida que:
 \begin{itemize}
-  \item Toda función \emph{cóncava} es \emph{cuasicóncava}, porque \((1-t)f(a)+t\,f(b)\) es un promedio de \(f(a)\) y \(f(b)\), y un promedio nunca es menor que el mínimo:
+  \item Toda función \emph{cóncava} es \emph{cuasicóncava}, porque \((1-t)f(\vect{a})+t\,f(\vect{b})\) es un promedio de \(f(\vect{a})\) y \(f(\vect{b})\), y un promedio nunca es menor que el mínimo:
   \[
-  f\bigl((1-t)a+t\,b\bigr)\ge(1-t)f(a)+t\,f(b)\ge\min\{f(a),f(b)\}
+  f\bigl((1-t)\vect{a}+t\,\vect{b}\bigr)\ge(1-t)f(\vect{a})+t\,f(\vect{b})\ge\min\{f(\vect{a}),f(\vect{b})\}
   \]
   \item Toda función \emph{convexa} es \emph{cuasiconvexa}, por el argumento análogo con el máximo.
 \end{itemize}
 
-\noindent\textbf{Versión estricta}\\
-Un conjunto \(C\) es \emph{estrictamente convexo} si, para todo par de puntos distintos \(a,b\in C\) y todo \(t\in(0,1)\), el punto \((1-t)a+t\,b\) es un punto interior de \(C\). Es decir: no solo \(C\) es convexo, sino que además su borde no tiene tramos rectos. Para \(f\) continua en un dominio abierto:
-\begin{itemize}
-  \item \(f\) es \textbf{estrictamente cuasiconvexa} si cada subnivel \(L_\alpha(f)\) es un conjunto estrictamente convexo y \(f\) no tiene mesetas.
-  \item \(f\) es \textbf{estrictamente cuasicóncava} si cada supernivel \(U^\alpha(f)\) es un conjunto estrictamente convexo y \(f\) no tiene mesetas.
-\end{itemize}
-Que \(f\) no tenga \emph{mesetas} significa que no hay ningún disco, por chico que sea, en el que \(f\) tome el mismo valor en todos los puntos.\footnote{El disco de centro \(c\) y radio \(r>0\) es el conjunto de los puntos que están a distancia menor que \(r\) de \(c\): la región encerrada por una circunferencia. En más de dos variables se llama bola, y en una variable es el intervalo \((c-r,\,c+r)\). Que \(f\) tome el mismo valor en muchos puntos cercanos entre sí no es una meseta: eso pasa a lo largo de cualquier curva de nivel. En una meseta, \(f\) toma el mismo valor en todos los puntos alrededor de uno dado, en todas las direcciones. En una variable, la condición dice que el gráfico de \(f\) no tiene tramos horizontales.
+\subsection*{Versión estricta}
 
-La condición no se puede omitir. Una función constante tiene como superniveles a todo su dominio o al conjunto vacío, que son estrictamente convexos, y sin embargo no es estrictamente cuasicóncava: al maximizarla, todos los puntos son óptimos. Un ejemplo menos trivial es \(f(x,y)=\min\{0,\,1-\sqrt{x^2+y^2}\}\): todos sus superniveles son discos, pero vale \(0\) en todo el disco unitario, como una curva de indiferencia ``gruesa''. Sin esta condición fallaría la unicidad del óptimo de las funciones estrictamente cuasicóncavas que usaremos en optimización con restricciones.} Equivalentemente, las desigualdades de la definición son estrictas: para todo \(a\neq b\) en \(D\) y todo \(t\in(0,1)\),
+Recordemos que un conjunto convexo es \emph{estrictamente convexo} si el segmento que une dos puntos cualesquiera del conjunto, salvo en sus extremos, no toca el borde: un círculo lo es, y un cuadrado no, porque su borde tiene tramos rectos. Para \(f\) continua en un dominio abierto:
+\begin{itemize}
+  \item {\color{teal}\(f\) es \textbf{estrictamente cuasiconvexa} si cada subnivel \(L_\alpha(f)\) es un conjunto estrictamente convexo y \(f\) no tiene mesetas.}
+  \item {\color{teal}\(f\) es \textbf{estrictamente cuasicóncava} si cada supernivel \(U^\alpha(f)\) es un conjunto estrictamente convexo y \(f\) no tiene mesetas.}
+\end{itemize}
+Que \(f\) no tenga \emph{mesetas} significa que no hay ningún círculo, por chico que sea, en el que \(f\) tome el mismo valor en todos los puntos.\footnote{El círculo de centro \(\vect{c}\) y radio \(r>0\) es el conjunto de los puntos que están a distancia menor que \(r\) de \(\vect{c}\): la región encerrada por una circunferencia. En más de dos variables se llama bola, y en una variable, con centro \(c\in\R\), es el intervalo \((c-r,\,c+r)\). Que \(f\) tome el mismo valor en muchos puntos cercanos entre sí no es una meseta: eso pasa a lo largo de cualquier curva de nivel. En una meseta, \(f\) toma el mismo valor en todos los puntos alrededor de uno dado, en todas las direcciones. En una variable, la condición dice que el gráfico de \(f\) no tiene tramos horizontales.
+
+La condición no se puede omitir. Una función constante tiene como superniveles a todo su dominio o al conjunto vacío, que son estrictamente convexos, y sin embargo no es estrictamente cuasicóncava: al maximizarla, todos los puntos son óptimos. Un ejemplo menos trivial es \(f(x,y)=\min\{0,\,1-\sqrt{x^2+y^2}\}\). Para \(\alpha<0\), la curva de nivel \(\alpha\) es la circunferencia de radio \(1-\alpha\), y el supernivel es el círculo que encierra. Pero el conjunto donde \(f\) vale \(0\) no es una curva: es todo el círculo de radio \(1\), porque ahí \(1-\sqrt{x^2+y^2}\ge0\) y el mínimo vale \(0\). Esa es la meseta. Todos los superniveles no vacíos son círculos, estrictamente convexos, y sin embargo la desigualdad estricta falla: con \(\vect{a}=(0,0)^T\) y \(\vect{b}=(\tfrac12,0)^T\) resulta \(f(\vect{a})=f(\vect{b})=0\), y en el punto medio \(f\) también vale \(0\), no más que el mínimo. Con esta condición, una función estrictamente cuasicóncava alcanza su máximo en un conjunto convexo, si lo tiene, en un solo punto: si lo alcanzara en dos, en el punto medio valdría más.} Equivalentemente, las desigualdades de la definición son estrictas: para todo \(\vect{a}\neq\vect{b}\) en \(D\) y todo \(t\in(0,1)\),
 \[
-f\bigl((1-t)a+t\,b\bigr)<\max\{f(a),f(b)\}
+f\bigl((1-t)\vect{a}+t\,\vect{b}\bigr)<\max\{f(\vect{a}),f(\vect{b})\}
 \quad\text{(estrictamente cuasiconvexa)}
 \]
 \[
-f\bigl((1-t)a+t\,b\bigr)>\min\{f(a),f(b)\}
+f\bigl((1-t)\vect{a}+t\,\vect{b}\bigr)>\min\{f(\vect{a}),f(\vect{b})\}
 \quad\text{(estrictamente cuasicóncava)}
 \]
 
 
-\subsubsection*{Ejemplos gráficos}
-En los siguientes ejemplos graficamos una curva de nivel de cada función y sombreamos el supernivel o el subnivel correspondiente. Cada gráfico muestra un solo nivel \(\alpha\), pero la definición pide que los superniveles (o subniveles) sean convexos para \emph{todo} \(\alpha\); en estas funciones, los demás niveles tienen la misma forma que el dibujado. Para mostrar que una función \emph{no} es cuasicóncava (o cuasiconvexa), en cambio, alcanza con un solo nivel cuyo supernivel (o subnivel) no sea convexo, como en el último gráfico de los casos univariables.
+\section*{Ejemplos gráficos}
+En los siguientes ejemplos graficamos una curva de nivel de cada función y sombreamos el supernivel o el subnivel correspondiente. Cada gráfico muestra un solo nivel \(\alpha\), pero la definición pide que los superniveles (o subniveles) sean convexos para \emph{todo} \(\alpha\); en estas funciones, los demás niveles tienen la misma forma que el dibujado. Para mostrar que una función \emph{no} es cuasicóncava (o cuasiconvexa), en cambio, alcanza con un solo nivel cuyo supernivel (o subnivel) no sea convexo, como en el gráfico ``No cuasiconvexa'' de los casos univariables.
 
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$y$},
     title={Estrictamente cuasic\'oncava, pero no c\'oncava: $u(x,y)=xy$, $x>0$, $y>0$},
     xmin=0.4, xmax=3.0,
@@ -7476,14 +7700,14 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
     % Región sombreada: u(x,y) >= 1  <=>  y >= 1/x
     \addplot[draw=none, name path=hiperbola, domain=0.4:3.0, samples=100] {1/x};
     \addplot[draw=none, name path=techo, domain=0.4:3.0, samples=2] {3.2};
-    \addplot[teal, fill opacity=0.3] fill between[of=hiperbola and techo];
+    \addplot[principal, fill opacity=0.3] fill between[of=hiperbola and techo];
 
-    % Curva de indiferencia u(x,y)=1  <=> y = 1/x
-    \addplot[thick,blue,domain=0.4:3.0,samples=200] {1/x};
+    % Curva de nivel u(x,y)=1  <=> y = 1/x
+    \addplot[thick,principal,domain=0.4:3.0,samples=200] {1/x};
 
     % Etiquetas cortas (sin saltos de línea)
-    \node[blue] at (axis cs:1.75,0.2) {$u(x,y)=1$};
-    \node[teal!60!black] at (axis cs:2.1,2.4) {$u(x,y)\ge 1$};
+    \node[principal] at (axis cs:1.75,0.2) {$u(x,y)=1$};
+    \node[pizarra] at (axis cs:2.1,2.4) {$u(x,y)\ge 1$};
 
   \end{axis}
 \end{tikzpicture}
@@ -7494,6 +7718,7 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
   \begin{axis}[
     width=7cm, height=7cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$y$},
     title={Estrictamente cuasiconvexa: $v(x,y)=x^2+y^2$},
     xmin=-1.5, xmax=1.5,
@@ -7503,16 +7728,16 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
   ]
 
     % Región sombreada: v(x,y) <= 1  <=>  x^2 + y^2 <= 1
-    \addplot[draw=none, fill=teal, fill opacity=0.3, domain=0:360, samples=100]
+    \addplot[draw=none, fill=principal, fill opacity=0.3, domain=0:360, samples=100]
       ({cos(x)},{sin(x)});
 
     % Frontera del subnivel: x^2 + y^2 = 1 (círculo de radio 1)
-    \addplot[thick,blue,domain=0:360,samples=200]
+    \addplot[thick,principal,domain=0:360,samples=200]
       ({cos(x)},{sin(x)});
 
     % Etiquetas cortas
-    \node[blue, anchor=south west] at (axis cs:0.72,0.72) {$x^2+y^2=1$};
-    \node[teal!60!black] at (axis cs:-0.45,0.45) {$v\le 1$};
+    \node[principal, anchor=south west] at (axis cs:0.72,0.72) {$x^2+y^2=1$};
+    \node[pizarra] at (axis cs:-0.45,0.45) {$v\le 1$};
 
   \end{axis}
 \end{tikzpicture}
@@ -7525,6 +7750,7 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$y$},
     title={Cuasic\'oncava (no estricta): $u(x,y)=\min\{x,y\}$},
     xmin=0, xmax=3.0,
@@ -7534,7 +7760,7 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
 
     % Región sombreada: u(x,y) >= 1  <=>  min(x,y) >= 1  <=>  x >= 1 y y >= 1
     % La mostramos como el rectángulo [1,3]x[1,3] dentro del gráfico
-    \path[fill=teal, fill opacity=0.3]
+    \path[fill=principal, fill opacity=0.3]
       (axis cs:1,1) --
       (axis cs:3,1) --
       (axis cs:3,3) --
@@ -7542,14 +7768,14 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
 
     % Curva de nivel u=1: min(x,y)=1
     % Tramo horizontal: y=1, x>=1
-    \addplot[thick,blue,domain=1:3,samples=2] {1};
+    \addplot[thick,principal,domain=1:3,samples=2] {1};
 
     % Tramo vertical: x=1, y>=1
-    \addplot[thick,blue,domain=1:3,samples=2] ({1},{x});
+    \addplot[thick,principal,domain=1:3,samples=2] ({1},{x});
 
     % Etiquetas
-    \node[blue] at (axis cs:2.0,0.75) {$u=1$};
-    \node[teal!60!black] at (axis cs:2.2,2.2) {$u\ge 1$};
+    \node[principal] at (axis cs:2.0,0.75) {$u=1$};
+    \node[pizarra] at (axis cs:2.2,2.2) {$u\ge 1$};
 
   \end{axis}
 \end{tikzpicture}
@@ -7561,6 +7787,7 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$y$},
     title={Cuasiconvexa (no estricta): $f(x,y)=\max\{x,y\}$},
     xmin=0, xmax=3.0,
@@ -7570,19 +7797,19 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
 
     % Subnivel: f(x,y) <= 1  <=>  max(x,y) <= 1
     % Cuadrado [0,1] x [0,1]
-    \path[fill=teal, fill opacity=0.30]
+    \path[fill=principal, fill opacity=0.30]
       (axis cs:0,0) --
       (axis cs:1,0) --
       (axis cs:1,1) --
       (axis cs:0,1) -- cycle;
 
     % Curva de nivel f=1: dos segmentos, y=1 (0<=x<=1) y x=1 (0<=y<=1)
-    \addplot[thick,blue,domain=0:1,samples=2] {1};
-    \addplot[thick,blue,domain=0:1,samples=2] ({1},{x});
+    \addplot[thick,principal,domain=0:1,samples=2] {1};
+    \addplot[thick,principal,domain=0:1,samples=2] ({1},{x});
 
     % Etiquetas cortas
-    \node[teal!60!black] at (axis cs:0.5,0.5) {$f\le 1$};
-    \node[blue]          at (axis cs:0.7,1.1) {$f=1$};
+    \node[pizarra] at (axis cs:0.5,0.5) {$f\le 1$};
+    \node[principal]          at (axis cs:0.7,1.1) {$f=1$};
 
   \end{axis}
 \end{tikzpicture}
@@ -7593,6 +7820,7 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$y$},
     title={Cuasiconvexa (no estricta) y cuasic\'oncava (no estricta):  $u(x,y)=x+y$},
     xmin=0, xmax=2.5,
@@ -7603,13 +7831,13 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
   ]
 
     % Subnivel: u(x,y) <= 2  (cuasiconvexa)  --> triángulo inferior-izquierdo
-    \path[fill=teal, fill opacity=0.30]
+    \path[fill=principal, fill opacity=0.30]
       (axis cs:0,0) --
       (axis cs:2,0) --
       (axis cs:0,2) -- cycle;
 
     % Supernivel: u(x,y) >= 2 (cuasicóncava) --> región superior-derecha en el cuadro
-    \path[fill=blue, fill opacity=0.18]
+    \path[fill=pizarra, fill opacity=0.15]
       (axis cs:2,0) --
       (axis cs:2.5,0) --
       (axis cs:2.5,2.5) --
@@ -7617,25 +7845,26 @@ En los siguientes ejemplos graficamos una curva de nivel de cada función y somb
       (axis cs:0,2) -- cycle;
 
     % Frontera común: x + y = 2  <=>  y = 2 - x
-    \addplot[thick,blue,domain=0:2] {2 - x};
+    \addplot[thick,principal,domain=0:2] {2 - x};
 
     % Etiquetas cortas
-    \node[blue, anchor=south west] at (axis cs:1.05,0.95) {$x+y=2$};
-    \node[teal!60!black] at (axis cs:0.6,0.6)  {$u\le 2$};
-    \node[blue!60!black] at (axis cs:1.8,2.1)  {$u\ge 2$};
+    \node[principal, anchor=south west] at (axis cs:1.05,0.95) {$x+y=2$};
+    \node[pizarra] at (axis cs:0.6,0.6)  {$u\le 2$};
+    \node[pizarra] at (axis cs:1.8,2.1)  {$u\ge 2$};
 
   \end{axis}
 \end{tikzpicture}
 \end{center}
 
 
-\subsubsection*{Casos univariables}
+\subsection*{Casos univariables}
 Para funciones de una sola variable el análisis gráfico es análogo. Los subniveles y superniveles son ahora subconjuntos de la recta: son convexos cuando forman un solo intervalo y no lo son cuando quedan cortados en varios pedazos.
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$f(x)$},
     title={Cuasic\'oncava},
     xmin=-0.2, xmax=2.2,
@@ -7646,22 +7875,22 @@ Para funciones de una sola variable el análisis gráfico es análogo. Los subni
   ]
 
     % f(x) = -(x-1)^2 + 2
-    \addplot[thick,blue]
+    \addplot[thick,principal]
       {-(x-1)^2 + 2};
 
     % recta horizontal f = alpha = 1.5
-    \addplot[teal,thick,dashed,domain=-0.2:2.2,samples=2]
+    \addplot[pizarra,thick,dashed,domain=-0.2:2.2,samples=2]
       {1.5};
 
     % segmento grueso sobre el eje x representando el supernivel { x : f(x) >= alpha }
     % intervalo aproximado [0.2929 , 1.7071]
-    \draw[teal, line width=2pt]
+    \draw[principal, line width=2pt]
       (axis cs:0.2929,0) -- (axis cs:1.7071,0);
 
     % Etiquetas
-    \node[blue] at (axis cs:1,2.2) {$f$};
-    \node[teal!60!black] at (axis cs:2.0,1.7) {nivel $\alpha$};
-    \node[teal!60!black] at (axis cs:1.0,0.3) {supernivel};
+    \node[principal] at (axis cs:1,2.2) {$f$};
+    \node[pizarra] at (axis cs:2.0,1.7) {nivel $\alpha$};
+    \node[pizarra] at (axis cs:1.0,0.3) {supernivel};
 
   \end{axis}
 \end{tikzpicture}
@@ -7674,6 +7903,7 @@ La función del gráfico anterior es cóncava. La campana \(\varphi(x)=e^{-(x-1)
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$\varphi(x)$},
     title={Cuasic\'oncava, pero no c\'oncava},
     xmin=-1.1, xmax=3.3,
@@ -7684,27 +7914,27 @@ La función del gráfico anterior es cóncava. La campana \(\varphi(x)=e^{-(x-1)
   ]
 
     % phi(x) = exp(-(x-1)^2)
-    \addplot[thick,blue]
+    \addplot[thick,principal]
       {exp(-(x-1)^2)};
 
     % recta horizontal phi = alpha = 0.6
-    \addplot[teal,thick,dashed,domain=-1:3.2,samples=2]
+    \addplot[pizarra,thick,dashed,domain=-1:3.2,samples=2]
       {0.6};
 
     % supernivel { x : phi(x) >= 0.6 } = [1 - sqrt(-ln 0.6), 1 + sqrt(-ln 0.6)]
-    \draw[teal, line width=2pt]
+    \draw[principal, line width=2pt]
       (axis cs:0.2853,0) -- (axis cs:1.7147,0);
 
     % secante en la cola derecha (convexa desde x = 1.7071): la curva queda por debajo
-    \draw[black!60] (axis cs:1.75,0.5698) -- (axis cs:3.0,0.0183);
-    \fill[black!60] (axis cs:1.75,0.5698) circle (1.5pt);
-    \fill[black!60] (axis cs:3.0,0.0183) circle (1.5pt);
-    \node[black!70, font=\footnotesize] at (axis cs:2.7,0.36) {secante};
+    \draw[oxido] (axis cs:1.75,0.5698) -- (axis cs:3.0,0.0183);
+    \fill[oxido] (axis cs:1.75,0.5698) circle (1.5pt);
+    \fill[oxido] (axis cs:3.0,0.0183) circle (1.5pt);
+    \node[oxido, font=\footnotesize] at (axis cs:2.7,0.36) {secante};
 
     % Etiquetas
-    \node[blue] at (axis cs:1,1.12) {$\varphi$};
-    \node[teal!60!black] at (axis cs:-0.6,0.7) {nivel $\alpha$};
-    \node[teal!60!black] at (axis cs:1.0,0.3) {supernivel};
+    \node[principal] at (axis cs:1,1.12) {$\varphi$};
+    \node[pizarra] at (axis cs:-0.6,0.7) {nivel $\alpha$};
+    \node[pizarra] at (axis cs:1.0,0.3) {supernivel};
 
   \end{axis}
 \end{tikzpicture}
@@ -7717,6 +7947,7 @@ La función del gráfico anterior es cóncava. La campana \(\varphi(x)=e^{-(x-1)
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$p(x)$},
     title={Cuasiconvexa},
     xmin=-0.2, xmax=2.2,
@@ -7727,22 +7958,22 @@ La función del gráfico anterior es cóncava. La campana \(\varphi(x)=e^{-(x-1)
   ]
 
     % p(x) = (x-1)^2
-    \addplot[thick,blue]
+    \addplot[thick,principal]
       {(x-1)^2};
 
     % recta horizontal g = alpha = 0.7
-    \addplot[teal,thick,dashed,domain=-0.2:2.2,samples=2]
+    \addplot[pizarra,thick,dashed,domain=-0.2:2.2,samples=2]
       {0.7};
 
     % segmento grueso sobre el eje x representando el subnivel { x : p(x) <= alpha }
     % intervalo aproximado [0.1633 , 1.8367]
-    \draw[teal, line width=2pt]
+    \draw[principal, line width=2pt]
       (axis cs:0.1633,0) -- (axis cs:1.8367,0);
 
     % Etiquetas
-    \node[blue] at (axis cs:1,1.4) {$p$};
-    \node[teal!60!black] at (axis cs:2.1,0.82) {nivel $\alpha$};
-    \node[teal!60!black] at (axis cs:1.0,0.3) {subnivel};
+    \node[principal] at (axis cs:1,1.4) {$p$};
+    \node[pizarra] at (axis cs:2.1,0.82) {nivel $\alpha$};
+    \node[pizarra] at (axis cs:1.0,0.3) {subnivel};
 
   \end{axis}
 \end{tikzpicture}
@@ -7754,6 +7985,7 @@ La función del gráfico anterior es cóncava. La campana \(\varphi(x)=e^{-(x-1)
   \begin{axis}[
     width=8cm, height=6cm,
     axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
     xlabel={$x$}, ylabel={$q(x)$},
     title={No cuasiconvexa},
     xmin=-1.5, xmax=1.5,
@@ -7764,48 +7996,94 @@ La función del gráfico anterior es cóncava. La campana \(\varphi(x)=e^{-(x-1)
   ]
 
     % q(x) = (x+1)^2 (x-1)^2 + 0.2
-    \addplot[thick,blue]
+    \addplot[thick,principal]
       {((x+1)^2*(x-1)^2)+0.2};
 
     % Recta horizontal q = alpha = 0.6
-    \addplot[teal,thick,dashed,domain=-1.5:1.5,samples=2]
+    \addplot[pizarra,thick,dashed,domain=-1.5:1.5,samples=2]
       {0.6};
 
     % Subnivel { x : q(x) <= 0.6 }
     % Cortes aproximados dentro de [-1.5,1.5]:
     % x ≈ -1.2777, -0.6063, 0.6063, 1.2777
-    \draw[teal, line width=2pt]
+    \draw[oxido, line width=2pt]
       (axis cs:-1.2777,0) -- (axis cs:-0.6063,0);
-    \draw[teal, line width=2pt]
+    \draw[oxido, line width=2pt]
       (axis cs:0.6063,0) -- (axis cs:1.2777,0);
 
     % Etiquetas
-    \node[blue]          at (axis cs:-1.15,1.5)    {$q$};
-    \node[teal!60!black] at (axis cs:1.2,0.8)      {nivel $\alpha$};
-    \node[teal!60!black, font=\footnotesize] at (axis cs:-0.94,0.09) {subnivel};
-    \node[teal!60!black, font=\footnotesize] at (axis cs:0.94,0.09)  {subnivel};
+    \node[principal]          at (axis cs:-1.15,1.5)    {$q$};
+    \node[pizarra] at (axis cs:1.2,0.8)      {nivel $\alpha$};
+    \node[oxido, font=\footnotesize] at (axis cs:-0.94,0.09) {subnivel};
+    \node[oxido, font=\footnotesize] at (axis cs:0.94,0.09)  {subnivel};
 
   \end{axis}
 \end{tikzpicture}
 \end{center}
 
 
-\noindent\textbf{Teorema (monotonicidad, cuasiconcavidad y cuasiconvexidad en una variable).}
-Sea \(f\colon I\to\R\), con \(I\subseteq\R\) un intervalo. Si \(f\) es creciente o decreciente en \(I\), entonces es cuasicóncava y cuasiconvexa en \(I\). Si \(f\) es derivable, alcanza con que \(f'(x)\ge0\) para todo \(x\in I\), o \(f'(x)\le0\) para todo \(x\in I\).
+\noindent\textbf{\color{teal}Teorema (monotonicidad, cuasiconcavidad y cuasiconvexidad en una variable).}
+Sea \(f\colon I\to\R\), con \(I\subseteq\R\) un intervalo. Si \(f\) es creciente o decreciente en \(I\), entonces es cuasicóncava y cuasiconvexa en \(I\). Si es estrictamente creciente o estrictamente decreciente, es estrictamente cuasicóncava y estrictamente cuasiconvexa. Si \(f\) es derivable, alcanza con que \(f'(x)\ge0\) para todo \(x\in I\), o \(f'(x)\le0\) para todo \(x\in I\); para la versión estricta, con que además \(f'\) se anule solo en puntos aislados, como la derivada de \(x^3\) en \(x=0\).
 
-La razón es que los subniveles y los superniveles de una función monótona son siempre intervalos. En una variable vale además una caracterización completa: una función continua es cuasicóncava si y solo si es monótona o primero crece y después decrece (tiene un solo pico), y es cuasiconvexa si y solo si es monótona o primero decrece y después crece.
+La razón es que los subniveles y los superniveles de una función monótona son siempre intervalos. En el gráfico siguiente, \(f\) es una recta con pendiente positiva, y por lo tanto creciente: los puntos donde \(f\) queda por debajo del nivel \(\alpha\) forman una semirrecta hacia la izquierda, y los puntos donde queda por arriba, una semirrecta hacia la derecha. Las dos son intervalos, y lo mismo pasa con cualquier otro nivel.
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=middle,
+    axis line style={pizarra}, tick label style={pizarra}, label style={pizarra},
+    xlabel={$x$}, ylabel={$f(x)$},
+    title={Creciente: cuasic\'oncava y cuasiconvexa},
+    xmin=-0.6, xmax=3.2,
+    ymin=0,   ymax=2.3,
+    domain=-0.6:3.2,
+    samples=2,
+    clip=false
+  ]
+
+    % f(x) = x/2 + 1/2: recta con pendiente positiva
+    \addplot[thick,principal] {x/2 + 1/2};
+
+    % recta horizontal f = alpha = 1.25
+    \addplot[pizarra,thick,dashed,domain=-0.6:3.2,samples=2]
+      {1.25};
+
+    % f(x) = alpha en x = 1.5: a la izquierda f <= alpha, a la derecha f >= alpha
+    \draw[pizarra, thick, dotted] (axis cs:1.5,1.25) -- (axis cs:1.5,0);
+    \fill[pizarra] (axis cs:1.5,1.25) circle (1.5pt);
+
+    % subnivel { x : f(x) <= alpha } = (-inf, 1.5]
+    \draw[principal, line width=2pt]
+      (axis cs:-0.6,0) -- (axis cs:1.5,0);
+
+    % supernivel { x : f(x) >= alpha } = [1.5, inf)
+    \draw[pizarra!55, line width=2pt]
+      (axis cs:1.5,0) -- (axis cs:3.2,0);
+
+    % Etiquetas
+    \node[principal] at (axis cs:3.0,1.75) {$f$};
+    \node[pizarra] at (axis cs:2.75,1.1) {nivel $\alpha$};
+    \node[pizarra] at (axis cs:0.6,0.25) {subnivel};
+    \node[pizarra] at (axis cs:2.35,0.25) {supernivel};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+En una variable vale además una caracterización completa: una función continua es cuasicóncava si y solo si es monótona o primero crece y después decrece (tiene un solo pico), y es cuasiconvexa si y solo si es monótona o primero decrece y después crece.
 
 
 \section*{Criterio de hessiano orlado para cuasiconvexidad y cuasiconcavidad}
-Sea \(f\colon D\subseteq\R^n\to\R\) de clase \(C^2\) en un conjunto \(D\) abierto y convexo. Definimos el \emph{hessiano orlado} de \(f\) en \(x\) como la matriz
+Sea \(f\colon D\subseteq\R^n\to\R\) de clase \(C^2\) en un conjunto \(D\) abierto y convexo. Definimos el \emph{hessiano orlado} de \(f\) en \(\vect{x}\) como la matriz
 \[
-B(x)
+B(\vect{x})
 =\begin{pmatrix}
-0 & \nabla f(x)^T \\[4pt]
-\nabla f(x) & H_f(x)
+0 & \nabla f(\vect{x})^T \\[4pt]
+\nabla f(\vect{x}) & H_f(\vect{x})
 \end{pmatrix}
 \]
-donde \(H_f(x)\) es la hessiana usual de \(f\). Para \(k=1,\dots,n\) llamamos \(B_k\) a la submatriz formada por el borde y las primeras \(k\) variables, y \(|B_k|\) a su determinante:
+donde \(H_f(\vect{x})\) es la hessiana usual de \(f\) y el gradiente \(\nabla f(\vect{x})\) es un vector columna. Para \(k=1,\dots,n\) llamamos \(B_k\) a la submatriz formada por el borde y las primeras \(k\) variables, y \(|B_k|\) a su determinante (para abreviar, escribimos \(f'_i=f'_{x_i}\) y \(f''_{ij}=f''_{x_ix_j}\)):
 \[
 B_k=\begin{pmatrix}
 0 & f'_1 & \cdots & f'_k\\
@@ -7814,9 +8092,9 @@ f'_1 & f''_{11} & \cdots & f''_{1k}\\
 f'_k & f''_{k1} & \cdots & f''_{kk}
 \end{pmatrix}
 \]
-Es el menor principal líder de orden \(k+1\) de \(B\): con la notación del capítulo de menores, \(|B_k|=\Delta^{(k+1)}\) de \(B\). El menor de orden \(1\) es siempre \(0\) y no interviene.
+Es \(\Delta^{(k+1)}\), el menor principal líder de orden \(k+1\) de \(B\): el determinante de la submatriz formada por sus primeras \(k+1\) filas y columnas. El menor de orden \(1\) es siempre \(0\) y no interviene.
 
-\noindent Las condiciones se evalúan en todo \(x\in D\) y para \(k=1,\dots,n\):
+\noindent Las condiciones se evalúan en todo \(\vect{x}\in D\) y para \(k=1,\dots,n\):
 \[
 \renewcommand{\arraystretch}{1.3}
 \begin{array}{|l|c|c|}
@@ -7848,7 +8126,7 @@ f(x,y)=x\,y
 
 \medskip
 
-\noindent\textbf{Derivadas parciales y hessiana}
+\noindent\textbf{Derivadas parciales y hessiana.}
 \[
 f'_x = y,\quad f'_y = x,
 \qquad
@@ -7861,8 +8139,7 @@ H_f(x,y)
 
 \medskip
 
-\noindent\textbf{Hessiano orlado}\\
-Definimos las siguientes matrices:
+\noindent\textbf{Hessiano orlado.} Definimos las siguientes matrices:
 \[
 B_1 =
 \begin{pmatrix}
@@ -7880,7 +8157,7 @@ x & 1 & 0
 
 \medskip
 
-\noindent\textbf{Cálculo de determinantes}
+\noindent\textbf{Cálculo de determinantes.}
 \[
 |B_1| = -\,y^2
 \qquad
@@ -7891,7 +8168,7 @@ x & 1 & 0
 
 Para probar que \(f\) es estrictamente cuasicóncava usamos directamente la condición suficiente: alcanza con que \(|B_1|<0\) y \(|B_2|>0\) en todo \(A\). Como \(x,y>0\), ambas se cumplen.
 
-\noindent{\color{teal}\textbf{Conclusión:} \(f(x,y)=x\,y\) es estrictamente cuasicóncava en \(A\).}
+\noindent{\color{teal}\textbf{Conclusión.} \(f(x,y)=x\,y\) es estrictamente cuasicóncava en \(A\).}
 
 \medskip
 
@@ -7901,34 +8178,19 @@ Para probar que \(f\) es estrictamente cuasicóncava usamos directamente la cond
 \section*{Relación y diferencias entre cuasiconcavidad y concavidad (o cuasiconvexidad y convexidad)}
 
 \begin{itemize}
-  \item \textbf{Relación entre ambas:}
+  \item \textbf{Relación entre ambas.}
     \begin{itemize}
       \item Toda función \emph{cóncava} es \emph{cuasicóncava}, pero la recíproca no es cierta: \(xy\) es cuasicóncava en \(A\) y no es cóncava (ver el ejemplo anterior).
       \item Toda función \emph{convexa} es \emph{cuasiconvexa}, pero la recíproca no es cierta: \(x^3\) es creciente, y por lo tanto cuasiconvexa, pero no es convexa, porque su derivada segunda \(6x\) es negativa para \(x<0\).
-      \item Toda función \emph{estrictamente cóncava} es \emph{estrictamente cuasicóncava}. La recíproca tampoco vale: \(\sqrt{xy}\) es estrictamente cuasicóncava en \(A\) (\(|B_1|=-\tfrac{y}{4x}<0\) y \(|B_2|=\tfrac{1}{4\sqrt{xy}}>0\)), pero no es estrictamente cóncava: sobre cada rayo que sale del origen es lineal, porque \(\sqrt{(\lambda x)(\lambda y)}=\lambda\sqrt{xy}\) para \(\lambda>0\), así que ahí la desigualdad de concavidad se cumple con igualdad. Por ejemplo, en \((1,1)\) y \((2,2)\) vale \(1\) y \(2\), y en el punto medio, \(\tfrac32\).
+      \item Toda función \emph{estrictamente cóncava} es \emph{estrictamente cuasicóncava}. La recíproca tampoco vale: \(\sqrt{xy}\) es estrictamente cuasicóncava en \(A\) (\(|B_1|=-\tfrac{y}{4x}<0\) y \(|B_2|=\tfrac{1}{4\sqrt{xy}}>0\)), pero no es estrictamente cóncava: sobre cada rayo que sale del origen es lineal, porque \(\sqrt{(\lambda x)(\lambda y)}=\lambda\sqrt{xy}\) para \(\lambda>0\), así que ahí la desigualdad de concavidad se cumple con igualdad. Por ejemplo, en \((1,1)^T\) y \((2,2)^T\) vale \(1\) y \(2\), y en el punto medio, \(\tfrac32=1.5\).
       \item Toda función \emph{estrictamente convexa} es \emph{estrictamente cuasiconvexa}. La recíproca tampoco vale: \(x^3\) es estrictamente creciente, y por lo tanto estrictamente cuasiconvexa, pero no es convexa.
     \end{itemize}
 
-  \item \textbf{Operaciones y composición:}
+  \item \textbf{Operaciones y composición.}
     \begin{itemize}
-      \item Una combinación lineal con coeficientes no negativos de funciones cóncavas (convexas) es cóncava (convexa).
       \item La suma de funciones cuasicóncavas no siempre es cuasicóncava, y lo mismo pasa con las cuasiconvexas. Por ejemplo, \(x^3\) y \(-3x\) son monótonas, y por lo tanto cuasicóncavas y cuasiconvexas, pero su suma no es ninguna de las dos: \(x^3-3x\ge0\) en \([-\sqrt3,0]\cup[\sqrt3,\infty)\) y \(x^3-3x\le0\) en \((-\infty,-\sqrt3]\cup[0,\sqrt3]\), y ninguno de esos conjuntos es convexo.
-      \item La cuasiconcavidad se conserva bajo transformaciones crecientes: si \(f\) es cuasicóncava y \(g\) es creciente, \(g\circ f\) es cuasicóncava. Si además \(f\) es estrictamente cuasicóncava y \(g\) es estrictamente creciente, \(g\circ f\) es estrictamente cuasicóncava. Lo mismo vale para la cuasiconvexidad. Por eso la cuasiconcavidad es una propiedad \emph{ordinal}: no depende de la escala con la que se mida la utilidad.
-      \item Para la concavidad y la convexidad, en cambio, hace falta más. Sea
-      \[
-        h(x) = (g\circ f)(x)
-      \]
-      con
-      \[
-        f\colon M\subseteq\R^n\to\R,
-        \quad
-        g\colon I\subseteq\R\to\R
-      \]
-      donde \(M\) es convexo e \(I\) es un intervalo. Entonces:
-      \begin{enumerate}
-        \item Si \(f\) es convexa y \(g\) es creciente y convexa, entonces \(h\) es convexa.
-        \item Si \(f\) es cóncava y \(g\) es creciente y cóncava, entonces \(h\) es cóncava.
-      \end{enumerate}
+      \item La cuasiconcavidad se conserva bajo transformaciones crecientes: si \(f\) es cuasicóncava y \(g\) es creciente, \(g\circ f\) es cuasicóncava. Si además \(f\) es estrictamente cuasicóncava y \(g\) es estrictamente creciente, \(g\circ f\) es estrictamente cuasicóncava. Lo mismo vale para la cuasiconvexidad. Por eso la cuasiconcavidad es una propiedad \emph{ordinal}. Son estrictamente crecientes, por ejemplo, \(g(s)=as+b\) con \(a>0\), \(g(s)=e^s\) y \(g(s)=s^3\) en todo \(\R\), y \(g(s)=\ln s\), \(g(s)=\sqrt{s}\) y \(g(s)=s^2\) en \((0,\infty)\): en todos los casos \(g'(s)>0\), salvo para \(s^3\) en \(s=0\). Alcanza con que \(g\) sea estrictamente creciente en los valores que toma \(f\): \(s^2\) no lo es en todo \(\R\), pero \(xy\) toma solo valores positivos en \(A\). Así, como \(xy\) es estrictamente cuasicóncava en \(A\), también lo son \(e^{xy}\), \((xy)^3\), \(\sqrt{xy}\) y \(x^2y^2\).
+      \item Para la concavidad y la convexidad, en cambio, no alcanza con que \(g\) sea creciente. Por ejemplo, \(\ln x\) es cóncava en \((0,\infty)\) y \(g(s)=e^{2s}\) es creciente, pero \(g(\ln x)=e^{2\ln x}=x^2\) no es cóncava; sí sigue siendo cuasicóncava, porque es creciente en \((0,\infty)\).
     \end{itemize}
 \end{itemize}
 
@@ -7993,22 +8255,49 @@ tiene \(\Delta^{(1)}=-\tfrac1{x^2}<0\) y \(\Delta^{(2)}=\tfrac1{x^2y^2}>0\): es 
 
 \medskip
 
-\noindent{\color{teal}\textbf{Conclusión:} \(h(x,y)=\ln(xy)\) es estrictamente cuasicóncava en \(A\); de hecho, es estrictamente cóncava.}
+\noindent{\color{teal}\textbf{Conclusión.} \(h(x,y)=\ln(xy)\) es estrictamente cuasicóncava en \(A\); de hecho, es estrictamente cóncava.}
 
-\subsection*{Nota final: otras condiciones suficientes}
+\subsection*{Otras condiciones suficientes}
 
-La condición suficiente del hessiano orlado prueba la versión estricta, y con ella también la no estricta. Pero si falla en algún punto, el criterio no concluye, y las condiciones débiles no sirven para probar nada porque son solo necesarias. Por ejemplo:
+La condición suficiente del hessiano orlado prueba la versión estricta, y con ella también la no estricta. Pero si falla en algún punto, el criterio no concluye, y las condiciones débiles no alcanzan para probar la propiedad, porque son solo necesarias: sirven para descartarla, cuando fallan en algún punto. Por ejemplo:
 \begin{itemize}
   \item \(x+y\) es cuasicóncava y cuasiconvexa, pero \(|B_2|=0\) en todo punto, así que la condición suficiente nunca se cumple.
   \item \(q(x)=(x^2-1)^2+0.2\), la función del gráfico ``No cuasiconvexa'', cumple las condiciones débiles, porque \(|B_1|=-q'(x)^2\le0\), y sin embargo no es cuasicóncava ni cuasiconvexa.
 \end{itemize}
 Para esos casos hay otras condiciones suficientes que también usan derivadas:
 \begin{itemize}
-  \item \textbf{Concavidad.} Si la hessiana de \(f\) es semidefinida negativa en todo \(D\), \(f\) es cóncava y, por lo tanto, cuasicóncava. Así se prueba para \(x+y\) y para \(\sqrt{xy}\).
-  \item \textbf{Una transformación creciente que la vuelva cóncava.} Si \(g\) es estrictamente creciente y la hessiana de \(g\circ f\) es semidefinida negativa en todo \(D\), entonces \(f\) es cuasicóncava, porque \(f=g^{-1}\circ(g\circ f)\) y las transformaciones crecientes conservan la cuasiconcavidad. Si la hessiana de \(g\circ f\) es definida negativa, \(f\) es estrictamente cuasicóncava. Es lo que vimos con \(xy\) y \(\ln\). Lo mismo vale para cualquier Cobb-Douglas \(x^a y^b\) con \(a,b>0\): \(\ln(x^a y^b)=a\ln x+b\ln y\) es estrictamente cóncava, aunque \(x^a y^b\) no sea cóncava cuando \(a+b>1\).
+  \item \textbf{Concavidad.} Si la hessiana de \(f\) es semidefinida negativa en todo \(D\), \(f\) es cóncava y, por lo tanto, cuasicóncava. Así se prueba para \(x+y\).
+  \item \textbf{Una transformación creciente que la vuelva cóncava.} Si \(g\) es estrictamente creciente y la hessiana de \(g\circ f\) es semidefinida negativa en todo \(D\), entonces \(f\) es cuasicóncava, porque \(f=g^{-1}\circ(g\circ f)\) y las transformaciones crecientes conservan la cuasiconcavidad. Si la hessiana de \(g\circ f\) es definida negativa, \(f\) es estrictamente cuasicóncava. Es lo que vimos con \(xy\) y \(\ln\). Lo mismo vale para cualquier función de la forma \(x^a y^b\) con \(a,b>0\) en \(A\): \(\ln(x^a y^b)=a\ln x+b\ln y\) es estrictamente cóncava, aunque \(x^a y^b\) no sea cóncava cuando \(a+b>1\).
   \item \textbf{En una variable, el signo de \(f'\).} Si \(f\) es monótona, o si \(f'\ge0\) hasta un punto y \(f'\le0\) después, \(f\) es cuasicóncava, porque sus superniveles son intervalos.
 \end{itemize}
-Para la cuasiconvexidad valen las mismas condiciones, cambiando semidefinida negativa por semidefinida positiva, cóncava por convexa, y \(f'\ge0\) seguido de \(f'\le0\) por \(f'\le0\) seguido de \(f'\ge0\).
+Para la cuasiconvexidad valen las mismas condiciones, cambiando semidefinida negativa por semidefinida positiva, definida negativa por definida positiva, cóncava por convexa, y \(f'\ge0\) seguido de \(f'\le0\) por \(f'\le0\) seguido de \(f'\ge0\).
+
+El recuadro siguiente junta las condiciones suficientes del capítulo en el orden en que conviene probarlas.
+
+\begin{metodo}[label=met:cuasi]{Probar que una función es cuasicóncava o cuasiconvexa}
+\rotulo{Cuándo usarlo.} El enunciado pide probar que \(f\) es cuasicóncava o cuasiconvexa, estricta o no, en un conjunto convexo \(D\).
+
+\rotulo{En una variable.} No hacen falta los pasos: alcanza con el signo de \(f'\). Si \(f'\) no cambia de signo, \(f\) es cuasicóncava y cuasiconvexa. Si \(f'\ge0\) hasta un punto y \(f'\le0\) después, es cuasicóncava; si \(f'\le0\) hasta un punto y \(f'\ge0\) después, es cuasiconvexa. Si además \(f'\) se anula solo en puntos aislados, la propiedad es estricta.
+
+\rotulo{Pasos.}
+\begin{pasos}
+  \item Calcular \(\nabla f\) y \(H_f\), armar \(B_1,\dots,B_n\) y calcular \(|B_1|,\dots,|B_n|\).
+  \item Mirar los signos en todo \(D\). Si alternan empezando por el negativo, es decir, \((-1)^k|B_k|>0\) para todo \(k\), \(f\) es estrictamente cuasicóncava. Si son todos negativos, \(|B_k|<0\) para todo \(k\), es estrictamente cuasiconvexa.
+  \item Si algún \(|B_k|\) se anula en algún punto, el criterio no concluye. Probar con las otras condiciones suficientes:
+  \begin{itemize}[nosep]
+    \item \(H_f\) semidefinida negativa en todo \(D\): \(f\) es cóncava y, por lo tanto, cuasicóncava. Con semidefinida positiva, es convexa y cuasiconvexa.
+    \item \(f=g\circ k\), con \(k\) cuasicóncava (cuasiconvexa) y \(g\) creciente: \(f\) es cuasicóncava (cuasiconvexa).
+    \item \(g\circ f\) cóncava (convexa) para alguna \(g\) estrictamente creciente, como \(\ln\) en los productos de potencias: \(f\) es cuasicóncava (cuasiconvexa).
+  \end{itemize}
+  Con hessiana definida, o con \(k\) estricta y \(g\) estrictamente creciente, la propiedad es estricta.
+\end{pasos}
+
+\rotulo{Chequeo.} \(|B_1|=-(f'_1)^2\) nunca es positivo: si da positivo, hay un error de cuentas.
+
+\rotulo[oxido]{Cuidado.} Con \(\ge\) o \(\le\), las condiciones del orlado son solo necesarias: sirven para descartar, no para probar. Si \((-1)^k|B_k|<0\) para algún \(k\) en algún punto, \(f\) no es cuasicóncava; si \(|B_k|>0\), no es cuasiconvexa. Que el criterio no concluya no quiere decir que \(f\) no tenga la propiedad: \(x+y\) es cuasicóncava aunque \(|B_2|=0\). Tampoco se puede probar sumando: la suma de funciones cuasicóncavas puede no serlo.
+\end{metodo}
+
+
 
 
 

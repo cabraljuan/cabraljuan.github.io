@@ -40,22 +40,23 @@
 \contentsline {paragraph}{Menor principal de orden \(k\).}{95}{section*.267}%
 \contentsline {paragraph}{Menor principal líder de orden \(k\).}{95}{section*.268}%
 \contentsline {section}{\numberline {18}Concavidad y convexidad}{101}{section.18}%
-\contentsline {section}{\numberline {19}Optimización sin restricciones}{116}{section.19}%
-\contentsline {section}{\numberline {20}Aplicaciones económicas de optimización libre}{126}{section.20}%
-\contentsline {paragraph}{Interpretación}{131}{section*.358}%
-\contentsline {section}{\numberline {21}Optimización con restricciones de igualdad}{132}{section.21}%
-\contentsline {section}{\numberline {22}Aplicaciones económicas con optimización con restricciones de igualdad}{139}{section.22}%
-\contentsline {paragraph}{CPO}{140}{section*.381}%
-\contentsline {paragraph}{Multiplicador lagrangiano}{140}{section*.382}%
-\contentsline {paragraph}{CPO}{140}{section*.384}%
-\contentsline {paragraph}{Costo mínimo e interpretación de \(\mu ^*\)}{141}{section*.385}%
-\contentsline {section}{\numberline {23}Optimización con restricciones de desigualdad}{143}{section.23}%
-\contentsline {paragraph}{Condiciones de primer orden}{146}{section*.397}%
-\contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{146}{section*.398}%
-\contentsline {paragraph}{Condiciones de Kuhn-Tucker}{149}{section*.403}%
-\contentsline {paragraph}{Análisis de casos}{150}{section*.404}%
-\contentsline {paragraph}{Condiciones de Kuhn--Tucker}{151}{section*.407}%
-\contentsline {paragraph}{Análisis de casos}{151}{section*.408}%
-\contentsline {paragraph}{Condiciones suficientes para mínimo global}{153}{section*.413}%
-\contentsline {section}{\numberline {24}Temas adicionales de optimización}{156}{section.24}%
-\contentsline {section}{\numberline {25}Apéndice sobre Álgebra}{159}{section.25}%
+\contentsline {section}{\numberline {19}Cuasiconcavidad y cuasiconvexidad}{111}{section.19}%
+\contentsline {section}{\numberline {20}Optimización sin restricciones}{121}{section.20}%
+\contentsline {section}{\numberline {21}Aplicaciones económicas de optimización libre}{131}{section.21}%
+\contentsline {paragraph}{Interpretación}{136}{section*.365}%
+\contentsline {section}{\numberline {22}Optimización con restricciones de igualdad}{137}{section.22}%
+\contentsline {section}{\numberline {23}Aplicaciones económicas con optimización con restricciones de igualdad}{144}{section.23}%
+\contentsline {paragraph}{CPO}{145}{section*.388}%
+\contentsline {paragraph}{Multiplicador lagrangiano}{145}{section*.389}%
+\contentsline {paragraph}{CPO}{145}{section*.391}%
+\contentsline {paragraph}{Costo mínimo e interpretación de \(\mu ^*\)}{146}{section*.392}%
+\contentsline {section}{\numberline {24}Optimización con restricciones de desigualdad}{148}{section.24}%
+\contentsline {paragraph}{Condiciones de primer orden}{151}{section*.404}%
+\contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{151}{section*.405}%
+\contentsline {paragraph}{Condiciones de Kuhn-Tucker}{154}{section*.410}%
+\contentsline {paragraph}{Análisis de casos}{155}{section*.411}%
+\contentsline {paragraph}{Condiciones de Kuhn--Tucker}{156}{section*.414}%
+\contentsline {paragraph}{Análisis de casos}{156}{section*.415}%
+\contentsline {paragraph}{Condiciones suficientes para mínimo global}{158}{section*.420}%
+\contentsline {section}{\numberline {25}Temas adicionales de optimización}{161}{section.25}%
+\contentsline {section}{\numberline {26}Apéndice sobre Álgebra}{164}{section.26}%
