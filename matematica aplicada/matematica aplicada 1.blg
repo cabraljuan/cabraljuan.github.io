@@ -1,15 +1,15 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'matematica aplicada 1.blg'
-[142] biber-MSWIN64:342> INFO - === 
-[202] Biber.pm:421> INFO - Reading 'matematica aplicada 1.bcf'
-[345] Biber.pm:1002> INFO - Found 22 citekeys in bib section 0
-[361] Biber.pm:4487> INFO - Processing section 0
-[375] Biber.pm:4678> INFO - Looking for bibtex file 'bibliography.bib' for section 0
-[421] bibtex.pm:1713> INFO - LaTeX decoding ...
-[460] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliography.bib'
-[625] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[625] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[625] Biber.pm:4307> INFO - Sorting list 'nyt/global//global/global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[625] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
-[649] bbl.pm:676> INFO - Writing 'matematica aplicada 1.bbl' with encoding 'UTF-8'
-[665] bbl.pm:779> INFO - Output to matematica aplicada 1.bbl
+[123] biber-MSWIN64:342> INFO - === 
+[164] Biber.pm:421> INFO - Reading 'matematica aplicada 1.bcf'
+[285] Biber.pm:1002> INFO - Found 22 citekeys in bib section 0
+[301] Biber.pm:4487> INFO - Processing section 0
+[313] Biber.pm:4678> INFO - Looking for bibtex file 'bibliography.bib' for section 0
+[357] bibtex.pm:1713> INFO - LaTeX decoding ...
+[397] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliography.bib'
+[570] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[570] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[570] Biber.pm:4307> INFO - Sorting list 'nyt/global//global/global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[570] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[595] bbl.pm:676> INFO - Writing 'matematica aplicada 1.bbl' with encoding 'UTF-8'
+[611] bbl.pm:779> INFO - Output to matematica aplicada 1.bbl

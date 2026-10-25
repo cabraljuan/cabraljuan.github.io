@@ -1,62 +1,62 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {1}Técnicas de estudio basadas en evidencia}{4}{section.1}%
-\contentsline {paragraph}{\color {teal}Releer sin más.}{4}{section*.6}%
-\contentsline {paragraph}{\color {teal}Subrayar sin criterio.}{4}{section*.7}%
-\contentsline {paragraph}{\color {teal}Resumir.}{4}{section*.8}%
-\contentsline {paragraph}{\color {teal}1) Recuperación activa (Active Recall).}{4}{section*.10}%
-\contentsline {paragraph}{\color {teal}2) Práctica espaciada.}{5}{section*.11}%
-\contentsline {paragraph}{\color {teal}3) Autoexplicación y generación.}{5}{section*.12}%
-\contentsline {paragraph}{\color {teal}4) Intercalado (\emph {interleaving}) y variación.}{5}{section*.13}%
-\contentsline {section}{\numberline {2}Curvas de nivel}{8}{section.2}%
-\contentsline {section}{\numberline {3}Curvas de nivel en Economía}{14}{section.3}%
-\contentsline {section}{\numberline {4}Optimización con curvas de nivel}{23}{section.4}%
-\contentsline {section}{\numberline {5}Continuidad}{32}{section.5}%
-\contentsline {section}{\numberline {6}Derivadas parciales}{37}{section.6}%
-\contentsline {section}{\numberline {7}Diferencial}{46}{section.7}%
-\contentsline {section}{\numberline {8}Aplicación económica de diferencial}{51}{section.8}%
-\contentsline {section}{\numberline {9}Clasificación de bienes y elasticidad}{54}{section.9}%
-\contentsline {section}{\numberline {10}Derivadas compuestas}{59}{section.10}%
-\contentsline {section}{\numberline {11}Derivadas implícitas}{64}{section.11}%
-\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{65}{section*.149}%
-\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{65}{section*.150}%
-\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{66}{section*.156}%
-\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{66}{section*.157}%
-\contentsline {paragraph}{\color {teal}Paso 3: evaluar en un punto}{66}{section*.158}%
-\contentsline {section}{\numberline {12}Derivadas implícitas en sistemas de ecuaciones}{69}{section.12}%
-\contentsline {paragraph}{Paso 1: Calcular las derivadas parciales}{70}{section*.169}%
-\contentsline {paragraph}{Paso 2: Diferenciar implícitamente y escribir el sistema}{71}{section*.170}%
-\contentsline {paragraph}{Paso 3: Escribir el sistema en forma matricial}{71}{section*.171}%
-\contentsline {paragraph}{Paso 4: Resolver el sistema con la Regla de Cramer}{71}{section*.172}%
-\contentsline {paragraph}{Paso 5: Chequeo del Jacobiano y evaluación de las derivadas en $P_0$}{71}{section*.173}%
-\contentsline {section}{\numberline {13}IS-LM}{77}{section.13}%
-\contentsline {paragraph}{1. Mercado de bienes y servicios (IS)}{77}{section*.181}%
-\contentsline {paragraph}{2. Mercado monetario (LM)}{77}{section*.182}%
-\contentsline {paragraph}{3. Ingreso disponible}{77}{section*.183}%
-\contentsline {section}{\numberline {14}Homogeneidad}{80}{section.14}%
-\contentsline {section}{\numberline {15}Autovalores y autovectores}{84}{section.15}%
-\contentsline {section}{\numberline {16}Formas cuadráticas}{95}{section.16}%
-\contentsline {section}{\numberline {17}Menores}{106}{section.17}%
-\contentsline {paragraph}{Notación.}{106}{section*.271}%
-\contentsline {paragraph}{Menor (general) de orden \(k\).}{106}{section*.272}%
-\contentsline {paragraph}{Menor principal de orden \(k\).}{106}{section*.273}%
-\contentsline {paragraph}{Menor principal líder de orden \(k\).}{106}{section*.274}%
-\contentsline {section}{\numberline {18}Concavidad y convexidad}{112}{section.18}%
-\contentsline {section}{\numberline {19}Cuasiconcavidad y cuasiconvexidad}{123}{section.19}%
-\contentsline {section}{\numberline {20}Optimización sin restricciones}{132}{section.20}%
-\contentsline {section}{\numberline {21}Aplicaciones económicas de optimización libre}{147}{section.21}%
-\contentsline {section}{\numberline {22}Optimización con restricciones de igualdad}{154}{section.22}%
-\contentsline {section}{\numberline {23}Aplicaciones económicas con optimización con restricciones de igualdad}{167}{section.23}%
-\contentsline {paragraph}{CPO}{168}{section*.380}%
-\contentsline {paragraph}{Multiplicador lagrangiano}{168}{section*.381}%
-\contentsline {paragraph}{CPO}{168}{section*.383}%
-\contentsline {paragraph}{Costo mínimo e interpretación de \(\mu ^*\)}{169}{section*.384}%
-\contentsline {section}{\numberline {24}Optimización con restricciones de desigualdad}{171}{section.24}%
-\contentsline {paragraph}{Condiciones de primer orden}{174}{section*.396}%
-\contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{174}{section*.397}%
-\contentsline {paragraph}{Condiciones de Kuhn-Tucker}{177}{section*.402}%
-\contentsline {paragraph}{Análisis de casos}{178}{section*.403}%
-\contentsline {paragraph}{Condiciones de Kuhn--Tucker}{179}{section*.406}%
-\contentsline {paragraph}{Análisis de casos}{179}{section*.407}%
-\contentsline {paragraph}{Condiciones suficientes para mínimo global}{181}{section*.412}%
-\contentsline {section}{\numberline {25}Temas adicionales de optimización}{184}{section.25}%
-\contentsline {section}{\numberline {26}Apéndice sobre Álgebra}{187}{section.26}%
+\contentsline {section}{\numberline {1}Técnicas de estudio basadas en evidencia}{3}{section.1}%
+\contentsline {paragraph}{\color {teal}Releer sin más.}{3}{section*.5}%
+\contentsline {paragraph}{\color {teal}Subrayar sin criterio.}{3}{section*.6}%
+\contentsline {paragraph}{\color {teal}Resumir.}{3}{section*.7}%
+\contentsline {paragraph}{\color {teal}1) Recuperación activa (Active Recall).}{3}{section*.9}%
+\contentsline {paragraph}{\color {teal}2) Práctica espaciada.}{4}{section*.10}%
+\contentsline {paragraph}{\color {teal}3) Autoexplicación y generación.}{4}{section*.11}%
+\contentsline {paragraph}{\color {teal}4) Intercalado (\emph {interleaving}) y variación.}{4}{section*.12}%
+\contentsline {section}{\numberline {2}Funciones de varias variables y curvas de nivel}{7}{section.2}%
+\contentsline {section}{\numberline {3}Curvas de nivel en Economía}{18}{section.3}%
+\contentsline {section}{\numberline {4}Optimización con curvas de nivel}{26}{section.4}%
+\contentsline {section}{\numberline {5}Continuidad}{35}{section.5}%
+\contentsline {section}{\numberline {6}Derivadas parciales}{40}{section.6}%
+\contentsline {section}{\numberline {7}Diferencial}{49}{section.7}%
+\contentsline {section}{\numberline {8}Aplicación económica de diferencial}{54}{section.8}%
+\contentsline {section}{\numberline {9}Clasificación de bienes y elasticidad}{57}{section.9}%
+\contentsline {section}{\numberline {10}Derivadas compuestas}{62}{section.10}%
+\contentsline {section}{\numberline {11}Derivadas implícitas}{67}{section.11}%
+\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{68}{section*.153}%
+\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{68}{section*.154}%
+\contentsline {paragraph}{\color {teal}Paso 1: calcular las derivadas parciales}{69}{section*.160}%
+\contentsline {paragraph}{\color {teal}Paso 2: aplicar la fórmula de la derivada implícita}{69}{section*.161}%
+\contentsline {paragraph}{\color {teal}Paso 3: evaluar en un punto}{69}{section*.162}%
+\contentsline {section}{\numberline {12}Derivadas implícitas en sistemas de ecuaciones}{72}{section.12}%
+\contentsline {paragraph}{Paso 1: Calcular las derivadas parciales}{73}{section*.173}%
+\contentsline {paragraph}{Paso 2: Diferenciar implícitamente y escribir el sistema}{74}{section*.174}%
+\contentsline {paragraph}{Paso 3: Escribir el sistema en forma matricial}{74}{section*.175}%
+\contentsline {paragraph}{Paso 4: Resolver el sistema con la Regla de Cramer}{74}{section*.176}%
+\contentsline {paragraph}{Paso 5: Chequeo del Jacobiano y evaluación de las derivadas en $P_0$}{74}{section*.177}%
+\contentsline {section}{\numberline {13}IS-LM}{80}{section.13}%
+\contentsline {paragraph}{1. Mercado de bienes y servicios (IS)}{80}{section*.185}%
+\contentsline {paragraph}{2. Mercado monetario (LM)}{80}{section*.186}%
+\contentsline {paragraph}{3. Ingreso disponible}{80}{section*.187}%
+\contentsline {section}{\numberline {14}Homogeneidad}{83}{section.14}%
+\contentsline {section}{\numberline {15}Autovalores y autovectores}{87}{section.15}%
+\contentsline {section}{\numberline {16}Formas cuadráticas}{98}{section.16}%
+\contentsline {section}{\numberline {17}Menores}{109}{section.17}%
+\contentsline {paragraph}{Notación.}{109}{section*.275}%
+\contentsline {paragraph}{Menor (general) de orden \(k\).}{109}{section*.276}%
+\contentsline {paragraph}{Menor principal de orden \(k\).}{109}{section*.277}%
+\contentsline {paragraph}{Menor principal líder de orden \(k\).}{109}{section*.278}%
+\contentsline {section}{\numberline {18}Concavidad y convexidad}{115}{section.18}%
+\contentsline {section}{\numberline {19}Cuasiconcavidad y cuasiconvexidad}{126}{section.19}%
+\contentsline {section}{\numberline {20}Optimización sin restricciones}{135}{section.20}%
+\contentsline {section}{\numberline {21}Aplicaciones económicas de optimización libre}{150}{section.21}%
+\contentsline {section}{\numberline {22}Optimización con restricciones de igualdad}{157}{section.22}%
+\contentsline {section}{\numberline {23}Aplicaciones económicas con optimización con restricciones de igualdad}{170}{section.23}%
+\contentsline {paragraph}{CPO}{171}{section*.384}%
+\contentsline {paragraph}{Multiplicador lagrangiano}{171}{section*.385}%
+\contentsline {paragraph}{CPO}{171}{section*.387}%
+\contentsline {paragraph}{Costo mínimo e interpretación de \(\mu ^*\)}{172}{section*.388}%
+\contentsline {section}{\numberline {24}Optimización con restricciones de desigualdad}{174}{section.24}%
+\contentsline {paragraph}{Condiciones de primer orden}{177}{section*.400}%
+\contentsline {paragraph}{Eliminación de las variables ficticias de las condiciones de primer orden\\}{177}{section*.401}%
+\contentsline {paragraph}{Condiciones de Kuhn-Tucker}{180}{section*.406}%
+\contentsline {paragraph}{Análisis de casos}{181}{section*.407}%
+\contentsline {paragraph}{Condiciones de Kuhn--Tucker}{182}{section*.410}%
+\contentsline {paragraph}{Análisis de casos}{182}{section*.411}%
+\contentsline {paragraph}{Condiciones suficientes para mínimo global}{184}{section*.416}%
+\contentsline {section}{\numberline {25}Temas adicionales de optimización}{187}{section.25}%
+\contentsline {section}{\numberline {26}Apéndice sobre Álgebra}{190}{section.26}%
